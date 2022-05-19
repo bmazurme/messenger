@@ -1,0 +1,7 @@
+.card__text {
+  font-size: 12px;
+  line-height: 15px;
+  color: #999999;
+  grid-area: text;
+  padding: 0;
+}

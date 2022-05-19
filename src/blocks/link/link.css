@@ -1,7 +1,4 @@
 .link {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
   font-size: 11px;
   line-height: 11px;
   color: #3369F3;
@@ -12,4 +9,5 @@
   margin-top: 14px;
   margin-bottom: 0;
   display: flex;
+  justify-content: center;
 }

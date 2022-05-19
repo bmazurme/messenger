@@ -35,7 +35,7 @@ export const tmp = `
     </div>
     <button
       aria-label="Save"
-      class="button button__submit"
+      class="button button_submit"
       type="submit"
     >
       Авторизоваться

@@ -1,0 +1,14 @@
+.list__value_input {
+  border: 0;
+}
+
+.list__value_input:focus {
+  outline: none;
+}
+
+.list__value_input:-webkit-autofill,
+.list__value_input:-webkit-autofill:hover,
+.list__value_input:-webkit-autofill:focus,
+.list__value_input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

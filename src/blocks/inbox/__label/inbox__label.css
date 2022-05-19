@@ -1,0 +1,12 @@
+.inbox__label {
+  font-size: 13px;
+  line-height: 13px;
+  color: #999;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 5px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}

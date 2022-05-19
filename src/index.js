@@ -1,5 +1,5 @@
-import { routes } from "./src/data/routes";
-import { ERROR_NOT_FOUND } from "./src/data/const";
+import { routes } from "./data/routes";
+import { ERROR_NOT_FOUND } from "./data/const";
 
 const root = document.getElementById('root');
 

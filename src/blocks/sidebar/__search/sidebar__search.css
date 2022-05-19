@@ -1,0 +1,11 @@
+.sidebar__search {
+  display: flex;
+  width: 290px;
+  height: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 14px;
+  background: #EFEFEF;
+  border-radius: 5px;
+}

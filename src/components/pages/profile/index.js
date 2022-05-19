@@ -1,8 +1,8 @@
 import Handlebars from "handlebars";
-import { tmp } from "./template";
+import { tmp } from "./index.tpl";
 
 function profile() {
-  compiler = Handlebars.compile(tmp)
+  const compiler = Handlebars.compile(tmp);
   return function(context) {
     return compiler(context);
   }

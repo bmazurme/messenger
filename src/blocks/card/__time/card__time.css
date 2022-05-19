@@ -1,0 +1,10 @@
+.card__time {
+  grid-area: time;
+  font-size: 9px;
+  line-height: 13px;
+  /* identical to box height, or 144% */
+
+  text-align: right;
+
+  color: #999999;
+}

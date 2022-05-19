@@ -1,0 +1,9 @@
+.chat__sidebar {
+  grid-area: sidebar;
+  
+  display: flex;
+  width: 310px;
+  height: 100%;
+  background: #FBFBFB;
+  border-right: solid 1px #EAEAEA;
+}

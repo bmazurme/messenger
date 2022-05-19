@@ -111,7 +111,7 @@ export const tmp = `
 
     <button
       aria-label="Save"
-      class="button button__submit"
+      class="button button_signup button_submit"
       type="submit"
     >
       Зарегистрироваться

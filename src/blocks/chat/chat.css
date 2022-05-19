@@ -1,0 +1,10 @@
+.chat {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "sidebar main" "sidebar main";
+  gap: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: bisque;
+}

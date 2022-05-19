@@ -1,0 +1,8 @@
+.profile__link {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 13px;
+  color: #3369F3;
+  text-decoration: none;
+}
