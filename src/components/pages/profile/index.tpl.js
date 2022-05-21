@@ -50,7 +50,7 @@ export const tmp = `
           <label class="popup__label" for="avatar">Выбрать файл на компьютере</label>
           <input name="avatar" type="file" class="popup__input" id="avatar"></input>
           <button class="popup__button">Поменять</button>
-          <button class="popup__error"></button>
+          <span class="popup__error"></span>
         </form>
       </div>
     </div>
