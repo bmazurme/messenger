@@ -1,8 +1,11 @@
+import { POPUP,  POPUP_ACTIVE} from "./config";
+
 class Popup {
-  constructor() {
-    this._popup = document.querySelector('.popup');
+  constructor(buttons) {
+    this._buttons = buttons;
+    this._popup = document.querySelector(POPUP);
     this._handleEscClose = this._handleEscClose.bind(this);
-    this._openPopup = 'popup_active';
+    this._openPopup = POPUP_ACTIVE;
   }
 
   _handleButtonClose = (evt) => {
@@ -32,11 +35,15 @@ class Popup {
     this._popup.removeEventListener('mousedown', this._handleButtonClose);
     document.removeEventListener('keydown', this._handleEscClose);
   }
-}
-const popup = new Popup('.popup');
 
-function openPopup() {
-  popup.open();
+  initPopups() {
+    this._buttons.forEach(selector => {
+      const button = document.querySelector(selector);
+      if (button) {
+        button.addEventListener('click', () => this.open());
+      }
+    });
+  }
 }
-const button = document.querySelector('.profile__avatar');
-button.addEventListener('click', openPopup);
+
+export default Popup;
