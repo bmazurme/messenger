@@ -1,7 +1,7 @@
 .card__title {
   font-weight: 600;
   font-size: 13px;
-  line-height: 13px;
+  line-height: 13px;  
   color: #1E1E1E;
   grid-area: title;
   padding: 0;

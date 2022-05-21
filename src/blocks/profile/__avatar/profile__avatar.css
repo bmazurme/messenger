@@ -5,8 +5,11 @@
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background: #000000;
-  opacity: 0.5;
+  background-color: #EFEFEF;
+  background-image: url(../../../vendor/images/default.svg);
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: 40px;
 }
 
 .profile__avatar:hover::before {
@@ -20,6 +23,8 @@
   width: 130px;
   position: absolute;
   border-radius: 50%;
+  background-color: #000000;
+  opacity: 0.5;
 }
 .profile__avatar:hover::after {
   content: 'Поменять аватар';

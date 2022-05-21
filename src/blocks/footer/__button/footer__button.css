@@ -1,0 +1,15 @@
+.footer__button {
+  grid-area: attach;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  cursor: pointer;
+
+  background-image: url(../../../vendor/images/attach.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0;
+}

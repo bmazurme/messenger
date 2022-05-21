@@ -1,0 +1,10 @@
+.board__header {
+  margin: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 0;
+  height: 54px;
+  border-bottom: solid 1px #EAEAEA;
+  display: flex;
+  align-items: center;
+}

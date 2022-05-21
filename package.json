@@ -4,8 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "parcel src/index.html",
-    "buildloc": "rm -rf dist & parcel build src/index.html --public-url ./",
-    "build": "rm -rf dist & parcel build src/index.html ",
+    "build": "parcel build src/index.html ",
     "start": "node src/server.js"
   },
   "keywords": [],
@@ -18,6 +17,7 @@
     "postcss": "^8.4.14"
   },
   "dependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "autoprefixer": "^10.4.7",
     "handlebars": "^4.7.7"
   }

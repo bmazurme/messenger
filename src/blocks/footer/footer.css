@@ -1,0 +1,9 @@
+.footer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 34px 1fr 25px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "attach input send";
+  column-gap: 10px;
+  padding: 0;
+}

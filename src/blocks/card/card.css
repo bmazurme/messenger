@@ -4,8 +4,12 @@
 
   display: grid;
   grid-template-columns: 47px 1fr 25px;
-  grid-template-rows: 14px 1fr 1fr; 
-  grid-template-areas: "image title time"
-                       "image text gap"
-                       "image text counter";
+  grid-template-rows: 12px 14px 16px 16px 12px; 
+  grid-template-areas: 
+                      "top top top"
+                      "image title time"
+                      "image text counter"
+                      "image text counter"
+                      "bottom bottom bottom";
+  column-gap: 10px;
 }

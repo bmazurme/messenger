@@ -2,16 +2,17 @@ import signup from "../components/pages/signup";
 import signin from "../components/pages/signin";
 import profile from "../components/pages/profile";
 import profileEdit from "../components/pages/profile/edit";
+import profileEditPass from "../components/pages/profile/edit-pass";
 import error from "../components/pages/error";
 import chat from "../components/pages/chat";
 
 import {
   INDEX,
-  CHAT,
   SIGN_UP,
   SIGN_IN,
   PROFILE,
   PROFILE_EDIT,
+  PROFILE_PASSWORD,
   ERROR_NOT_FOUND,
   ERROR_INTERNAL_SERVER,
 } from "./const";
@@ -25,7 +26,7 @@ export const routes = new Map([
     }
   ],
   [
-    CHAT,
+    INDEX,
     {
       view: chat,
       context: {}
@@ -72,6 +73,18 @@ export const routes = new Map([
         login: {label: 'Логин', value: 'ivanivanov'},
         email: {label: 'Почта', value: 'pochta@yandex.ru'},
         phone: {label: 'Телефон', value: '+7 (909) 967 30 30'}
+      }
+    }
+  ],
+  [
+    PROFILE_PASSWORD,
+    {
+      view: profileEditPass,
+      context: {
+        avatarLink: {label: 'Ава', value: '/'},
+        oldPassword: {label: 'Старый пароль', value: '********'},
+        newPassword: {label: 'Новый пароль', value: ''},
+        newPasswordConfirm: {label: 'Повторите новый пароль', value: ''},
       }
     }
   ],

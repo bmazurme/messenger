@@ -7,33 +7,33 @@ export const tmp = `
     <ul class="list">
 
       <li class="list__item">
-        <p class="list__label">{{email.label}}</p>
+        <p type="text" name="email" class="list__label">{{email.label}}</p>
         <input class="list__value list__value_input" value="{{ email.value}}"></input>
       </li>
 
       <li class="list__item">
         <p class="list__label">{{login.label}}</p>
-        <input class="list__value list__value_input" value="{{login.value}}"></input>
+        <input type="text" name="login" class="list__value list__value_input" value="{{login.value}}"></input>
       </li>
 
       <li class="list__item">
         <p class="list__label">{{firstName.label}}</p>
-        <input class="list__value list__value_input" value="{{firstName.value}}"></input>
+        <input type="text" name="first_name" class="list__value list__value_input" value="{{firstName.value}}"></input>
       </li>
 
       <li class="list__item">
         <p class="list__label">{{secondName.label}}</p>
-        <input class="list__value list__value_input" value="{{secondName.value}}"></input>
+        <input type="text" name="second_name" class="list__value list__value_input" value="{{secondName.value}}"></input>
        </li>
 
       <li class="list__item">
         <p class="list__label">{{displayName.label}}</p>
-        <input class="list__value list__value_input" value="{{displayName.value}}"></input>
+        <input type="text" name="display_name" class="list__value list__value_input" value="{{displayName.value}}"></input>
       </li>
 
       <li class="list__item">
         <p class="list__label">{{phone.label}}</p>
-        <input class="list__value list__value_input" value="{{phone.value}}"></input>
+        <input type="text" name="phone" class="list__value list__value_input" value="{{phone.value}}"></input>
       </li>
     </ul>
 
@@ -46,7 +46,7 @@ export const tmp = `
     </button>
 
     <div class="back">
-      <div class="back__button"></div>
+      <a href="/" class="back__button"></a>
     </div>
 
   </section>

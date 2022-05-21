@@ -1,0 +1,14 @@
+.header__link {
+  padding: 0;
+  margin: auto;
+  grid-area: link;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-image: url(../../../vendor/images/dots.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 3px 15px;
+  background-color: #F5F5F5;
+}
