@@ -3,7 +3,7 @@ export const tmp = `
   <h1 class="identity__title">
     Вход
   </h1>
-  <form class="identity__form">
+  <form class="identity__form identity_signin">
     <div class="inbox" >
       <input
         class="inbox__input inbox__input_login" 
@@ -34,7 +34,6 @@ export const tmp = `
       <span class="inbox__input_error password-input-error"></span>
     </div>
     <button
-      aria-label="Save"
       class="button button_submit"
       type="submit"
     >

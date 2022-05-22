@@ -66,6 +66,7 @@
 @import url(./blocks/message/__container/_to/message__container_to.css);
 @import url(./blocks/message/__content/message__content.css);
 @import url(./blocks/message/__time/message__time.css);
+@import url(./blocks/message/__time/_read/message__time_read.css);
 /* card */
 @import url(./blocks/card/card.css);
 @import url(./blocks/card/__image/card__image.css);

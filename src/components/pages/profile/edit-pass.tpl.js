@@ -4,6 +4,7 @@ export const tmp = `
     </div>
 
     <h2 class="profile__title">{{ firstName.value }} </h2> 
+    <form class="profile__form form_save">
     <ul class="list">
 
       <li class="list__item">
@@ -29,9 +30,10 @@ export const tmp = `
     >
       Сохранить
     </button>
+    </form>
 
     <div class="back">
-      <a href="/" class="back__button"></a>
+      <a href="/profile" class="back__button"></a>
     </div>
 
   </section>

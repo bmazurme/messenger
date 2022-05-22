@@ -65,20 +65,22 @@ export const tmp = `
                     не так и на ракету они так никогда и не попали. Всего их было 
                     произведено 25 штук, одну из них недавно продали на аукционе 
                     за 45000 евро.
+                    <div class="message__time">
+                      11:56
+                    </div> 
                   </div> 
-                  <div class="message__time">
-                    11:56
-                  </div> 
+
                 </div> 
               </div>
               <div class="message message_to">
                 <div class="message__container message__container_to">
                   <div class="message__content">
                     Круто!
+                    <div class="message__time message__time_read">
+                      12:00
+                    </div> 
                   </div> 
-                  <div class="message__time">
-                    12:00
-                  </div> 
+             
                 </div> 
               </div>
             </div>
