@@ -4,7 +4,7 @@
   font-size: 11px;
   line-height: 11px;
   text-align: center;
-  color: #3369F3;
+  color: var(--error-link-color);
   margin-top: 70px;
   margin-left: auto;
   margin-right: auto;

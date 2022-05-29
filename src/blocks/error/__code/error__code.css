@@ -2,7 +2,7 @@
   font-size: 40px;
   line-height: 40px;
   text-align: center;
-  color: #1E1E1E;
+  color: var(--error-code-color);
   margin: 0;
   padding: 0;
 }

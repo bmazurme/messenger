@@ -23,9 +23,10 @@
   width: 130px;
   position: absolute;
   border-radius: 50%;
-  background-color: #000000;
+  background-color: var(--profile-avatar-hover-before-background-color);
   opacity: 0.5;
 }
+
 .profile__avatar:hover::after {
   content: 'Поменять аватар';
   cursor: pointer;
@@ -34,12 +35,10 @@
   justify-self:center;
   justify-content: center;
   text-align: center;
-  font-family: 'Inter';
   font-style: normal;
-  font-weight: 500;
   font-size: 13px;
   line-height: 14px;
-  color: #FFFFFF;
+  color: var(--profile-avatar-hover-after-color);
   height: 28px;
   width: 64px;
   position: absolute;

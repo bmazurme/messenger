@@ -4,13 +4,13 @@
   align-self: center;
   width: 280px;
   height: 37px;
-  background: #3369F3;
+  background: var(--popup-button-background);
   border-radius: 8px;
   border: 0;
   font-size: 13px;
   line-height: 13px;
   text-align: center;
-  color: #FFFFFF;
+  color: var(--popup-button-color);
   margin-top: 45px;
   margin-bottom: 0;
   margin-left: auto;

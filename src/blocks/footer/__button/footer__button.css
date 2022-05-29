@@ -4,9 +4,8 @@
   height: 32px;
   padding: 0;
   margin: 0;
-  background-color: #fff;
+  background-color: var(--footer-button-background-color);
   cursor: pointer;
-
   background-image: url(../../../vendor/images/attach.svg);
   background-position: center;
   background-repeat: no-repeat;

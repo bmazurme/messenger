@@ -2,7 +2,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #EFEFEF;
+  background: var(--header-image-background);
   padding: 0;
   margin: auto;
 }

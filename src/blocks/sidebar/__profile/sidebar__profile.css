@@ -4,7 +4,7 @@
   font-size: 12px;
   line-height: 12px;
   text-align: right;
-  color: #999999;
+  color: var(--sidebar-profile-color);
   width: 290px;
   height: 46px;
   margin-top: 0;

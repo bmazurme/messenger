@@ -2,7 +2,7 @@
   font-size: 20px;
   line-height: 20px;
   text-align: center;
-  color: #1E1E1E;
+  color: var(--error-text-color);
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;

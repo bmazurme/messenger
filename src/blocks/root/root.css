@@ -8,4 +8,76 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
+
+  --button-background: #3369F3;
+  --button-boreder: #3369F3;
+  --button-background-color: #FBFBFB;
+  --button-border-right: solid 1px #EAEAEA;
+  --button-color: #FFFFFF;
+
+  --card-counter-background: #3369F3;
+  --card-counter-color: #FFFFFF;
+  --card-image-background: #EFEFEF;
+  --card-text-color: #999999;
+  --card-time-color: #999999;
+  --card-title-color: #1E1E1E;
+  --card-last-child-border-bottom-color: #EAEAEA;
+  --card-border-top-color: #EAEAEA;
+
+  --chat-sidebar-background: #FBFBFB;
+  --chat-sidebar-border-right: solid 1px #EAEAEA;
+
+  --board-header-border-bottom: #EAEAEA;
+  --board-footerborder-top: #EAEAEA;
+
+  --error-code-color: #1E1E1E;
+  --error-link-color: #3369F3;
+  --error-text-color: #1E1E1E;
+
+  --footer-button-background-color: #fff;
+  --footer-button-send-background: #3369F3;
+  --footer-input-background: #EFEFEF;
+  --footer-input-color: #999999;
+  --footer-text-color: #1E1E1E;
+
+  --header-link-background-color: #F5F5F5;
+  --header-image-background: #EFEFEF;
+
+  --identity-background: #FFFFFF;
+  
+  --inbox-label-color: #999;
+  --inbox-input-border-color: #3369F3;
+  --inbox-input-color:#999;
+
+  --link-color: #3369F3;
+  --list-value-color: #999999;
+  --list-label-color: #1E1E1E;
+  --list-item-border-bottom-color: #EAEAEA;
+
+  --message-color: #1E1E1E;
+  --message-container-to-background: #E4EDFD;
+  --message-container-background: #F8F8F8;
+  --message-time-color: #999999;
+  --message-time-read-color: #3369F3;
+
+  --popup-button-background: #3369F3;
+  --popup-button-color: #FFFFFF;
+  --popup-form-background: #FFFFFF;
+  --popup-label-color: #3369F3;
+  --popup-title-color: #1E1E1E;
+  --popup-before-background-color: #000;
+
+  --profile-avatar-background-color: #EFEFEF;
+  --profile-avatar-hover-before-background-color: #000000;
+  --profile-avatar-hover-after-color: #FFFFFF;
+  --profile-link-logout-color: #FF0000;
+  --profile-link-color: #3369F3;
+  --profile-title-color: #1E1E1E;
+
+  --sidebar-profile-color: #999999;
+  --sidebar-search-background: #EFEFEF;
+  --sidebar-search-border-color: #EFEFEF;
+  --sidebar-search-color: #999999;
+
+  --back-button-background: #3369F3;
 }
