@@ -1,4 +1,4 @@
-import { POPUP,  POPUP_ACTIVE} from "./config";
+import { POPUP, POPUP_ACTIVE} from "./config";
 
 class Popup {
   constructor(buttons) {

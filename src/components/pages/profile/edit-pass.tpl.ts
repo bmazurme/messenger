@@ -9,17 +9,26 @@ export const tmp = `
 
       <li class="list__item">
         <p class="list__label">{{oldPassword.label}}</p>
-        <input type="password" name="oldPassword" class="list__value list__value_input" value="********" placeholder="********"></input>
+        <input type="password" 
+               name="oldPassword" 
+               class="list__value list__value_input" 
+               value="********" placeholder="********"></input>
        </li>
 
       <li class="list__item">
         <p class="list__label">{{newPassword.label}}</p>
-        <input type="password" name="newPassword" class="list__value list__value_input" value="********" placeholder="********"></input>
+        <input type="password" 
+               name="newPassword"
+               class="list__value
+               list__value_input" 
+               value="********" placeholder="********"></input>
       </li>
 
       <li class="list__item">
         <p class="list__label">{{newPasswordConfirm.label}}</p>
-        <input type="password" name="newPassword" class="list__value list__value_input" value="********" placeholder="********"></input>
+        <input type="password" name="newPassword" 
+               class="list__value list__value_input" 
+               value="********" placeholder="********"></input>
       </li>
     </ul>
 

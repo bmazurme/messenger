@@ -14,7 +14,6 @@
 /* button */
 @import url(./blocks/button/button.css);
 @import url(./blocks/button/_signup/button_signup.css);
-@import url(./blocks/button/_inactive/button_inactive.css);
 /* link */
 @import url(./blocks/link/link.css);
 /* profile */
@@ -42,7 +41,6 @@
 @import url(./blocks/sidebar/__profile/sidebar__profile.css);
 @import url(./blocks/sidebar/__icon/sidebar__icon.css);
 @import url(./blocks/sidebar/__search/sidebar__search.css);
-@import url(./blocks/sidebar/__cards/sidebar__cards.css);
 /* board */
 @import url(./blocks/board/board.css);
 @import url(./blocks/board/__header/board__header.css);

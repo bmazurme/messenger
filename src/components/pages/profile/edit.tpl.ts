@@ -12,23 +12,28 @@ export const tmp = `
         </li>
         <li class="list__item">
           <p class="list__label">{{login.label}}</p>
-          <input type="text" name="login" class="list__value list__value_input" value="{{login.value}}"></input>
+          <input type="text" name="login" class="list__value list__value_input" 
+                 value="{{login.value}}"></input>
         </li>
         <li class="list__item">
           <p class="list__label">{{firstName.label}}</p>
-          <input type="text" name="first_name" class="list__value list__value_input" value="{{firstName.value}}"></input>
+          <input type="text" name="first_name" class="list__value list__value_input" 
+                 value="{{firstName.value}}"></input>
         </li>
         <li class="list__item">
           <p class="list__label">{{secondName.label}}</p>
-          <input type="text" name="second_name" class="list__value list__value_input" value="{{secondName.value}}"></input>
+          <input type="text" name="second_name" class="list__value list__value_input" 
+                 value="{{secondName.value}}"></input>
         </li>
         <li class="list__item">
           <p class="list__label">{{displayName.label}}</p>
-          <input type="text" name="display_name" class="list__value list__value_input" value="{{displayName.value}}"></input>
+          <input type="text" name="display_name" class="list__value list__value_input" 
+                 value="{{displayName.value}}"></input>
         </li>
         <li class="list__item">
           <p class="list__label">{{phone.label}}</p>
-          <input type="text" name="phone" class="list__value list__value_input" value="{{phone.value}}"></input>
+          <input type="text" name="phone" class="list__value list__value_input" 
+                 value="{{phone.value}}"></input>
         </li>
       </ul>
 
@@ -41,7 +46,6 @@ export const tmp = `
         </button>
     </form>
     
-
     <div class="back">
       <a href="/profile" class="back__button"></a>
     </div>
