@@ -7,7 +7,7 @@
       "module": "ES6",
       // "strictNullChecks": true,
       "sourceMap": true,
-      // "noImplicitAny": true,
+      "noImplicitAny": true,
       "noUnusedLocals": true,
       "noUnusedParameters": true,
       "moduleResolution": "node"

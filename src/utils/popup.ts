@@ -1,20 +1,25 @@
 import { POPUP, POPUP_ACTIVE} from "./config";
 
 class Popup {
-  constructor(buttons) {
+  private _openPopup: string;
+  private _popup: HTMLElement;
+  private _buttons: string[];
+  
+  constructor(buttons: string[]) {
     this._buttons = buttons;
     this._popup = document.querySelector(POPUP);
     this._handleEscClose = this._handleEscClose.bind(this);
     this._openPopup = POPUP_ACTIVE;
   }
 
-  _handleButtonClose = (evt) => {
-    if (evt.target.classList.contains(this._openPopup)) {
+  _handleButtonClose = (evt: Event) => {
+    const target = evt.target as HTMLButtonElement
+    if (target.classList.contains(this._openPopup)) {
       this.close();
     }
   };
 
-  _handleEscClose(evt) {
+  _handleEscClose(evt: KeyboardEvent) {
     if (evt.key === 'Escape') {
       this.close();
     }
@@ -37,7 +42,7 @@ class Popup {
   }
 
   initPopups() {
-    this._buttons.forEach(selector => {
+    this._buttons.forEach((selector: string) => {
       const button = document.querySelector(selector);
       if (button) {
         button.addEventListener('click', () => this.open());

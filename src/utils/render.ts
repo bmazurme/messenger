@@ -1,8 +1,17 @@
 import { routes } from "../data/routes";
 import { ERROR_NOT_FOUND } from "../data/const";
 
-function generateBlock({ view, context }) {
-  const block = view();
+interface ITmp {
+  view: Function;
+  context: {};
+}
+
+function generateBlock(tmp: ITmp) {
+  const data = tmp.context;
+  const context: {} = Array.isArray(data) 
+    ? {[tmp.view.name]: data.map(item => generateBlock(item))} 
+    : data;
+    const block = tmp.view();
   return block(context);
 }
 

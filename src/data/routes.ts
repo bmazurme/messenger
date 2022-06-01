@@ -4,7 +4,16 @@ import profile from "../components/pages/profile";
 import profileEdit from "../components/pages/profile/edit";
 import profileEditPass from "../components/pages/profile/edit-pass";
 import error from "../components/pages/error";
+import sidebar from "../components/blocks/sidebar/index";
+import board from "../components/blocks/board/index";
 import chat from "../components/pages/chat";
+import { sidebarContext } from "./sidebarContext";
+import { profileContext } from "./profileContext";
+import { profileEditContext } from "./profileEditContext";
+import { profileEditPassContext } from "./profileEditPassContext";
+import { error404Context } from "./error404Context";
+import { error500Context } from "./error500Context";
+import { messageContext } from "./messageContext";
 
 import {
   INDEX,
@@ -19,6 +28,14 @@ import {
 
 export const routes = new Map([
   [
+    '/board',
+    {
+      view: board,
+      context: messageContext
+      ,
+    }
+  ],
+  [
     INDEX,
     {
       view: signin,
@@ -29,7 +46,16 @@ export const routes = new Map([
     INDEX,
     {
       view: chat,
-      context: {}
+      context: [
+        {
+          view: sidebar,
+          context: sidebarContext,
+        },
+        {
+          view: board,
+          context: messageContext,
+        },
+      ],
     }
   ],
   [
@@ -50,64 +76,35 @@ export const routes = new Map([
     PROFILE,
     {
       view: profile,
-      context: {
-        avatarLink: {label: 'Ава', value: '/'},
-        firstName: {label: 'Имя', value: 'Иван'},
-        secondName: {label: 'Фамилия', value: 'Иванов'},
-        displayName: {label: 'Имя в чате', value: 'Иван'},
-        login: {label: 'Логин', value: 'ivanivanov'},
-        email: {label: 'Почта', value: 'pochta@yandex.ru'},
-        phone: {label: 'Телефон', value: '+7 (909) 967 30 30'},
-      }
-    }
+      context: profileContext,
+    },
   ],
   [
     PROFILE_EDIT,
     {
       view: profileEdit,
-      context: {
-        avatarLink: {label: 'Ава', value: '/'},
-        firstName: {label: 'Имя', value: 'Иван'},
-        secondName: {label: 'Фамилия', value: 'Иванов'},
-        displayName: {label: 'Имя в чате', value: 'Иван'},
-        login: {label: 'Логин', value: 'ivanivanov'},
-        email: {label: 'Почта', value: 'pochta@yandex.ru'},
-        phone: {label: 'Телефон', value: '+7 (909) 967 30 30'}
-      }
+      context: profileEditContext,
     }
   ],
   [
     PROFILE_PASSWORD,
     {
       view: profileEditPass,
-      context: {
-        avatarLink: {label: 'Ава', value: '/'},
-        oldPassword: {label: 'Старый пароль', value: '********'},
-        newPassword: {label: 'Новый пароль', value: ''},
-        newPasswordConfirm: {label: 'Повторите новый пароль', value: ''},
-      }
+      context: profileEditPassContext,
     }
   ],
   [
     ERROR_NOT_FOUND,
     {
       view: error,
-      context: {
-        code: 404,
-        text: 'Не туда попали',
-        link: 'Назад к чатам'
-      }
+      context: error404Context,
     }
   ],
   [
     ERROR_INTERNAL_SERVER,
     {
       view: error,
-      context: {
-        code: 500,
-        text: 'Мы уже фиксим',
-        link: 'Назад к чатам'
-      }
+      context: error500Context,
     }
   ],
 ]);

@@ -53,6 +53,7 @@
 @import url(./blocks/header/__text/header__text.css);
 /* footer */
 @import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__form/footer__form.css);
 @import url(./blocks/footer/__button/footer__button.css);
 @import url(./blocks/footer/__button/_send/footer__button_send.css);
 @import url(./blocks/footer/__input/footer__input.css);

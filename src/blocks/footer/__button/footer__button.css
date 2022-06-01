@@ -3,7 +3,8 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  margin: 0;
+  margin: auto;
+  /* margin-top: 11px; */
   background-color: var(--footer-button-background-color);
   cursor: pointer;
   background-image: url(../../../vendor/images/attach.svg);

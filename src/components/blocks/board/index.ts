@@ -5,11 +5,11 @@ interface IChat {
   tape: [];
 }
 
-function chat() {
+function board() {
   const compiler = compile(tmp);
   return function(context: IChat) {
     return compiler(context)
   }
 }
 
-export default chat;
+export default board;

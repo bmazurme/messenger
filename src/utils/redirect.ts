@@ -1,8 +1,8 @@
-function redirectToChat(evt) {
+function redirectToChat(evt: Event) {
   evt.preventDefault();
   window.location.replace('/');
 }
-function redirectToProfile(evt) {
+function redirectToProfile(evt: Event) {
   evt.preventDefault(); 
   window.location.replace('/profile');
 }
