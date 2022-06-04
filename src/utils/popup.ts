@@ -8,6 +8,7 @@ class Popup {
   constructor(buttons: string[]) {
     this._buttons = buttons;
     this._popup = document.querySelector(POPUP);
+
     this._handleEscClose = this._handleEscClose.bind(this);
     this._openPopup = POPUP_ACTIVE;
   }
@@ -41,9 +42,11 @@ class Popup {
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
-  initPopups() {
+  initPopups(element: HTMLElement) {
+    this._popup = element.querySelector(POPUP);
     this._buttons.forEach((selector: string) => {
-      const button = document.querySelector(selector);
+      const button = element.querySelector(selector);
+
       if (button) {
         button.addEventListener('click', () => this.open());
       }

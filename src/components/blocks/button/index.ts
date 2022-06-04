@@ -1,16 +1,21 @@
-import {compile} from "handlebars";
+import {compile} from 'handlebars';
 import {tmp} from "./index.tpl";
+import Block from '../../../core/block';
+import {Props} from '../../../core/types';
 
-interface IButton {
-  name: string;
+interface IButtonOptions extends Props {
+	type?: string;
+	text?: string;
+	class?: string;
 }
 
-function button() {
-  const compiler = compile(tmp)
-  
-  return function(context: IButton) {
-    return compiler(context);
+export default class Button extends Block {
+  constructor(props: IButtonOptions) {
+    super(props);
+    this.props = props;
+  }
+  public render() {
+    return compile(tmp, 
+    { noEscape: true })(this.props);
   }
 }
-
-export default button;

@@ -1,20 +1,21 @@
 import {compile} from "handlebars";
 import {tmp} from "./index.tpl";
+import Block from '../../../core/block';
+import {Props} from '../../../core/types';
 
-interface ISignup {
-  email: string;
-  login: string;
-  firstName: string;
-  secondName: string;
-  phone: string;
-  password: string;
+interface ISignupOptions extends Props {
+	type?: string;
+	text?: string;
+	class?: string;
 }
 
-function signup() {
-  const compiler = compile(tmp);
-  return function(context: ISignup) {
-    return compiler(context);
+export default class Signup extends Block {
+  constructor(props: ISignupOptions) {
+    super(props);
+    this.props = props;
+  }
+  public render() {
+    return compile(tmp, 
+    { noEscape: true })(this.props);
   }
 }
-
-export default signup;

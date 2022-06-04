@@ -1,16 +1,16 @@
+import Block from "../../../core/block";
 import {compile} from "handlebars";
-import {tmp} from "./edit-pass.tpl";
-import Block from '../../../core/block';
+import { tmp } from "./index.tpl";
 import {Props} from '../../../core/types';
 
-interface IProfileEditPassOptions extends Props {
+interface IWrapperOptions extends Props {
 	type?: string;
 	text?: string;
 	class?: string;
 }
 
-export default class ProfileEditPass extends Block {
-  constructor(props: IProfileEditPassOptions) {
+export default class Wrapper extends Block {
+  constructor(props: IWrapperOptions) {
     super(props);
     this.props = props;
   }

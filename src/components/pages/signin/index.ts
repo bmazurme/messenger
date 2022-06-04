@@ -1,16 +1,21 @@
 import {compile} from "handlebars";
 import {tmp} from "./index.tpl";
+import Block from '../../../core/block';
+import {Props} from '../../../core/types';
 
-interface ISignin {
-  login: string;
-  password: string;
+interface ISigninOptions extends Props {
+	type?: string;
+	text?: string;
+	class?: string;
 }
 
-function signin() {
-  const compiler = compile(tmp);
-  return function(context: ISignin) {
-    return compiler(context);
+export default class Signin extends Block {
+  constructor(props: ISigninOptions) {
+    super(props);
+    this.props = props;
+  }
+  public render() {
+    return compile(tmp, 
+    { noEscape: true })(this.props);
   }
 }
-
-export default signin;

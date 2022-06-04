@@ -3,14 +3,15 @@ export const tmp = `
   <h1 class="identity__title">
     Регистрация
   </h1>
-  <form class="identity__form">
+  <form class="form identity__form" name="signup" novalidate>
     <div class="inbox" >
       <input
-        class="inbox__input inbox__input_email" 
+        class="input inbox__input inbox__input_email" 
         aria-invalid="true"
-        type="email"
+        type="text"
         autocomplete="off"
         id="email-input" required 
+        data-validation="email"
       />
       <span class="inbox__bar email-input-bar"></span>
       <label class="inbox__label email-input-label" >
@@ -21,10 +22,11 @@ export const tmp = `
 
     <div class="inbox" >
       <input
-        class="inbox__input inbox__input_login" 
+        class="input inbox__input inbox__input_login" 
         aria-invalid="true"
         type="text"
         autocomplete="off"
+        data-validation="login"
         id="login-input" required 
       />
       <span class="inbox__bar login-input-bar"></span>
@@ -36,11 +38,12 @@ export const tmp = `
 
     <div class="inbox" >
       <input
-        class="inbox__input inbox__input_first_name" 
+        class="input inbox__input inbox__input_first_name" 
         aria-invalid="true"
         type="text"
         autocomplete="off"
         id="first_name-input" required 
+        data-validation="name"
       />
       <span class="inbox__bar first_name-input-bar"></span>
       <label class="inbox__label first_name-input-label" >
@@ -51,11 +54,12 @@ export const tmp = `
 
     <div class="inbox" >
       <input
-        class="inbox__input inbox__input_second_name" 
+        class="input inbox__input inbox__input_second_name" 
         aria-invalid="true"
         type="text"
         autocomplete="off"
         id="second_name-input" required 
+        data-validation="name"
       />
       <span class="inbox__bar second_name-input-bar"></span>
       <label class="inbox__label second_name-input-label" >
@@ -66,11 +70,12 @@ export const tmp = `
 
     <div class="inbox" >
       <input
-        class="inbox__input inbox__input_phone" 
+        class="input inbox__input inbox__input_phone" 
         aria-invalid="true"
         type="text"
         autocomplete="off"
         id="phone-input" required 
+        data-validation="phone"
       />
       <span class="inbox__bar phone-input-bar"></span>
       <label class="inbox__label phone-input-label" >
@@ -81,11 +86,12 @@ export const tmp = `
 
     <div class="inbox" >
       <input
-        class="inbox__input inbox__input_password" 
+        class="input inbox__input inbox__input_password" 
         aria-invalid="true"
         type="password"
         autocomplete="new-password"
         id="password-input" required 
+        data-validation="password"
       />
       <span class="inbox__bar password-input-bar"></span>
       <label class="inbox__label password-input-label">
@@ -96,11 +102,12 @@ export const tmp = `
 
     <div class="inbox" >
     <input
-      class="inbox__input inbox__input_password_confirm" 
+      class="input inbox__input inbox__input_password_confirm" 
       aria-invalid="true"
       type="password"
       autocomplete="new-password"
       id="password_confirm-input" required 
+      data-validation="password"
     />
     <span class="inbox__bar password_confirm-input-bar"></span>
     <label class="inbox__label password_confirm-input-label">
@@ -108,14 +115,8 @@ export const tmp = `
     </label>
     <span class="inbox__input_error password_confirm-input-error"></span>
   </div>
+    {{{button}}}
 
-    <button
-      aria-label="Save"
-      class="button button_signup button_submit"
-      type="submit"
-    >
-      Зарегистрироваться
-    </button>
     <a class="link" href="/signin">
       Войти
     </a>

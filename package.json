@@ -12,20 +12,23 @@
   "author": "mazurb",
   "license": "ISC",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "@typescript-eslint/parser": "^5.26.0",
+    "@typescript-eslint/eslint-plugin": "5.26.0",
+    "@typescript-eslint/parser": "5.26.0",
     "cssnano": "5.1.8",
-    "eslint": "^8.16.0",
-    "eslint-config-airbnb": "^19.0.4",
+    "eslint": "8.16.0",
+    "eslint-config-airbnb": "19.0.4",
     "express": "4.18.1",
     "parcel": "2.5.0",
     "postcss": "8.4.14",
+    "stylelint": "^14.8.5",
+    "stylelint-config-standard": "^25.0.0",
     "ts-node": "10.8.0",
     "typescript": "4.7.2"
   },
   "dependencies": {
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "autoprefixer": "10.4.7",
-    "handlebars": "4.7.7"
+    "handlebars": "4.7.7",
+    "uuid": "8.3.2"
   }
 }

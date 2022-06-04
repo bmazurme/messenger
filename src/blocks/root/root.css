@@ -47,6 +47,7 @@
   
   --inbox-label-color: #999;
   --inbox-input-border-color: #3369F3;
+  --inbox-input-border-color-error: red;
   --inbox-input-color:#999;
 
   --link-color: #3369F3;

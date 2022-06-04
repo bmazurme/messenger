@@ -1,21 +1,21 @@
 import {compile} from "handlebars";
 import {tmp} from "./index.tpl";
+import Block from '../../../core/block';
+import {Props} from '../../../core/types';
 
-interface IProfile {
-  avatarLink: {label: string, value: string}
-  displayName: {label: string, value: string}
-  email: {label: string, value: string}
-  firstName: {label: string, value: string}
-  login: {label: string, value: string}
-  phone: {label: string, value: string}
-  secondName: {label: string, value: string}
+interface IProfileOptions extends Props {
+	type?: string;
+	text?: string;
+	class?: string;
 }
 
-function profile() {
-  const compiler = compile(tmp);
-  return function(context: IProfile) {
-    return compiler(context);
+export default class Profile extends Block {
+  constructor(props: IProfileOptions) {
+    super(props);
+    this.props = props;
+  }
+  public render() {
+    return compile(tmp, 
+    { noEscape: true })(this.props);
   }
 }
-
-export default profile;

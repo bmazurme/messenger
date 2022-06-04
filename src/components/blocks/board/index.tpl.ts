@@ -1,5 +1,4 @@
 export const tmp = `
-
       <div class="board">
         <div class="board__header">
           <div class="header">
@@ -15,22 +14,19 @@ export const tmp = `
 
         <div class="board__main">
           <div class="feed">
-            {{#each board}}
-              {{{.}}}
-            {{/each}}
+            {{{message}}}
           </div>
         </div>
 
         <div class="board__footer">
-
-            <form class="footer">
-              <button class="footer__button">
-              </button>
-              <input name="message" class="footer__input" placeholder="Сообщение">
-              </input>
-              <button type="submit" class="footer__button footer__button_send">
-              </button>
-            </form>
+          <form class="form footer">
+            <input name="message" data-validation="message" 
+                   class="input footer__input" 
+                   placeholder="Сообщение">
+            </input>
+              {{{button}}}
+            </button>
+          </form>
 
         </div>
       </div>
