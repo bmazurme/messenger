@@ -1,13 +1,7 @@
 import {compile} from 'handlebars';
 import {tmp} from "./index.tpl";
 import Block from '../../../core/block';
-import {Props} from '../../../core/types';
-
-interface IButtonOptions extends Props {
-	type?: string;
-	text?: string;
-	class?: string;
-}
+import { IButtonOptions } from './options';
 
 export default class Button extends Block {
   constructor(props: IButtonOptions) {

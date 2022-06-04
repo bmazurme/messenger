@@ -3,14 +3,14 @@ import handlerSubmit from "../handlers/handlerSubmit";
 import handlerCardClick from "../handlers/handlerCardClick";
 import handlerValidation from "../handlers/handlerValidation";
 import handlerPopupClick from "../handlers/handlerPopupClick";
-import { indexContext } from "./indexContext";
-import { error404Context } from "./error404Context";
-import { error500Context } from "./error500Context";
-import { signupContext } from "./signupContext";
-import { signinContext } from "./signinContext";
-import { profileContext } from "./profileContext";
-import { profileEditContext } from "./profileEditContext";
-import { profileEditPassContext } from "./profileEditPassContext";
+import { indexContext } from "./contexts/indexContext";
+import { error404Context } from "./contexts/error404Context";
+import { error500Context } from "./contexts/error500Context";
+import { signupContext } from "./contexts/signupContext";
+import { signinContext } from "./contexts/signinContext";
+import { profileContext } from "./contexts/profileContext";
+import { profileEditContext } from "./contexts/profileEditContext";
+import { profileEditPassContext } from "./contexts/profileEditPassContext";
 
 import {
   INDEX,

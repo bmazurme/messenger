@@ -1,5 +1,5 @@
-import ProfileEditPass from "../components/pages/profile/edit-pass";
-import Button from "../components/blocks/button";
+import ProfileEditPass from "../../components/pages/profile/edit-pass";
+import Button from "../../components/blocks/button";
 
 export const profileEditPassContext = new ProfileEditPass(
   {

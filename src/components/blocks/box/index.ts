@@ -1,11 +1,5 @@
 import Block from "../../../core/block";
-import {Props} from '../../../core/types';
-
-interface IBoxOptions extends Props {
-	type?: string;
-	text?: string;
-	class?: string;
-}
+import { IBoxOptions } from "./options";
 
 export default class Box extends Block {
   constructor(props: IBoxOptions) {

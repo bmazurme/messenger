@@ -1,4 +1,4 @@
-import message from "../components/blocks/message";
+import message from "../../components/blocks/message";
 
 export const messageContext = [
   {
@@ -22,5 +22,4 @@ export const messageContext = [
       read: 'message__time_read'
     }
   },
-  
 ];

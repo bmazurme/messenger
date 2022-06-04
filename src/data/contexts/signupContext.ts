@@ -1,5 +1,5 @@
-import Signup from "../components/pages/signup";
-import Button from "../components/blocks/button";
+import Signup from "../../components/pages/signup";
+import Button from "../../components/blocks/button";
 
 export const signupContext = new Signup({
   button: [

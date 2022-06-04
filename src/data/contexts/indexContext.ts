@@ -1,9 +1,11 @@
-import Wrapper from "../components/blocks/box/wrapper";
-import Sidebar from "../components/blocks/sidebar";
-import Card from "../components/blocks/card";
-import Message from "../components/blocks/message";
-import Board from "../components/blocks/board";
-import Button from "../components/blocks/button";
+import Wrapper from "../../components/pages/chat";
+import Sidebar from "../../components/blocks/sidebar";
+import Card from "../../components/blocks/card";
+import Message from "../../components/blocks/message";
+import Board from "../../components/blocks/board";
+import Button from "../../components/blocks/button";
+import Input from "../../components/blocks/input";
+import Header from "../../components/blocks/header";
 
 export const indexContext = new Wrapper(
   {
@@ -40,6 +42,7 @@ export const indexContext = new Wrapper(
     .join(''),
       }).render(),
       board: new Board({
+        header: new Header({}).render(),
         message: [
           new Message({
             type: '',
@@ -58,6 +61,7 @@ export const indexContext = new Wrapper(
           }).render(),
         ].join(''),
         button: [
+          new Input({}).render(),
           new Button({
             type: "button",
             class: "footer__button footer__button_attach",

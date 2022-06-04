@@ -1,10 +1,10 @@
 import {compile} from "handlebars";
 import {tmp} from "./index.tpl";
 import Block from "../../../core/block";
-import { IBoardOptions } from "./options";
+import { IHeaderOptions } from "./options";
 
-export default class Board extends Block {
-  constructor(props: IBoardOptions) {
+export default class Header extends Block {
+  constructor(props: IHeaderOptions) {
     super(props);
     this.props = props;
   }

@@ -1,7 +1,13 @@
-import Profile from "../components/pages/profile/index";
+import Button from "../../components/blocks/button";
+import ProfileEdit from "../../components/pages/profile/edit";
 
-export const profileContext = new Profile(
+export const profileEditContext = new ProfileEdit(
   {
+    button: [new Button({
+      type: 'submit',
+      class:'button_submit',
+      text:'Сохранить',
+    }).render()],
     avatarLink: {label: 'Ава', value: '/'},
     firstName: {label: 'Имя', value: 'Иван'},
     secondName: {label: 'Фамилия', value: 'Иванов'},
