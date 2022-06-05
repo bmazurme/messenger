@@ -3,7 +3,6 @@
         "browser": true,
         "es2021": true
     },
-    
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -16,6 +15,8 @@
         "no-unused-vars": 2,
         "max-len": [2, 100],
         "max-params": [2, 3],
+        "no-var": "warn",
+        "quotes": ["warn", "single", { "avoidEscape": true }],
         "@typescript-eslint/no-unused-vars": 2
     }
 }
