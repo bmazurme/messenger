@@ -1,0 +1,10 @@
+.back {
+  display: flex;
+  position: absolute;
+  height: 100vh;
+  width: 64px;
+  background-color: #FBFBFB;
+  top: 0;
+  left: 0;
+  border-right: solid 1px #EAEAEA;
+}

@@ -1,0 +1,10 @@
+.message__content {
+  display: flex;
+  justify-content: end;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  /* padding-right: 20px; */
+
+  /* margin-bottom: 0px; */
+}

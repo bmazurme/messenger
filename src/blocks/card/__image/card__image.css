@@ -1,0 +1,12 @@
+.card__image {
+
+  display: flex;
+  align-self:center;
+  margin: 0;
+  padding: 0;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: #EFEFEF;
+  grid-area: image;
+}

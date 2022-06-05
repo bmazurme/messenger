@@ -1,0 +1,13 @@
+.inbox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  height: 43px;
+  width: 280px;
+  position: relative;
+
+}

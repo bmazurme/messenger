@@ -1,0 +1,16 @@
+.sidebar__profile {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: right;
+  color: #999999;
+  width: 290px;
+  height: 46px;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  justify-content: end;
+  text-decoration: none;
+}

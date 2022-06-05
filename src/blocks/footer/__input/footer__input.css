@@ -1,0 +1,17 @@
+.footer__input {
+  padding: 0;
+  margin: auto;
+  grid-area: input;
+  border: 0;
+
+  width: 100%;
+  height: 32px;  
+  background: #EFEFEF;
+  border-radius: 30px;
+
+  padding-left: 20px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #999999;
+
+}

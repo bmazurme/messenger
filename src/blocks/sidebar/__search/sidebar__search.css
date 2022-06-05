@@ -1,0 +1,20 @@
+.sidebar__search {
+  display: flex;
+  width: 290px;
+  height: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 14px;
+  background: #EFEFEF;
+  border-radius: 5px;
+  border: 0  #EFEFEF;
+  text-align: center;
+  font-size: 12px;
+  line-height: 12px;
+  color: #999999;
+}
+
+.sidebar__search:focus {
+  outline: none;
+}

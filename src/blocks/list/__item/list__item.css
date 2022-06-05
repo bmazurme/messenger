@@ -1,0 +1,8 @@
+.list__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: solid 1px #EAEAEA;
+  height: 33px;
+  padding: 0;
+}

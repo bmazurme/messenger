@@ -1,0 +1,12 @@
+.message__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 402px;
+
+  background: #F8F8F8;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  /* position: relative; */
+  padding: 11px;
+}
