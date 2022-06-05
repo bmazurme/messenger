@@ -1,13 +1,7 @@
-import {compile} from "handlebars";
-import {tmp} from "./index.tpl";
+import { compile } from "handlebars";
+import { tmp } from "./index.tpl";
 import Block from '../../../core/block';
-import {Props} from '../../../core/types';
-
-interface ISignupOptions extends Props {
-	type?: string;
-	text?: string;
-	class?: string;
-}
+import { ISignupOptions } from "./options";
 
 export default class Signup extends Block {
   constructor(props: ISignupOptions) {

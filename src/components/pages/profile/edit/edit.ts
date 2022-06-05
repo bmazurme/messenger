@@ -1,16 +1,10 @@
 import {compile} from "handlebars";
 import {tmp} from "./edit.tpl";
-import Block from '../../../core/block';
-import {Props} from '../../../core/types';
-
-interface IProfileEditOptions extends Props {
-	type?: string;
-	text?: string;
-	class?: string;
-}
+import Block from '../../../../core/block';
+import { IProfileOptions } from "../options";
 
 export default class ProfileEdit extends Block {
-  constructor(props: IProfileEditOptions) {
+  constructor(props: IProfileOptions) {
     super(props);
     this.props = props;
   }

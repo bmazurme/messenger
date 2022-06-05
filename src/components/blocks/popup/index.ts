@@ -1,10 +1,10 @@
 import Block from "../../../core/block";
 import {compile} from "handlebars";
 import { tmp } from "./index.tpl";
-import { IChatOptions } from "./options";
+import { IPopupOptions } from "./options";
 
-export default class Chat extends Block {
-  constructor(props: IChatOptions) {
+export default class Popup extends Block {
+  constructor(props: IPopupOptions) {
     super(props);
     this.props = props;
   }

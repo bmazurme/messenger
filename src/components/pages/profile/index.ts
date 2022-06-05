@@ -1,13 +1,7 @@
 import {compile} from "handlebars";
 import {tmp} from "./index.tpl";
 import Block from '../../../core/block';
-import {Props} from '../../../core/types';
-
-interface IProfileOptions extends Props {
-	type?: string;
-	text?: string;
-	class?: string;
-}
+import { IProfileOptions } from "./options";
 
 export default class Profile extends Block {
   constructor(props: IProfileOptions) {

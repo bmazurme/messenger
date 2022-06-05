@@ -1,6 +1,6 @@
 import {Props} from '../../../core/types';
 
-export interface IHeaderOptions extends Props {
+export interface ISigninOptions extends Props {
 	type?: string;
 	text?: string;
 	class?: string;

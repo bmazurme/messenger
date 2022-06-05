@@ -1,13 +1,7 @@
 import {compile} from "handlebars";
 import {tmp} from "./index.tpl";
 import Block from '../../../core/block';
-import {Props} from '../../../core/types';
-
-interface ISideBarOptions extends Props {
-	type?: string;
-	text?: string;
-	class?: string;
-}
+import { ISideBarOptions } from "./options";
 
 export default class Sidebar extends Block {
   constructor(props: ISideBarOptions) {
