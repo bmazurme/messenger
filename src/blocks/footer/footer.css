@@ -2,8 +2,12 @@
   display: grid;
   width: 100%;
   grid-template-columns: 34px 1fr 25px;
-  grid-template-rows: 1fr;
+  grid-template-rows: 54px;
   grid-template-areas: "attach input send";
   column-gap: 10px;
   padding: 0;
+  padding-top: 11px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  
 }

@@ -6,13 +6,13 @@
   margin-right: auto;
   margin-top: 0px;
   margin-bottom: 14px;
-  background: #EFEFEF;
+  background: var(--sidebar-search-background);
   border-radius: 5px;
-  border: 0  #EFEFEF;
+  border: 0  var(--sidebar-search-border-color);
   text-align: center;
   font-size: 12px;
   line-height: 12px;
-  color: #999999;
+  color: var(--sidebar-search-color);
 }
 
 .sidebar__search:focus {

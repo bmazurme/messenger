@@ -8,4 +8,77 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
+
+  --button-background: #3369f3;
+  --button-boreder: #3369f3;
+  --button-background-color: #fbfbfb;
+  --button-border-right: solid 1px #eaeaea;
+  --button-color: #ffffff;
+
+  --card-counter-background: #3369f3;
+  --card-counter-color: #ffffff;
+  --card-image-background: #efefef;
+  --card-text-color: #999999;
+  --card-time-color: #999999;
+  --card-title-color: #1e1e1e;
+  --card-last-child-border-bottom-color: #eaeaea;
+  --card-border-top-color: #eaeaea;
+
+  --chat-sidebar-background: #fbfbfb;
+  --chat-sidebar-border-right: solid 1px #eaeaea;
+
+  --board-header-border-bottom: #eaeaea;
+  --board-footerborder-top: #eaeaea;
+
+  --error-code-color: #1e1e1e;
+  --error-link-color: #3369f3;
+  --error-text-color: #1e1e1e;
+
+  --footer-button-background-color: #fff;
+  --footer-button-send-background: #3369f3;
+  --footer-input-background: #efefef;
+  --footer-input-color: #999999;
+  --footer-text-color: #1e1e1e;
+
+  --header-link-background-color: #f5f5f5;
+  --header-image-background: #efefef;
+
+  --identity-background: #ffffff;
+  
+  --inbox-label-color: #999;
+  --inbox-input-border-color: #3369f3;
+  --inbox-input-border-color-error: red;
+  --inbox-input-color:#999;
+
+  --link-color: #3369f3;
+  --list-value-color: #999999;
+  --list-label-color: #1e1e1e;
+  --list-item-border-bottom-color: #eaeaea;
+
+  --message-color: #1e1e1e;
+  --message-container-to-background: #e4edfd;
+  --message-container-background: #f8f8f8;
+  --message-time-color: #999999;
+  --message-time-read-color: #3369f3;
+
+  --popup-button-background: #3369f3;
+  --popup-button-color: #ffffff;
+  --popup-form-background: #ffffff;
+  --popup-label-color: #3369f3;
+  --popup-title-color: #1e1e1e;
+  --popup-before-background-color: #000;
+
+  --profile-avatar-background-color: #efefef;
+  --profile-avatar-hover-before-background-color: #000000;
+  --profile-avatar-hover-after-color: #ffffff;
+  --profile-link-logout-color: #ff0000;
+  --profile-link-color: #3369f3;
+  --profile-title-color: #1e1e1e;
+
+  --sidebar-profile-color: #999999;
+  --sidebar-search-background: #efefef;
+  --sidebar-search-border-color: #efefef;
+  --sidebar-search-color: #999999;
+
+  --back-button-background: #3369f3;
 }

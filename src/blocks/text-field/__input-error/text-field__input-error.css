@@ -1,0 +1,4 @@
+.text-field__input-error {
+  color: var(--inbox-input-border-color-error);
+  border-bottom: 1px solid var(--inbox-input-border-color-error);
+}

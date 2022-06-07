@@ -1,6 +1,6 @@
 .message__container_to {
   display: flex;
-  background: #E4EDFD;
+  background: var(--message-container-to-background);
   border-bottom-left-radius: 0;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;

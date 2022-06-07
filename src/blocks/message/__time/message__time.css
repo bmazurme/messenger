@@ -7,5 +7,5 @@
   font-size: 9px;
   line-height: 9px;
   text-align: right;
-  color: #999999;
+  color: var(--message-time-color);
 }

@@ -4,7 +4,7 @@
   border-radius: 50%;
   margin: auto;
   padding: 0;
-  background: #3369F3;
+  background: var(--back-button-background);
   background-image: url(../../../vendor/images/back.svg);
   background-position: center;
   background-repeat: no-repeat;

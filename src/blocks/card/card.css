@@ -1,6 +1,6 @@
 .card {
   height: 70px; 
-  border-top: solid 1px #EAEAEA;
+  border-top: solid 1px var(--card-border-top-color);
 
   display: grid;
   grid-template-columns: 47px 1fr 25px;
@@ -15,5 +15,5 @@
 }
 
 .card:last-child {
-  border-bottom: solid 1px #EAEAEA;
+  border-bottom: solid 1px var(--card-last-child-border-bottom-color);
 }

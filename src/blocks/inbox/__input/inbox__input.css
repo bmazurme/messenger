@@ -1,22 +1,6 @@
-/* .inbox__input {
-  display: flex;
-  height: 13px;
-  margin: 0;
-  padding: 0;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 1px solid #3369F3;
-} */
-
 .inbox__input {
-  font-family: Inter;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  /* border-bottom: 1px solid rgba(0, 0, 0, .2); */
-  border: 1px solid #3369F3;
+  margin: 0;
+  border: 1px solid var(--inbox-input-border-color);
   height: 25px;
   width: 100%;
   padding: 0;
@@ -26,16 +10,15 @@
   font-size: 14px;
   line-height: 17px;
 }
-
 .inbox__input:focus {
   outline: none;
 }
 
 .inbox__input:focus:valid ~ .inbox__label, 
 .inbox__input:valid ~ .inbox__label {
-    top: -12px;
-    font-size: 9px;
-    color:#999;
+  top: -12px;
+  font-size: 9px;
+  color: var(--inbox-input-color);
 }
 
 .inbox__input:focus:invalid ~ .inbox__label_error-empty {

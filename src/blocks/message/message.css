@@ -2,7 +2,7 @@
   display: flex;
   font-size: 12px;
   line-height: 15px;
-  color: #1E1E1E;
+  color: var(--message-color);
   padding: 0;
   margin-top: 10px;
   margin-bottom: 0;

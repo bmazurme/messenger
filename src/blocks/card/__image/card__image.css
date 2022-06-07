@@ -1,5 +1,4 @@
 .card__image {
-
   display: flex;
   align-self:center;
   margin: 0;
@@ -7,6 +6,6 @@
   width: 47px;
   height: 47px;
   border-radius: 50%;
-  background: #EFEFEF;
+  background: var(--card-image-background);
   grid-area: image;
 }

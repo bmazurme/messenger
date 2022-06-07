@@ -2,5 +2,5 @@
   font-size: 13px;
   line-height: 13px;
   text-align: right;
-  color: #999999;
+  color: var(--list-value-color);
 }
