@@ -1,16 +1,16 @@
-import Box from "../../src/components/blocks/box/index";
-import handlerSubmit from "../handlers/handlerSubmit";
-import handlerCardClick from "../handlers/handlerCardClick";
-import handlerValidation from "../handlers/handlerValidation";
-import handlerPopupClick from "../handlers/handlerPopupClick";
-import { indexContext } from "./contexts/indexContext";
-import { error404Context } from "./contexts/error404Context";
-import { error500Context } from "./contexts/error500Context";
-import { signupContext } from "./contexts/signupContext";
-import { signinContext } from "./contexts/signinContext";
-import { profileContext } from "./contexts/profileContext";
-import { profileEditContext } from "./contexts/profileEditContext";
-import { profileEditPassContext } from "./contexts/profileEditPassContext";
+import Box from '../../src/components/blocks/box/index';
+import handlerSubmit from '../handlers/handlerSubmit';
+import handlerCardClick from '../handlers/handlerCardClick';
+import handlerValidation from '../handlers/handlerValidation';
+import handlerPopupClick from '../handlers/handlerPopupClick';
+import {indexContext} from './contexts/indexContext';
+import {error404Context} from './contexts/error404Context';
+import {error500Context} from './contexts/error500Context';
+import {signupContext} from './contexts/signupContext';
+import {signinContext} from './contexts/signinContext';
+import {profileContext} from './contexts/profileContext';
+import {profileEditContext} from './contexts/profileEditContext';
+import {profileEditPassContext} from './contexts/profileEditPassContext';
 
 import {
   INDEX,
@@ -21,9 +21,9 @@ import {
   PROFILE_PASSWORD,
   ERROR_NOT_FOUND,
   ERROR_INTERNAL_SERVER,
-} from "./const";
+} from './const';
 
-export const routes = new Map([
+export const routes: any = new Map([
   [
     INDEX, {
       block: new Box({ 

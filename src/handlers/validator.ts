@@ -1,11 +1,11 @@
-import { ValidationType } from "../core/types";
+import { ValidationType } from '../core/types';
 import {
   NAME_REGEXP,
   LOGIN_REGEXP,
   EMAIL_REGEXP,
   PHONE_REGEXP,
   PASSWORD_REGEXP,
-} from "../data/const";
+} from '../data/const';
 
 export function validateInput(evt: Event): void {
   const input = evt.target as HTMLInputElement;

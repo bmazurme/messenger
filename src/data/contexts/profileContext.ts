@@ -1,6 +1,6 @@
-import Profile from "../../components/pages/profile/index";
-import Popup from "../../components/blocks/popup";
-import Field from "../../components/blocks/field";
+import Profile from '../../components/pages/profile/index';
+import Popup from '../../components/blocks/popup';
+import Field from '../../components/blocks/field';
 
 export const profileContext = new Profile(
   {

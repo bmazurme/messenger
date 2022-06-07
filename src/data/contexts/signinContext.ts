@@ -1,6 +1,6 @@
-import Signin from "../../components/pages/signin";
-import Button from "../../components/blocks/button";
-import Inbox from "../../components/blocks/inbox";
+import Signin from '../../components/pages/signin';
+import Button from '../../components/blocks/button';
+import Inbox from '../../components/blocks/inbox';
 
 export const signinContext = new Signin({
   inbox: [
@@ -29,8 +29,8 @@ export const signinContext = new Signin({
   ].join(''),
   button: [
     new Button({
-      type: "submit",
-      class: "button_signin button_submit",
+      type: 'submit',
+      class: 'button_signin button_submit',
       text: 'Авторизоваться'
     }).render(),
   ].join(''),

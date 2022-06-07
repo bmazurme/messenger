@@ -1,4 +1,4 @@
-import { validateInput, removeInvalid } from "./validator";
+import { validateInput, removeInvalid } from './validator';
 
 export default function handlerValidation(element: HTMLElement, className = '.form') {
   const formList = Array.from(element.querySelectorAll(className));

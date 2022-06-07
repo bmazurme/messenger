@@ -1,12 +1,12 @@
-import Chat from "../../components/pages/chat";
-import Sidebar from "../../components/blocks/sidebar";
-import Card from "../../components/blocks/card";
-import Message from "../../components/blocks/message";
-import Board from "../../components/blocks/board";
-import Button from "../../components/blocks/button";
-import Input from "../../components/blocks/input";
-import Header from "../../components/blocks/header";
-import Popup from "../../components/blocks/popup";
+import Chat from '../../components/pages/chat';
+import Sidebar from '../../components/blocks/sidebar';
+import Card from '../../components/blocks/card';
+import Message from '../../components/blocks/message';
+import Board from '../../components/blocks/board';
+import Button from '../../components/blocks/button';
+import Input from '../../components/blocks/input';
+import Header from '../../components/blocks/header';
+import Popup from '../../components/blocks/popup';
 
 export const indexContext = new Chat(
   {
@@ -63,13 +63,13 @@ export const indexContext = new Chat(
       button: [
         new Input({}).render(),
         new Button({
-          type: "button",
-          class: "footer__button footer__button_attach",
+          type: 'button',
+          class: 'footer__button footer__button_attach',
           text: ''
         }).render(),
         new Button({
-          type: "submit",
-          class: "footer__button footer__button_send",
+          type: 'submit',
+          class: 'footer__button footer__button_send',
           text: ''
         }).render(),
       ].join(''),

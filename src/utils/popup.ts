@@ -1,4 +1,4 @@
-import { POPUP, POPUP_ACTIVE} from "./config";
+import { POPUP, POPUP_ACTIVE} from './config';
 
 class Popup {
   private _openPopup: string;
@@ -7,7 +7,7 @@ class Popup {
   
   constructor(buttons: string[]) {
     this._buttons = buttons;
-    this._popup = document.querySelector(POPUP);
+    this._popup = document.querySelector(POPUP) as HTMLElement;
 
     this._handleEscClose = this._handleEscClose.bind(this);
     this._openPopup = POPUP_ACTIVE;
@@ -43,7 +43,7 @@ class Popup {
   }
 
   initPopups(element: HTMLElement) {
-    this._popup = element.querySelector(POPUP);
+    this._popup = element.querySelector(POPUP) as HTMLElement;
     this._buttons.forEach((selector: string) => {
       const button = element.querySelector(selector);
 

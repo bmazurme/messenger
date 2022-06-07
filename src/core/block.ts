@@ -1,5 +1,6 @@
 import EventBus from './eventBus';
-import { Props } from './types';
+import {Props} from './types';
+import {compile} from 'handlebars';
 
 interface IMeta {
   tagName: string,
@@ -13,10 +14,11 @@ export default class Block {
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
   };
-  private blockElement: any = null;
-  private meta: IMeta = null;
+  private block: any = null;
+  private meta: IMeta = {tagName: 'div', props: {}};
   protected props: Props;
   private eventBus: () => EventBus;
+  tmp: string;
   /** JSDoc
    * @param {string} tagName
    * @param {Object} props
@@ -32,6 +34,7 @@ export default class Block {
     this.props = this.makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.registerEvents(eventBus);
+    this.tmp = '<div></div>';
     eventBus.emit(Block.EVENTS.INIT);
   }
   private registerEvents(eventBus: EventBus) {
@@ -41,9 +44,9 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this.blockRender.bind(this));
   }
   private createResources() {
-    const { tagName } = this.meta;
-    this.blockElement = this.createDocumentElement(tagName);
-    this.blockElement.classList.add('root');
+    const {tagName} = this.meta;
+    this.block = this.createDocumentElement(tagName);
+    this.block.classList.add('root');
   }
   public init() {
     this.createResources();
@@ -73,21 +76,20 @@ export default class Block {
     Object.assign(this.props, nextProps);
   }
   public get element() {
-    return this.blockElement;
+    return this.block;
   }
   private blockRender() {
     const block = this.render();
-    this.blockElement.innerHTML = block;
+    this.block.innerHTML = block;
   }
   private setHandlers() {
-    const { handlers } = this.props;
+    const {handlers} = this.props;
     if (handlers) {
       handlers.forEach((item:  any) => {
-        item(this.blockElement);
+        item(this.block);
       });
     }
   }
-  public render() {}
   getContent() {
     return this.element;
   }
@@ -116,5 +118,9 @@ export default class Block {
   }
   public hide() {
     this.getContent().style.display = 'none';
+  }
+  public render() {
+    return compile(this.tmp, 
+      {noEscape: true})(this.props);
   }
 }

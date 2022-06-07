@@ -1,6 +1,6 @@
-import ProfileEditPass from "../../components/pages/profile/edit-pass/edit-pass";
-import Button from "../../components/blocks/button";
-import Popup from "../../components/blocks/popup";
+import ProfileEditPass from '../../components/pages/profile/edit-pass/edit-pass';
+import Button from '../../components/blocks/button';
+import Popup from '../../components/blocks/popup';
 
 export const profileEditPassContext = new ProfileEditPass(
   {

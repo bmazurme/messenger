@@ -1,5 +1,5 @@
-import { ERROR_NOT_FOUND } from "../data/const";
-import { routes } from "../data/routes";
+import {ERROR_NOT_FOUND} from '../data/const';
+import {routes} from '../data/routes';
 
 export default function router() {
   const url = window.location.pathname;

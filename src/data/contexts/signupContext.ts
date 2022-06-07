@@ -1,6 +1,6 @@
-import Signup from "../../components/pages/signup";
-import Button from "../../components/blocks/button";
-import Inbox from "../../components/blocks/inbox";
+import Signup from '../../components/pages/signup';
+import Button from '../../components/blocks/button';
+import Inbox from '../../components/blocks/inbox';
 
 export const signupContext = new Signup({
   inbox: [
@@ -85,8 +85,8 @@ export const signupContext = new Signup({
 
   button: [
     new Button({
-      type: "submit",
-      class: "button_signup button_submit",
+      type: 'submit',
+      class: 'button_signup button_submit',
       text: 'Зарегистрироваться'
     }).render(),
   ].join(''),

@@ -1,6 +1,6 @@
-import Button from "../../components/blocks/button";
-import ProfileEdit from "../../components/pages/profile/edit/edit";
-import Popup from "../../components/blocks/popup";
+import Button from '../../components/blocks/button';
+import ProfileEdit from '../../components/pages/profile/edit/edit';
+import Popup from '../../components/blocks/popup';
 
 export const profileEditContext = new ProfileEdit(
   {

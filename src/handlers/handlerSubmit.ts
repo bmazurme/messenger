@@ -1,4 +1,4 @@
-import { checkValid, toggleStyle } from "./validator";
+import { checkValid, toggleStyle } from './validator';
 
 export default function handlerSubmit(element: HTMLElement, className = '.form') {
   let isValidForm: boolean = true;
@@ -11,12 +11,14 @@ export default function handlerSubmit(element: HTMLElement, className = '.form')
       const form = evt.target as HTMLFormElement;
       const data: any = {};
       const formName = form.getAttribute('name');
-      Array.from(form.querySelectorAll(".input")).forEach((input: HTMLInputElement) => {
+
+      Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
         const isValid = checkValid(input)
         const name = input.getAttribute('name');
-        data[name] = input.value;
-        data[`${name}-isValid`] = isValid;
-
+        if (name) {
+          data[name] = input.value;
+          data[`${name}-isValid`] = isValid;
+        }
         if (!isValid) {
           isValidForm = false;
         }
