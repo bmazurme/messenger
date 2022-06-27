@@ -1,6 +1,14 @@
 import Profile from '../../components/pages/profile/index';
 import Popup from '../../components/blocks/popup';
 import Field from '../../components/blocks/field';
+//import { auth } from '../../api/AuthAPI';
+
+//const props = {};
+
+// auth.userInfo().then(result => 
+//     this.setProps({...props, userData: JSON.parse(result.response)}))
+//      .catch(console.log);
+
 
 export const profileContext = new Profile(
   {

@@ -22,13 +22,13 @@ export const tmp = `
         </a>
       </li>
       <li class="list__item">
-        <a class="profile__link profile__link_logout" href="/signin">
+        <a class="profile__link profile__link_logout" href="/">
           Выйти
         </a>
       </li>
     </ul>
     <div class="back">
-      <a href="/" class="back__button"></a>
+      <a href="/messenger" class="back__button"></a>
     </div>
     {{{popup}}}
   </section>

@@ -13,15 +13,15 @@ export const profileEditContext = new ProfileEdit(
       label: 'Ава',
       value: '/',
     },
-    firstName: {
+    first_name: {
       label: 'Имя',
       value: 'Иван',
     },
-    secondName: {
+    second_name: {
       label: 'Фамилия',
       value: 'Иванов',
     },
-    displayName: {
+    display_name: {
       label: 'Имя в чате',
       value: 'Иван',
     },
@@ -37,6 +37,7 @@ export const profileEditContext = new ProfileEdit(
       label: 'Телефон',
       value: '+7 (909) 967 30 30',
     },
+    
     popup: new Popup({}).render(),
   }
 );

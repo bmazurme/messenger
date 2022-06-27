@@ -13,6 +13,7 @@ export const tmp = `
             value="{{ email.value}}">
           </input>
         </li>
+
         <li class="list__item">
           <p class="list__label">{{login.label}}</p>
           <input type="text" name="login" data-validation="login"
@@ -20,27 +21,31 @@ export const tmp = `
                  value="{{login.value}}">
           </input>
         </li>
+
         <li class="list__item">
-          <p class="list__label">{{firstName.label}}</p>
+          <p class="list__label">{{first_name.label}}</p>
           <input type="text" name="first_name" data-validation="name" 
             class="input list__value list__value_input" 
-            value="{{firstName.value}}">
+            value="{{first_name.value}}">
           </input>
         </li>
+
         <li class="list__item">
-          <p class="list__label">{{secondName.label}}</p>
+          <p class="list__label">{{second_name.label}}</p>
           <input type="text" name="second_name" data-validation="name"
             class="input list__value list__value_input" 
-            value="{{secondName.value}}">
+            value="{{second_name.value}}">
           </input>
         </li>
+
         <li class="list__item">
-          <p class="list__label">{{displayName.label}}</p>
+          <p class="list__label">{{display_name.label}}</p>
           <input type="text" name="display_name" data-validation="name"
             class="input list__value list__value_input" 
-            value="{{displayName.value}}">
+            value="{{display_name.value}}">
           </input>
         </li>
+
         <li class="list__item">
           <p class="list__label">{{phone.label}}</p>
           <input type="text" name="phone" data-validation="phone"

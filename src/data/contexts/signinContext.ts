@@ -5,9 +5,10 @@ import Inbox from '../../components/blocks/inbox';
 export const signinContext = new Signin({
   inbox: [
     new Inbox({
+      name: 'login',
       inputStyle: 'inbox__input inbox__input_login',
       inputType: 'text',
-      inputAutocomplete: 'off',
+      inputAutocomplete: 'on',
       inputId: 'login-input',
       inputValidation: 'login',
       spanStyle: 'inbox__bar login-input-bar',
@@ -16,6 +17,7 @@ export const signinContext = new Signin({
       errorStyle: 'inbox__input_error login-input-error',
     }).render(),
     new Inbox({
+      name: 'password ',
       inputStyle: 'inbox__input inbox__input_password',
       inputType: 'password',
       inputAutocomplete: 'on',

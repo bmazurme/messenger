@@ -14,6 +14,10 @@
   column-gap: 10px;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card:last-child {
   border-bottom: solid 1px var(--card-last-child-border-bottom-color);
 }

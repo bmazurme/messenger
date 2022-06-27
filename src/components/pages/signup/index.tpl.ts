@@ -8,7 +8,7 @@ export const tmp = `
     {{{inbox}}}
     {{{button}}}
 
-    <a class="link" href="/signin">
+    <a class="link" href="/">
       Войти
     </a>
   </form>

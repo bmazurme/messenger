@@ -5,6 +5,7 @@ import Inbox from '../../components/blocks/inbox';
 export const signupContext = new Signup({
   inbox: [
     new Inbox({
+      name: 'email',
       inputStyle: 'inbox__input inbox__input_email',
       inputType: 'text',
       inputAutocomplete: 'off',
@@ -16,6 +17,7 @@ export const signupContext = new Signup({
       errorStyle: 'inbox__input_error email-input-error',
     }).render(),
     new Inbox({
+      name: 'login',
       inputStyle: 'inbox__input inbox__input_login',
       inputType: 'text',
       inputAutocomplete: 'off',
@@ -27,6 +29,7 @@ export const signupContext = new Signup({
       errorStyle: 'inbox__input_error login-input-error',
     }).render(),
     new Inbox({
+      name: 'first_name',
       inputStyle: 'inbox__input inbox__input_first_name',
       inputType: 'text',
       inputAutocomplete: 'off',
@@ -38,6 +41,7 @@ export const signupContext = new Signup({
       errorStyle: 'inbox__input_error first_name-input-error',
     }).render(),
     new Inbox({
+      name: 'second_name',
       inputStyle: 'inbox__input inbox__input_second_name',
       inputType: 'text',
       inputAutocomplete: 'off',
@@ -49,17 +53,19 @@ export const signupContext = new Signup({
       errorStyle: 'inbox__input_error second_name-input-error',
     }).render(),
     new Inbox({
+      name: 'phone',
       inputStyle: 'inbox__input inbox__input_phone',
       inputType: 'text',
       inputAutocomplete: 'off',
       inputId: 'phone-input',
-      inputValidation: 'name',
+      inputValidation: 'phone',
       spanStyle: 'inbox__bar phone-input-bar',
       labelClass: 'inbox__label phone-input-label',
       labelText: 'Телефон',
       errorStyle: 'inbox__input_error phone-input-error',
     }).render(),
     new Inbox({
+      name: 'password',
       inputStyle: 'inbox__input inbox__input_password',
       inputType: 'password',
       inputAutocomplete: 'on',
@@ -71,6 +77,7 @@ export const signupContext = new Signup({
       errorStyle: 'inbox__input_error password-input-error',
     }).render(),
     new Inbox({
+      name: 'password_confirm',
       inputStyle: 'inbox__input inbox__input_password_confirm',
       inputType: 'password',
       inputAutocomplete: 'new-password',

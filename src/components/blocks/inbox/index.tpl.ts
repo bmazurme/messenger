@@ -1,6 +1,7 @@
 export const tmp = `
   <div class="inbox" >
     <input
+      name={{name}}
       class="input {{inputStyle}}" 
       type="{{inputType}}"
       autocomplete="{{inputAutocomplete}}"
