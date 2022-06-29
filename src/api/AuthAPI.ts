@@ -7,7 +7,7 @@ const AUTH_URL = `${BASE_URL}/auth`;
 const authApi = new HTTP(AUTH_URL);
 
 class AuthAPI extends BaseAPI {
-  userInfo() {
+  async userInfo() {
     return authApi.get('/user');
   }
   signUp(options: IOptions) {

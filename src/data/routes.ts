@@ -7,15 +7,14 @@ import handleSigninSubmit from '../handlers/handleSigninSubmit';
 import handleSignupSubmit from '../handlers/handleSignupSubmit';
 import handleLogout from '../handlers/handleLogoutSubmit';
 import handleEditProfileSubmit from '../handlers/handleEditProfileSubmit';
-
 import {indexContext} from './contexts/indexContext';
 import {error404Context} from './contexts/error404Context';
 import {error500Context} from './contexts/error500Context';
-import {signupContext} from './contexts/signupContext';
-import {signinContext} from './contexts/signinContext';
-import {profileContext} from './contexts/profileContext';
 import {profileEditContext} from './contexts/profileEditContext';
 import {profileEditPassContext} from './contexts/profileEditPassContext';
+import { profileContext } from '../components/pages/profile/index';
+import { signinContext } from '../components/pages/signin/index';
+import { signupContext } from '../components/pages/signup/index';
 
 import {
   INDEX,

@@ -93,6 +93,7 @@ export default class Block {
   getContent() {
     return this.element;
   }
+  
   private makePropsProxy(props: Props) {
     const self = this;
     return new Proxy(props, {
