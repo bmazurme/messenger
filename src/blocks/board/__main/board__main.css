@@ -1,4 +1,9 @@
 .board__main {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: var(--sidebar-profile-color);
+  margin: 20px;
 }

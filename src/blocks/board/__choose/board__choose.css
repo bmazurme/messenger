@@ -1,0 +1,9 @@
+.board__choose {
+  height: 100%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sidebar-profile-color);
+  grid-area: main;
+}
