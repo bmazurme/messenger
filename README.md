@@ -2,6 +2,7 @@
 ### Проект Messenger
 ## sprint_1
 ## sprint_2
+## sprint_3
 
 ## Макет
 
@@ -29,3 +30,5 @@
 
 - Pull request sprint 1 [https://github.com/Bmazurm/middle.messenger.praktikum.yandex/pull/1](https://github.com/Bmazurm/middle.messenger.praktikum.yandex/pull/1)
 - Pull request sprint 2 [https://github.com/Bmazurm/middle.messenger.praktikum.yandex/pull/6](https://github.com/Bmazurm/middle.messenger.praktikum.yandex/pull/6)
+- Pull request sprint 3 
+https://github.com/Bmazurm/middle.messenger.praktikum.yandex/pull/9
