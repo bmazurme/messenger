@@ -1,6 +1,7 @@
 import Block from '../../../../core/block';
 import { Button } from '../../../ui/button';
 import {tmp} from './index.tpl';
+//import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
 
 export class Form extends Block {
   constructor() {
@@ -8,7 +9,8 @@ export class Form extends Block {
       submitButton: new Button({
         class: 'button popup__button',
         type: 'submit',
-        text: 'Поменять'
+        text: 'Поменять',
+        //handlers: [handleEditAvatarSubmit],
       }),
     });
   }

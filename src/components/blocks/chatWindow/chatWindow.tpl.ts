@@ -5,7 +5,8 @@ const source = `
     <div class="header">
       <div class="header__image"></div>
       <p class="header__text"> {{ chatName }} </p>
-      <button type="button" class="header__link edit_chat">
+      <button type="button" class="header__link add_user">
+      <button type="button" class="header__delete remove_user">
     </div>      
   </div>
 
@@ -14,7 +15,7 @@ const source = `
   </div>
     
   <div class="board__footer">
-    <form class="form footer">
+    <form class="form footer" name="message">
       <input name="message" 
         data-validation="message"
         class="input footer__input" 
@@ -23,7 +24,8 @@ const source = `
       <button type="submit" class="button footer__button footer__button_send" />
     </form>
   </div>
-  {{{popup}}}
+  {{{addPopup}}}
+  {{{removePopup}}}
 `;
 
 export const tmp = compile(source);

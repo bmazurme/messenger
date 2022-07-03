@@ -58,6 +58,14 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this.setHandlers();
   }
+  private setHandlers() {
+    const {handlers} = this.props;
+    if (handlers) {
+      handlers.forEach((item:  any) => {
+        item(this._element);
+      });
+    }
+  }
 
   componentDidMount(): void {
   }
@@ -112,14 +120,6 @@ export default class Block {
     }
     this._element!.innerHTML = block;
     this.addEvents();
-  }
-  private setHandlers() {
-    const {handlers} = this.props;
-    if (handlers) {
-      handlers.forEach((item:  any) => {
-        item(this._element);
-      });
-    }
   }
 
   render(): void {

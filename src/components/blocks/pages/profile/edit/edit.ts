@@ -7,12 +7,13 @@ import { Form } from '../../../forms/form';
 import handlerPopupClick from '../../../../../handles/handlerPopupClick';
 import handleEditProfileSubmit from '../../../../../handles/handleEditProfileSubmit';
 import handleValidation from '../../../../../handles/handleValidation';
+import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
 
 export class ChangeProfileInfo extends Block {
   constructor() {
     super('main', {
       userData: {},
-      popup: new Popup(new Form()),
+      popup: new Popup(new Form(),''),
       inputs: [
         {
           label: 'Почта',
@@ -90,6 +91,7 @@ export class ChangeProfileInfo extends Block {
         handleValidation,
         handlerPopupClick,
         handleEditProfileSubmit,
+        handleEditAvatarSubmit
       ]
     });
   }
@@ -113,7 +115,6 @@ export class ChangeProfileInfo extends Block {
             input['placeholder'] = '!';
           }          
           input['name'] = key;
-          console.log(key)
          }
       })
     })

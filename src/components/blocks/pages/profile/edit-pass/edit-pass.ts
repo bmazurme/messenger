@@ -6,11 +6,12 @@ import { Form } from '../../../forms/form';
 import handlerPopupClick from '../../../../../handles/handlerPopupClick';
 import handleValidation from '../../../../../handles/handleValidation';
 import handleEditPasswordSubmit from '../../../../../handles/handleEditPasswordSubmit';
+import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
 
 export class ChangePassword extends Block {
   constructor() {
     super('main', {
-      popup: new Popup(new Form()),
+      popup: new Popup(new Form(), ''),
       inputs: [
         {
           label: 'Старый пароль',
@@ -54,7 +55,8 @@ export class ChangePassword extends Block {
       handlers: [
         handleValidation,
         handlerPopupClick,
-        handleEditPasswordSubmit
+        handleEditPasswordSubmit,
+        handleEditAvatarSubmit
       ]
     });
   }

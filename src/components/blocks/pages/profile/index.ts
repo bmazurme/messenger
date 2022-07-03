@@ -4,16 +4,18 @@ import {auth} from '../../../../api/AuthAPI';
 import {Popup} from '../../../ui/popup';
 import handlerPopupClick from '../../../../handles/handlerPopupClick';
 import handleLogoutClick from '../../../../handles/handleLogoutClick';
+import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
 import { Form } from '../../forms/form';
 
 export class Profile extends Block {
   constructor() {
     super('main', {
       userData: {},
-      popup: new Popup(new Form()),
+      popup: new Popup(new Form(), ''),
       handlers: [
         handlerPopupClick,
-        handleLogoutClick
+        handleLogoutClick,
+        handleEditAvatarSubmit
       ]
     })
   }

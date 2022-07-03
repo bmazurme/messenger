@@ -1,7 +1,7 @@
-.header__link {
+.header__delete {
   padding: 0;
   margin: auto;
-  grid-area: link;
+  grid-area: delete;
   width: 25px;
   height: 25px;
   border-radius: 50%;

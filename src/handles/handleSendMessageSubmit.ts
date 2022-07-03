@@ -27,7 +27,7 @@ export default function handleSendMessageSubmit(element: HTMLElement, className 
       });
       
       const { message } = data;
-      
+
       if (isValidForm) {
         sendChatMessage(message);
       }
