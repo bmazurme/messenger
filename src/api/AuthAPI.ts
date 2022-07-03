@@ -1,24 +1,22 @@
-import BaseAPI from './BaseAPI';
-import HTTP from '../utils/http';
-import IOptions from 'utils/IOptions';
-import { BASE_URL } from '../data/const';
+import HTTP, {Options} from '../utils/http';
+import {BaseAPI} from './BaseAPI';
+import { BASE_URL } from '../utils/constants';
 
-const AUTH_URL = `${BASE_URL}/auth`;
-const authApi = new HTTP(AUTH_URL);
+const authAPIInstance = new HTTP(`${BASE_URL}/auth`);
 
 class AuthAPI extends BaseAPI {
-  async userInfo() {
-    return authApi.get('/user');
+  userInfo() {
+    return authAPIInstance.get('/user');
   }
-  signUp(options: IOptions) {
-    return authApi.post('/signup', options);
+  signUp(options: Options) {
+    return authAPIInstance.post('/signup', options);
   }
-  signIn(options: IOptions) {
-    return authApi.post('/signin', options);
+  signIn(options: Options) {
+    return authAPIInstance.post('/signin', options);
   }
   logOut() {
-    return authApi.post('/logout');
+    return authAPIInstance.post('/logout');
   }
 }
+
 export const auth = new AuthAPI();
- 

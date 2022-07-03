@@ -1,95 +1,62 @@
-import IOptions from './IOptions';
+import queryString, {isPlainObject} from './queryString';
+
 type PlainObject<T = unknown> = {
   // eslint-disable-next-line no-unused-vars
   [k in string]: T;
 };
 
-export function isPlainObject(value: unknown): value is PlainObject {
-  return typeof value === 'object'
-    && value !== null
-    && value.constructor === Object
-    && Object.prototype.toString.call(value) === '[object Object]';
-}
-
-export function isArray(value: unknown): value is [] {
-  return Array.isArray(value);
-}
-
-export function isArrayOrObject(value: unknown): value is [] | PlainObject {
-  return isPlainObject(value) || isArray(value);
-}
-
-function getKey(key: string, parentKey?: string) {
-  return parentKey ? `${parentKey}[${key}]` : key;
-}
-
-function getParams(data: PlainObject | [], parentKey?: string) {
-  const result: [string, string][] = [];
-
-  for (const [key, value] of Object.entries(data)) {
-    if (isArrayOrObject(value)) {
-      result.push(...getParams(value, getKey(key, parentKey)));
-    } else {
-      result.push([getKey(key, parentKey), encodeURIComponent(String(value))]);
-    }
-  }
-  return result;
-}
-
-export function queryString(data: PlainObject | unknown) {
-  if (!isPlainObject(data)) {
-    throw new Error('input must be an object');
-  }
-  return getParams(data).map(arr => arr.join('=')).join('&');
-}
-
 const METHODS = {
-    GET: 'GET',
-    PUT: 'PUT',
-    POST: 'POST',
-    DELETE: 'DELETE'
+  GET: 'GET',
+  PUT: 'PUT',
+  POST: 'POST',
+  DELETE: 'DELETE'
 };
 
-class HTTPTransport {
+export type Options = {
+  data?: PlainObject,
+  method?: string,
+  headers?: PlainObject,
+  timeout?: number
+} | PlainObject
+
+export default class HTTPTransport {
   baseURL: string;
+
   constructor(baseURL: string = '') {
     this.baseURL = baseURL;
   }
-  get = (url: string, options?: IOptions) => {
+
+  get = (url: string, options?: Options) => {
     return options ? this.request(this.baseURL + url + queryString(options!.data), {
-      ...options, method: METHODS.GET 
+        ...options,
+        method: METHODS.GET
     }, options!.timeout)
     : this.request(this.baseURL + url, {method: METHODS.GET});
   };
-  put = (url: string, options: IOptions = {}) => {
-    return this.request(this.baseURL + url, {
-      ...options, method: METHODS.PUT
-    }, options.timeout);
+  put = (url: string, options: Options = {}) => {
+    return this.request(this.baseURL + url, {...options, method: METHODS.PUT}, options.timeout);
   };
-  post = (url: string, options: IOptions = {}) => {
-    console.log(this.baseURL + url);
-    return this.request(this.baseURL + url, {
-      ...options, method: METHODS.POST
-    }, options.timeout);
+  post = (url: string, options: Options = {}) => {
+    return this.request(this.baseURL + url, {...options, method: METHODS.POST}, options.timeout);
   };
 
-  delete = (url: string, options: IOptions) => {
-    return this.request(this.baseURL + url, {
-      ...options, method: METHODS.DELETE
-    }, options.timeout);
+  delete = (url: string, options: Options) => {
+    return this.request(this.baseURL + url, {...options, method: METHODS.DELETE}, options.timeout);
   };
 
-  request = (url: string, options: IOptions = {}, timeout: number | unknown = 5000) => {
+  request = (url: string, options: Options = {}, timeout: number | unknown = 5000) => {
     const {method, data, headers} = options;
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         if (typeof method === 'string') {
-            xhr.open(method, url);
+          xhr.open(method, url);
         }
         if (isPlainObject(headers)) {
           Object.keys(headers).forEach(key => {
             xhr.setRequestHeader(key, <string>headers[key]);
           });
+
+          console.log(xhr.setRequestHeader);
         } else {
           xhr.setRequestHeader('content-type', 'application/json')
         }
@@ -109,10 +76,9 @@ class HTTPTransport {
         } else if (!headers) {
           xhr.send(JSON.stringify(data));
         } else {
+            // @ts-ignore
           xhr.send(data);
         }
-    });
+      });
   };
 }
-
-export default HTTPTransport;
