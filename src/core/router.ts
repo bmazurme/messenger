@@ -1,5 +1,6 @@
 
 import Route from './route';
+import Block from './block';
 import { ERROR_NOT_FOUND } from '../utils/constants';
 
 class Router {
@@ -20,7 +21,7 @@ class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: any) {
+  use(pathname: string, block: Block) {
     const route = new Route(pathname, block, {rootQuery: this._rootQuery});
     this.routes!.push(route);
     return this;

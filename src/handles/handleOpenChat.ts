@@ -6,12 +6,13 @@ export default function handleOpenChat(element: HTMLElement, className = '.card'
     item.addEventListener('click', (evt: Event) => {
       evt.preventDefault();
       evt.stopPropagation();
-      const el: any = evt.target.closest('.card');
-
+      const el: HTMLElement|null = evt.target as HTMLElement
+      
       if (el) {
-        const chatWindow = new ChatWindow({
-          chatName: el.querySelector('.card__title').textContent,
-          chatId: el.dataset.chatId
+        const container:HTMLElement|null = el.closest('.card');
+        const chatWindow: ChatWindow = new ChatWindow({
+          chatName: container?.querySelector('.card__title')?.textContent,
+          chatId: Number(container?.dataset.chatId)
         });
         const chatsPage = document.querySelector('.chat')!;
         const chooseChatWindow = document.querySelector('.board')!;

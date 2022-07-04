@@ -1,11 +1,17 @@
 import Block from '../../../../core/block';
-import {Button} from '../../../ui/button';
-import {tmp} from './index.tpl';
+import { Button } from '../../../ui/button';
+import { tmp } from './index.tpl';
 import { Inbox } from '../../../ui/inbox';
 import handleValidation from '../../../../handles/handleValidation';
 import handleSignupSubmit from '../../../../handles/handleSignupSubmit';
 
-export class Signup extends Block {
+type SignupProps = {
+  inboxes: string,
+  submitButton: Button;
+  handlers: Array<Function>;
+};
+
+export class Signup extends Block<SignupProps> {
 constructor() {
   super('main', {
     inboxes: [

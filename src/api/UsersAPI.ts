@@ -1,10 +1,9 @@
 import HTTP, {Options} from '../utils/http';
-import {BaseAPI} from './BaseAPI';
 import { BASE_URL } from '../utils/constants';
 
 const usersAPIInstance = new HTTP(`${BASE_URL}/user`);
 
-class UsersAPI extends BaseAPI {
+class UsersAPI {
   changeInfo(options: Options) {
     return usersAPIInstance.put('/profile', options);
   }

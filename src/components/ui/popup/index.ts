@@ -2,7 +2,11 @@ import Block from '../../../core/block';
 import { tmp } from './index.tpl';
 import { Form } from '../../blocks/forms/form';
 
-export class Popup extends Block {
+type PopupProps = {
+  form: Form,
+  selector: string;
+};
+export class Popup extends Block<PopupProps> {
   constructor(form: Form, selector: string) {
     super('div', {
       form,

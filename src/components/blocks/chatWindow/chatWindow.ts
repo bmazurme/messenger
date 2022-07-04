@@ -6,11 +6,27 @@ import { auth } from '../../../api/AuthAPI';
 import { users } from '../../../api/UsersAPI';
 import { AddUserForm } from '../forms/addUserForm';
 import { router } from '../../../index';
-import { connectToChat } from '../../../handles/handleSendMessageSubmit';
-import WebSocketService from '../../../utils/webSocket';
+import { CHATS } from '../../../utils/constants';
+import WebSocketService from '../../../api/WebSocket';
+import handleValidation from '../../../handles/handleValidation';
 
-export class ChatWindow extends Block {
-  constructor(props: any) {
+export type ChatWindowProps = {
+  className: string|null;
+  addPopup: Block;
+  // eslint-disable-next-line no-unused-vars
+  events: {[key: string]: (e: Event) => void };
+  handlers: Array<Function>;
+  chatId: number;
+  chatName: string;
+  chatToken: string;
+  userId: number;
+};
+type User = {
+  id: number;
+};
+
+export class ChatWindow extends Block<ChatWindowProps> {
+  constructor(props: ChatWindowProps) {
     super('div', {
       ...props,
       className: 'board',
@@ -18,30 +34,30 @@ export class ChatWindow extends Block {
       events: {
         submit: (e: Event) => this._handleSubmit(e), 
         click: (e: Event) => this.handleClick(e)
-      }
+      },
+      handlers: [handleValidation]
     });
   }
-  _handleSubmit(e: Event) {
+  private _handleSubmit(e: Event) {
     e.preventDefault();
-    const chatData: any = {
+    const chatData: {users: Array<number>, chatId: number} = {
       users: [],
       chatId: Number(this.props.chatId)
     };
 
-    const el: any = e.target;
+    const el: HTMLFormElement|null = e.target as HTMLFormElement;
 
-    if (el.name === 'message') {
-      this.send(el);
-    } else if (el.querySelector('.button').textContent === 'Добавить') {
-      this
-        .searchUser(chatData)
-        .then(() => this
-        .addUser(chatData));
-    } else if (el.querySelector('.button').textContent === 'Удалить') {
-      this
-        .searchUser(chatData)
-        .then(() => this
-        .removeUser(chatData));
+    if (el) {
+      if (el.name === 'message') {
+        this.send(el);
+      } else if (el.querySelector('.button')?.textContent === 'Добавить') {
+        this.searchUser(chatData)
+            .then(() => this.addUser(chatData));
+      } else if (el.querySelector('.button')?.textContent === 'Удалить') {
+        this.searchUser(chatData)
+            .then(() => this.removeUser(chatData));
+      }
+      el.reset();
     }
   }
 
@@ -53,7 +69,6 @@ export class ChatWindow extends Block {
       button.textContent=label;
     }
     popup.classList.add('popup_active');
-
   }
 
   closePopup() {
@@ -61,80 +76,90 @@ export class ChatWindow extends Block {
     popup.classList.remove('popup_active');
   }
 
-  handleClick(e: any) {
-    if (e.target === document.querySelector('.add_user')) {
-      this.openPopup('.add-remove-user-popup', 'Добавить')
-    }
+  handleClick(e: Event) {
+    const el: HTMLElement|null = e.target as HTMLElement;
+    const bt1 = document.querySelector('.add_user') as HTMLElement;
+    const bt2 = document.querySelector('.remove_user') as HTMLElement;
+    if (el) {
+      if (el === document.querySelector('.toggle_button')) {
+        if (bt1.classList.contains('header_hidden')) {
+          bt1?.classList.remove('header_hidden');
+          bt2?.classList.remove('header_hidden');
+        } else {
+          bt1?.classList.add('header_hidden');
+          bt2?.classList.add('header_hidden');
+        }
+      }
 
-    if (e.target.classList.contains('popup_active')) {
-      this.closePopup();
+      if (el === document.querySelector('.add_user')) {
+        this.openPopup('.add-remove-user-popup', 'Добавить');
+      }
+  
+      if (el.classList.contains('popup_active')) {
+        this.closePopup();
+        bt1?.classList.add('header_hidden');
+        bt2.classList.add('header_hidden');
+      }
+  
+      if (el === document.querySelector('.remove_user')) {
+        this.openPopup('.add-remove-user-popup', 'Удалить');
+      } 
     }
-
-    if (e.target === document.querySelector('.remove_user')) {
-      this.openPopup('.add-remove-user-popup', 'Удалить')
-    } 
   }
 
   async componentDidMount() {
     await this.getChatToken();
     await this.getUserInfo();
-    connectToChat(this.props);
+    const {userId, chatId, chatToken } = this.props;
+    this._connectToChat({userId, chatId, chatToken } );
   }
 
   async getChatToken() {
     return chats.getChatToken(this.props.chatId.toString())
       // @ts-ignore
-      .then(result => this.setProps({...this.props, 
-        chatToken: JSON.parse(result.response).token
-      }))
+      .then((result: {[key:string]: object|any}) => {
+        this.setProps({
+          ...this.props, 
+          chatToken: JSON.parse(result.response).token
+        })
+      })
       .catch((error) => console.log(error));
   }
 
   async getUserInfo() {
-    return auth.userInfo()
+    return auth
+      .getUser()
       // @ts-ignore
-      .then(result => {
+      .then((result: {[key:string]: object|any}) => {
         this.setProps({
-          ...this.props, userId: JSON.parse(result.response).id
+          ...this.props,
+          userId: JSON.parse(result.response).id
         })
       })
       .catch((error) => console.log(error));
   }
 
   renderChatHistory() {
-    return `this is going to be chat history`;
+    return 'this is going to be chat history';
   }
 
-  render() {
-    const {
-      chatName,
-      addPopup,
-    } = this.props;
-    return tmp({
-      chatName,
-      addPopup: addPopup.render(),
-      chatHistory: this.renderChatHistory()
-    })
+  async addUser(data: {users: Array<Object>}) {
+    if (data.users.length === 0) {
+      alert('Пользователь не найден');
+    }
+    await chats.addUsers({ data });
+    router.go(CHATS);
   }
 
-  addUser(data: any) {
-    console.log(data)
-    chats.addUsers({
-      data
-    })
-      .then(() => router.go('/chats'))
-      .catch((error) => console.log(error));
+  async removeUser(data: {users: Array<number>, chatId: number}) {
+    if (data.users.length === 0) {
+      alert('Пользователь не найден');
+    }
+    await chats.deleteUsers({data});
+    router.go(CHATS);
   }
 
-  removeUser(data: any) {
-    chats.deleteUsers({
-      data
-    })
-      .then(() => router.go('/chats'))
-      .catch((error) => console.log(error));
-  }
-
-  searchUser(data: any) {
+  searchUser(data: {users: Array<number>, chatId: number}) {
     const userLoginInput: HTMLInputElement = document.querySelector('.add-remove-user')!;
     const userLogin = userLoginInput.value;
 
@@ -147,34 +172,48 @@ export class ChatWindow extends Block {
       })
       .then(result => {
         // @ts-ignore
-        const response = JSON.parse(result.response);
-        data.users.push(response[0].id);
-
+        const response: Array<User> = JSON.parse(result.response);
+        const user: User = response[0]; 
+        if (user) {
+          data.users.push(user.id);
+        }
       })
       .catch((error) => console.log(error));
   }
 
-  send(form: any) {
-    const data: any = {};
-    Array.from(form.querySelectorAll('.input')).forEach((input: any) => {
+  send(form: HTMLElement) {
+    const data: {[key: string]: string} = {};
+    Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
       const name = input.getAttribute('name');
       if (name) {
         data[name] = input.value;
       }
     });
     const { message } = data;
-    this.sendChatMessage(message);
+    this._sendChatMessage(message);
   }
 
-  connectToChat(props: any) {
-    const {userId, chatId, token} = props;
-    new WebSocketService(userId, chatId, token);
+  private _connectToChat(props: {userId: number, chatId: number, chatToken: string}) {
+    const {userId, chatId, chatToken} = props;
+    new WebSocketService(userId, chatId, chatToken);
   }
   
-  sendChatMessage(message: string) {
+  private _sendChatMessage(message: string) {
     new WebSocketService().send({
       content: message,
       type: 'message',
     });
+  }
+
+  render() {
+    const {
+      chatName,
+      addPopup,
+    } = this.props;
+    return tmp({
+      chatName,
+      addPopup: addPopup.render(),
+      chatHistory: this.renderChatHistory()
+    })
   }
 }

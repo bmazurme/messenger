@@ -1,7 +1,10 @@
 import EventBus from './eventBus';
-import {isEqual} from './isEqual';
+import { isEqual } from './isEqual';
 
-export default class Block {
+export default abstract class Block<Props extends object = {}> {
+  render() {
+    throw new Error('Method not implemented.');
+  }
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -12,24 +15,19 @@ export default class Block {
   _element: HTMLElement | null = null;
   readonly meta: {
     tagName: string,
-    props: Record<string, unknown>
+    props: Props
   }
-  props: { [key: string]: any };
-  oldProps: { [key: string]: any };
-  /**
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
-  constructor(tagName: string = 'div', props: {} = {}) {
+  oldProps: Props;
+  protected props: Props;
+   
+  constructor(tagName: string = 'div', propsAndChildren: Props = <Props>{}) {
     const eventBus = new EventBus();
     this.meta = {
       tagName,
-      props
+      props: propsAndChildren,
     };
-    this.props = this.makePropsProxy(props);
-    this.oldProps = {};
+    this.props = <Props>this.makePropsProxy(propsAndChildren);
+    this.oldProps = <Props>{};
     this.eventBus = () => eventBus;
     this.registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
@@ -58,10 +56,10 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this.setHandlers();
   }
-  private setHandlers() {
+  private setHandlers(): void {
     const {handlers} = this.props;
     if (handlers) {
-      handlers.forEach((item:  any) => {
+      handlers.forEach((item: Function) => {
         item(this._element);
       });
     }
@@ -71,27 +69,23 @@ export default class Block {
   }
 
   private _componentDidUpdate(): void {
-    const response = this.componentDidUpdate(this.oldProps, this.props);
+    const response: boolean = !isEqual(this.oldProps, this.props);
     if (response) this._componentDidMount();
   }
 
-  componentDidUpdate(oldProps: { [key: string]: any }, newProps: { [key: string]: any }): boolean {
-    return !isEqual(oldProps, newProps);
-  }
-
-  setProps = (nextProps: { [key: string]: any }) => {
+  public setProps = (nextProps: { [key: string]: any }) => {
     if (!nextProps) {
       return;
     }
     this.oldProps = Object.assign({}, this.props);
 
     Object.keys(nextProps).forEach(key => {
-        this.props[key] = nextProps[key];
+      this.props[key] = nextProps[key];
     })
     this.eventBus().emit(Block.EVENTS.FLOW_CDU);
   };
 
-  get element(): HTMLElement | null {
+  public get element(): HTMLElement | null {
     return this._element;
   }
 
@@ -122,23 +116,24 @@ export default class Block {
     this.addEvents();
   }
 
-  render(): void {
-  }
+  // public render(): void {
+  // }
 
-  getContent(): HTMLElement | null {
+  public getContent(): HTMLElement | null {
     return this.element;
   }
 
-  private makePropsProxy(props: object): ProxyHandler<object> {
+  private makePropsProxy(props: Props): Props {
     return new Proxy(props, {
-      get(target: { [key: string]: any }, prop: string) {
+      get(target: Props, prop: string) {
         if (prop.indexOf('_') === 0) {
           throw new Error('Отказано в доступе');
         }
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: { [key: string]: any }, prop: string, value: any) {
+      set(target: Props, prop: string, value: string) {
+        // @ts-expect-error
         target[prop] = value;
         return true;
       },
@@ -152,11 +147,11 @@ export default class Block {
     return document.createElement(tagName);
   }
 
-  show() {
+  public show() {
     this.getContent()!.style.display = 'block';
   }
 
-  hide() {
+  public hide() {
     this.getContent()!.style.display = 'none';
   }
 }

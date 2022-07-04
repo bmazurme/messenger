@@ -704,6 +704,8 @@ parcelHelpers.export(exports, "PASSWORD_REGEXP", ()=>PASSWORD_REGEXP
 );
 parcelHelpers.export(exports, "BASE_URL", ()=>BASE_URL
 );
+parcelHelpers.export(exports, "WEB_SOCKET_URL", ()=>WEB_SOCKET_URL
+);
 const CHATS = '/chats';
 const SIGN_UP = '/signup';
 const SIGN_IN = '/';
@@ -718,6 +720,7 @@ const EMAIL_REGEXP = /^[^\s@]+@[^\s@]+[.]+[a-z]+$/;
 const PHONE_REGEXP = /^[+]{0,1}[0-9]{10,15}$/g;
 const PASSWORD_REGEXP = /^[A-Za-z0-9!_.-]{8,40}$/;
 const BASE_URL = 'https://ya-praktikum.tech/api/v2';
+const WEB_SOCKET_URL = 'wss://ya-praktikum.tech/ws/chats/';
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1naZj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -789,6 +792,9 @@ var _eventBus = require("./eventBus");
 var _eventBusDefault = parcelHelpers.interopDefault(_eventBus);
 var _isEqual = require("./isEqual");
 class Block {
+    render() {
+        throw new Error('Method not implemented.');
+    }
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
@@ -796,18 +802,13 @@ class Block {
         FLOW_CDU: 'flow:component-did-update'
     };
     _element = null;
-    /**
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */ constructor(tagName = 'div', props = {}){
+    constructor(tagName = 'div', propsAndChildren = {}){
         const eventBus = new _eventBusDefault.default();
         this.meta = {
             tagName,
-            props
+            props: propsAndChildren
         };
-        this.props = this.makePropsProxy(props);
+        this.props = this.makePropsProxy(propsAndChildren);
         this.oldProps = {};
         this.eventBus = ()=>eventBus
         ;
@@ -842,11 +843,8 @@ class Block {
     }
     componentDidMount() {}
     _componentDidUpdate() {
-        const response = this.componentDidUpdate(this.oldProps, this.props);
+        const response = !_isEqual.isEqual(this.oldProps, this.props);
         if (response) this._componentDidMount();
-    }
-    componentDidUpdate(oldProps, newProps) {
-        return !_isEqual.isEqual(oldProps, newProps);
     }
     setProps = (nextProps)=>{
         if (!nextProps) return;
@@ -879,7 +877,8 @@ class Block {
         this._element.innerHTML = block;
         this.addEvents();
     }
-    render() {}
+    // public render(): void {
+    // }
     getContent() {
         return this.element;
     }
@@ -891,6 +890,7 @@ class Block {
                 return typeof value === 'function' ? value.bind(target) : value;
             },
             set (target, prop, value) {
+                // @ts-expect-error
                 target[prop] = value;
                 return true;
             },
@@ -911,7 +911,7 @@ class Block {
 }
 exports.default = Block;
 
-},{"./eventBus":"gLUid","./isEqual":"hipMy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gLUid":[function(require,module,exports) {
+},{"./eventBus":"gLUid","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./isEqual":"hipMy"}],"gLUid":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class EventBus {
@@ -12406,7 +12406,6 @@ parcelHelpers.export(exports, "checkValid", ()=>checkValid
 var _types = require("../core/types");
 var _constants = require("./constants");
 function validateInput(evt) {
-    console.log(123);
     const input = evt.target;
     const isValid = checkValid(input);
     toggleStyle(isValid, input);
@@ -12511,11 +12510,10 @@ parcelHelpers.export(exports, "auth", ()=>auth
 );
 var _http = require("../utils/http");
 var _httpDefault = parcelHelpers.interopDefault(_http);
-var _baseAPI = require("./BaseAPI");
 var _constants = require("../utils/constants");
 const authAPIInstance = new _httpDefault.default(`${_constants.BASE_URL}/auth`);
-class AuthAPI extends _baseAPI.BaseAPI {
-    userInfo() {
+class AuthAPI {
+    getUser() {
         return authAPIInstance.get('/user');
     }
     signUp(options) {
@@ -12530,7 +12528,7 @@ class AuthAPI extends _baseAPI.BaseAPI {
 }
 const auth = new AuthAPI();
 
-},{"../utils/http":"4lme2","./BaseAPI":"ghZmd","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4lme2":[function(require,module,exports) {
+},{"../utils/http":"4lme2","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4lme2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _queryString = require("./queryString");
@@ -12636,26 +12634,6 @@ function queryString(data) {
     ).join('&');
 }
 exports.default = queryString;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ghZmd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "BaseAPI", ()=>BaseAPI
-);
-class BaseAPI {
-    create() {
-        throw new Error('Not implemented');
-    }
-    request() {
-        throw new Error('Not implemented');
-    }
-    update() {
-        throw new Error('Not implemented');
-    }
-    delete() {
-        throw new Error('Not implemented');
-    }
-}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5kGLG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -13014,7 +12992,6 @@ const tmp = _handlebars.compile(source);
 },{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4lXIG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-//import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
 parcelHelpers.export(exports, "Form", ()=>Form
 );
 var _block = require("../../../../core/block");
@@ -13192,10 +13169,9 @@ parcelHelpers.export(exports, "users", ()=>users
 );
 var _http = require("../utils/http");
 var _httpDefault = parcelHelpers.interopDefault(_http);
-var _baseAPI = require("./BaseAPI");
 var _constants = require("../utils/constants");
 const usersAPIInstance = new _httpDefault.default(`${_constants.BASE_URL}/user`);
-class UsersAPI extends _baseAPI.BaseAPI {
+class UsersAPI {
     changeInfo(options) {
         return usersAPIInstance.put('/profile', options);
     }
@@ -13211,7 +13187,7 @@ class UsersAPI extends _baseAPI.BaseAPI {
 }
 const users = new UsersAPI();
 
-},{"../utils/http":"4lme2","./BaseAPI":"ghZmd","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2tyiA":[function(require,module,exports) {
+},{"../utils/http":"4lme2","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2tyiA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _usersAPI = require("../api/UsersAPI");
@@ -13345,7 +13321,7 @@ class ChangeProfileInfo extends _blockDefault.default {
     }
     componentDidMount() {
         // @ts-ignore
-        _authAPI.auth.userInfo().then((result)=>{
+        _authAPI.auth.getUser().then((result)=>{
             this.setProps({
                 ...this.props,
                 userData: JSON.parse(result.response)
@@ -13376,7 +13352,7 @@ class ChangeProfileInfo extends _blockDefault.default {
     }
 }
 
-},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit.tpl":"476CU","../../../../../api/AuthAPI":"9MuyV","../../../../ui/popup":"h8cD8","../../../forms/form":"4lXIG","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleEditProfileSubmit":"cpFz2","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditAvatarSubmit":"2tyiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"476CU":[function(require,module,exports) {
+},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit.tpl":"476CU","../../../../ui/popup":"h8cD8","../../../forms/form":"4lXIG","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleEditProfileSubmit":"cpFz2","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditAvatarSubmit":"2tyiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../../api/AuthAPI":"9MuyV"}],"476CU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -13427,18 +13403,11 @@ function handleEditProfileSubmit(element, className = '.form') {
                 if (!isValid) isValidForm = false;
                 _validator.toggleStyle(isValid, input);
             });
-            const { first_name , second_name , display_name , login , email , phone ,  } = data;
             if (isValidForm) _usersAPI.users.changeInfo({
-                data: {
-                    first_name,
-                    second_name,
-                    display_name,
-                    login,
-                    email,
-                    phone
-                }
+                data
             }).then(()=>console.log('Ok')
-            ).catch(console.log);
+            ).catch((error)=>console.log(error)
+            );
         });
     });
 }
@@ -13451,10 +13420,6 @@ parcelHelpers.export(exports, "Chats", ()=>Chats
 );
 var _block = require("../../../../core/block");
 var _blockDefault = parcelHelpers.interopDefault(_block);
-var _chatsTpl = require("./chats.tpl");
-var _chatsAPI = require("../../../../api/ChatsAPI");
-var _index = require("../../../ui/popup/index");
-var _createChatForm = require("../../forms/createChatForm");
 var _handlerPopupClick = require("../../../../handles/handlerPopupClick");
 var _handlerPopupClickDefault = parcelHelpers.interopDefault(_handlerPopupClick);
 var _handleCreateChatSubmit = require("../../../../handles/handleCreateChatSubmit");
@@ -13464,9 +13429,14 @@ var _handleOpenChatDefault = parcelHelpers.interopDefault(_handleOpenChat);
 var _handleValidation = require("../../../../handles/handleValidation");
 var _handleValidationDefault = parcelHelpers.interopDefault(_handleValidation);
 var _chatWindow = require("../../../../components/blocks/chatWindow/chatWindow");
+var _chatsTpl = require("./chats.tpl");
+var _chatsAPI = require("../../../../api/ChatsAPI");
+var _index = require("../../../ui/popup/index");
+var _createChatForm = require("../../forms/createChatForm");
 class Chats extends _blockDefault.default {
     constructor(){
         super('main', {
+            chats: {},
             popup: new _index.Popup(new _createChatForm.CreateChatForm(), ''),
             handlers: [
                 _handlerPopupClickDefault.default,
@@ -13480,11 +13450,11 @@ class Chats extends _blockDefault.default {
         });
     }
     handleClick(e) {
-        const el = e.target.closest('.card');
+        const el = e.target?.closest('.card');
         if (el) {
             const chatWindow = new _chatWindow.ChatWindow({
-                chatName: el.querySelector('.card__title').textContent,
-                chatId: el.dataset.chatId
+                chatName: el.querySelector('.card__title')?.textContent,
+                chatId: Number(el.dataset.chatId)
             });
             const chatsPage = document.querySelector('.chat');
             const chooseChatWindow = document.querySelector('.board');
@@ -13494,11 +13464,12 @@ class Chats extends _blockDefault.default {
     }
     componentDidMount() {
         // @ts-ignore
-        _chatsAPI.chats.getChats().then((result)=>this.setProps({
+        _chatsAPI.chats.getChats().then((result)=>{
+            this.setProps({
                 ...this.props,
                 chats: JSON.parse(result.response)
-            })
-        ).catch((error)=>{
+            });
+        }).catch((error)=>{
             console.log(error);
         });
     }
@@ -13579,10 +13550,9 @@ parcelHelpers.export(exports, "chats", ()=>chats
 );
 var _http = require("../utils/http");
 var _httpDefault = parcelHelpers.interopDefault(_http);
-var _baseAPI = require("./BaseAPI");
 var _constants = require("../utils/constants");
 const chatAPIInstance = new _httpDefault.default(`${_constants.BASE_URL}/chats`);
-class ChatsAPI extends _baseAPI.BaseAPI {
+class ChatsAPI {
     createChat(options) {
         return chatAPIInstance.post('/', options);
     }
@@ -13601,7 +13571,7 @@ class ChatsAPI extends _baseAPI.BaseAPI {
 }
 const chats = new ChatsAPI();
 
-},{"../utils/http":"4lme2","./BaseAPI":"ghZmd","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eO1Sb":[function(require,module,exports) {
+},{"../utils/http":"4lme2","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eO1Sb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CreateChatForm", ()=>CreateChatForm
@@ -13695,11 +13665,12 @@ function handleOpenChat(element, className = '.card') {
         item.addEventListener('click', (evt)=>{
             evt.preventDefault();
             evt.stopPropagation();
-            const el = evt.target.closest('.card');
+            const el = evt.target;
             if (el) {
+                const container = el.closest('.card');
                 const chatWindow = new _chatWindow.ChatWindow({
-                    chatName: el.querySelector('.card__title').textContent,
-                    chatId: el.dataset.chatId
+                    chatName: container?.querySelector('.card__title')?.textContent,
+                    chatId: Number(container?.dataset.chatId)
                 });
                 const chatsPage = document.querySelector('.chat');
                 const chooseChatWindow = document.querySelector('.board');
@@ -13725,9 +13696,11 @@ var _authAPI = require("../../../api/AuthAPI");
 var _usersAPI = require("../../../api/UsersAPI");
 var _addUserForm = require("../forms/addUserForm");
 var _index = require("../../../index");
-var _handleSendMessageSubmit = require("../../../handles/handleSendMessageSubmit");
-var _webSocket = require("../../../utils/webSocket");
+var _constants = require("../../../utils/constants");
+var _webSocket = require("../../../api/WebSocket");
 var _webSocketDefault = parcelHelpers.interopDefault(_webSocket);
+var _handleValidation = require("../../../handles/handleValidation");
+var _handleValidationDefault = parcelHelpers.interopDefault(_handleValidation);
 class ChatWindow extends _blockDefault.default {
     constructor(props){
         super('div', {
@@ -13738,7 +13711,10 @@ class ChatWindow extends _blockDefault.default {
                 submit: (e)=>this._handleSubmit(e)
                 ,
                 click: (e)=>this.handleClick(e)
-            }
+            },
+            handlers: [
+                _handleValidationDefault.default
+            ]
         });
     }
     _handleSubmit(e) {
@@ -13748,11 +13724,14 @@ class ChatWindow extends _blockDefault.default {
             chatId: Number(this.props.chatId)
         };
         const el = e.target;
-        if (el.name === 'message') this.send(el);
-        else if (el.querySelector('.button').textContent === 'Добавить') this.searchUser(chatData).then(()=>this.addUser(chatData)
-        );
-        else if (el.querySelector('.button').textContent === 'Удалить') this.searchUser(chatData).then(()=>this.removeUser(chatData)
-        );
+        if (el) {
+            if (el.name === 'message') this.send(el);
+            else if (el.querySelector('.button')?.textContent === 'Добавить') this.searchUser(chatData).then(()=>this.addUser(chatData)
+            );
+            else if (el.querySelector('.button')?.textContent === 'Удалить') this.searchUser(chatData).then(()=>this.removeUser(chatData)
+            );
+            el.reset();
+        }
     }
     openPopup(selector, label) {
         const popup = document.querySelector(selector);
@@ -13765,26 +13744,50 @@ class ChatWindow extends _blockDefault.default {
         popup.classList.remove('popup_active');
     }
     handleClick(e) {
-        if (e.target === document.querySelector('.add_user')) this.openPopup('.add-remove-user-popup', 'Добавить');
-        if (e.target.classList.contains('popup_active')) this.closePopup();
-        if (e.target === document.querySelector('.remove_user')) this.openPopup('.add-remove-user-popup', 'Удалить');
+        const el = e.target;
+        const bt1 = document.querySelector('.add_user');
+        const bt2 = document.querySelector('.remove_user');
+        if (el) {
+            if (el === document.querySelector('.toggle_button')) {
+                if (bt1.classList.contains('header_hidden')) {
+                    bt1?.classList.remove('header_hidden');
+                    bt2?.classList.remove('header_hidden');
+                } else {
+                    bt1?.classList.add('header_hidden');
+                    bt2?.classList.add('header_hidden');
+                }
+            }
+            if (el === document.querySelector('.add_user')) this.openPopup('.add-remove-user-popup', 'Добавить');
+            if (el.classList.contains('popup_active')) {
+                this.closePopup();
+                bt1?.classList.add('header_hidden');
+                bt2.classList.add('header_hidden');
+            }
+            if (el === document.querySelector('.remove_user')) this.openPopup('.add-remove-user-popup', 'Удалить');
+        }
     }
     async componentDidMount() {
         await this.getChatToken();
         await this.getUserInfo();
-        _handleSendMessageSubmit.connectToChat(this.props);
+        const { userId , chatId , chatToken  } = this.props;
+        this._connectToChat({
+            userId,
+            chatId,
+            chatToken
+        });
     }
     async getChatToken() {
         return _chatsAPI.chats.getChatToken(this.props.chatId.toString())// @ts-ignore
-        .then((result)=>this.setProps({
+        .then((result)=>{
+            this.setProps({
                 ...this.props,
                 chatToken: JSON.parse(result.response).token
-            })
-        ).catch((error)=>console.log(error)
+            });
+        }).catch((error)=>console.log(error)
         );
     }
     async getUserInfo() {
-        return _authAPI.auth.userInfo()// @ts-ignore
+        return _authAPI.auth.getUser()// @ts-ignore
         .then((result)=>{
             this.setProps({
                 ...this.props,
@@ -13794,30 +13797,21 @@ class ChatWindow extends _blockDefault.default {
         );
     }
     renderChatHistory() {
-        return `this is going to be chat history`;
+        return 'this is going to be chat history';
     }
-    render() {
-        const { chatName , addPopup ,  } = this.props;
-        return _chatWindowTpl.tmp({
-            chatName,
-            addPopup: addPopup.render(),
-            chatHistory: this.renderChatHistory()
+    async addUser(data) {
+        if (data.users.length === 0) alert('Пользователь не найден');
+        await _chatsAPI.chats.addUsers({
+            data
         });
+        _index.router.go(_constants.CHATS);
     }
-    addUser(data) {
-        console.log(data);
-        _chatsAPI.chats.addUsers({
+    async removeUser(data) {
+        if (data.users.length === 0) alert('Пользователь не найден');
+        await _chatsAPI.chats.deleteUsers({
             data
-        }).then(()=>_index.router.go('/chats')
-        ).catch((error)=>console.log(error)
-        );
-    }
-    removeUser(data) {
-        _chatsAPI.chats.deleteUsers({
-            data
-        }).then(()=>_index.router.go('/chats')
-        ).catch((error)=>console.log(error)
-        );
+        });
+        _index.router.go(_constants.CHATS);
     }
     searchUser(data) {
         const userLoginInput = document.querySelector('.add-remove-user');
@@ -13830,7 +13824,8 @@ class ChatWindow extends _blockDefault.default {
         }).then((result)=>{
             // @ts-ignore
             const response = JSON.parse(result.response);
-            data.users.push(response[0].id);
+            const user = response[0];
+            if (user) data.users.push(user.id);
         }).catch((error)=>console.log(error)
         );
     }
@@ -13841,21 +13836,29 @@ class ChatWindow extends _blockDefault.default {
             if (name) data[name] = input.value;
         });
         const { message  } = data;
-        this.sendChatMessage(message);
+        this._sendChatMessage(message);
     }
-    connectToChat(props) {
-        const { userId , chatId , token  } = props;
-        new _webSocketDefault.default(userId, chatId, token);
+    _connectToChat(props) {
+        const { userId , chatId , chatToken  } = props;
+        new _webSocketDefault.default(userId, chatId, chatToken);
     }
-    sendChatMessage(message) {
+    _sendChatMessage(message) {
         new _webSocketDefault.default().send({
             content: message,
             type: 'message'
         });
     }
+    render() {
+        const { chatName , addPopup ,  } = this.props;
+        return _chatWindowTpl.tmp({
+            chatName,
+            addPopup: addPopup.render(),
+            chatHistory: this.renderChatHistory()
+        });
+    }
 }
 
-},{"regenerator-runtime/runtime":"dXNgZ","../../../core/block":"axMnM","./chatWindow.tpl":"drvg0","../../../api/ChatsAPI":"bbBWW","../../../api/AuthAPI":"9MuyV","../../../api/UsersAPI":"hI20v","../forms/addUserForm":"4x2vo","../../../index":"h7u1C","../../../handles/handleSendMessageSubmit":"lK4hV","../../../utils/webSocket":"2W7te","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dXNgZ":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"dXNgZ","../../../core/block":"axMnM","../../../api/ChatsAPI":"bbBWW","../../../api/AuthAPI":"9MuyV","../../../api/UsersAPI":"hI20v","../forms/addUserForm":"4x2vo","../../../index":"h7u1C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../utils/constants":"fIuAL","../../../handles/handleValidation":"5bucn","../../../api/WebSocket":"ioyAP","./chatWindow.tpl":"drvg0"}],"dXNgZ":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -14421,42 +14424,7 @@ try {
     else Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],"drvg0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-  <div class="board__header">
-    <div class="header">
-      <div class="header__image"></div>
-      <p class="header__text"> {{ chatName }} </p>
-      <button type="button" class="header__link add_user">
-      <button type="button" class="header__delete remove_user">
-    </div>      
-  </div>
-
-  <div class="board__main">
-    {{{chatHistory}}}
-  </div>
-    
-  <div class="board__footer">
-    <form class="form footer" name="message">
-      <input name="message" 
-        data-validation="message"
-        class="input footer__input" 
-        type="text" placeholder="Сообщение">
-      <button type="button" class="button footer__button footer__button_attach" />
-      <button type="submit" class="button footer__button footer__button_send" />
-    </form>
-  </div>
-  {{{addPopup}}}
-  {{{removePopup}}}
-`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4x2vo":[function(require,module,exports) {
+},{}],"4x2vo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AddUserForm", ()=>AddUserForm
@@ -14507,59 +14475,16 @@ const source = `
 `;
 const tmp = _handlebars.compile(source);
 
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lK4hV":[function(require,module,exports) {
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ioyAP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "connectToChat", ()=>connectToChat
-);
-var _validator = require("../utils/validator");
-var _webSocket = require("../utils/webSocket");
-var _webSocketDefault = parcelHelpers.interopDefault(_webSocket);
-function handleSendMessageSubmit(element, className = '.form') {
-    let isValidForm = true;
-    const formList = Array.from(element.querySelectorAll(className));
-    formList.forEach((item)=>{
-        item.addEventListener('submit', (evt)=>{
-            evt.preventDefault();
-            evt.stopPropagation();
-            const form = evt.target;
-            const data = {};
-            Array.from(form.querySelectorAll('.input')).forEach((input)=>{
-                const isValid = _validator.checkValid(input);
-                const name = input.getAttribute('name');
-                if (name) {
-                    data[name] = input.value;
-                    data[`${name}-isValid`] = isValid;
-                }
-                if (!isValid) isValidForm = false;
-                _validator.toggleStyle(isValid, input);
-            });
-            const { message  } = data;
-            if (isValidForm) sendChatMessage(message);
-        });
-    });
-}
-exports.default = handleSendMessageSubmit;
-function connectToChat(props) {
-    const { userId , chatId , token  } = props;
-    new _webSocketDefault.default(userId, chatId, token);
-}
-function sendChatMessage(message) {
-    new _webSocketDefault.default().send({
-        content: message,
-        type: 'message'
-    });
-}
-
-},{"../utils/validator":"crxki","../utils/webSocket":"2W7te","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2W7te":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
+var _constants = require("../utils/constants");
 class WebSocketService {
     constructor(userId, chatId, chatToken){
         if (userId && chatId && chatToken) {
             this.socket?.close();
             // eslint-disable-next-line max-len
-            this.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${chatToken}`);
+            this.socket = new WebSocket(`${_constants.WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
             this.socket.addEventListener('open', this.onOpen.bind(this));
             this.socket.addEventListener('message', this.onMessage.bind(this));
             this.socket.addEventListener('error', this.onError.bind(this));
@@ -14595,7 +14520,43 @@ class WebSocketService {
 }
 exports.default = WebSocketService;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lEYpP":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../utils/constants":"fIuAL"}],"drvg0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <div class="board__header">
+    <div class="header">
+      <div class="header__image"></div>
+      <p class="header__text"> {{ chatName }} </p>
+      <button type="button" class="header__toggle toggle_button" />
+      <button type="button" class="header_hidden header__link add_user" />
+      <button type="button" class="header_hidden header__delete remove_user" />
+    </div>      
+  </div>
+
+  <div class="board__main">
+    {{{chatHistory}}}
+  </div>
+    
+  <div class="board__footer">
+    <form class="form footer" name="message">
+      <input name="message" 
+        data-validation="message"
+        class="input footer__input" 
+        type="text" placeholder="Сообщение">
+      <button type="button" class="button footer__button footer__button_attach" />
+      <button type="submit" class="button footer__button footer__button_send" />
+    </form>
+  </div>
+  {{{addPopup}}}
+  {{{removePopup}}}
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lEYpP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Profile", ()=>Profile
@@ -14625,7 +14586,7 @@ class Profile extends _blockDefault.default {
         });
     }
     componentDidMount() {
-        _authAPI.auth.userInfo().then((result)=>{
+        _authAPI.auth.getUser().then((result)=>{
             this.setProps({
                 ...this.props,
                 userData: JSON.parse(result.response)

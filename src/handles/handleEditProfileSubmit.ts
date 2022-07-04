@@ -10,9 +10,9 @@ export default function handleEditProfileSubmit(element: HTMLElement, className 
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
-      const data: any = {};
+      const data: {[key:string]: string|boolean} = {};
 
-      Array.from(form.querySelectorAll('.input')).forEach((input: any) => {
+      Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
         const isValid = checkValid(input)
         const name = input.getAttribute('name');
 
@@ -26,27 +26,11 @@ export default function handleEditProfileSubmit(element: HTMLElement, className 
         toggleStyle(isValid, input);
       });
 
-      const {
-        first_name,
-        second_name,
-        display_name,
-        login,
-        email,
-        phone,
-      } = data;
-
       if (isValidForm) {
         users
-          .changeInfo({data: {
-            first_name,
-            second_name,
-            display_name,
-            login,
-            email,
-            phone,
-          }})
+          .changeInfo({data})
           .then(() => console.log('Ok'))
-          .catch(console.log);
+          .catch((error) => console.log(error));
       }
     });
   });

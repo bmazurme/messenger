@@ -1,10 +1,9 @@
 import HTTP, {Options} from '../utils/http';
-import {BaseAPI} from './BaseAPI';
 import { BASE_URL } from '../utils/constants';
 
 const chatAPIInstance = new HTTP(`${BASE_URL}/chats`);
 
-class ChatsAPI extends BaseAPI {
+class ChatsAPI {
   createChat(options: Options) {
     return chatAPIInstance.post('/', options);
   }

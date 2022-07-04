@@ -1,13 +1,19 @@
 import Block from '../../../../core/block';
-import {tmp} from './index.tpl';
-import {auth} from '../../../../api/AuthAPI';
-import {Popup} from '../../../ui/popup';
+import { tmp } from './index.tpl';
+import { auth } from '../../../../api/AuthAPI';
+import { Popup } from '../../../ui/popup';
 import handlerPopupClick from '../../../../handles/handlerPopupClick';
 import handleLogoutClick from '../../../../handles/handleLogoutClick';
 import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
 import { Form } from '../../forms/form';
 
-export class Profile extends Block {
+type ProfileProps = {
+  popup: Popup;
+  userData: {[key: string]: string|number};
+  handlers: Array<Function>;
+};
+
+export class Profile extends Block<ProfileProps> {
   constructor() {
     super('main', {
       userData: {},
@@ -22,9 +28,12 @@ export class Profile extends Block {
 
   componentDidMount() {
     auth
-      .userInfo()
-      .then((result) => {
-        this.setProps({...this.props, userData: JSON.parse(result.response)})
+      .getUser()
+      .then((result: any) => {
+        this.setProps({
+          ...this.props,
+          userData: JSON.parse(result.response)
+        })
       })
       .catch((error) =>{console.log(error)});
   }

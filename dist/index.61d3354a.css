@@ -573,7 +573,7 @@ summary {
 .board__main {
   color: var(--sidebar-profile-color);
   height: 100%;
-  width: 100%;
+  width: auto;
   flex-direction: column;
   margin: 20px;
   font-size: 14px;
@@ -583,8 +583,8 @@ summary {
 .header {
   -moz-column-gap: 10px;
   width: 100%;
-  grid-template: "image text link delete" 1fr
-  / 34px 1fr 25px 25px;
+  grid-template: "image text link delete toggle" 1fr
+  / 34px 1fr 25px 25px 25px;
   column-gap: 10px;
   padding: 0;
   display: grid;
@@ -604,15 +604,16 @@ summary {
   cursor: pointer;
   height: 25px;
   width: 25px;
-  background-image: url("dots.29c51e07.svg");
+  background-image: url("add.62444d00.svg");
   background-position: 50%;
   background-repeat: no-repeat;
-  background-size: 3px 15px;
-  border: 0;
+  background-size: 15px;
+  border: 2px solid #3369f3;
   border-radius: 50%;
   grid-area: link;
   margin: auto;
   padding: 0;
+  display: flex;
 }
 
 .footer__text {
@@ -807,11 +808,13 @@ summary {
 .card__time {
   color: var(--card-time-color);
   text-align: right;
+  width: 30px;
   grid-area: time;
   margin: 0;
   padding: 0;
   font-size: 9px;
   line-height: 13px;
+  overflow: hidden;
 }
 
 .card__counter {
@@ -1064,15 +1067,17 @@ summary {
   cursor: pointer;
   height: 25px;
   width: 25px;
-  background-image: url("dots.29c51e07.svg");
+  background-image: url("add.62444d00.svg");
   background-position: 50%;
   background-repeat: no-repeat;
-  background-size: 3px 15px;
-  border: 0;
+  background-size: 15px;
+  border: 2px solid #3369f3;
   border-radius: 50%;
   grid-area: delete;
   margin: auto;
   padding: 0;
+  display: flex;
+  transform: rotate(45deg);
 }
 
 .popup__input_create {
@@ -1088,6 +1093,38 @@ summary {
   margin: 10px 0;
   padding: 0;
   font-size: 14px;
+}
+
+.header__toggle {
+  background-color: var(--header-link-background-color);
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  background-image: url("dots.29c51e07.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 3px 15px;
+  border: 0;
+  border-radius: 50%;
+  grid-area: toggle;
+  margin: auto;
+  padding: 0;
+}
+
+.header_hidden {
+  display: none;
+}
+
+.header_menu {
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+  grid-area: menu;
+  transition: all .5s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 

@@ -5,7 +5,13 @@ import { Inbox } from '../../../ui/inbox';
 import handleValidation from '../../../../handles/handleValidation';
 import handleSigninSubmit from '../../../../handles/handleSigninSubmit';
 
-export class Signin extends Block {
+type SigninProps = {
+  inboxes: string;
+  submitButton: Button;
+  handlers: Array<Function>;
+};
+
+export class Signin extends Block<SigninProps> {
   constructor() {
     super('main', {
       inboxes: [

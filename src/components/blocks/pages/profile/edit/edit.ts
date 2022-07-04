@@ -1,15 +1,23 @@
 import Block from '../../../../../core/block';
-import {Button} from '../../../../ui/button';
-import {tmp} from './edit.tpl';
-import {auth} from '../../../../../api/AuthAPI';
-import {Popup} from '../../../../ui/popup';
+import { Button } from '../../../../ui/button';
+import { tmp } from './edit.tpl';
+import { auth } from '../../../../../api/AuthAPI';
+import { Popup } from '../../../../ui/popup';
 import { Form } from '../../../forms/form';
 import handlerPopupClick from '../../../../../handles/handlerPopupClick';
 import handleEditProfileSubmit from '../../../../../handles/handleEditProfileSubmit';
 import handleValidation from '../../../../../handles/handleValidation';
 import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
 
-export class ChangeProfileInfo extends Block {
+type ChangeProfileInfoProps = {
+  inputs: {[key: string]: string}[];
+  submitButton: Button;
+  popup: Popup;
+  handlers: Array<Function>;
+  userData: {[key: string]: string};
+};
+
+export class ChangeProfileInfo extends Block<ChangeProfileInfoProps> {
   constructor() {
     super('main', {
       userData: {},
@@ -98,15 +106,19 @@ export class ChangeProfileInfo extends Block {
 
   componentDidMount() {
     // @ts-ignore
-    auth.userInfo().then(result => {
-      this.setProps({...this.props, userData: JSON.parse(result.response)})})
+    auth
+      .getUser()
+      .then((result: {[key: string]: string}) => {
+        this.setProps({
+          ...this.props,
+          userData: JSON.parse(result.response)})})
       .catch((error) => console.log(error));
     this.definePlaceholders();
   }
 
   definePlaceholders() {
     Object.keys(this.props.userData).forEach(key => {
-      this.props.inputs.forEach((input: { [x: string]: any; }) => {
+      this.props.inputs.forEach((input: {[key: string]: string}) => {
         if ((input.validationType === 'nickname' && 
          key === 'display_name') || input.validationType === key) {
           if (this.props.userData[key]) {

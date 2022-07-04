@@ -1,8 +1,12 @@
 import Block from '../../../../core/block';
 import { Button } from '../../../ui/button';
-import {tmp} from './index.tpl';
+import { tmp } from './index.tpl';
 
-export class CreateChatForm extends Block {
+type CreateChatFormProps = {
+  submitButton: Button;
+};
+
+export class CreateChatForm extends Block<CreateChatFormProps> {
   constructor() {
     super('div', {
       submitButton: new Button({

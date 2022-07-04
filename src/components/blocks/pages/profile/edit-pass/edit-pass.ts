@@ -8,7 +8,14 @@ import handleValidation from '../../../../../handles/handleValidation';
 import handleEditPasswordSubmit from '../../../../../handles/handleEditPasswordSubmit';
 import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
 
-export class ChangePassword extends Block {
+type ChangePasswordProps = {
+  inputs: Array<object>;
+  submitButton: Button;
+  popup: Popup;
+  handlers: Array<Function>;
+};
+
+export class ChangePassword extends Block<ChangePasswordProps> {
   constructor() {
     super('main', {
       popup: new Popup(new Form(), ''),

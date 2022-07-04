@@ -1,12 +1,12 @@
 import Block from '../../../core/block';
 import {tmp} from './index.tpl';
 
-export type inputType = {
-  [key: string]: any
+export type InputType = {
+  [key: string]: string
 }
 
 export class Inbox extends Block {
-  constructor(props: inputType) {
+  constructor(props: InputType) {
     super('div', props);
   }
 

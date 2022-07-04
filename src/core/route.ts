@@ -9,7 +9,7 @@ class Route {
   private _pathname: string;
   readonly _blockClass: any;
   private _block: Block | null;
-  private _props: { [key: string]: any };
+  private _props: { [key: string]: string };
 
   constructor(pathname: string, view: any, props: {}) {
     this._pathname = pathname;

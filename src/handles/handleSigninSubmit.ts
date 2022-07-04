@@ -12,9 +12,9 @@ export default function handleSigninSubmit(element: HTMLElement, className = '.f
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
-      const data: any = {};
+      const data: {[key:string]: string|boolean} = {};
 
-      Array.from(form.querySelectorAll('.input')).forEach((input: any) => {
+      Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
         const isValid = checkValid(input)
         const name = input.getAttribute('name');
 

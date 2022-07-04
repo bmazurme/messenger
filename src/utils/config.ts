@@ -7,6 +7,7 @@ export const SELECTORS = [
   '.remove',
   '.new'
 ];
+
 export const POPUP = '.popup';
 export const POPUP_ADD_USER = '.popup_add_user';
 export const POPUP_REMOVE_USER = '.popup_remove_user';

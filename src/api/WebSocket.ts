@@ -1,3 +1,5 @@
+import {WEB_SOCKET_URL} from '../utils/constants';
+
 type messagePayloadT = {
   content: string,
   type: string
@@ -7,11 +9,11 @@ export default class WebSocketService {
   static __instance: WebSocketService;
   private socket;
 
-  constructor(userId?: string, chatId?: number, chatToken?: string) {
+  constructor(userId?: number, chatId?: number, chatToken?: string) {
     if (userId && chatId && chatToken) {
       this.socket?.close();
       // eslint-disable-next-line max-len
-      this.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${chatToken}`);
+      this.socket = new WebSocket(`${WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
       this.socket.addEventListener('open', this.onOpen.bind(this));
       this.socket.addEventListener('message', this.onMessage.bind(this));
       this.socket.addEventListener('error', this.onError.bind(this));
@@ -41,11 +43,11 @@ export default class WebSocketService {
     return JSON.parse(event.data);
   }
 
-  onError(event: any) {
+  onError(event: {[key:string]: object}) {
     console.log('Error: ', event.message);
   }
 
-  onClose(event: any) {
+  onClose(event: {[key:string]: object}) {
     if (event.wasClean) {
       console.log('Connection closed');
     } else {

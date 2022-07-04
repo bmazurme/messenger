@@ -8,7 +8,6 @@ import {
 } from './constants';
 
 export function validateInput(evt: Event): void {
-  console.log(123);
   const input = evt.target as HTMLInputElement;
   const isValid = checkValid(input);
   toggleStyle(isValid, input);

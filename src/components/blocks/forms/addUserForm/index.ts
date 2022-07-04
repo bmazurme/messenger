@@ -2,7 +2,11 @@ import Block from '../../../../core/block';
 import { Button } from '../../../ui/button';
 import { tmp } from './index.tpl';
 
-export class AddUserForm extends Block {
+type AddUserFormProps = {
+  addButton: Button;
+};
+
+export class AddUserForm extends Block<AddUserFormProps> {
   constructor() {
     super('div', {
       addButton: new Button({

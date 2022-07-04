@@ -1,18 +1,26 @@
 import Block from '../../../../core/block';
-import { tmp } from './chats.tpl';
-import { chats } from '../../../../api/ChatsAPI';
-import { Popup } from '../../../ui/popup/index';
-import { CreateChatForm } from '../../forms/createChatForm';
 import handlerPopupClick from '../../../../handles/handlerPopupClick';
 import handleCreateChatSubmit from '../../../../handles/handleCreateChatSubmit';
 import handleOpenChat from '../../../../handles/handleOpenChat';
 import handleValidation from '../../../../handles/handleValidation';
 import { ChatWindow } from '../../../../components/blocks/chatWindow/chatWindow';
+import { tmp } from './chats.tpl';
+import { chats } from '../../../../api/ChatsAPI';
+import { Popup } from '../../../ui/popup/index';
+import { CreateChatForm } from '../../forms/createChatForm';
 
-export class Chats extends Block {
+type ChatsProps = {
+  chats: {};
+  popup: Popup;
+  handlers: Array<Function>;
+  events: any;
+};
+
+export class Chats extends Block<ChatsProps> {
   constructor() {
     super('main', 
     {
+      chats: {},
       popup: new Popup( new CreateChatForm(), '' ),
       handlers: [
         handlerPopupClick,
@@ -26,12 +34,13 @@ export class Chats extends Block {
     });
   }
 
-  handleClick(e: any) {
-    const el = e.target.closest('.card');
+  handleClick(e: Event) {
+    const el: HTMLElement|null = e.target?.closest('.card');
+
     if (el) {
       const chatWindow = new ChatWindow({
-        chatName: el.querySelector('.card__title').textContent,
-        chatId: el.dataset.chatId
+        chatName: el.querySelector('.card__title')?.textContent,
+        chatId: Number(el.dataset.chatId)
       });
       const chatsPage = document.querySelector('.chat')!;
       const chooseChatWindow = document.querySelector('.board')!;
@@ -44,10 +53,12 @@ export class Chats extends Block {
     // @ts-ignore
     chats
       .getChats()
-      .then(result => this.setProps({
-        ...this.props,
-        chats: JSON.parse(result.response)
-       }))
+      .then((result: {[key:string]: object|any}) => {
+        this.setProps({
+          ...this.props,
+          chats: JSON.parse(result.response)
+         })
+      })
       .catch((error) => {
         console.log(error)
       });

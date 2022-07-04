@@ -14,3 +14,4 @@ export const PHONE_REGEXP: RegExp = /^[+]{0,1}[0-9]{10,15}$/g;
 export const PASSWORD_REGEXP: RegExp = /^[A-Za-z0-9!_.-]{8,40}$/;
 
 export const BASE_URL = 'https://ya-praktikum.tech/api/v2';
+export const WEB_SOCKET_URL = 'wss://ya-praktikum.tech/ws/chats/';

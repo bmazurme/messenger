@@ -1,18 +1,16 @@
-.header__delete {
-  display: flex;
+.header__toggle {
   padding: 0;
   margin: auto;
-  grid-area: delete;
+  grid-area: toggle;
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-image: url(../../../vendor/images/add.svg);
-  transform: rotate(45deg);
+  background-image: url(../../../vendor/images/dots.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 15px;
+  background-size: 3px 15px;
   background-color: var(--header-link-background-color);
-  border: 2px solid #3369F3;
+  border: 0;
   cursor: pointer;
 }
