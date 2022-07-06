@@ -8,17 +8,17 @@ class Router {
   private history: History | undefined;
   private _currentRoute: Route | null | undefined;
   private _rootQuery: string | undefined;
-  private static __instance: Router;
+  private static _instance: Router;
 
   constructor(rootQuery: string) {
-    if (Router.__instance) {
-      return Router.__instance;
+    if (Router._instance) {
+      return Router._instance;
     }
     this.routes = [];
     this.history = window.history;
     this._currentRoute = null;
     this._rootQuery = rootQuery;
-    Router.__instance = this;
+    Router._instance = this;
   }
 
   use(pathname: string, block: Block) {

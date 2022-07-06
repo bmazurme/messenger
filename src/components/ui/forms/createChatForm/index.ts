@@ -1,22 +1,18 @@
 import Block from '../../../../core/block';
-import { Button } from '../../../ui/button';
+import { Button } from '../../button';
 import { tmp } from './index.tpl';
+import { IForm } from '../form/IForm';
 
-type FormProps = {
-  submitButton: Button;
-};
-
-export class Form extends Block<FormProps> {
+export class CreateChatForm extends Block<IForm> {
   constructor() {
     super('div', {
       submitButton: new Button({
         class: 'button popup__button',
         type: 'submit',
-        text: 'Поменять',
+        text: 'Создать'
       }),
     });
   }
-
   render() {
     const {submitButton} = this.props;
     return tmp({

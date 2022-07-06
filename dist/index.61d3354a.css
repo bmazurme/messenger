@@ -291,6 +291,11 @@ summary {
   display: flex;
 }
 
+.button_create-chat {
+  width: 100%;
+  margin-top: 10px;
+}
+
 .button_signup {
   margin-top: 60px;
 }
@@ -316,6 +321,8 @@ summary {
 .profile__title {
   color: var(--profile-title-color);
   text-align: center;
+  margin: 20px 0 0;
+  padding: 0;
   font-size: 16px;
   font-weight: 600;
   line-height: 16px;
@@ -389,7 +396,7 @@ summary {
 
 .list {
   width: 510px;
-  margin: 60px auto 0;
+  margin: 50px auto 0;
   padding: 0;
 }
 
@@ -552,6 +559,16 @@ summary {
   display: grid;
 }
 
+.board__choose {
+  color: var(--sidebar-profile-color);
+  height: 100%;
+  grid-area: main;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  display: flex;
+}
+
 .board__header {
   border-bottom: 1px solid var(--board-header-border-bottom);
   height: 54px;
@@ -573,11 +590,14 @@ summary {
 .board__main {
   color: var(--sidebar-profile-color);
   height: 100%;
+  max-height: 560px;
   width: auto;
   flex-direction: column;
+  align-self: center;
   margin: 20px;
   font-size: 14px;
   display: flex;
+  overflow: scroll;
 }
 
 .header {
@@ -626,6 +646,56 @@ summary {
   font-weight: 600;
   line-height: 13px;
   display: flex;
+}
+
+.header__delete {
+  background-color: var(--header-link-background-color);
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  background-image: url("add.62444d00.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  border: 2px solid #3369f3;
+  border-radius: 50%;
+  grid-area: delete;
+  margin: auto;
+  padding: 0;
+  display: flex;
+  transform: rotate(45deg);
+}
+
+.header__toggle {
+  background-color: var(--header-link-background-color);
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  background-image: url("dots.29c51e07.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 3px 15px;
+  border: 0;
+  border-radius: 50%;
+  grid-area: toggle;
+  margin: auto;
+  padding: 0;
+}
+
+.header_hidden {
+  display: none;
+}
+
+.header_menu {
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+  grid-area: menu;
+  transition: all .5s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .footer {
@@ -915,6 +985,15 @@ summary {
   position: absolute;
 }
 
+.popup__input_create {
+  opacity: 1;
+  width: 280px;
+  z-index: 1;
+  margin: 45px auto 0;
+  padding: 0;
+  position: relative;
+}
+
 .popup__button {
   background: var(--popup-button-background);
   color: var(--popup-button-color);
@@ -1047,84 +1126,14 @@ summary {
   color: var(--inbox-input-border-color-error);
 }
 
-.button_create-chat {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.board__choose {
-  color: var(--sidebar-profile-color);
-  height: 100%;
-  grid-area: main;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  display: flex;
-}
-
-.header__delete {
-  background-color: var(--header-link-background-color);
-  cursor: pointer;
-  height: 25px;
-  width: 25px;
-  background-image: url("add.62444d00.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: 15px;
-  border: 2px solid #3369f3;
-  border-radius: 50%;
-  grid-area: delete;
-  margin: auto;
-  padding: 0;
-  display: flex;
-  transform: rotate(45deg);
-}
-
-.popup__input_create {
-  opacity: 1;
-  width: 280px;
-  z-index: 1;
-  margin: 45px auto 0;
-  padding: 0;
-  position: relative;
-}
-
 .no-chats {
   margin: 10px 0;
   padding: 0;
   font-size: 14px;
 }
 
-.header__toggle {
-  background-color: var(--header-link-background-color);
-  cursor: pointer;
-  height: 25px;
-  width: 25px;
-  background-image: url("dots.29c51e07.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: 3px 15px;
-  border: 0;
-  border-radius: 50%;
-  grid-area: toggle;
-  margin: auto;
-  padding: 0;
-}
-
-.header_hidden {
-  display: none;
-}
-
-.header_menu {
-  height: 100%;
-  opacity: 1;
-  visibility: visible;
-  width: 100%;
-  grid-area: menu;
-  transition: all .5s ease-out;
-  position: fixed;
-  top: 0;
-  left: 0;
+.card__from-you {
+  color: #1e1e1e;
 }
 
 

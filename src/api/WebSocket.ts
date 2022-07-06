@@ -1,36 +1,36 @@
-import {WEB_SOCKET_URL} from '../utils/constants';
-
-type messagePayloadT = {
-  content: string,
-  type: string
-}
+import { WEB_SOCKET_URL } from '../utils/constants';
+import { IMessage } from './Imessage';
+import { store } from '../core/store';
+import { ActionTypes } from '../core/types';
 
 export default class WebSocketService {
-  static __instance: WebSocketService;
-  private socket;
+  static _instance: WebSocketService;
+  private _socket;
+  userId: number;
 
   constructor(userId?: number, chatId?: number, chatToken?: string) {
     if (userId && chatId && chatToken) {
-      this.socket?.close();
+      this._socket?.close();
       // eslint-disable-next-line max-len
-      this.socket = new WebSocket(`${WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
-      this.socket.addEventListener('open', this.onOpen.bind(this));
-      this.socket.addEventListener('message', this.onMessage.bind(this));
-      this.socket.addEventListener('error', this.onError.bind(this));
-      this.socket.addEventListener('close', this.onClose.bind(this));
+      this._socket = new WebSocket(`${WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
+      this._socket.addEventListener('open', this.onOpen.bind(this));
+      this._socket.addEventListener('message', this.onMessage.bind(this));
+      this._socket.addEventListener('error', this.onError.bind(this));
+      this._socket.addEventListener('close', this.onClose.bind(this));
     }
-    if (WebSocketService.__instance) {
-      return WebSocketService.__instance;
+    if (WebSocketService._instance) {
+      return WebSocketService._instance;
     }
-    WebSocketService.__instance = this;
+    WebSocketService._instance = this;
+    this.userId = Number(userId);
   }
 
-  send(payload: messagePayloadT) {
+  send(payload: IMessage): void {
     console.log('Message sent');
-    this.socket?.send(JSON.stringify(payload));
+    this._socket?.send(JSON.stringify(payload));
   }
 
-  onOpen() {
+  onOpen(): void {
     console.log('Connection established');
     this.send({
       content: '0',
@@ -38,16 +38,31 @@ export default class WebSocketService {
     });
   }
 
-  onMessage(event: any) {
+  onMessage(event:  {[key:string]:string}): void {
     console.log('Data received: ', event);
-    return JSON.parse(event.data);
+
+    let data = JSON.parse(event.data);
+    if (data.type === 'user connected') {
+      return;
+    }
+    const configureData = (data: Record<string, unknown>) => ({
+      ...data, 
+      // incoming: data.user_id !== this.userId
+    });
+    if (Array.isArray(data)) {
+      data = data.map((item: Record<string, unknown>) => configureData(item));
+      data.reverse();
+    } else {
+      data = configureData(data);
+    }
+    store.dispatchAction(ActionTypes.GET_CHAT_MESSAGES, data);
   }
 
-  onError(event: {[key:string]: object}) {
+  onError(event: {[key:string]: object}): void {
     console.log('Error: ', event.message);
   }
 
-  onClose(event: {[key:string]: object}) {
+  onClose(event: {[key:string]: object}): void {
     if (event.wasClean) {
       console.log('Connection closed');
     } else {

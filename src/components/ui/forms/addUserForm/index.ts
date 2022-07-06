@@ -1,15 +1,12 @@
 import Block from '../../../../core/block';
-import { Button } from '../../../ui/button';
+import { Button } from '../../button';
 import { tmp } from './index.tpl';
+import { IForm } from '../form/IForm';
 
-type AddUserFormProps = {
-  addButton: Button;
-};
-
-export class AddUserForm extends Block<AddUserFormProps> {
+export class AddUserForm extends Block<IForm> {
   constructor() {
     super('div', {
-      addButton: new Button({
+      submitButton: new Button({
         class: 'button popup__button add_button',
         type: 'submit',
         text: 'Добавить пользователя'
@@ -18,11 +15,9 @@ export class AddUserForm extends Block<AddUserFormProps> {
   }
 
   render() {
-    const {
-      addButton,
-    } = this.props;
+    const { submitButton } = this.props;
     return tmp({
-      addButton: addButton.render(),
+      submitButton: submitButton.render(),
     })
   }
 }

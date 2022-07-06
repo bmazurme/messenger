@@ -9,7 +9,7 @@ export const source = `
         </h2>
         <input name="title" class="input popup__input_create 
           input_avatar add-remove-user" type="text" />
-        {{{addButton}}}
+        {{{submitButton}}}
       </form>
     </div>
   </div>

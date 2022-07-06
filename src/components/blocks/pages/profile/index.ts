@@ -2,21 +2,26 @@ import Block from '../../../../core/block';
 import { tmp } from './index.tpl';
 import { auth } from '../../../../api/AuthAPI';
 import { Popup } from '../../../ui/popup';
+import { Form } from '../../../ui/forms/form';
+import { IProfile } from './IProfile';
 import handlerPopupClick from '../../../../handles/handlerPopupClick';
 import handleLogoutClick from '../../../../handles/handleLogoutClick';
 import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
-import { Form } from '../../forms/form';
+import protectedRoute from '../../../../utils/protected';
 
-type ProfileProps = {
-  popup: Popup;
-  userData: {[key: string]: string|number};
-  handlers: Array<Function>;
-};
-
-export class Profile extends Block<ProfileProps> {
+export class Profile extends Block<IProfile> {
   constructor() {
     super('main', {
-      userData: {},
+      userData: {  
+        popup: null,
+        first_name: '',
+        second_name: '',
+        display_name: '',
+        login: '',
+        email: '',
+        phone: 0,
+        avatar: '',
+      },
       popup: new Popup(new Form(), ''),
       handlers: [
         handlerPopupClick,
@@ -26,25 +31,20 @@ export class Profile extends Block<ProfileProps> {
     })
   }
 
-  componentDidMount() {
-    auth
-      .getUser()
-      .then((result: any) => {
-        this.setProps({
-          ...this.props,
-          userData: JSON.parse(result.response)
-        })
-      })
-      .catch((error) =>{console.log(error)});
+  async componentDidMount() {
+    const userDataDTO = await auth.getUser();
+    const userData = JSON.parse(userDataDTO.response);
+    protectedRoute(userData.id);
+    this.setProps({userData});
   }
 
   render() {
     const {userData, popup} = this.props;
     return tmp({
       popup: popup.render(),
-      firstName: userData.first_name || '',
-      secondName: userData.second_name || '',
-      nickname: userData.display_name || '',
+      first_name: userData.first_name || '',
+      second_name: userData.second_name || '',
+      display_name: userData.display_name || '',
       login: userData.login || '',
       email: userData.email || '',
       phone: userData.phone || '',

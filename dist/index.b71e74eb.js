@@ -544,7 +544,7 @@ var _constants = require("./utils/constants");
 const router = new _routerDefault.default('.app');
 router.use(_constants.SIGN_IN, _signin.Signin).use(_constants.SIGN_UP, _signup.Signup).use(_constants.PROFILE, _profile.Profile).use(_constants.PROFILE_EDIT, _edit.ChangeProfileInfo).use(_constants.PROFILE_PASSWORD, _editPass.ChangePassword).use(_constants.CHATS, _chats.Chats).use(_constants.ERROR_NOT_FOUND, _error404.Error404).use(_constants.ERROR_INTERNAL_SERVER, _error500.Error500).start();
 
-},{"./core/router":"f4hn2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/blocks/pages/signin":"1naZj","./components/blocks/pages/signup":"5kGLG","./components/blocks/pages/profile/edit-pass/edit-pass":"2WSmK","./components/blocks/pages/profile/edit/edit":"jfyIZ","./components/blocks/pages/chats/chats":"45QTn","./components/blocks/pages/profile":"lEYpP","./components/blocks/pages/error/error404":"2ccag","./components/blocks/pages/error/error500":"bcqj3","./utils/constants":"fIuAL"}],"f4hn2":[function(require,module,exports) {
+},{"./core/router":"f4hn2","./components/blocks/pages/signin":"1naZj","./components/blocks/pages/signup":"5kGLG","./components/blocks/pages/profile/edit-pass/edit-pass":"2WSmK","./components/blocks/pages/profile/edit/edit":"jfyIZ","./components/blocks/pages/chats/chats":"45QTn","./components/blocks/pages/profile":"lEYpP","./components/blocks/pages/error/error404":"2ccag","./components/blocks/pages/error/error500":"bcqj3","./utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f4hn2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _route = require("./route");
@@ -552,12 +552,12 @@ var _routeDefault = parcelHelpers.interopDefault(_route);
 var _constants = require("../utils/constants");
 class Router {
     constructor(rootQuery){
-        if (Router.__instance) return Router.__instance;
+        if (Router._instance) return Router._instance;
         this.routes = [];
         this.history = window.history;
         this._currentRoute = null;
         this._rootQuery = rootQuery;
-        Router.__instance = this;
+        Router._instance = this;
     }
     use(pathname, block) {
         const route = new _routeDefault.default(pathname, block, {
@@ -598,37 +598,7 @@ class Router {
 }
 exports.default = Router;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./route":"5Czbl","../utils/constants":"fIuAL"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"5Czbl":[function(require,module,exports) {
+},{"./route":"5Czbl","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5Czbl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _render = require("./render");
@@ -673,7 +643,37 @@ function renderBlock(query, block) {
     return root;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fIuAL":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"fIuAL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CHATS", ()=>CHATS
@@ -911,7 +911,7 @@ class Block {
 }
 exports.default = Block;
 
-},{"./eventBus":"gLUid","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./isEqual":"hipMy"}],"gLUid":[function(require,module,exports) {
+},{"./eventBus":"gLUid","./isEqual":"hipMy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gLUid":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class EventBus {
@@ -12450,6 +12450,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ValidationType", ()=>ValidationType
 );
+parcelHelpers.export(exports, "ActionTypes", ()=>ActionTypes
+);
 let ValidationType;
 (function(ValidationType1) {
     ValidationType1["login"] = "login";
@@ -12459,6 +12461,15 @@ let ValidationType;
     ValidationType1["phone"] = "phone";
     ValidationType1["message"] = "message";
 })(ValidationType || (ValidationType = {}));
+let ActionTypes;
+(function(ActionTypes1) {
+    ActionTypes1["GET_CURRENT_USER"] = 'get_current_user';
+    ActionTypes1["LOGOUT"] = 'logout';
+    ActionTypes1["GET_CHATS"] = 'chats';
+    ActionTypes1["GET_CHAT_TOKEN"] = 'get_chat_token';
+    ActionTypes1["GET_CHAT_MESSAGES"] = 'get_chat_messages';
+    ActionTypes1["GET_CHAT_ID"] = 'get_chat_id';
+})(ActionTypes || (ActionTypes = {}));
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"en6xv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -12829,7 +12840,7 @@ var _blockDefault = parcelHelpers.interopDefault(_block);
 var _button = require("../../../../ui/button");
 var _editPassTpl = require("./edit-pass.tpl");
 var _popup = require("../../../../ui/popup");
-var _form = require("../../../forms/form");
+var _form = require("../../../../ui/forms/form");
 var _handlerPopupClick = require("../../../../../handles/handlerPopupClick");
 var _handlerPopupClickDefault = parcelHelpers.interopDefault(_handlerPopupClick);
 var _handleValidation = require("../../../../../handles/handleValidation");
@@ -12893,14 +12904,14 @@ class ChangePassword extends _blockDefault.default {
     render() {
         const { inputs , submitButton , popup  } = this.props;
         return _editPassTpl.tmp({
-            popup: popup.render(),
             inputs,
-            submitButton: submitButton.render()
+            submitButton: submitButton.render(),
+            popup: popup.render()
         });
     }
 }
 
-},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit-pass.tpl":"6VjNw","../../../../ui/popup":"h8cD8","../../../forms/form":"4lXIG","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditPasswordSubmit":"4hwIb","../../../../../handles/handleEditAvatarSubmit":"2tyiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6VjNw":[function(require,module,exports) {
+},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit-pass.tpl":"6VjNw","../../../../ui/popup":"h8cD8","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditPasswordSubmit":"4hwIb","../../../../../handles/handleEditAvatarSubmit":"2tyiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../ui/forms/form":"8vJ6J"}],"6VjNw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -12911,11 +12922,11 @@ const source = `
 	<section class="profile">
 		<div class="profile__avatar">
     </div>
-    <h2 class="profile__title">{{ firstName.value }} </h2> 
+    <h2 class="profile__title">{{ first_name.value }} </h2> 
 		<form class="form profile__form form_save" action="" id="form-root">
 			<ul class="list">
 				{{#each inputs}}
-						${_indexTpl.source}
+					${_indexTpl.source}
 				{{/each}}
 			</ul>
 				{{{submitButton}}}
@@ -12937,14 +12948,14 @@ parcelHelpers.export(exports, "tmp", ()=>tmp
 var _handlebars = require("handlebars");
 const source = `
   <li class="list__item">
-    <p type="text" class="list__label">{{label}}</p>
+    <p class="list__label">{{label}}</p>
     <input 
       name="{{name}}"
       class="{{inputClass}}" 
       type="{{type}}" 
       {{#if placeholder}}placeholder="{{placeholder}}"{{/if}}
       {{#if value}}value="{{value}}"{{/if}}
-      ></input>
+      />
   </li>`;
 const tmp = _handlebars.compile(source);
 
@@ -12986,60 +12997,6 @@ const source = `
       {{{form}}}
     </div>
   </div>                                                                               
-`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4lXIG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Form", ()=>Form
-);
-var _block = require("../../../../core/block");
-var _blockDefault = parcelHelpers.interopDefault(_block);
-var _button = require("../../../ui/button");
-var _indexTpl = require("./index.tpl");
-class Form extends _blockDefault.default {
-    constructor(){
-        super('div', {
-            submitButton: new _button.Button({
-                class: 'button popup__button',
-                type: 'submit',
-                text: 'Поменять'
-            })
-        });
-    }
-    render() {
-        const { submitButton  } = this.props;
-        return _indexTpl.tmp({
-            submitButton: submitButton.render()
-        });
-    }
-}
-
-},{"../../../../core/block":"axMnM","../../../ui/button":"7LMSm","./index.tpl":"arbnB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"arbnB":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "source", ()=>source
-);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-  <form class="form form_avatar popup__form">
-    <h2 class="popup__title">Загрузить файл</h2>
-    <label class="popup__label" for="avatar">
-      Выбрать файл на компьютере
-    </label>
-    <input class="popup__input input_avatar"
-      id="avatar"
-      type="file"
-      name="avatar"
-      accept="image/*"
-      >
-    </input>
-    {{{submitButton}}}
-    <span class="popup__error"></span>
-  </form>                                                                            
 `;
 const tmp = _handlebars.compile(source);
 
@@ -13213,7 +13170,61 @@ function handleEditAvatarSubmit(element, className = '.form_avatar') {
 }
 exports.default = handleEditAvatarSubmit;
 
-},{"../api/UsersAPI":"hI20v","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jfyIZ":[function(require,module,exports) {
+},{"../api/UsersAPI":"hI20v","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8vJ6J":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Form", ()=>Form
+);
+var _block = require("../../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _button = require("../../button");
+var _indexTpl = require("./index.tpl");
+class Form extends _blockDefault.default {
+    constructor(){
+        super('div', {
+            submitButton: new _button.Button({
+                class: 'button popup__button',
+                type: 'submit',
+                text: 'Поменять'
+            })
+        });
+    }
+    render() {
+        const { submitButton  } = this.props;
+        return _indexTpl.tmp({
+            submitButton: submitButton.render()
+        });
+    }
+}
+
+},{"../../../../core/block":"axMnM","../../button":"7LMSm","./index.tpl":"4vjp3","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4vjp3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "source", ()=>source
+);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <form class="form form_avatar popup__form">
+    <h2 class="popup__title">Загрузить файл</h2>
+    <label class="popup__label" for="avatar">
+      Выбрать файл на компьютере
+    </label>
+    <input class="popup__input input_avatar"
+      id="avatar"
+      type="file"
+      name="avatar"
+      accept="image/*"
+      >
+    </input>
+    {{{submitButton}}}
+    <span class="popup__error"></span>
+  </form>                                                                            
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jfyIZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ChangeProfileInfo", ()=>ChangeProfileInfo
@@ -13224,7 +13235,8 @@ var _button = require("../../../../ui/button");
 var _editTpl = require("./edit.tpl");
 var _authAPI = require("../../../../../api/AuthAPI");
 var _popup = require("../../../../ui/popup");
-var _form = require("../../../forms/form");
+var _form = require("../../../../ui/forms/form");
+var _index = require("../../../../ui/input/index");
 var _handlerPopupClick = require("../../../../../handles/handlerPopupClick");
 var _handlerPopupClickDefault = parcelHelpers.interopDefault(_handlerPopupClick);
 var _handleEditProfileSubmit = require("../../../../../handles/handleEditProfileSubmit");
@@ -13233,6 +13245,8 @@ var _handleValidation = require("../../../../../handles/handleValidation");
 var _handleValidationDefault = parcelHelpers.interopDefault(_handleValidation);
 var _handleEditAvatarSubmit = require("../../../../../handles/handleEditAvatarSubmit");
 var _handleEditAvatarSubmitDefault = parcelHelpers.interopDefault(_handleEditAvatarSubmit);
+var _protected = require("../../../../../utils/protected");
+var _protectedDefault = parcelHelpers.interopDefault(_protected);
 class ChangeProfileInfo extends _blockDefault.default {
     constructor(){
         super('main', {
@@ -13319,40 +13333,32 @@ class ChangeProfileInfo extends _blockDefault.default {
             ]
         });
     }
-    componentDidMount() {
-        // @ts-ignore
-        _authAPI.auth.getUser().then((result)=>{
-            this.setProps({
-                ...this.props,
-                userData: JSON.parse(result.response)
-            });
-        }).catch((error)=>console.log(error)
-        );
-        this.definePlaceholders();
-    }
-    definePlaceholders() {
-        Object.keys(this.props.userData).forEach((key)=>{
-            this.props.inputs.forEach((input)=>{
-                if (input.validationType === 'nickname' && key === 'display_name' || input.validationType === key) {
-                    if (this.props.userData[key]) input['value'] = this.props.userData[key];
-                    else input['placeholder'] = '!';
-                    input['name'] = key;
-                }
-            });
+    async componentDidMount() {
+        const userDataDTO = await _authAPI.auth.getUser();
+        const userData = JSON.parse(userDataDTO.response);
+        _protectedDefault.default(userData.id);
+        this.setProps({
+            ...this.props,
+            userData
         });
     }
     render() {
-        const { inputs , submitButton , popup  } = this.props;
+        const { inputs , submitButton , popup , userData  } = this.props;
         return _editTpl.tmp({
             popup: popup.render(),
-            inputs,
+            inputs: inputs.map((x)=>{
+                return new _index.Input({
+                    ...x,
+                    value: userData[x.name]
+                }).render();
+            }).join(''),
             avatar: this.props.userData.avatar || 'assets/icons/profile-picture.svg',
             submitButton: submitButton.render()
         });
     }
 }
 
-},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit.tpl":"476CU","../../../../ui/popup":"h8cD8","../../../forms/form":"4lXIG","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleEditProfileSubmit":"cpFz2","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditAvatarSubmit":"2tyiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../../api/AuthAPI":"9MuyV"}],"476CU":[function(require,module,exports) {
+},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit.tpl":"476CU","../../../../ui/popup":"h8cD8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../../api/AuthAPI":"9MuyV","../../../../ui/input/index":"6LKsZ","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleEditProfileSubmit":"cpFz2","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditAvatarSubmit":"2tyiA","../../../../ui/forms/form":"8vJ6J","../../../../../utils/protected":"ZzJRU"}],"476CU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -13363,9 +13369,10 @@ const source = `
 <section class="profile">
   <div class="profile__avatar">
   </div>
-  <h2 class="profile__title">{{ firstName.value }} </h2> 
+  <h2 class="profile__title">{{ first_name.value }} </h2> 
     <form class="form profile__form form_save" action="" id="form-root">
       <ul class="list">
+      {{{inputs}}}
         {{#each inputs}}
           ${_indexTpl.source}
         {{/each}}
@@ -13379,7 +13386,24 @@ const source = `
 </section>`;
 const tmp = _handlebars.compile(source);
 
-},{"handlebars":"i0QfX","../../../../ui/input/index.tpl":"2G5o9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cpFz2":[function(require,module,exports) {
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../ui/input/index.tpl":"2G5o9"}],"6LKsZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Input", ()=>Input
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+class Input extends _blockDefault.default {
+    constructor(props){
+        super('div', props);
+    }
+    render() {
+        return _indexTpl.tmp(this.props);
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"2G5o9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cpFz2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _validator = require("../utils/validator");
@@ -13413,7 +13437,17 @@ function handleEditProfileSubmit(element, className = '.form') {
 }
 exports.default = handleEditProfileSubmit;
 
-},{"../utils/validator":"crxki","../api/UsersAPI":"hI20v","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"45QTn":[function(require,module,exports) {
+},{"../utils/validator":"crxki","../api/UsersAPI":"hI20v","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ZzJRU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _index = require("../index");
+var _constants = require("./constants");
+function protectedRoute(id) {
+    if (!id) _index.router.go(_constants.SIGN_IN);
+}
+exports.default = protectedRoute;
+
+},{"../index":"h7u1C","./constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"45QTn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Chats", ()=>Chats
@@ -13431,13 +13465,23 @@ var _handleValidationDefault = parcelHelpers.interopDefault(_handleValidation);
 var _chatWindow = require("../../../../components/blocks/chatWindow/chatWindow");
 var _chatsTpl = require("./chats.tpl");
 var _chatsAPI = require("../../../../api/ChatsAPI");
+var _authAPI = require("../../../../api/AuthAPI");
 var _index = require("../../../ui/popup/index");
-var _createChatForm = require("../../forms/createChatForm");
+var _createChatForm = require("../../../ui/forms/createChatForm");
+var _button = require("../../../../components/ui/button");
+var _card = require("../../../../components/blocks/card");
+var _protected = require("../../../../utils/protected");
+var _protectedDefault = parcelHelpers.interopDefault(_protected);
 class Chats extends _blockDefault.default {
     constructor(){
         super('main', {
-            chats: {},
+            cards: [],
             popup: new _index.Popup(new _createChatForm.CreateChatForm(), ''),
+            submitButton: new _button.Button({
+                class: 'button button_create-chat',
+                type: 'button',
+                text: 'Создать чат'
+            }),
             handlers: [
                 _handlerPopupClickDefault.default,
                 _handleCreateChatSubmitDefault.default,
@@ -13462,88 +13506,72 @@ class Chats extends _blockDefault.default {
             chatsPage.appendChild(chatWindow.getContent());
         }
     }
-    componentDidMount() {
-        // @ts-ignore
-        _chatsAPI.chats.getChats().then((result)=>{
-            this.setProps({
-                ...this.props,
-                chats: JSON.parse(result.response)
-            });
-        }).catch((error)=>{
-            console.log(error);
+    async componentDidMount() {
+        const userDTO = await _authAPI.auth.getUser();
+        const userInfo = JSON.parse(userDTO.response);
+        _protectedDefault.default(userInfo.id);
+        const chatsDataDTO = await _chatsAPI.chats.getChats();
+        const chatsData = JSON.parse(chatsDataDTO.response);
+        this.setProps({
+            ...this.props,
+            cards: chatsData.map((card)=>{
+                return new _card.Card({
+                    ...card,
+                    fromYou: card.last_message.user.email === userInfo.email
+                }).render();
+            })
         });
     }
     render() {
-        const { chats , popup  } = this.props;
+        const { cards , popup , submitButton  } = this.props;
         return _chatsTpl.tmp({
-            popup: popup.render(),
-            chats
+            cards: cards.join(''),
+            submitButton: submitButton.render(),
+            popup: popup.render()
         });
     }
 }
 
-},{"../../../../core/block":"axMnM","./chats.tpl":"8Ij7l","../../../../api/ChatsAPI":"bbBWW","../../../ui/popup/index":"h8cD8","../../forms/createChatForm":"eO1Sb","../../../../handles/handlerPopupClick":"dzUrs","../../../../handles/handleCreateChatSubmit":"eskeM","../../../../handles/handleOpenChat":"3hXlY","../../../../handles/handleValidation":"5bucn","../../../../components/blocks/chatWindow/chatWindow":"9K5og","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8Ij7l":[function(require,module,exports) {
+},{"../../../../core/block":"axMnM","../../../../handles/handlerPopupClick":"dzUrs","../../../../handles/handleCreateChatSubmit":"eskeM","../../../../handles/handleOpenChat":"3hXlY","../../../../handles/handleValidation":"5bucn","../../../../components/blocks/chatWindow/chatWindow":"9K5og","./chats.tpl":"8Ij7l","../../../ui/popup/index":"h8cD8","../../../../components/ui/button":"7LMSm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../api/ChatsAPI":"bbBWW","../../../../components/blocks/card":"laO4P","../../../../api/AuthAPI":"9MuyV","../../../ui/forms/createChatForm":"lDQDn","../../../../utils/protected":"ZzJRU"}],"eskeM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-  <section class="chat">
-    <div class="chat__sidebar">
-      <div class="sidebar">
-        <a href="/profile" class="sidebar__profile">
-          Профиль<span class="sidebar__icon"></span>
-        </a>
-        <input class="sidebar__search" 
-          type="search" placeholder="Поиск">
-        </input>
-        <button class="button button_create-chat">
-          Создать чат
-        </button>
-        
-        {{{card}}}
+var _chatsAPI = require("../api/ChatsAPI");
+var _index = require("../index");
+var _validator = require("../utils/validator");
+var _constants = require("../utils/constants");
+function handleCreateChatSubmit(element, className = '.form') {
+    let isValidForm = true;
+    const formList = Array.from(element.querySelectorAll(className));
+    formList.forEach((item)=>{
+        item.addEventListener('submit', (evt)=>{
+            evt.preventDefault();
+            evt.stopPropagation();
+            const form = evt.target;
+            const data = {};
+            Array.from(form.querySelectorAll('.input')).forEach((input)=>{
+                const isValid = _validator.checkValid(input);
+                const name = input.getAttribute('name');
+                if (name) {
+                    data[name] = input.value;
+                    data[`${name}-isValid`] = isValid;
+                }
+                if (!isValid) isValidForm = false;
+                _validator.toggleStyle(isValid, input);
+            });
+            const { title  } = data;
+            if (isValidForm) _chatsAPI.chats.createChat({
+                data: {
+                    title
+                }
+            }).then(()=>_index.router.go(_constants.CHATS)
+            ).catch((error)=>console.log(error)
+            );
+        });
+    });
+}
+exports.default = handleCreateChatSubmit;
 
-        {{#if chats}}
-          {{#each chats}}
-            <div class="card" data-chat-id={{id}}>
-              
-            {{#if avatar}}
-              <img src={{avatar}} alt="ava"/>
-              {{else}}
-              <div class="card__image"></div>
-            {{/if}}
-              <h3 class="card__title"> {{title}} </h3>
-              <p class="card__text"> 
-                {{#if fromYou}} <span class="is-from-you">Вы: </span> {{/if}} 
-                {{ last_message.content }}
-              </p>  
-              <p class="card__time"> {{ last_message.time }} </p>
-              {{#if unread_count}}
-                <p class="card__counter">{{unread_count}}</p>
-              {{/if}}
-            </div>
-            {{/each}}
-          {{else}}
-
-          <div class="no-chats">
-            У вас ещё нет чатов
-          </div>
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="board">
-      <div class="board__choose">
-        Выберите чат, чтобы отправить сообщение
-      </div>
-    </div>
-    {{{popup}}}
-    {{{editPopup}}}
-  </section>`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bbBWW":[function(require,module,exports) {
+},{"../api/ChatsAPI":"bbBWW","../index":"h7u1C","../utils/validator":"crxki","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bbBWW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "chats", ()=>chats
@@ -13571,91 +13599,7 @@ class ChatsAPI {
 }
 const chats = new ChatsAPI();
 
-},{"../utils/http":"4lme2","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eO1Sb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CreateChatForm", ()=>CreateChatForm
-);
-var _block = require("../../../../core/block");
-var _blockDefault = parcelHelpers.interopDefault(_block);
-var _button = require("../../../ui/button");
-var _indexTpl = require("./index.tpl");
-class CreateChatForm extends _blockDefault.default {
-    constructor(){
-        super('div', {
-            submitButton: new _button.Button({
-                class: 'button popup__button',
-                type: 'submit',
-                text: 'Создать'
-            })
-        });
-    }
-    render() {
-        const { submitButton  } = this.props;
-        return _indexTpl.tmp({
-            submitButton: submitButton.render()
-        });
-    }
-}
-
-},{"../../../../core/block":"axMnM","../../../ui/button":"7LMSm","./index.tpl":"aT3by","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aT3by":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "source", ()=>source
-);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-    <form class="form popup__form create-chat_form">
-      <h2 class="popup__title">
-        Введите название чата
-      </h2>
-      <input name="title" class="input popup__input_create input_avatar" type="text" />
-    {{{submitButton}}}
-</form>
-`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eskeM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _chatsAPI = require("../api/ChatsAPI");
-var _index = require("../index");
-var _validator = require("../utils/validator");
-function handleCreateChatSubmit(element, className = '.form') {
-    let isValidForm = true;
-    const formList = Array.from(element.querySelectorAll(className));
-    formList.forEach((item)=>{
-        item.addEventListener('submit', (evt)=>{
-            evt.preventDefault();
-            evt.stopPropagation();
-            const form = evt.target;
-            const data = {};
-            Array.from(form.querySelectorAll('.input')).forEach((input)=>{
-                const isValid = _validator.checkValid(input);
-                const name = input.getAttribute('name');
-                if (name) {
-                    data[name] = input.value;
-                    data[`${name}-isValid`] = isValid;
-                }
-                if (!isValid) isValidForm = false;
-                _validator.toggleStyle(isValid, input);
-            });
-            const { title  } = data;
-            if (isValidForm) _chatsAPI.chats.createChat({
-                data: {
-                    title
-                }
-            }).then(()=>_index.router.go('/chats')
-            ).catch((error)=>console.log(error)
-            );
-        });
-    });
-}
-exports.default = handleCreateChatSubmit;
-
-},{"../api/ChatsAPI":"bbBWW","../index":"h7u1C","../utils/validator":"crxki","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3hXlY":[function(require,module,exports) {
+},{"../utils/http":"4lme2","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3hXlY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _chatWindow = require("../components/blocks/chatWindow/chatWindow");
@@ -13687,16 +13631,19 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ChatWindow", ()=>ChatWindow
 );
-var _runtime = require("regenerator-runtime/runtime");
 var _block = require("../../../core/block");
 var _blockDefault = parcelHelpers.interopDefault(_block);
 var _chatWindowTpl = require("./chatWindow.tpl");
 var _chatsAPI = require("../../../api/ChatsAPI");
 var _authAPI = require("../../../api/AuthAPI");
 var _usersAPI = require("../../../api/UsersAPI");
-var _addUserForm = require("../forms/addUserForm");
+var _addUserForm = require("../../ui/forms/addUserForm");
 var _index = require("../../../index");
+var _boardForm = require("../../ui/forms/boardForm");
 var _constants = require("../../../utils/constants");
+var _store = require("../../../core/store");
+var _types = require("../../../core/types");
+var _messageList = require("../messageList");
 var _webSocket = require("../../../api/WebSocket");
 var _webSocketDefault = parcelHelpers.interopDefault(_webSocket);
 var _handleValidation = require("../../../handles/handleValidation");
@@ -13707,6 +13654,7 @@ class ChatWindow extends _blockDefault.default {
             ...props,
             className: 'board',
             addPopup: new _addUserForm.AddUserForm(),
+            boardForm: new _boardForm.BoardForm(),
             events: {
                 submit: (e)=>this._handleSubmit(e)
                 ,
@@ -13724,11 +13672,12 @@ class ChatWindow extends _blockDefault.default {
             chatId: Number(this.props.chatId)
         };
         const el = e.target;
+        const button = el.querySelector('.button');
         if (el) {
             if (el.name === 'message') this.send(el);
-            else if (el.querySelector('.button')?.textContent === 'Добавить') this.searchUser(chatData).then(()=>this.addUser(chatData)
+            else if (button?.textContent === 'Добавить') this.searchUser(chatData).then(()=>this.addUser(chatData)
             );
-            else if (el.querySelector('.button')?.textContent === 'Удалить') this.searchUser(chatData).then(()=>this.removeUser(chatData)
+            else if (button?.textContent === 'Удалить') this.searchUser(chatData).then(()=>this.removeUser(chatData)
             );
             el.reset();
         }
@@ -13775,29 +13724,35 @@ class ChatWindow extends _blockDefault.default {
             chatId,
             chatToken
         });
+        _store.store.subscribe(_types.ActionTypes.GET_CHAT_MESSAGES, this.setmessageList.bind(this));
+        _store.store.dispatchAction(_types.ActionTypes.GET_CHAT_TOKEN, chatToken);
+    }
+    setmessageList() {
+        this.setProps({
+            ...this.props,
+            messageList: _store.store.get('messageList')
+        });
     }
     async getChatToken() {
-        return _chatsAPI.chats.getChatToken(this.props.chatId.toString())// @ts-ignore
-        .then((result)=>{
-            this.setProps({
-                ...this.props,
-                chatToken: JSON.parse(result.response).token
-            });
-        }).catch((error)=>console.log(error)
-        );
+        const result = await _chatsAPI.chats.getChatToken(this.props.chatId.toString());
+        const token = result.response;
+        this.setProps({
+            ...this.props,
+            chatToken: JSON.parse(token).token
+        });
     }
     async getUserInfo() {
-        return _authAPI.auth.getUser()// @ts-ignore
-        .then((result)=>{
-            this.setProps({
-                ...this.props,
-                userId: JSON.parse(result.response).id
-            });
-        }).catch((error)=>console.log(error)
-        );
+        const result = await _authAPI.auth.getUser();
+        const userInfo = JSON.parse(result.response);
+        this.setProps({
+            ...this.props,
+            userId: userInfo.id
+        });
     }
-    renderChatHistory() {
-        return 'this is going to be chat history';
+    renderMessageList() {
+        return new _messageList.MessageList({
+            ...this.props
+        }).render();
     }
     async addUser(data) {
         if (data.users.length === 0) alert('Пользователь не найден');
@@ -13813,21 +13768,18 @@ class ChatWindow extends _blockDefault.default {
         });
         _index.router.go(_constants.CHATS);
     }
-    searchUser(data) {
+    async searchUser(data) {
         const userLoginInput = document.querySelector('.add-remove-user');
         const userLogin = userLoginInput.value;
         const searchByLoginData = {
             login: userLogin
         };
-        return _usersAPI.users.searchByLogin({
+        const result = await _usersAPI.users.searchByLogin({
             data: searchByLoginData
-        }).then((result)=>{
-            // @ts-ignore
-            const response = JSON.parse(result.response);
-            const user = response[0];
-            if (user) data.users.push(user.id);
-        }).catch((error)=>console.log(error)
-        );
+        });
+        const userDate = JSON.parse(result.response);
+        const user = userDate[0];
+        if (user) return data.users.push(user.id);
     }
     send(form) {
         const data = {};
@@ -13843,684 +13795,24 @@ class ChatWindow extends _blockDefault.default {
         new _webSocketDefault.default(userId, chatId, chatToken);
     }
     _sendChatMessage(message) {
+        if (message === '') return;
         new _webSocketDefault.default().send({
             content: message,
             type: 'message'
         });
     }
     render() {
-        const { chatName , addPopup ,  } = this.props;
+        const { chatName , addPopup , boardForm  } = this.props;
         return _chatWindowTpl.tmp({
             chatName,
+            boardForm: boardForm.render(),
             addPopup: addPopup.render(),
-            chatHistory: this.renderChatHistory()
+            messageList: this.renderMessageList()
         });
     }
 }
 
-},{"regenerator-runtime/runtime":"dXNgZ","../../../core/block":"axMnM","../../../api/ChatsAPI":"bbBWW","../../../api/AuthAPI":"9MuyV","../../../api/UsersAPI":"hI20v","../forms/addUserForm":"4x2vo","../../../index":"h7u1C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../utils/constants":"fIuAL","../../../handles/handleValidation":"5bucn","../../../api/WebSocket":"ioyAP","./chatWindow.tpl":"drvg0"}],"dXNgZ":[function(require,module,exports) {
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */ var runtime = function(exports) {
-    var Op = Object.prototype;
-    var hasOwn = Op.hasOwnProperty;
-    var undefined; // More compressible than void 0.
-    var $Symbol = typeof Symbol === "function" ? Symbol : {};
-    var iteratorSymbol = $Symbol.iterator || "@@iterator";
-    var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-    var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-    function define(obj, key, value) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        });
-        return obj[key];
-    }
-    try {
-        // IE 8 has a broken Object.defineProperty that only works on DOM objects.
-        define({}, "");
-    } catch (err1) {
-        define = function(obj, key, value) {
-            return obj[key] = value;
-        };
-    }
-    function wrap(innerFn, outerFn, self, tryLocsList) {
-        // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-        var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-        var generator = Object.create(protoGenerator.prototype);
-        var context = new Context(tryLocsList || []);
-        // The ._invoke method unifies the implementations of the .next,
-        // .throw, and .return methods.
-        generator._invoke = makeInvokeMethod(innerFn, self, context);
-        return generator;
-    }
-    exports.wrap = wrap;
-    // Try/catch helper to minimize deoptimizations. Returns a completion
-    // record like context.tryEntries[i].completion. This interface could
-    // have been (and was previously) designed to take a closure to be
-    // invoked without arguments, but in all the cases we care about we
-    // already have an existing method we want to call, so there's no need
-    // to create a new function object. We can even get away with assuming
-    // the method takes exactly one argument, since that happens to be true
-    // in every case, so we don't have to touch the arguments object. The
-    // only additional allocation required is the completion record, which
-    // has a stable shape and so hopefully should be cheap to allocate.
-    function tryCatch(fn, obj, arg) {
-        try {
-            return {
-                type: "normal",
-                arg: fn.call(obj, arg)
-            };
-        } catch (err) {
-            return {
-                type: "throw",
-                arg: err
-            };
-        }
-    }
-    var GenStateSuspendedStart = "suspendedStart";
-    var GenStateSuspendedYield = "suspendedYield";
-    var GenStateExecuting = "executing";
-    var GenStateCompleted = "completed";
-    // Returning this object from the innerFn has the same effect as
-    // breaking out of the dispatch switch statement.
-    var ContinueSentinel = {};
-    // Dummy constructor functions that we use as the .constructor and
-    // .constructor.prototype properties for functions that return Generator
-    // objects. For full spec compliance, you may wish to configure your
-    // minifier not to mangle the names of these two functions.
-    function Generator() {}
-    function GeneratorFunction() {}
-    function GeneratorFunctionPrototype() {}
-    // This is a polyfill for %IteratorPrototype% for environments that
-    // don't natively support it.
-    var IteratorPrototype = {};
-    define(IteratorPrototype, iteratorSymbol, function() {
-        return this;
-    });
-    var getProto = Object.getPrototypeOf;
-    var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-    if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-    var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
-    GeneratorFunction.prototype = GeneratorFunctionPrototype;
-    define(Gp, "constructor", GeneratorFunctionPrototype);
-    define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
-    GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction");
-    // Helper for defining the .next, .throw, and .return methods of the
-    // Iterator interface in terms of a single ._invoke method.
-    function defineIteratorMethods(prototype) {
-        [
-            "next",
-            "throw",
-            "return"
-        ].forEach(function(method) {
-            define(prototype, method, function(arg) {
-                return this._invoke(method, arg);
-            });
-        });
-    }
-    exports.isGeneratorFunction = function(genFun) {
-        var ctor = typeof genFun === "function" && genFun.constructor;
-        return ctor ? ctor === GeneratorFunction || // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
-    };
-    exports.mark = function(genFun) {
-        if (Object.setPrototypeOf) Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-        else {
-            genFun.__proto__ = GeneratorFunctionPrototype;
-            define(genFun, toStringTagSymbol, "GeneratorFunction");
-        }
-        genFun.prototype = Object.create(Gp);
-        return genFun;
-    };
-    // Within the body of any async function, `await x` is transformed to
-    // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-    // `hasOwn.call(value, "__await")` to determine if the yielded value is
-    // meant to be awaited.
-    exports.awrap = function(arg) {
-        return {
-            __await: arg
-        };
-    };
-    function AsyncIterator(generator, PromiseImpl) {
-        function invoke(method, arg, resolve, reject) {
-            var record = tryCatch(generator[method], generator, arg);
-            if (record.type === "throw") reject(record.arg);
-            else {
-                var result = record.arg;
-                var value1 = result.value;
-                if (value1 && typeof value1 === "object" && hasOwn.call(value1, "__await")) return PromiseImpl.resolve(value1.__await).then(function(value) {
-                    invoke("next", value, resolve, reject);
-                }, function(err) {
-                    invoke("throw", err, resolve, reject);
-                });
-                return PromiseImpl.resolve(value1).then(function(unwrapped) {
-                    // When a yielded Promise is resolved, its final value becomes
-                    // the .value of the Promise<{value,done}> result for the
-                    // current iteration.
-                    result.value = unwrapped;
-                    resolve(result);
-                }, function(error) {
-                    // If a rejected Promise was yielded, throw the rejection back
-                    // into the async generator function so it can be handled there.
-                    return invoke("throw", error, resolve, reject);
-                });
-            }
-        }
-        var previousPromise;
-        function enqueue(method, arg) {
-            function callInvokeWithMethodAndArg() {
-                return new PromiseImpl(function(resolve, reject) {
-                    invoke(method, arg, resolve, reject);
-                });
-            }
-            return previousPromise = // If enqueue has been called before, then we want to wait until
-            // all previous Promises have been resolved before calling invoke,
-            // so that results are always delivered in the correct order. If
-            // enqueue has not been called before, then it is important to
-            // call invoke immediately, without waiting on a callback to fire,
-            // so that the async generator function has the opportunity to do
-            // any necessary setup in a predictable way. This predictability
-            // is why the Promise constructor synchronously invokes its
-            // executor callback, and why async functions synchronously
-            // execute code before the first await. Since we implement simple
-            // async functions in terms of async generators, it is especially
-            // important to get this right, even though it requires care.
-            previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, // Avoid propagating failures to Promises returned by later
-            // invocations of the iterator.
-            callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-        }
-        // Define the unified helper method that is used to implement .next,
-        // .throw, and .return (see defineIteratorMethods).
-        this._invoke = enqueue;
-    }
-    defineIteratorMethods(AsyncIterator.prototype);
-    define(AsyncIterator.prototype, asyncIteratorSymbol, function() {
-        return this;
-    });
-    exports.AsyncIterator = AsyncIterator;
-    // Note that simple async functions are implemented on top of
-    // AsyncIterator objects; they just return a Promise for the value of
-    // the final result produced by the iterator.
-    exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-        if (PromiseImpl === void 0) PromiseImpl = Promise;
-        var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
-        return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
-         : iter.next().then(function(result) {
-            return result.done ? result.value : iter.next();
-        });
-    };
-    function makeInvokeMethod(innerFn, self, context) {
-        var state = GenStateSuspendedStart;
-        return function invoke(method, arg) {
-            if (state === GenStateExecuting) throw new Error("Generator is already running");
-            if (state === GenStateCompleted) {
-                if (method === "throw") throw arg;
-                // Be forgiving, per 25.3.3.3.3 of the spec:
-                // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-                return doneResult();
-            }
-            context.method = method;
-            context.arg = arg;
-            while(true){
-                var delegate = context.delegate;
-                if (delegate) {
-                    var delegateResult = maybeInvokeDelegate(delegate, context);
-                    if (delegateResult) {
-                        if (delegateResult === ContinueSentinel) continue;
-                        return delegateResult;
-                    }
-                }
-                if (context.method === "next") // Setting context._sent for legacy support of Babel's
-                // function.sent implementation.
-                context.sent = context._sent = context.arg;
-                else if (context.method === "throw") {
-                    if (state === GenStateSuspendedStart) {
-                        state = GenStateCompleted;
-                        throw context.arg;
-                    }
-                    context.dispatchException(context.arg);
-                } else if (context.method === "return") context.abrupt("return", context.arg);
-                state = GenStateExecuting;
-                var record = tryCatch(innerFn, self, context);
-                if (record.type === "normal") {
-                    // If an exception is thrown from innerFn, we leave state ===
-                    // GenStateExecuting and loop back for another invocation.
-                    state = context.done ? GenStateCompleted : GenStateSuspendedYield;
-                    if (record.arg === ContinueSentinel) continue;
-                    return {
-                        value: record.arg,
-                        done: context.done
-                    };
-                } else if (record.type === "throw") {
-                    state = GenStateCompleted;
-                    // Dispatch the exception by looping back around to the
-                    // context.dispatchException(context.arg) call above.
-                    context.method = "throw";
-                    context.arg = record.arg;
-                }
-            }
-        };
-    }
-    // Call delegate.iterator[context.method](context.arg) and handle the
-    // result, either by returning a { value, done } result from the
-    // delegate iterator, or by modifying context.method and context.arg,
-    // setting context.delegate to null, and returning the ContinueSentinel.
-    function maybeInvokeDelegate(delegate, context) {
-        var method = delegate.iterator[context.method];
-        if (method === undefined) {
-            // A .throw or .return when the delegate iterator has no .throw
-            // method always terminates the yield* loop.
-            context.delegate = null;
-            if (context.method === "throw") {
-                // Note: ["return"] must be used for ES3 parsing compatibility.
-                if (delegate.iterator["return"]) {
-                    // If the delegate iterator has a return method, give it a
-                    // chance to clean up.
-                    context.method = "return";
-                    context.arg = undefined;
-                    maybeInvokeDelegate(delegate, context);
-                    if (context.method === "throw") // If maybeInvokeDelegate(context) changed context.method from
-                    // "return" to "throw", let that override the TypeError below.
-                    return ContinueSentinel;
-                }
-                context.method = "throw";
-                context.arg = new TypeError("The iterator does not provide a 'throw' method");
-            }
-            return ContinueSentinel;
-        }
-        var record = tryCatch(method, delegate.iterator, context.arg);
-        if (record.type === "throw") {
-            context.method = "throw";
-            context.arg = record.arg;
-            context.delegate = null;
-            return ContinueSentinel;
-        }
-        var info = record.arg;
-        if (!info) {
-            context.method = "throw";
-            context.arg = new TypeError("iterator result is not an object");
-            context.delegate = null;
-            return ContinueSentinel;
-        }
-        if (info.done) {
-            // Assign the result of the finished delegate to the temporary
-            // variable specified by delegate.resultName (see delegateYield).
-            context[delegate.resultName] = info.value;
-            // Resume execution at the desired location (see delegateYield).
-            context.next = delegate.nextLoc;
-            // If context.method was "throw" but the delegate handled the
-            // exception, let the outer generator proceed normally. If
-            // context.method was "next", forget context.arg since it has been
-            // "consumed" by the delegate iterator. If context.method was
-            // "return", allow the original .return call to continue in the
-            // outer generator.
-            if (context.method !== "return") {
-                context.method = "next";
-                context.arg = undefined;
-            }
-        } else // Re-yield the result returned by the delegate method.
-        return info;
-        // The delegate iterator is finished, so forget it and continue with
-        // the outer generator.
-        context.delegate = null;
-        return ContinueSentinel;
-    }
-    // Define Generator.prototype.{next,throw,return} in terms of the
-    // unified ._invoke helper method.
-    defineIteratorMethods(Gp);
-    define(Gp, toStringTagSymbol, "Generator");
-    // A Generator should always return itself as the iterator object when the
-    // @@iterator function is called on it. Some browsers' implementations of the
-    // iterator prototype chain incorrectly implement this, causing the Generator
-    // object to not be returned from this call. This ensures that doesn't happen.
-    // See https://github.com/facebook/regenerator/issues/274 for more details.
-    define(Gp, iteratorSymbol, function() {
-        return this;
-    });
-    define(Gp, "toString", function() {
-        return "[object Generator]";
-    });
-    function pushTryEntry(locs) {
-        var entry = {
-            tryLoc: locs[0]
-        };
-        if (1 in locs) entry.catchLoc = locs[1];
-        if (2 in locs) {
-            entry.finallyLoc = locs[2];
-            entry.afterLoc = locs[3];
-        }
-        this.tryEntries.push(entry);
-    }
-    function resetTryEntry(entry) {
-        var record = entry.completion || {};
-        record.type = "normal";
-        delete record.arg;
-        entry.completion = record;
-    }
-    function Context(tryLocsList) {
-        // The root entry object (effectively a try statement without a catch
-        // or a finally block) gives us a place to store values thrown from
-        // locations where there is no enclosing try statement.
-        this.tryEntries = [
-            {
-                tryLoc: "root"
-            }
-        ];
-        tryLocsList.forEach(pushTryEntry, this);
-        this.reset(true);
-    }
-    exports.keys = function(object) {
-        var keys = [];
-        for(var key1 in object)keys.push(key1);
-        keys.reverse();
-        // Rather than returning an object with a next method, we keep
-        // things simple and return the next function itself.
-        return function next() {
-            while(keys.length){
-                var key = keys.pop();
-                if (key in object) {
-                    next.value = key;
-                    next.done = false;
-                    return next;
-                }
-            }
-            // To avoid creating an additional object, we just hang the .value
-            // and .done properties off the next function object itself. This
-            // also ensures that the minifier will not anonymize the function.
-            next.done = true;
-            return next;
-        };
-    };
-    function values(iterable) {
-        if (iterable) {
-            var iteratorMethod = iterable[iteratorSymbol];
-            if (iteratorMethod) return iteratorMethod.call(iterable);
-            if (typeof iterable.next === "function") return iterable;
-            if (!isNaN(iterable.length)) {
-                var i = -1, next1 = function next() {
-                    while(++i < iterable.length)if (hasOwn.call(iterable, i)) {
-                        next.value = iterable[i];
-                        next.done = false;
-                        return next;
-                    }
-                    next.value = undefined;
-                    next.done = true;
-                    return next;
-                };
-                return next1.next = next1;
-            }
-        }
-        // Return an iterator with no values.
-        return {
-            next: doneResult
-        };
-    }
-    exports.values = values;
-    function doneResult() {
-        return {
-            value: undefined,
-            done: true
-        };
-    }
-    Context.prototype = {
-        constructor: Context,
-        reset: function(skipTempReset) {
-            this.prev = 0;
-            this.next = 0;
-            // Resetting context._sent for legacy support of Babel's
-            // function.sent implementation.
-            this.sent = this._sent = undefined;
-            this.done = false;
-            this.delegate = null;
-            this.method = "next";
-            this.arg = undefined;
-            this.tryEntries.forEach(resetTryEntry);
-            if (!skipTempReset) {
-                for(var name in this)// Not sure about the optimal order of these conditions:
-                if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) this[name] = undefined;
-            }
-        },
-        stop: function() {
-            this.done = true;
-            var rootEntry = this.tryEntries[0];
-            var rootRecord = rootEntry.completion;
-            if (rootRecord.type === "throw") throw rootRecord.arg;
-            return this.rval;
-        },
-        dispatchException: function(exception) {
-            if (this.done) throw exception;
-            var context = this;
-            function handle(loc, caught) {
-                record.type = "throw";
-                record.arg = exception;
-                context.next = loc;
-                if (caught) {
-                    // If the dispatched exception was caught by a catch block,
-                    // then let that catch block handle the exception normally.
-                    context.method = "next";
-                    context.arg = undefined;
-                }
-                return !!caught;
-            }
-            for(var i = this.tryEntries.length - 1; i >= 0; --i){
-                var entry = this.tryEntries[i];
-                var record = entry.completion;
-                if (entry.tryLoc === "root") // Exception thrown outside of any try block that could handle
-                // it, so set the completion value of the entire function to
-                // throw the exception.
-                return handle("end");
-                if (entry.tryLoc <= this.prev) {
-                    var hasCatch = hasOwn.call(entry, "catchLoc");
-                    var hasFinally = hasOwn.call(entry, "finallyLoc");
-                    if (hasCatch && hasFinally) {
-                        if (this.prev < entry.catchLoc) return handle(entry.catchLoc, true);
-                        else if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
-                    } else if (hasCatch) {
-                        if (this.prev < entry.catchLoc) return handle(entry.catchLoc, true);
-                    } else if (hasFinally) {
-                        if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
-                    } else throw new Error("try statement without catch or finally");
-                }
-            }
-        },
-        abrupt: function(type, arg) {
-            for(var i = this.tryEntries.length - 1; i >= 0; --i){
-                var entry = this.tryEntries[i];
-                if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
-                    var finallyEntry = entry;
-                    break;
-                }
-            }
-            if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) // Ignore the finally entry if control is not jumping to a
-            // location outside the try/catch block.
-            finallyEntry = null;
-            var record = finallyEntry ? finallyEntry.completion : {};
-            record.type = type;
-            record.arg = arg;
-            if (finallyEntry) {
-                this.method = "next";
-                this.next = finallyEntry.finallyLoc;
-                return ContinueSentinel;
-            }
-            return this.complete(record);
-        },
-        complete: function(record, afterLoc) {
-            if (record.type === "throw") throw record.arg;
-            if (record.type === "break" || record.type === "continue") this.next = record.arg;
-            else if (record.type === "return") {
-                this.rval = this.arg = record.arg;
-                this.method = "return";
-                this.next = "end";
-            } else if (record.type === "normal" && afterLoc) this.next = afterLoc;
-            return ContinueSentinel;
-        },
-        finish: function(finallyLoc) {
-            for(var i = this.tryEntries.length - 1; i >= 0; --i){
-                var entry = this.tryEntries[i];
-                if (entry.finallyLoc === finallyLoc) {
-                    this.complete(entry.completion, entry.afterLoc);
-                    resetTryEntry(entry);
-                    return ContinueSentinel;
-                }
-            }
-        },
-        "catch": function(tryLoc) {
-            for(var i = this.tryEntries.length - 1; i >= 0; --i){
-                var entry = this.tryEntries[i];
-                if (entry.tryLoc === tryLoc) {
-                    var record = entry.completion;
-                    if (record.type === "throw") {
-                        var thrown = record.arg;
-                        resetTryEntry(entry);
-                    }
-                    return thrown;
-                }
-            }
-            // The context.catch method must only be called with a location
-            // argument that corresponds to a known catch block.
-            throw new Error("illegal catch attempt");
-        },
-        delegateYield: function(iterable, resultName, nextLoc) {
-            this.delegate = {
-                iterator: values(iterable),
-                resultName: resultName,
-                nextLoc: nextLoc
-            };
-            if (this.method === "next") // Deliberately forget the last sent value so that we don't
-            // accidentally pass it on to the delegate.
-            this.arg = undefined;
-            return ContinueSentinel;
-        }
-    };
-    // Regardless of whether this script is executing as a CommonJS module
-    // or not, return the runtime object so that we can declare the variable
-    // regeneratorRuntime in the outer scope, which allows this module to be
-    // injected easily by `bin/regenerator --include-runtime script.js`.
-    return exports;
-}(module.exports);
-try {
-    regeneratorRuntime = runtime;
-} catch (accidentalStrictMode) {
-    // This module should not be running in strict mode, so the above
-    // assignment should always work unless something is misconfigured. Just
-    // in case runtime.js accidentally runs in strict mode, in modern engines
-    // we can explicitly access globalThis. In older engines we can escape
-    // strict mode using a global Function call. This could conceivably fail
-    // if a Content Security Policy forbids using Function, but in that case
-    // the proper solution is to fix the accidental strict mode problem. If
-    // you've misconfigured your bundler to force strict mode and applied a
-    // CSP to forbid Function, and you're not willing to fix either of those
-    // problems, please detail your unique predicament in a GitHub issue.
-    if (typeof globalThis === "object") globalThis.regeneratorRuntime = runtime;
-    else Function("r", "regeneratorRuntime = r")(runtime);
-}
-
-},{}],"4x2vo":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "AddUserForm", ()=>AddUserForm
-);
-var _block = require("../../../../core/block");
-var _blockDefault = parcelHelpers.interopDefault(_block);
-var _button = require("../../../ui/button");
-var _indexTpl = require("./index.tpl");
-class AddUserForm extends _blockDefault.default {
-    constructor(){
-        super('div', {
-            addButton: new _button.Button({
-                class: 'button popup__button add_button',
-                type: 'submit',
-                text: 'Добавить пользователя'
-            })
-        });
-    }
-    render() {
-        const { addButton ,  } = this.props;
-        return _indexTpl.tmp({
-            addButton: addButton.render()
-        });
-    }
-}
-
-},{"../../../../core/block":"axMnM","../../../ui/button":"7LMSm","./index.tpl":"46vAS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"46vAS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "source", ()=>source
-);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-  <div class="popup add-remove-user-popup">
-    <div class="popup__container">
-      <form class="form popup__form add_user" name="name">
-        <h2 class="popup__title">
-          Введите логин пользователя
-        </h2>
-        <input name="title" class="input popup__input_create 
-          input_avatar add-remove-user" type="text" />
-        {{{addButton}}}
-      </form>
-    </div>
-  </div>
-`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ioyAP":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _constants = require("../utils/constants");
-class WebSocketService {
-    constructor(userId, chatId, chatToken){
-        if (userId && chatId && chatToken) {
-            this.socket?.close();
-            // eslint-disable-next-line max-len
-            this.socket = new WebSocket(`${_constants.WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
-            this.socket.addEventListener('open', this.onOpen.bind(this));
-            this.socket.addEventListener('message', this.onMessage.bind(this));
-            this.socket.addEventListener('error', this.onError.bind(this));
-            this.socket.addEventListener('close', this.onClose.bind(this));
-        }
-        if (WebSocketService.__instance) return WebSocketService.__instance;
-        WebSocketService.__instance = this;
-    }
-    send(payload) {
-        console.log('Message sent');
-        this.socket?.send(JSON.stringify(payload));
-    }
-    onOpen() {
-        console.log('Connection established');
-        this.send({
-            content: '0',
-            type: 'get old'
-        });
-    }
-    onMessage(event) {
-        console.log('Data received: ', event);
-        return JSON.parse(event.data);
-    }
-    onError(event) {
-        console.log('Error: ', event.message);
-    }
-    onClose(event) {
-        if (event.wasClean) console.log('Connection closed');
-        else console.log('Connection interrupted');
-        console.log(`Event code: ${event.code}`);
-        console.log(`Event reason: ${event.reason}`);
-    }
-}
-exports.default = WebSocketService;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../utils/constants":"fIuAL"}],"drvg0":[function(require,module,exports) {
+},{"../../../core/block":"axMnM","./chatWindow.tpl":"drvg0","../../../api/ChatsAPI":"bbBWW","../../../index":"h7u1C","../../../utils/constants":"fIuAL","../../../api/WebSocket":"ioyAP","../../../handles/handleValidation":"5bucn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../api/AuthAPI":"9MuyV","../../../api/UsersAPI":"hI20v","../../../core/store":"4J1UF","../../../core/types":"4jgQA","../messageList":"aRZ7A","../../ui/forms/addUserForm":"ljxHx","../../ui/forms/boardForm":"1fdXi"}],"drvg0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -14538,21 +13830,437 @@ const source = `
   </div>
 
   <div class="board__main">
-    {{{chatHistory}}}
+    {{{messageList}}}
   </div>
-    
   <div class="board__footer">
-    <form class="form footer" name="message">
-      <input name="message" 
-        data-validation="message"
-        class="input footer__input" 
-        type="text" placeholder="Сообщение">
-      <button type="button" class="button footer__button footer__button_attach" />
-      <button type="submit" class="button footer__button footer__button_send" />
-    </form>
+    {{{boardForm}}}
   </div>
   {{{addPopup}}}
   {{{removePopup}}}
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ioyAP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _constants = require("../utils/constants");
+var _store = require("../core/store");
+var _types = require("../core/types");
+class WebSocketService {
+    constructor(userId, chatId, chatToken){
+        if (userId && chatId && chatToken) {
+            this._socket?.close();
+            // eslint-disable-next-line max-len
+            this._socket = new WebSocket(`${_constants.WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
+            this._socket.addEventListener('open', this.onOpen.bind(this));
+            this._socket.addEventListener('message', this.onMessage.bind(this));
+            this._socket.addEventListener('error', this.onError.bind(this));
+            this._socket.addEventListener('close', this.onClose.bind(this));
+        }
+        if (WebSocketService._instance) return WebSocketService._instance;
+        WebSocketService._instance = this;
+        this.userId = Number(userId);
+    }
+    send(payload) {
+        console.log('Message sent');
+        this._socket?.send(JSON.stringify(payload));
+    }
+    onOpen() {
+        console.log('Connection established');
+        this.send({
+            content: '0',
+            type: 'get old'
+        });
+    }
+    onMessage(event) {
+        console.log('Data received: ', event);
+        let data1 = JSON.parse(event.data);
+        if (data1.type === 'user connected') return;
+        const configureData = (data)=>({
+                ...data
+            })
+        ;
+        if (Array.isArray(data1)) {
+            data1 = data1.map((item)=>configureData(item)
+            );
+            data1.reverse();
+        } else data1 = configureData(data1);
+        _store.store.dispatchAction(_types.ActionTypes.GET_CHAT_MESSAGES, data1);
+    }
+    onError(event) {
+        console.log('Error: ', event.message);
+    }
+    onClose(event) {
+        if (event.wasClean) console.log('Connection closed');
+        else console.log('Connection interrupted');
+        console.log(`Event code: ${event.code}`);
+        console.log(`Event reason: ${event.reason}`);
+    }
+}
+exports.default = WebSocketService;
+
+},{"../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/store":"4J1UF","../core/types":"4jgQA"}],"4J1UF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "store", ()=>store
+);
+var _types = require("./types");
+class GlobalStore {
+    state = {
+        messageList: []
+    };
+    subscribers = {};
+    subscribe(action, callback) {
+        if (!Object.prototype.hasOwnProperty(action)) this.subscribers[action] = [];
+        this.subscribers[action].push(callback);
+        return ()=>this.subscribers[action] = this.subscribers[action].filter((sub)=>sub !== callback
+            )
+        ;
+    }
+    unsubscribeAll() {
+        this.subscribers = {};
+    }
+    dispatchAction(action, payload) {
+        this.state = ACTIONS[action](this.state, payload);
+        this.publish(action);
+    }
+    publish(action) {
+        if (Object.prototype.hasOwnProperty.call(this.subscribers, action)) this.subscribers[action].forEach((cb)=>cb(this.state)
+        );
+    }
+    get(name) {
+        return this.state[name];
+    }
+}
+const ACTIONS = {
+    [_types.ActionTypes.GET_CURRENT_USER]: (state, payload)=>({
+            ...state,
+            userInfo: payload
+        })
+    ,
+    [_types.ActionTypes.LOGOUT]: ()=>({})
+    ,
+    [_types.ActionTypes.GET_CHATS]: (state, payload)=>({
+            ...state,
+            chats: payload
+        })
+    ,
+    [_types.ActionTypes.GET_CHAT_TOKEN]: (state, payload)=>({
+            ...state,
+            chatToken: payload
+        })
+    ,
+    [_types.ActionTypes.GET_CHAT_MESSAGES]: (state, payload)=>({
+            ...state,
+            messageList: payload
+        })
+    ,
+    [_types.ActionTypes.GET_CHAT_ID]: (state, payload)=>({
+            ...state,
+            chatId: payload,
+            chatToken: null
+        })
+};
+const store = new GlobalStore();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./types":"4jgQA"}],"aRZ7A":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MessageList", ()=>MessageList
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+var _message = require("../message");
+class MessageList extends _blockDefault.default {
+    constructor(props){
+        super('div', props);
+    }
+    render() {
+        const { messageList , userId  } = this.props;
+        const messages = Array.isArray(messageList) ? messageList.map((message)=>{
+            return new _message.Message({
+                ...message,
+                fromYou: userId === message.user_id
+            }).render();
+        }).join('') : [];
+        return _indexTpl.tmp({
+            messageList: messages
+        });
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"2AAQI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../message":"dCkZS"}],"2AAQI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  {{{messageList}}}
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dCkZS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Message", ()=>Message
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+class Message extends _blockDefault.default {
+    constructor(props){
+        super('div', props);
+    }
+    render() {
+        return _indexTpl.tmp(this.props);
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"dwfq7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dwfq7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <div class="message {{#if fromYou}} message_to {{/if}} "> 
+    <div class="message__container {{#if is_read}} message__time_read {{/if}}"> 
+      <div class="message__content">
+          {{content}}
+        <div class="message__time">
+          {{time}}
+        </div> 
+      </div> 
+    </div> 
+  </div>
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ljxHx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AddUserForm", ()=>AddUserForm
+);
+var _block = require("../../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _button = require("../../button");
+var _indexTpl = require("./index.tpl");
+class AddUserForm extends _blockDefault.default {
+    constructor(){
+        super('div', {
+            submitButton: new _button.Button({
+                class: 'button popup__button add_button',
+                type: 'submit',
+                text: 'Добавить пользователя'
+            })
+        });
+    }
+    render() {
+        const { submitButton  } = this.props;
+        return _indexTpl.tmp({
+            submitButton: submitButton.render()
+        });
+    }
+}
+
+},{"../../../../core/block":"axMnM","../../button":"7LMSm","./index.tpl":"ftMWp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ftMWp":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "source", ()=>source
+);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <div class="popup add-remove-user-popup">
+    <div class="popup__container">
+      <form class="form popup__form add_user" name="name">
+        <h2 class="popup__title">
+          Введите логин пользователя
+        </h2>
+        <input name="title" class="input popup__input_create 
+          input_avatar add-remove-user" type="text" />
+        {{{submitButton}}}
+      </form>
+    </div>
+  </div>
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1fdXi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BoardForm", ()=>BoardForm
+);
+var _block = require("../../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _button = require("../../button");
+var _indexTpl = require("./index.tpl");
+class BoardForm extends _blockDefault.default {
+    constructor(){
+        super('div', {
+            attachButton: new _button.Button({
+                class: 'button footer__button footer__button_attach',
+                type: 'button',
+                text: ''
+            }),
+            submitButton: new _button.Button({
+                class: 'button footer__button footer__button_send',
+                type: 'submit',
+                text: ''
+            })
+        });
+    }
+    render() {
+        const { submitButton , attachButton  } = this.props;
+        return _indexTpl.tmp({
+            attachButton: attachButton.render(),
+            submitButton: submitButton.render()
+        });
+    }
+}
+
+},{"../../../../core/block":"axMnM","../../button":"7LMSm","./index.tpl":"afcXl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"afcXl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "source", ()=>source
+);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <form class="form footer" name="message">
+    <input name="message" 
+      data-validation="message"
+      class="input footer__input" 
+      type="text" placeholder="Сообщение"
+    >
+    {{{attachButton}}}
+    {{{submitButton}}}
+  </form>                                                    
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8Ij7l":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <section class="chat">
+    <div class="chat__sidebar">
+      <div class="sidebar">
+        <a href="/profile" class="sidebar__profile">
+          Профиль<span class="sidebar__icon"></span>
+        </a>
+        <input class="sidebar__search" 
+          type="search" placeholder="Поиск">
+        </input>
+
+        {{{submitButton}}}
+        {{{cards}}}
+        
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="board__choose">
+        Выберите чат, чтобы отправить сообщение
+      </div>
+    </div>
+    {{{popup}}}
+    {{{editPopup}}}
+  </section>`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"laO4P":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Card", ()=>Card
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+class Card extends _blockDefault.default {
+    constructor(props){
+        super('main', props);
+        this.props = props;
+    }
+    render() {
+        return _indexTpl.tmp(this.props);
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"kNBeS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kNBeS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <div class="card" data-chat-id={{id}}>
+    <div class="card__image"></div>
+    <h3 class="card__title"> {{title}} </h3>
+    <p class="card__text"> 
+    {{#if fromYou}}
+      <span class="card__from-you">Вы: </span> 
+    {{/if}} 
+    {{ last_message.content }}
+    </p>  
+    <p class="card__time"> {{ last_message.time }} </p>
+    {{#if unread_count}}
+      <p class="card__counter">{{unread_count}}</p>
+    {{/if}}
+  </div>
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lDQDn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CreateChatForm", ()=>CreateChatForm
+);
+var _block = require("../../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _button = require("../../button");
+var _indexTpl = require("./index.tpl");
+class CreateChatForm extends _blockDefault.default {
+    constructor(){
+        super('div', {
+            submitButton: new _button.Button({
+                class: 'button popup__button',
+                type: 'submit',
+                text: 'Создать'
+            })
+        });
+    }
+    render() {
+        const { submitButton  } = this.props;
+        return _indexTpl.tmp({
+            submitButton: submitButton.render()
+        });
+    }
+}
+
+},{"../../../../core/block":"axMnM","../../button":"7LMSm","./index.tpl":"bLXwz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bLXwz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "source", ()=>source
+);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+    <form class="form popup__form create-chat_form">
+      <h2 class="popup__title">
+        Введите название чата
+      </h2>
+      <input name="title" class="input popup__input_create input_avatar" type="text" />
+    {{{submitButton}}}
+</form>
 `;
 const tmp = _handlebars.compile(source);
 
@@ -14566,17 +14274,28 @@ var _blockDefault = parcelHelpers.interopDefault(_block);
 var _indexTpl = require("./index.tpl");
 var _authAPI = require("../../../../api/AuthAPI");
 var _popup = require("../../../ui/popup");
+var _form = require("../../../ui/forms/form");
 var _handlerPopupClick = require("../../../../handles/handlerPopupClick");
 var _handlerPopupClickDefault = parcelHelpers.interopDefault(_handlerPopupClick);
 var _handleLogoutClick = require("../../../../handles/handleLogoutClick");
 var _handleLogoutClickDefault = parcelHelpers.interopDefault(_handleLogoutClick);
 var _handleEditAvatarSubmit = require("../../../../handles/handleEditAvatarSubmit");
 var _handleEditAvatarSubmitDefault = parcelHelpers.interopDefault(_handleEditAvatarSubmit);
-var _form = require("../../forms/form");
+var _protected = require("../../../../utils/protected");
+var _protectedDefault = parcelHelpers.interopDefault(_protected);
 class Profile extends _blockDefault.default {
     constructor(){
         super('main', {
-            userData: {},
+            userData: {
+                popup: null,
+                first_name: '',
+                second_name: '',
+                display_name: '',
+                login: '',
+                email: '',
+                phone: 0,
+                avatar: ''
+            },
             popup: new _popup.Popup(new _form.Form(), ''),
             handlers: [
                 _handlerPopupClickDefault.default,
@@ -14585,23 +14304,21 @@ class Profile extends _blockDefault.default {
             ]
         });
     }
-    componentDidMount() {
-        _authAPI.auth.getUser().then((result)=>{
-            this.setProps({
-                ...this.props,
-                userData: JSON.parse(result.response)
-            });
-        }).catch((error)=>{
-            console.log(error);
+    async componentDidMount() {
+        const userDataDTO = await _authAPI.auth.getUser();
+        const userData = JSON.parse(userDataDTO.response);
+        _protectedDefault.default(userData.id);
+        this.setProps({
+            userData
         });
     }
     render() {
         const { userData , popup  } = this.props;
         return _indexTpl.tmp({
             popup: popup.render(),
-            firstName: userData.first_name || '',
-            secondName: userData.second_name || '',
-            nickname: userData.display_name || '',
+            first_name: userData.first_name || '',
+            second_name: userData.second_name || '',
+            display_name: userData.display_name || '',
             login: userData.login || '',
             email: userData.email || '',
             phone: userData.phone || '',
@@ -14610,7 +14327,7 @@ class Profile extends _blockDefault.default {
     }
 }
 
-},{"../../../../core/block":"axMnM","./index.tpl":"3zjYM","../../../../api/AuthAPI":"9MuyV","../../../ui/popup":"h8cD8","../../../../handles/handlerPopupClick":"dzUrs","../../../../handles/handleLogoutClick":"gltJl","../../../../handles/handleEditAvatarSubmit":"2tyiA","../../forms/form":"4lXIG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3zjYM":[function(require,module,exports) {
+},{"../../../../core/block":"axMnM","./index.tpl":"3zjYM","../../../../api/AuthAPI":"9MuyV","../../../ui/popup":"h8cD8","../../../../handles/handlerPopupClick":"dzUrs","../../../../handles/handleLogoutClick":"gltJl","../../../../handles/handleEditAvatarSubmit":"2tyiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../ui/forms/form":"8vJ6J","../../../../utils/protected":"ZzJRU"}],"3zjYM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -14621,7 +14338,7 @@ const source = `
     <div class="profile__avatar">
     </div>
     <h2 class="profile__title">
-      {{ firstName }}
+      {{ first_name }}
     </h2> 
 
     <ul class="list">
@@ -14635,15 +14352,15 @@ const source = `
       </li>
       <li class="list__item">
         <p class="list__label">Имя</p>
-        <p class="list__value">{{firstName}}</p>
+        <p class="list__value">{{first_name}}</p>
       </li>
       <li class="list__item">
         <p class="list__label">Фамилия</p>
-        <p class="list__value">{{secondName}}</p>
+        <p class="list__value">{{second_name}}</p>
       </li>
       <li class="list__item">
         <p class="list__label">Имя в чате</p>
-        <p class="list__value">{{nickname}}</p>
+        <p class="list__value">{{display_name}}</p>
       </li>
       <li class="list__item">
         <p class="list__label">Телефон</p>

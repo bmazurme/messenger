@@ -2,20 +2,14 @@ import Block from '../../../../../core/block';
 import { Button } from '../../../../ui/button';
 import { tmp } from './edit-pass.tpl';
 import { Popup } from '../../../../ui/popup';
-import { Form } from '../../../forms/form';
+import { Form } from '../../../../ui/forms/form';
+import { IChangePassword } from './IChangePassword';
 import handlerPopupClick from '../../../../../handles/handlerPopupClick';
 import handleValidation from '../../../../../handles/handleValidation';
 import handleEditPasswordSubmit from '../../../../../handles/handleEditPasswordSubmit';
 import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
 
-type ChangePasswordProps = {
-  inputs: Array<object>;
-  submitButton: Button;
-  popup: Popup;
-  handlers: Array<Function>;
-};
-
-export class ChangePassword extends Block<ChangePasswordProps> {
+export class ChangePassword extends Block<IChangePassword> {
   constructor() {
     super('main', {
       popup: new Popup(new Form(), ''),
@@ -71,9 +65,9 @@ export class ChangePassword extends Block<ChangePasswordProps> {
   render() {
     const {inputs, submitButton, popup} = this.props;
     return tmp({
-      popup: popup.render(),
       inputs,
-      submitButton: submitButton.render()
+      submitButton: submitButton.render(),
+      popup: popup.render(),
     });
   }
 }

@@ -5,7 +5,7 @@ const source = `
     <div class="profile__avatar">
     </div>
     <h2 class="profile__title">
-      {{ firstName }}
+      {{ first_name }}
     </h2> 
 
     <ul class="list">
@@ -19,15 +19,15 @@ const source = `
       </li>
       <li class="list__item">
         <p class="list__label">Имя</p>
-        <p class="list__value">{{firstName}}</p>
+        <p class="list__value">{{first_name}}</p>
       </li>
       <li class="list__item">
         <p class="list__label">Фамилия</p>
-        <p class="list__value">{{secondName}}</p>
+        <p class="list__value">{{second_name}}</p>
       </li>
       <li class="list__item">
         <p class="list__label">Имя в чате</p>
-        <p class="list__value">{{nickname}}</p>
+        <p class="list__value">{{display_name}}</p>
       </li>
       <li class="list__item">
         <p class="list__label">Телефон</p>

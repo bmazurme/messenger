@@ -7,11 +7,11 @@ function isEqual(lhs: string, rhs: string): boolean {
 
 class Route {
   private _pathname: string;
-  readonly _blockClass: any;
+  readonly _blockClass: Block;
   private _block: Block | null;
   private _props: { [key: string]: string };
 
-  constructor(pathname: string, view: any, props: {}) {
+  constructor(pathname: string, view: Block, props: {}) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;

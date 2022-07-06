@@ -3,21 +3,16 @@ import { Button } from '../../../../ui/button';
 import { tmp } from './edit.tpl';
 import { auth } from '../../../../../api/AuthAPI';
 import { Popup } from '../../../../ui/popup';
-import { Form } from '../../../forms/form';
+import { Form } from '../../../../ui/forms/form';
+import { Input } from '../../../../ui/input/index';
+import { IChangeProfileInfo } from './IChangeProfileInfo';
 import handlerPopupClick from '../../../../../handles/handlerPopupClick';
 import handleEditProfileSubmit from '../../../../../handles/handleEditProfileSubmit';
 import handleValidation from '../../../../../handles/handleValidation';
 import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
+import protectedRoute from '../../../../../utils/protected';
 
-type ChangeProfileInfoProps = {
-  inputs: {[key: string]: string}[];
-  submitButton: Button;
-  popup: Popup;
-  handlers: Array<Function>;
-  userData: {[key: string]: string};
-};
-
-export class ChangeProfileInfo extends Block<ChangeProfileInfoProps> {
+export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
   constructor() {
     super('main', {
       userData: {},
@@ -32,7 +27,7 @@ export class ChangeProfileInfo extends Block<ChangeProfileInfoProps> {
           placeholder: '',
           errClass: 'email-err',
           validationType: 'email',
-          errSelector: '.email-err'
+          errSelector: '.email-err',
         },
         {
           label: 'Логин',
@@ -104,39 +99,20 @@ export class ChangeProfileInfo extends Block<ChangeProfileInfoProps> {
     });
   }
 
-  componentDidMount() {
-    // @ts-ignore
-    auth
-      .getUser()
-      .then((result: {[key: string]: string}) => {
-        this.setProps({
-          ...this.props,
-          userData: JSON.parse(result.response)})})
-      .catch((error) => console.log(error));
-    this.definePlaceholders();
-  }
-
-  definePlaceholders() {
-    Object.keys(this.props.userData).forEach(key => {
-      this.props.inputs.forEach((input: {[key: string]: string}) => {
-        if ((input.validationType === 'nickname' && 
-         key === 'display_name') || input.validationType === key) {
-          if (this.props.userData[key]) {
-            input['value'] = this.props.userData[key];
-          } else {
-            input['placeholder'] = '!';
-          }          
-          input['name'] = key;
-         }
-      })
-    })
+  async componentDidMount() {
+    const userDataDTO = await auth.getUser();
+    const userData = JSON.parse(userDataDTO.response);
+    protectedRoute(userData.id);
+    this.setProps({...this.props, userData});
   }
 
   render() {
-    const {inputs, submitButton, popup} = this.props;
+    const {inputs, submitButton, popup, userData} = this.props;
     return tmp({
       popup: popup.render(),
-      inputs,
+      inputs: (inputs.map(x => {
+        return new Input({...x, value: userData[x.name]}).render()
+      })).join(''),
       avatar: this.props.userData.avatar || 'assets/icons/profile-picture.svg',
       submitButton: submitButton.render()
     })

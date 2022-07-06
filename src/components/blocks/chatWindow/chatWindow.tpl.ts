@@ -12,18 +12,10 @@ const source = `
   </div>
 
   <div class="board__main">
-    {{{chatHistory}}}
+    {{{messageList}}}
   </div>
-    
   <div class="board__footer">
-    <form class="form footer" name="message">
-      <input name="message" 
-        data-validation="message"
-        class="input footer__input" 
-        type="text" placeholder="Сообщение">
-      <button type="button" class="button footer__button footer__button_attach" />
-      <button type="submit" class="button footer__button footer__button_send" />
-    </form>
+    {{{boardForm}}}
   </div>
   {{{addPopup}}}
   {{{removePopup}}}

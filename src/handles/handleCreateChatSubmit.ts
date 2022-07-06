@@ -1,6 +1,7 @@
 import { chats } from '../api/ChatsAPI';
 import { router } from '../index';
 import { checkValid, toggleStyle } from '../utils/validator';
+import { CHATS } from '../utils/constants';
 
 export default function handleCreateChatSubmit(element: HTMLElement, className = '.form') {
   let isValidForm: boolean = true;
@@ -34,7 +35,7 @@ export default function handleCreateChatSubmit(element: HTMLElement, className =
           .createChat({
             data: {title}
           })
-          .then(() => router.go('/chats'))
+          .then(() => router.go(CHATS))
           .catch((error) => console.log(error));
       }
     });

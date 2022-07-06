@@ -1,36 +1,27 @@
-import 'regenerator-runtime/runtime';
 import Block from '../../../core/block';
 import { tmp } from './chatWindow.tpl';
 import { chats } from '../../../api/ChatsAPI';
 import { auth } from '../../../api/AuthAPI';
 import { users } from '../../../api/UsersAPI';
-import { AddUserForm } from '../forms/addUserForm';
+import { AddUserForm } from '../../ui/forms/addUserForm';
 import { router } from '../../../index';
+import { BoardForm } from '../../ui/forms/boardForm';
 import { CHATS } from '../../../utils/constants';
+import { IChatWindow } from './IChatWindow';
+import { IUser } from './IUser';
+import { store } from '../../../core/store';
+import { ActionTypes } from '../../../core/types';
+import { MessageList } from '../messageList';
 import WebSocketService from '../../../api/WebSocket';
 import handleValidation from '../../../handles/handleValidation';
 
-export type ChatWindowProps = {
-  className: string|null;
-  addPopup: Block;
-  // eslint-disable-next-line no-unused-vars
-  events: {[key: string]: (e: Event) => void };
-  handlers: Array<Function>;
-  chatId: number;
-  chatName: string;
-  chatToken: string;
-  userId: number;
-};
-type User = {
-  id: number;
-};
-
-export class ChatWindow extends Block<ChatWindowProps> {
-  constructor(props: ChatWindowProps) {
+export class ChatWindow extends Block<IChatWindow> {
+  constructor(props: IChatWindow) {
     super('div', {
       ...props,
       className: 'board',
       addPopup: new AddUserForm(),
+      boardForm: new BoardForm(),
       events: {
         submit: (e: Event) => this._handleSubmit(e), 
         click: (e: Event) => this.handleClick(e)
@@ -44,18 +35,16 @@ export class ChatWindow extends Block<ChatWindowProps> {
       users: [],
       chatId: Number(this.props.chatId)
     };
-
     const el: HTMLFormElement|null = e.target as HTMLFormElement;
+    const button: HTMLFormElement|null = el.querySelector('.button') as HTMLFormElement;
 
     if (el) {
       if (el.name === 'message') {
         this.send(el);
-      } else if (el.querySelector('.button')?.textContent === 'Добавить') {
-        this.searchUser(chatData)
-            .then(() => this.addUser(chatData));
-      } else if (el.querySelector('.button')?.textContent === 'Удалить') {
-        this.searchUser(chatData)
-            .then(() => this.removeUser(chatData));
+      } else if (button?.textContent === 'Добавить') {
+        this.searchUser(chatData).then(() => this.addUser(chatData));
+      } else if (button?.textContent === 'Удалить') {
+        this.searchUser(chatData).then(() => this.removeUser(chatData));
       }
       el.reset();
     }
@@ -63,10 +52,10 @@ export class ChatWindow extends Block<ChatWindowProps> {
 
   openPopup(selector: string, label: string) {
     const popup = document.querySelector(selector) as HTMLElement;
-    const button: HTMLElement|null = popup.querySelector('.button');
+    const button: HTMLElement = popup.querySelector('.button') as HTMLElement;
 
     if (button) {
-      button.textContent=label;
+      button.textContent = label;
     }
     popup.classList.add('popup_active');
   }
@@ -111,36 +100,32 @@ export class ChatWindow extends Block<ChatWindowProps> {
     await this.getChatToken();
     await this.getUserInfo();
     const {userId, chatId, chatToken } = this.props;
-    this._connectToChat({userId, chatId, chatToken } );
+    this._connectToChat({userId, chatId, chatToken});
+    store.subscribe(ActionTypes.GET_CHAT_MESSAGES, this.setmessageList.bind(this));
+    store.dispatchAction(ActionTypes.GET_CHAT_TOKEN, chatToken);
+  }
+
+  setmessageList() {
+    this.setProps({
+      ...this.props,
+      messageList: store.get('messageList')
+    });
   }
 
   async getChatToken() {
-    return chats.getChatToken(this.props.chatId.toString())
-      // @ts-ignore
-      .then((result: {[key:string]: object|any}) => {
-        this.setProps({
-          ...this.props, 
-          chatToken: JSON.parse(result.response).token
-        })
-      })
-      .catch((error) => console.log(error));
+    const result = await chats.getChatToken(this.props.chatId.toString());
+    const token: {[key:string]:string} = result.response;
+    this.setProps({...this.props, chatToken: JSON.parse(token).token});
   }
 
   async getUserInfo() {
-    return auth
-      .getUser()
-      // @ts-ignore
-      .then((result: {[key:string]: object|any}) => {
-        this.setProps({
-          ...this.props,
-          userId: JSON.parse(result.response).id
-        })
-      })
-      .catch((error) => console.log(error));
+    const result = await auth.getUser();
+    const userInfo = JSON.parse(result.response);
+    this.setProps({...this.props, userId: userInfo.id});
   }
 
-  renderChatHistory() {
-    return 'this is going to be chat history';
+  renderMessageList() {
+    return new MessageList({...this.props}).render();
   }
 
   async addUser(data: {users: Array<Object>}) {
@@ -159,26 +144,18 @@ export class ChatWindow extends Block<ChatWindowProps> {
     router.go(CHATS);
   }
 
-  searchUser(data: {users: Array<number>, chatId: number}) {
+  async searchUser(data: {users: Array<number>, chatId: number}) {
     const userLoginInput: HTMLInputElement = document.querySelector('.add-remove-user')!;
     const userLogin = userLoginInput.value;
-
     const searchByLoginData = {
       login: userLogin
     };
-    return users
-      .searchByLogin({
-        data: searchByLoginData
-      })
-      .then(result => {
-        // @ts-ignore
-        const response: Array<User> = JSON.parse(result.response);
-        const user: User = response[0]; 
-        if (user) {
-          data.users.push(user.id);
-        }
-      })
-      .catch((error) => console.log(error));
+    const result = await users.searchByLogin({data: searchByLoginData});
+    const userDate: Array<User> = JSON.parse(result.response);
+    const user: IUser = userDate[0];
+    if (user) {
+      return data.users.push(user.id);
+    }
   }
 
   send(form: HTMLElement) {
@@ -199,6 +176,9 @@ export class ChatWindow extends Block<ChatWindowProps> {
   }
   
   private _sendChatMessage(message: string) {
+    if (message === '') {
+      return;
+    }
     new WebSocketService().send({
       content: message,
       type: 'message',
@@ -206,14 +186,13 @@ export class ChatWindow extends Block<ChatWindowProps> {
   }
 
   render() {
-    const {
-      chatName,
-      addPopup,
-    } = this.props;
+    const { chatName, addPopup, boardForm } = this.props;
     return tmp({
       chatName,
+      boardForm: boardForm.render(),
       addPopup: addPopup.render(),
-      chatHistory: this.renderChatHistory()
+      messageList: this.renderMessageList()
     })
   }
 }
+

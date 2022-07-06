@@ -73,7 +73,7 @@ export default abstract class Block<Props extends object = {}> {
     if (response) this._componentDidMount();
   }
 
-  public setProps = (nextProps: { [key: string]: any }) => {
+  public setProps = (nextProps: { [key: string]: string }) => {
     if (!nextProps) {
       return;
     }

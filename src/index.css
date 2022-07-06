@@ -73,6 +73,7 @@
 @import url(./blocks/card/__text/card__text.css);
 @import url(./blocks/card/__time/card__time.css);
 @import url(./blocks/card/__counter/card__counter.css);
+@import url(./blocks/card/__from-you/card__from-you.css);
 /* popup */
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/popup/_active/popup_active.css);
