@@ -13358,7 +13358,7 @@ class ChangeProfileInfo extends _blockDefault.default {
     }
 }
 
-},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit.tpl":"476CU","../../../../ui/popup":"h8cD8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../../api/AuthAPI":"9MuyV","../../../../ui/input/index":"6LKsZ","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleEditProfileSubmit":"cpFz2","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditAvatarSubmit":"2tyiA","../../../../ui/forms/form":"8vJ6J","../../../../../utils/protected":"ZzJRU"}],"476CU":[function(require,module,exports) {
+},{"../../../../../core/block":"axMnM","../../../../ui/button":"7LMSm","./edit.tpl":"476CU","../../../../ui/popup":"h8cD8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../../api/AuthAPI":"9MuyV","../../../../../handles/handlerPopupClick":"dzUrs","../../../../../handles/handleEditProfileSubmit":"cpFz2","../../../../../handles/handleValidation":"5bucn","../../../../../handles/handleEditAvatarSubmit":"2tyiA","../../../../ui/forms/form":"8vJ6J","../../../../ui/input/index":"6LKsZ","../../../../../utils/protected":"ZzJRU"}],"476CU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -13386,24 +13386,7 @@ const source = `
 </section>`;
 const tmp = _handlebars.compile(source);
 
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../ui/input/index.tpl":"2G5o9"}],"6LKsZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Input", ()=>Input
-);
-var _block = require("../../../core/block");
-var _blockDefault = parcelHelpers.interopDefault(_block);
-var _indexTpl = require("./index.tpl");
-class Input extends _blockDefault.default {
-    constructor(props){
-        super('div', props);
-    }
-    render() {
-        return _indexTpl.tmp(this.props);
-    }
-}
-
-},{"../../../core/block":"axMnM","./index.tpl":"2G5o9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cpFz2":[function(require,module,exports) {
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../ui/input/index.tpl":"2G5o9"}],"cpFz2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _validator = require("../utils/validator");
@@ -13437,7 +13420,24 @@ function handleEditProfileSubmit(element, className = '.form') {
 }
 exports.default = handleEditProfileSubmit;
 
-},{"../utils/validator":"crxki","../api/UsersAPI":"hI20v","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ZzJRU":[function(require,module,exports) {
+},{"../utils/validator":"crxki","../api/UsersAPI":"hI20v","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6LKsZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Input", ()=>Input
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+class Input extends _blockDefault.default {
+    constructor(props){
+        super('div', props);
+    }
+    render() {
+        return _indexTpl.tmp(this.props);
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"2G5o9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ZzJRU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _index = require("../index");
@@ -13532,7 +13532,7 @@ class Chats extends _blockDefault.default {
     }
 }
 
-},{"../../../../core/block":"axMnM","../../../../handles/handlerPopupClick":"dzUrs","../../../../handles/handleCreateChatSubmit":"eskeM","../../../../handles/handleOpenChat":"3hXlY","../../../../handles/handleValidation":"5bucn","../../../../components/blocks/chatWindow/chatWindow":"9K5og","./chats.tpl":"8Ij7l","../../../ui/popup/index":"h8cD8","../../../../components/ui/button":"7LMSm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../api/ChatsAPI":"bbBWW","../../../../components/blocks/card":"laO4P","../../../../api/AuthAPI":"9MuyV","../../../ui/forms/createChatForm":"lDQDn","../../../../utils/protected":"ZzJRU"}],"eskeM":[function(require,module,exports) {
+},{"../../../../core/block":"axMnM","../../../../handles/handlerPopupClick":"dzUrs","../../../../handles/handleCreateChatSubmit":"eskeM","../../../../handles/handleOpenChat":"3hXlY","../../../../handles/handleValidation":"5bucn","../../../../components/blocks/chatWindow/chatWindow":"9K5og","./chats.tpl":"8Ij7l","../../../ui/popup/index":"h8cD8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../../api/ChatsAPI":"bbBWW","../../../../api/AuthAPI":"9MuyV","../../../ui/forms/createChatForm":"lDQDn","../../../../components/ui/button":"7LMSm","../../../../components/blocks/card":"laO4P","../../../../utils/protected":"ZzJRU"}],"eskeM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _chatsAPI = require("../api/ChatsAPI");
@@ -13571,7 +13571,7 @@ function handleCreateChatSubmit(element, className = '.form') {
 }
 exports.default = handleCreateChatSubmit;
 
-},{"../api/ChatsAPI":"bbBWW","../index":"h7u1C","../utils/validator":"crxki","../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bbBWW":[function(require,module,exports) {
+},{"../api/ChatsAPI":"bbBWW","../index":"h7u1C","../utils/validator":"crxki","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../utils/constants":"fIuAL"}],"bbBWW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "chats", ()=>chats
@@ -13812,7 +13812,7 @@ class ChatWindow extends _blockDefault.default {
     }
 }
 
-},{"../../../core/block":"axMnM","./chatWindow.tpl":"drvg0","../../../api/ChatsAPI":"bbBWW","../../../index":"h7u1C","../../../utils/constants":"fIuAL","../../../api/WebSocket":"ioyAP","../../../handles/handleValidation":"5bucn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../api/AuthAPI":"9MuyV","../../../api/UsersAPI":"hI20v","../../../core/store":"4J1UF","../../../core/types":"4jgQA","../messageList":"aRZ7A","../../ui/forms/addUserForm":"ljxHx","../../ui/forms/boardForm":"1fdXi"}],"drvg0":[function(require,module,exports) {
+},{"../../../core/block":"axMnM","./chatWindow.tpl":"drvg0","../../../api/ChatsAPI":"bbBWW","../../../index":"h7u1C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../../api/AuthAPI":"9MuyV","../../../api/UsersAPI":"hI20v","../../ui/forms/addUserForm":"ljxHx","../../ui/forms/boardForm":"1fdXi","../../../utils/constants":"fIuAL","../../../core/store":"4J1UF","../../../core/types":"4jgQA","../messageList":"aRZ7A","../../../api/WebSocket":"ioyAP","../../../handles/handleValidation":"5bucn"}],"drvg0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -13837,204 +13837,6 @@ const source = `
   </div>
   {{{addPopup}}}
   {{{removePopup}}}
-`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ioyAP":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _constants = require("../utils/constants");
-var _store = require("../core/store");
-var _types = require("../core/types");
-class WebSocketService {
-    constructor(userId, chatId, chatToken){
-        if (userId && chatId && chatToken) {
-            this._socket?.close();
-            // eslint-disable-next-line max-len
-            this._socket = new WebSocket(`${_constants.WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
-            this._socket.addEventListener('open', this.onOpen.bind(this));
-            this._socket.addEventListener('message', this.onMessage.bind(this));
-            this._socket.addEventListener('error', this.onError.bind(this));
-            this._socket.addEventListener('close', this.onClose.bind(this));
-        }
-        if (WebSocketService._instance) return WebSocketService._instance;
-        WebSocketService._instance = this;
-        this.userId = Number(userId);
-    }
-    send(payload) {
-        console.log('Message sent');
-        this._socket?.send(JSON.stringify(payload));
-    }
-    onOpen() {
-        console.log('Connection established');
-        this.send({
-            content: '0',
-            type: 'get old'
-        });
-    }
-    onMessage(event) {
-        console.log('Data received: ', event);
-        let data1 = JSON.parse(event.data);
-        if (data1.type === 'user connected') return;
-        const configureData = (data)=>({
-                ...data
-            })
-        ;
-        if (Array.isArray(data1)) {
-            data1 = data1.map((item)=>configureData(item)
-            );
-            data1.reverse();
-        } else data1 = configureData(data1);
-        _store.store.dispatchAction(_types.ActionTypes.GET_CHAT_MESSAGES, data1);
-    }
-    onError(event) {
-        console.log('Error: ', event.message);
-    }
-    onClose(event) {
-        if (event.wasClean) console.log('Connection closed');
-        else console.log('Connection interrupted');
-        console.log(`Event code: ${event.code}`);
-        console.log(`Event reason: ${event.reason}`);
-    }
-}
-exports.default = WebSocketService;
-
-},{"../utils/constants":"fIuAL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/store":"4J1UF","../core/types":"4jgQA"}],"4J1UF":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "store", ()=>store
-);
-var _types = require("./types");
-class GlobalStore {
-    state = {
-        messageList: []
-    };
-    subscribers = {};
-    subscribe(action, callback) {
-        if (!Object.prototype.hasOwnProperty(action)) this.subscribers[action] = [];
-        this.subscribers[action].push(callback);
-        return ()=>this.subscribers[action] = this.subscribers[action].filter((sub)=>sub !== callback
-            )
-        ;
-    }
-    unsubscribeAll() {
-        this.subscribers = {};
-    }
-    dispatchAction(action, payload) {
-        this.state = ACTIONS[action](this.state, payload);
-        this.publish(action);
-    }
-    publish(action) {
-        if (Object.prototype.hasOwnProperty.call(this.subscribers, action)) this.subscribers[action].forEach((cb)=>cb(this.state)
-        );
-    }
-    get(name) {
-        return this.state[name];
-    }
-}
-const ACTIONS = {
-    [_types.ActionTypes.GET_CURRENT_USER]: (state, payload)=>({
-            ...state,
-            userInfo: payload
-        })
-    ,
-    [_types.ActionTypes.LOGOUT]: ()=>({})
-    ,
-    [_types.ActionTypes.GET_CHATS]: (state, payload)=>({
-            ...state,
-            chats: payload
-        })
-    ,
-    [_types.ActionTypes.GET_CHAT_TOKEN]: (state, payload)=>({
-            ...state,
-            chatToken: payload
-        })
-    ,
-    [_types.ActionTypes.GET_CHAT_MESSAGES]: (state, payload)=>({
-            ...state,
-            messageList: payload
-        })
-    ,
-    [_types.ActionTypes.GET_CHAT_ID]: (state, payload)=>({
-            ...state,
-            chatId: payload,
-            chatToken: null
-        })
-};
-const store = new GlobalStore();
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./types":"4jgQA"}],"aRZ7A":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MessageList", ()=>MessageList
-);
-var _block = require("../../../core/block");
-var _blockDefault = parcelHelpers.interopDefault(_block);
-var _indexTpl = require("./index.tpl");
-var _message = require("../message");
-class MessageList extends _blockDefault.default {
-    constructor(props){
-        super('div', props);
-    }
-    render() {
-        const { messageList , userId  } = this.props;
-        const messages = Array.isArray(messageList) ? messageList.map((message)=>{
-            return new _message.Message({
-                ...message,
-                fromYou: userId === message.user_id
-            }).render();
-        }).join('') : [];
-        return _indexTpl.tmp({
-            messageList: messages
-        });
-    }
-}
-
-},{"../../../core/block":"axMnM","./index.tpl":"2AAQI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../message":"dCkZS"}],"2AAQI":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-  {{{messageList}}}
-`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dCkZS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Message", ()=>Message
-);
-var _block = require("../../../core/block");
-var _blockDefault = parcelHelpers.interopDefault(_block);
-var _indexTpl = require("./index.tpl");
-class Message extends _blockDefault.default {
-    constructor(props){
-        super('div', props);
-    }
-    render() {
-        return _indexTpl.tmp(this.props);
-    }
-}
-
-},{"../../../core/block":"axMnM","./index.tpl":"dwfq7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dwfq7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-  <div class="message {{#if fromYou}} message_to {{/if}} "> 
-    <div class="message__container {{#if is_read}} message__time_read {{/if}}"> 
-      <div class="message__content">
-          {{content}}
-        <div class="message__time">
-          {{time}}
-        </div> 
-      </div> 
-    </div> 
-  </div>
 `;
 const tmp = _handlebars.compile(source);
 
@@ -14143,7 +13945,205 @@ const source = `
 `;
 const tmp = _handlebars.compile(source);
 
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8Ij7l":[function(require,module,exports) {
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4J1UF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "store", ()=>store
+);
+var _types = require("./types");
+class GlobalStore {
+    state = {
+        messageList: []
+    };
+    subscribers = {};
+    subscribe(action, callback) {
+        if (!Object.prototype.hasOwnProperty(action)) this.subscribers[action] = [];
+        this.subscribers[action].push(callback);
+        return ()=>this.subscribers[action] = this.subscribers[action].filter((sub)=>sub !== callback
+            )
+        ;
+    }
+    unsubscribeAll() {
+        this.subscribers = {};
+    }
+    dispatchAction(action, payload) {
+        this.state = ACTIONS[action](this.state, payload);
+        this.publish(action);
+    }
+    publish(action) {
+        if (Object.prototype.hasOwnProperty.call(this.subscribers, action)) this.subscribers[action].forEach((cb)=>cb(this.state)
+        );
+    }
+    get(name) {
+        return this.state[name];
+    }
+}
+const ACTIONS = {
+    [_types.ActionTypes.GET_CURRENT_USER]: (state, payload)=>({
+            ...state,
+            userInfo: payload
+        })
+    ,
+    [_types.ActionTypes.LOGOUT]: ()=>({})
+    ,
+    [_types.ActionTypes.GET_CHATS]: (state, payload)=>({
+            ...state,
+            chats: payload
+        })
+    ,
+    [_types.ActionTypes.GET_CHAT_TOKEN]: (state, payload)=>({
+            ...state,
+            chatToken: payload
+        })
+    ,
+    [_types.ActionTypes.GET_CHAT_MESSAGES]: (state, payload)=>({
+            ...state,
+            messageList: payload
+        })
+    ,
+    [_types.ActionTypes.GET_CHAT_ID]: (state, payload)=>({
+            ...state,
+            chatId: payload,
+            chatToken: null
+        })
+};
+const store = new GlobalStore();
+
+},{"./types":"4jgQA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aRZ7A":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MessageList", ()=>MessageList
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+var _message = require("../message");
+class MessageList extends _blockDefault.default {
+    constructor(props){
+        super('div', props);
+    }
+    render() {
+        const { messageList , userId  } = this.props;
+        const messages = Array.isArray(messageList) ? messageList.map((message)=>{
+            return new _message.Message({
+                ...message,
+                fromYou: userId === message.user_id
+            }).render();
+        }).join('') : [];
+        return _indexTpl.tmp({
+            messageList: messages
+        });
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"2AAQI","../message":"dCkZS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2AAQI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  {{{messageList}}}
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dCkZS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Message", ()=>Message
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+class Message extends _blockDefault.default {
+    constructor(props){
+        super('div', props);
+    }
+    render() {
+        return _indexTpl.tmp(this.props);
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"dwfq7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dwfq7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <div class="message {{#if fromYou}} message_to {{/if}} "> 
+    <div class="message__container {{#if is_read}} message__time_read {{/if}}"> 
+      <div class="message__content">
+          {{content}}
+        <div class="message__time">
+          {{time}}
+        </div> 
+      </div> 
+    </div> 
+  </div>
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ioyAP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _constants = require("../utils/constants");
+var _store = require("../core/store");
+var _types = require("../core/types");
+class WebSocketService {
+    constructor(userId, chatId, chatToken){
+        if (userId && chatId && chatToken) {
+            this._socket?.close();
+            // eslint-disable-next-line max-len
+            this._socket = new WebSocket(`${_constants.WEB_SOCKET_URL}${userId}/${chatId}/${chatToken}`);
+            this._socket.addEventListener('open', this.onOpen.bind(this));
+            this._socket.addEventListener('message', this.onMessage.bind(this));
+            this._socket.addEventListener('error', this.onError.bind(this));
+            this._socket.addEventListener('close', this.onClose.bind(this));
+        }
+        if (WebSocketService._instance) return WebSocketService._instance;
+        WebSocketService._instance = this;
+        this.userId = Number(userId);
+    }
+    send(payload) {
+        console.log('Message sent');
+        this._socket?.send(JSON.stringify(payload));
+    }
+    onOpen() {
+        console.log('Connection established');
+        this.send({
+            content: '0',
+            type: 'get old'
+        });
+    }
+    onMessage(event) {
+        console.log('Data received: ', event);
+        let data1 = JSON.parse(event.data);
+        if (data1.type === 'user connected') return;
+        const configureData = (data)=>({
+                ...data
+            })
+        ;
+        if (Array.isArray(data1)) {
+            data1 = data1.map((item)=>configureData(item)
+            );
+            data1.reverse();
+        } else data1 = configureData(data1);
+        _store.store.dispatchAction(_types.ActionTypes.GET_CHAT_MESSAGES, data1);
+    }
+    onError(event) {
+        console.log('Error: ', event.message);
+    }
+    onClose(event) {
+        if (event.wasClean) console.log('Connection closed');
+        else console.log('Connection interrupted');
+        console.log(`Event code: ${event.code}`);
+        console.log(`Event reason: ${event.reason}`);
+    }
+}
+exports.default = WebSocketService;
+
+},{"../utils/constants":"fIuAL","../core/store":"4J1UF","../core/types":"4jgQA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8Ij7l":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tmp", ()=>tmp
@@ -14174,48 +14174,6 @@ const source = `
     {{{popup}}}
     {{{editPopup}}}
   </section>`;
-const tmp = _handlebars.compile(source);
-
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"laO4P":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Card", ()=>Card
-);
-var _block = require("../../../core/block");
-var _blockDefault = parcelHelpers.interopDefault(_block);
-var _indexTpl = require("./index.tpl");
-class Card extends _blockDefault.default {
-    constructor(props){
-        super('main', props);
-        this.props = props;
-    }
-    render() {
-        return _indexTpl.tmp(this.props);
-    }
-}
-
-},{"../../../core/block":"axMnM","./index.tpl":"kNBeS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kNBeS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "tmp", ()=>tmp
-);
-var _handlebars = require("handlebars");
-const source = `
-  <div class="card" data-chat-id={{id}}>
-    <div class="card__image"></div>
-    <h3 class="card__title"> {{title}} </h3>
-    <p class="card__text"> 
-    {{#if fromYou}}
-      <span class="card__from-you">Вы: </span> 
-    {{/if}} 
-    {{ last_message.content }}
-    </p>  
-    <p class="card__time"> {{ last_message.time }} </p>
-    {{#if unread_count}}
-      <p class="card__counter">{{unread_count}}</p>
-    {{/if}}
-  </div>
-`;
 const tmp = _handlebars.compile(source);
 
 },{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lDQDn":[function(require,module,exports) {
@@ -14261,6 +14219,48 @@ const source = `
       <input name="title" class="input popup__input_create input_avatar" type="text" />
     {{{submitButton}}}
 </form>
+`;
+const tmp = _handlebars.compile(source);
+
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"laO4P":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Card", ()=>Card
+);
+var _block = require("../../../core/block");
+var _blockDefault = parcelHelpers.interopDefault(_block);
+var _indexTpl = require("./index.tpl");
+class Card extends _blockDefault.default {
+    constructor(props){
+        super('main', props);
+        this.props = props;
+    }
+    render() {
+        return _indexTpl.tmp(this.props);
+    }
+}
+
+},{"../../../core/block":"axMnM","./index.tpl":"kNBeS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kNBeS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tmp", ()=>tmp
+);
+var _handlebars = require("handlebars");
+const source = `
+  <div class="card" data-chat-id={{id}}>
+    <div class="card__image"></div>
+    <h3 class="card__title"> {{title}} </h3>
+    <p class="card__text"> 
+    {{#if fromYou}}
+      <span class="card__from-you">Вы: </span> 
+    {{/if}} 
+    {{ last_message.content }}
+    </p>  
+    <p class="card__time"> {{ last_message.time }} </p>
+    {{#if unread_count}}
+      <p class="card__counter">{{unread_count}}</p>
+    {{/if}}
+  </div>
 `;
 const tmp = _handlebars.compile(source);
 

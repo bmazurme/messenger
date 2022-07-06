@@ -666,38 +666,6 @@ summary {
   transform: rotate(45deg);
 }
 
-.header__toggle {
-  background-color: var(--header-link-background-color);
-  cursor: pointer;
-  height: 25px;
-  width: 25px;
-  background-image: url("dots.29c51e07.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: 3px 15px;
-  border: 0;
-  border-radius: 50%;
-  grid-area: toggle;
-  margin: auto;
-  padding: 0;
-}
-
-.header_hidden {
-  display: none;
-}
-
-.header_menu {
-  height: 100%;
-  opacity: 1;
-  visibility: visible;
-  width: 100%;
-  grid-area: menu;
-  transition: all .5s ease-out;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 .footer {
   -moz-column-gap: 10px;
   width: 100%;
@@ -1130,6 +1098,38 @@ summary {
   margin: 10px 0;
   padding: 0;
   font-size: 14px;
+}
+
+.header__toggle {
+  background-color: var(--header-link-background-color);
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  background-image: url("dots.29c51e07.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 3px 15px;
+  border: 0;
+  border-radius: 50%;
+  grid-area: toggle;
+  margin: auto;
+  padding: 0;
+}
+
+.header_hidden {
+  display: none;
+}
+
+.header_menu {
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+  grid-area: menu;
+  transition: all .5s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .card__from-you {
