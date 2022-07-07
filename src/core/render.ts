@@ -1,9 +1,8 @@
-export type PropsType = Record<string, any>
+import Block from './block';
 
-export default function render(query: string, block: any) {
+export function renderBlock(query: string, block: Block) {
   const root = document.querySelector(query);
-  if (root) {
-    root.appendChild(block.getContent());
-  }
+  root!.innerHTML = '';
+  root!.appendChild(block.getContent()!);
   return root;
 }

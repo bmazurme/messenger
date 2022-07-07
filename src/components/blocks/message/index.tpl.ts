@@ -1,6 +1,8 @@
-export const tmp = `
-  <div class="message {{type}}">
-    <div class="message__container {{containerType}}">
+import {compile} from 'handlebars';
+
+const source = `
+  <div class="message {{#if fromYou}} message_to {{/if}} "> 
+    <div class="message__container {{#if is_read}} message__time_read {{/if}}"> 
       <div class="message__content">
           {{content}}
         <div class="message__time">
@@ -9,4 +11,6 @@ export const tmp = `
       </div> 
     </div> 
   </div>
-`
+`;
+
+export const tmp = compile(source);

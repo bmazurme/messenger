@@ -1,11 +1,13 @@
-import {tmp} from './index.tpl';
 import Block from '../../../core/block';
-import {ICardOptions} from './options';
+import { tmp } from './index.tpl';
+import { ICard } from './ICard';
 
-export default class Card extends Block {
-  constructor(props: ICardOptions) {
-    super(props);
+export class Card extends Block<ICard> {
+  constructor(props: ICard) {
+    super('main', props);
     this.props = props;
-    this.tmp = tmp;
+  }
+  render() {
+    return tmp(this.props);
   }
 }

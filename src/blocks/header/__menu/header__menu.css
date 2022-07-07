@@ -1,0 +1,11 @@
+.header_menu {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: all .5s ease-out;
+  grid-area: menu;
+}

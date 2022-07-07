@@ -1,11 +1,12 @@
-import {tmp} from './index.tpl';
 import Block from '../../../core/block';
-import { IMessageOptions } from './options';
+import { IMessage } from './IMessage';
+import { tmp } from './index.tpl';
 
-export default class Message extends Block {
-  constructor(props: IMessageOptions) {
-    super(props);
-    this.props = props;
-    this.tmp = tmp;
+export class Message extends Block {
+  constructor(props: Array<IMessage>) {
+    super('div', props);
+  }
+  render() {
+    return tmp(this.props);
   }
 }

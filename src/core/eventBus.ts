@@ -1,21 +1,21 @@
-// eslint-disable-next-line no-unused-vars
-type Handler = (...args: unknown[]) => void;
-
 export default class EventBus {
-  private listeners: Record<string, Handler[]> = {};
+  listeners: {
+    [key: string]: string[]
+  };
+
   constructor() {
     this.listeners = {};
   }
-
-  on(event: string, callback: Handler) {
+  // eslint-disable-next-line no-unused-vars
+  on(event: string, callback: (...args: unknown[]) => void) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
     this.listeners[event].push(callback);
   }
 
-  off(event: string, callback: Handler) {
-		if (!this.listeners[event]) {
+  off(event: string, callback: unknown) {
+    if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
     this.listeners[event] = this.listeners[event].filter(
@@ -23,13 +23,12 @@ export default class EventBus {
     );
   }
 
-	emit(event: string, ...args: unknown[]) {
+  emit(event: string, ...args: unknown[]) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
-    this.listeners[event].forEach(function(listener) {
+    this.listeners[event].forEach(function (listener) {
       listener(...args);
     });
   }
 }
-

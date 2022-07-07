@@ -4,11 +4,13 @@ class Popup {
   private _openPopup: string;
   private _popup: HTMLElement;
   private _buttons: string[];
+  private _selector: string;
   
-  constructor(buttons: string[]) {
-    this._buttons = buttons;
-    this._popup = document.querySelector(POPUP) as HTMLElement;
+  constructor(buttons: string[], formSelector: string) {
 
+    this._selector = formSelector ? formSelector : POPUP;
+    this._buttons = buttons;
+    this._popup = document.querySelector(this._selector) as HTMLElement;
     this._handleEscClose = this._handleEscClose.bind(this);
     this._openPopup = POPUP_ACTIVE;
   }
@@ -43,10 +45,10 @@ class Popup {
   }
 
   initPopups(element: HTMLElement) {
-    this._popup = element.querySelector(POPUP) as HTMLElement;
+    this._popup = element.querySelector(this._selector) as HTMLElement;
+
     this._buttons.forEach((selector: string) => {
       const button = element.querySelector(selector);
-
       if (button) {
         button.addEventListener('click', () => this.open());
       }

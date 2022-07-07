@@ -1,126 +1,157 @@
 import EventBus from './eventBus';
-import {Props} from './types';
-import {compile} from 'handlebars';
+import { isEqual } from './isEqual';
 
-interface IMeta {
-  tagName: string,
-  props: object
-}
-
-export default class Block {
+export default abstract class Block<Props extends object = {}> {
+  render() {
+    throw new Error('Method not implemented.');
+  }
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
+    FLOW_CDU: 'flow:component-did-update'
   };
-  private block: any = null;
-  private meta: IMeta = {tagName: 'div', props: {}};
+  eventBus: () => EventBus;
+  _element: HTMLElement | null = null;
+  readonly meta: {
+    tagName: string,
+    props: Props
+  }
+  oldProps: Props;
   protected props: Props;
-  private eventBus: () => EventBus;
-  tmp: string;
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
-  constructor(props: Props, tagName: string = 'div') {
+   
+  constructor(tagName: string = 'div', propsAndChildren: Props = <Props>{}) {
     const eventBus = new EventBus();
     this.meta = {
       tagName,
-      props,
+      props: propsAndChildren,
     };
-    this.props = this.makePropsProxy(props);
+    this.props = <Props>this.makePropsProxy(propsAndChildren);
+    this.oldProps = <Props>{};
     this.eventBus = () => eventBus;
     this.registerEvents(eventBus);
-    this.tmp = '<div></div>';
     eventBus.emit(Block.EVENTS.INIT);
   }
+
   private registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this.blockComponentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this.blockComponentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this.blockRender.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
   }
+
   private createResources() {
     const {tagName} = this.meta;
-    this.block = this.createDocumentElement(tagName);
-    this.block.classList.add('root');
+    this._element = this.createDocumentElement(tagName);
+    this._element.classList.add('root');
   }
-  public init() {
+
+  init(): void {
     this.createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
-  private blockComponentDidMount() {
+
+  private _componentDidMount(): void {
     this.componentDidMount();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this.setHandlers();
   }
-  componentDidMount() {}
-
-  private blockComponentDidUpdate() {
-    const response = this.componentDidUpdate();
-    if (!response) {
-      return;
-    }
-    this.blockRender();
-  }
-  componentDidUpdate() {
-    return true;
-  }
-  public setProps(nextProps: ProxyHandler<object>) {
-    if (!nextProps) {
-      return;
-    }
-    Object.assign(this.props, nextProps);
-  }
-  public get element() {
-    return this.block;
-  }
-  private blockRender() {
-    const block = this.render();
-    this.block.innerHTML = block;
-  }
-  private setHandlers() {
+  private setHandlers(): void {
     const {handlers} = this.props;
     if (handlers) {
-      handlers.forEach((item:  any) => {
-        item(this.block);
+      handlers.forEach((item: Function) => {
+        item(this._element);
       });
     }
   }
-  getContent() {
+
+  componentDidMount(): void {
+  }
+
+  private _componentDidUpdate(): void {
+    const response: boolean = !isEqual(this.oldProps, this.props);
+    if (response) this._componentDidMount();
+  }
+
+  public setProps = (nextProps: { [key: string]: string }) => {
+    if (!nextProps) {
+      return;
+    }
+    this.oldProps = Object.assign({}, this.props);
+
+    Object.keys(nextProps).forEach(key => {
+      this.props[key] = nextProps[key];
+    })
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU);
+  };
+
+  public get element(): HTMLElement | null {
+    return this._element;
+  }
+
+  private addEvents() {
+    const {events = {}} = this.props;
+
+    Object.keys(events).forEach(eventName => {
+      this._element!.addEventListener(eventName, events[eventName]);
+    });
+  }
+
+  private removeEvents() {
+    const {events = {}} = this.props;
+
+    Object.keys(events).forEach(eventName => {
+      this._element!.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
+  private _render() {
+    //@ts-ignore
+    const block: string = this.render();
+    this.removeEvents();
+    if (this.props.className) {
+      this._element!.classList.add(this.props.className);
+    }
+    this._element!.innerHTML = block;
+    this.addEvents();
+  }
+
+  // public render(): void {
+  // }
+
+  public getContent(): HTMLElement | null {
     return this.element;
   }
-  private makePropsProxy(props: Props) {
-    const self = this;
+
+  private makePropsProxy(props: Props): Props {
     return new Proxy(props, {
-      get(target, prop: string) {
+      get(target: Props, prop: string) {
+        if (prop.indexOf('_') === 0) {
+          throw new Error('Отказано в доступе');
+        }
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop: string, value) {
+      set(target: Props, prop: string, value: string) {
+        // @ts-expect-error
         target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
       },
       deleteProperty() {
-        throw new Error('Нет доступа');
-      },
+        throw new Error('Отказано в доступе');
+      }
     });
   }
+
   private createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
+
   public show() {
-    this.getContent().style.display = 'block';
+    this.getContent()!.style.display = 'block';
   }
+
   public hide() {
-    this.getContent().style.display = 'none';
-  }
-  public render() {
-    return compile(this.tmp, 
-      {noEscape: true})(this.props);
+    this.getContent()!.style.display = 'none';
   }
 }
