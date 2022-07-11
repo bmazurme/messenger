@@ -6,7 +6,7 @@ export default function handleEditPasswordSubmit(element: HTMLElement, className
   const formList: Array<HTMLElement> = Array.from(element.querySelectorAll(className));
 
   formList.forEach((item: HTMLElement) => {
-    item.addEventListener('submit', (evt: Event) => {
+    item.addEventListener('submit', async (evt: Event) => {
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
@@ -32,13 +32,8 @@ export default function handleEditPasswordSubmit(element: HTMLElement, className
       } = data;
 
       if (isValidForm) {
-        users
-          .changePassword({data: {
-            oldPassword,
-            newPassword,
-          }})
-          .then(() => console.log('Ok'))
-          .catch(console.log);
+        await users.changePassword({data: { oldPassword, newPassword }})
+        console.log('Ok');
       }
     });
   });

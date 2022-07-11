@@ -1,5 +1,6 @@
 import { Button } from 'components/ui/button';
 
 export interface IForm {
-  submitButton: Button;
+  submitButton: Button,
+  events: {[key:string]: Function}
 };

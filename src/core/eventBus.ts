@@ -1,33 +1,37 @@
 export default class EventBus {
-  listeners: {
-    [key: string]: string[]
-  };
+  listeners: { [index: string]: any };
 
   constructor() {
     this.listeners = {};
   }
-  // eslint-disable-next-line no-unused-vars
-  on(event: string, callback: (...args: unknown[]) => void) {
+
+  on(event: string, callback: () => void) {
+    if (event === 'validate') {
+        console.log(this.listeners);
+    }
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
+
     this.listeners[event].push(callback);
   }
 
-  off(event: string, callback: unknown) {
+  off(event: string, callback: () => void) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
+
     this.listeners[event] = this.listeners[event].filter(
-      listener => listener !== callback
+      (listener: () => {}) => listener !== callback,
     );
   }
 
-  emit(event: string, ...args: unknown[]) {
+  emit(event: string, ...args: any[]) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
-    this.listeners[event].forEach(function (listener) {
+
+    this.listeners[event].forEach((listener: any) => {
       listener(...args);
     });
   }

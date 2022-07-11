@@ -12,6 +12,7 @@ import { IUser } from './IUser';
 import { store } from '../../../core/store';
 import { ActionTypes } from '../../../core/types';
 import { MessageList } from '../messageList';
+import { Header } from '../header';
 import WebSocketService from '../../../api/WebSocket';
 import handleValidation from '../../../handles/handleValidation';
 
@@ -20,15 +21,17 @@ export class ChatWindow extends Block<IChatWindow> {
     super('div', {
       ...props,
       className: 'board',
+      header: new Header({}),
       addPopup: new AddUserForm(),
       boardForm: new BoardForm(),
       events: {
         submit: (e: Event) => this._handleSubmit(e), 
-        click: (e: Event) => this.handleClick(e)
+        click: (e: Event) => this._handleClick(e)
       },
       handlers: [handleValidation]
     });
   }
+  
   private _handleSubmit(e: Event) {
     e.preventDefault();
     const chatData: {users: Array<number>, chatId: number} = {
@@ -50,22 +53,7 @@ export class ChatWindow extends Block<IChatWindow> {
     }
   }
 
-  openPopup(selector: string, label: string) {
-    const popup = document.querySelector(selector) as HTMLElement;
-    const button: HTMLElement = popup.querySelector('.button') as HTMLElement;
-
-    if (button) {
-      button.textContent = label;
-    }
-    popup.classList.add('popup_active');
-  }
-
-  closePopup() {
-    const popup = document.querySelector('.popup_active') as HTMLElement;
-    popup.classList.remove('popup_active');
-  }
-
-  handleClick(e: Event) {
+  private _handleClick(e: Event) {
     const el: HTMLElement|null = e.target as HTMLElement;
     const bt1 = document.querySelector('.add_user') as HTMLElement;
     const bt2 = document.querySelector('.remove_user') as HTMLElement;
@@ -96,6 +84,21 @@ export class ChatWindow extends Block<IChatWindow> {
     }
   }
 
+  openPopup(selector: string, label: string) {
+    const popup = document.querySelector(selector) as HTMLElement;
+    const button: HTMLElement = popup.querySelector('.button') as HTMLElement;
+
+    if (button) {
+      button.textContent = label;
+    }
+    popup.classList.add('popup_active');
+  }
+
+  closePopup() {
+    const popup = document.querySelector('.popup_active') as HTMLElement;
+    popup.classList.remove('popup_active');
+  }
+
   async componentDidMount() {
     await this.getChatToken();
     await this.getUserInfo();
@@ -113,18 +116,19 @@ export class ChatWindow extends Block<IChatWindow> {
   }
 
   async getChatToken() {
-    const result = await chats.getChatToken(this.props.chatId.toString());
-    const token: {[key:string]:string} = result.response;
+    const result: any = await chats.getChatToken(this.props.chatId.toString());
+    const token: any = result.response;
     this.setProps({...this.props, chatToken: JSON.parse(token).token});
   }
 
   async getUserInfo() {
-    const result = await auth.getUser();
+    const result:any = await auth.getUser();
     const userInfo = JSON.parse(result.response);
     this.setProps({...this.props, userId: userInfo.id});
   }
 
   renderMessageList() {
+    console.log(this.props)
     return new MessageList({...this.props}).render();
   }
 
@@ -150,15 +154,15 @@ export class ChatWindow extends Block<IChatWindow> {
     const searchByLoginData = {
       login: userLogin
     };
-    const result = await users.searchByLogin({data: searchByLoginData});
-    const userDate: Array<User> = JSON.parse(result.response);
+    const result: any = await users.searchByLogin({data: searchByLoginData});
+    const userDate: Array<IUser> = JSON.parse(result.response);
     const user: IUser = userDate[0];
     if (user) {
       return data.users.push(user.id);
     }
   }
 
-  send(form: HTMLElement) {
+  private send(form: HTMLElement) {
     const data: {[key: string]: string} = {};
     Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
       const name = input.getAttribute('name');
@@ -172,23 +176,24 @@ export class ChatWindow extends Block<IChatWindow> {
 
   private _connectToChat(props: {userId: number, chatId: number, chatToken: string}) {
     const {userId, chatId, chatToken} = props;
-    new WebSocketService(userId, chatId, chatToken);
+    (new WebSocketService(userId, chatId, chatToken));
   }
   
   private _sendChatMessage(message: string) {
     if (message === '') {
       return;
     }
-    new WebSocketService().send({
+    (new WebSocketService()).send({
       content: message,
       type: 'message',
     });
   }
 
   render() {
-    const { chatName, addPopup, boardForm } = this.props;
+    const { header, chatName, addPopup, boardForm } = this.props;
     return tmp({
       chatName,
+      header: header.render(),
       boardForm: boardForm.render(),
       addPopup: addPopup.render(),
       messageList: this.renderMessageList()

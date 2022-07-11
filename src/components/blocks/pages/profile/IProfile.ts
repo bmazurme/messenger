@@ -1,10 +1,13 @@
 import { Popup } from '../../../ui/popup';
 import Block from 'core/block';
+import { Button } from 'components/ui/button';
 
 export interface IProfile {
-  popup: Popup;
-  userData: IUserData;
-  handlers: Array<Function>;
+  popup: Popup,
+  userData: IUserData,
+  backButton: Button,
+  handlers: Array<Function>,
+  events: {[key:string]: Function}
 };
 
 export interface IUserData {
@@ -15,5 +18,6 @@ export interface IUserData {
   login: string,
   email: string,
   phone: number,
-  avatar: string
+  avatar: string,
+  id: number
 };

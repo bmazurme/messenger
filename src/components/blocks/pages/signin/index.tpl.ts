@@ -2,9 +2,7 @@ import {compile} from 'handlebars';
 
 const source = `
   <section class="identity">
-    <h1 class="identity__title">
-      Вход
-    </h1>
+    <h1 class="identity__title"> Вход </h1>
     <form class="form identity__form identity_signin" action="">
       {{{inboxes}}}
       {{{submitButton}}}

@@ -3,7 +3,6 @@ import { Button } from '../../button';
 import { tmp } from './index.tpl';
 import { IForm } from './IForm';
 
-
 export class Form extends Block<IForm> {
   constructor() {
     super('div', {
@@ -12,7 +11,14 @@ export class Form extends Block<IForm> {
         type: 'submit',
         text: 'Поменять',
       }),
+      events: {
+        click: (e: Event) => this._handleClick(e),
+      },
     });
+  }
+
+  private _handleClick() {
+    alert('!');
   }
 
   render() {

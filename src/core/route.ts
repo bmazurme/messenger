@@ -7,8 +7,8 @@ function isEqual(lhs: string, rhs: string): boolean {
 
 class Route {
   private _pathname: string;
-  readonly _blockClass: Block;
-  private _block: Block | null;
+  readonly _blockClass: Block|any;
+  public _block: Block | null;
   private _props: { [key: string]: string };
 
   constructor(pathname: string, view: Block, props: {}) {

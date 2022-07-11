@@ -11,96 +11,41 @@ import handleEditProfileSubmit from '../../../../../handles/handleEditProfileSub
 import handleValidation from '../../../../../handles/handleValidation';
 import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
 import protectedRoute from '../../../../../utils/protected';
+import { PROFILE } from '../../../../../utils/constants';
+import { router } from '../../../../../index';
+import { inputs } from './inputs';
 
 export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
   constructor() {
     super('main', {
       userData: {},
       popup: new Popup(new Form(),''),
-      inputs: [
-        {
-          label: 'Почта',
-          name: 'email',
-          type: 'email',
-          labelClass: 'list__label',
-          inputClass: 'input list__value list__value_input email',
-          placeholder: '',
-          errClass: 'email-err',
-          validationType: 'email',
-          errSelector: '.email-err',
-        },
-        {
-          label: 'Логин',
-          name: 'login',
-          type: 'text',
-          labelClass: 'list__label',
-          inputClass: 'input list__value list__value_input login',
-          placeholder: '',
-          errClass: 'login-err',
-          validationType: 'login',
-          errSelector: '.login-err'
-        },
-        {
-          label: 'Имя',
-          name: 'first_name',
-          type: 'text',
-          labelClass: 'list__label',
-          inputClass: 'input list__value list__value_input first-name',
-          placeholder: '',
-          errClass: 'first-name-err',
-          validationType: 'first_name',
-          errSelector: '.first-name-err'
-        },
-        {
-          label: 'Фамилия',
-          name: 'second_name',
-          type: 'text',
-          labelClass: 'list__label',
-          inputClass: 'input list__value list__value_input second-name',
-          placeholder: '',
-          errClass: 'second-name-err',
-          validationType: 'second_name',
-          errSelector: '.second-name-err'
-        },
-        {
-          label: 'Имя в чате',
-          name: 'display_name',
-          type: 'text',
-          labelClass: 'list__label',
-          inputClass: 'input list__value list__value_input nickname',
-          placeholder: '',
-          errClass: 'nickname-err',
-          validationType: 'nickname',
-          errSelector: '.nickname-err'
-        },
-        {
-          label: 'Телефон',
-          name: 'phone',
-          type: 'tel',
-          labelClass: 'list__label',
-          inputClass: 'input list__value list__value_input phone',
-          placeholder: '',
-          errClass: 'phone-err',
-          validationType: 'phone',
-          errSelector: '.phone-err'
-        }
-      ],
+      inputs,
       submitButton: new Button({
         class: 'button button_submit',
         type: 'submit',
         text: 'Сохранить'
       }),
+      events: {
+        click: (e: Event) => this._handleClick(e),
+      },
       handlers: [
         handleValidation,
         handlerPopupClick,
         handleEditProfileSubmit,
         handleEditAvatarSubmit
-      ]
+      ],
     });
   }
 
+  private async _handleClick(e: Event) {
+    if (e.target === document?.querySelector('.back__button')) {
+      router.go(PROFILE);
+    }
+  }
+
   async componentDidMount() {
-    const userDataDTO = await auth.getUser();
+    const userDataDTO: any = await auth.getUser();
     const userData = JSON.parse(userDataDTO.response);
     protectedRoute(userData.id);
     this.setProps({...this.props, userData});
@@ -110,10 +55,12 @@ export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
     const {inputs, submitButton, popup, userData} = this.props;
     return tmp({
       popup: popup.render(),
-      inputs: (inputs.map(x => {
+      inputs: (inputs.map((x: {[key:string]:string}) => {
         return new Input({...x, value: userData[x.name]}).render()
       })).join(''),
-      avatar: this.props.userData.avatar || 'assets/icons/profile-picture.svg',
+      avatar: userData.avatar 
+        ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
+        : 'src/vendor/images/ava.svg',
       submitButton: submitButton.render()
     })
   }

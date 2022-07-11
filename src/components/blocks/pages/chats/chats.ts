@@ -11,16 +11,17 @@ import { Popup } from '../../../ui/popup/index';
 import { CreateChatForm } from '../../../ui/forms/createChatForm';
 import { IChats } from './IChats';
 import { Button } from '../../../../components/ui/button';
-import { Card } from '../../../../components/blocks/card';
-import { ICard } from 'components/blocks/card/ICard';
+import { Card } from '../../../ui/card';
+import { ICard } from 'components/ui/card/ICard';
 import protectedRoute from '../../../../utils/protected';
+import { Form } from '../../../../components/ui/forms/form';
 
 export class Chats extends Block<IChats> {
   constructor() {
     super('main', 
     {
       cards: [], 
-      popup: new Popup(new CreateChatForm(), '' ),
+      popup: new Popup(new CreateChatForm() as Form, '' ),
       submitButton: new Button({
         class: 'button button_create-chat',
         type: 'button',
@@ -54,10 +55,10 @@ export class Chats extends Block<IChats> {
   }
 
   async componentDidMount() {
-    const userDTO = await auth.getUser();
+    const userDTO: any = await auth.getUser();
     const userInfo = JSON.parse(userDTO.response);
     protectedRoute(userInfo.id);
-    const chatsDataDTO = await chats.getChats();
+    const chatsDataDTO: any = await chats.getChats();
     const chatsData: Array<ICard> = JSON.parse(chatsDataDTO.response);
 
     this.setProps({

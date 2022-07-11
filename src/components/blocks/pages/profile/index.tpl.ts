@@ -3,46 +3,24 @@ import {compile} from 'handlebars';
 const source = `
   <section class="profile">
     <div class="profile__avatar">
+      <img class="profile__avatar" src={{avatar}} alt=""/>
     </div>
     <h2 class="profile__title">
       {{ first_name }}
     </h2> 
 
     <ul class="list">
-      <li class="list__item">
-        <p class="list__label">Почта</p>
-        <p class="list__value">{{email}}</p>
-      </li>
-      <li class="list__item">
-        <p class="list__label">Логин</p>
-        <p class="list__value">{{login}}</p>
-      </li>
-      <li class="list__item">
-        <p class="list__label">Имя</p>
-        <p class="list__value">{{first_name}}</p>
-      </li>
-      <li class="list__item">
-        <p class="list__label">Фамилия</p>
-        <p class="list__value">{{second_name}}</p>
-      </li>
-      <li class="list__item">
-        <p class="list__label">Имя в чате</p>
-        <p class="list__value">{{display_name}}</p>
-      </li>
-      <li class="list__item">
-        <p class="list__label">Телефон</p>
-        <p class="list__value">{{phone}}</p>
-      </li>
+      {{{textBlocks}}}
     </ul>
 
     <ul class="profile__menu">
       <li class="list__item">
-        <a class="profile__link" href="/profile-edit">
+        <a class="profile__link profile-edit" href="/profile-edit">
           Изменить данные
         </a>
       </li>
       <li class="list__item">
-        <a class="profile__link" href="/profile-password">
+        <a class="profile__link profile-edit-pass" href="/profile-password">
           Изменить пароль
         </a>
       </li>
@@ -54,7 +32,7 @@ const source = `
     </ul>
 
     <div class="back">
-      <a href="/chats" class="back__button"></a>
+      {{{backButton}}}
     </div>
     {{{popup}}}
   </section>`

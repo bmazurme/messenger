@@ -1,6 +1,6 @@
 import Block from '../../../../core/block';
-import {source} from './error.tpl';
-import {compile} from 'handlebars';
+import { source } from './error.tpl';
+import { compile } from 'handlebars';
 
 export class Error500 extends Block {
   constructor() {

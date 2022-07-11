@@ -7,7 +7,6 @@ class Popup {
   private _selector: string;
   
   constructor(buttons: string[], formSelector: string) {
-
     this._selector = formSelector ? formSelector : POPUP;
     this._buttons = buttons;
     this._popup = document.querySelector(this._selector) as HTMLElement;
@@ -15,14 +14,14 @@ class Popup {
     this._openPopup = POPUP_ACTIVE;
   }
 
-  _handleButtonClose = (evt: Event) => {
+  private _handleButtonClose = (evt: Event) => {
     const target = evt.target as HTMLButtonElement
     if (target.classList.contains(this._openPopup)) {
       this.close();
     }
   };
 
-  _handleEscClose(evt: KeyboardEvent) {
+  private _handleEscClose(evt: KeyboardEvent) {
     if (evt.key === 'Escape') {
       this.close();
     }
@@ -46,7 +45,6 @@ class Popup {
 
   initPopups(element: HTMLElement) {
     this._popup = element.querySelector(this._selector) as HTMLElement;
-
     this._buttons.forEach((selector: string) => {
       const button = element.querySelector(selector);
       if (button) {
