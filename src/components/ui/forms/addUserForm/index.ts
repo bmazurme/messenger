@@ -11,6 +11,7 @@ export class AddUserForm extends Block<IForm> {
         type: 'submit',
         text: 'Добавить пользователя'
       }),
+      events: {}
     });
   }
 

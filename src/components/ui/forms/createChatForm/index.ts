@@ -11,6 +11,7 @@ export class CreateChatForm extends Block<IForm> {
         type: 'submit',
         text: 'Создать'
       }),
+      events: {}
     });
   }
   render() {

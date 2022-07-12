@@ -1,8 +1,10 @@
 import Block from '../../../core/block';
 import { tmp } from './index.tpl';
+import { IHeader } from './IHeader';
 
 export class Header extends Block {
-  constructor(props: {}) {
+  constructor(props: IHeader) {
+    console.log(props)
     super('div', props);
   }
   render() {

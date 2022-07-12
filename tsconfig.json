@@ -1,5 +1,5 @@
 {
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "./custom.d.ts"],
   "exclude": ["./dist"],
   "overrides": [{
     "files": ["*.ts", "*.tsx"],
@@ -16,8 +16,15 @@
     "allowJs": true,
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "typeRoots": [
       "./node_modules/@types"
     ]
-  }
+  },
 }

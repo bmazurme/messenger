@@ -16,6 +16,7 @@ export class BoardForm extends Block<IBoardForm> {
         type: 'submit',
         text: '',
       }),
+      events: {}
     });
   }
 

@@ -1,4 +1,4 @@
-import Block from 'core/block';
+import Block from '../../../core/block';
 import { BoardForm } from '../../ui/forms/boardForm';
 import { Header } from '../header';
 

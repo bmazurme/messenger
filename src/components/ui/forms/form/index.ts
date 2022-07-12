@@ -17,10 +17,10 @@ export class Form extends Block<IForm> {
     });
   }
 
-  private _handleClick() {
-    alert('!');
+  private _handleClick(e: Event) {
+    console.log(e.target);
   }
-
+  
   render() {
     const {submitButton} = this.props;
     return tmp({

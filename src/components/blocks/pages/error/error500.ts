@@ -1,6 +1,5 @@
 import Block from '../../../../core/block';
-import { source } from './error.tpl';
-import { compile } from 'handlebars';
+import { tmp } from './error.tpl';
 
 export class Error500 extends Block {
   constructor() {
@@ -8,7 +7,7 @@ export class Error500 extends Block {
   }
 
   render() {
-    return compile(source)({
+    return tmp({
       code: 500,
       text: 'Мы уже фиксим',
       link: 'Назад к чатам',

@@ -1,3 +1,4 @@
+import './index.css';
 import Router from './core/router';
 import { Signin } from './components/blocks/pages/signin';
 import { Signup } from './components/blocks/pages/signup';

@@ -1,6 +1,6 @@
 import { Popup } from '../../../ui/popup';
-import Block from 'core/block';
-import { Button } from 'components/ui/button';
+import Block from '../../../../core/block';
+import { Button } from '../../../../components/ui/button';
 
 export interface IProfile {
   popup: Popup,

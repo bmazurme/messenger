@@ -1,5 +1,5 @@
-import { Popup } from 'components/ui/popup';
-import { Button } from 'components/ui/button';
+import { Popup } from '../../../../../components/ui/popup';
+import { Button } from '../../../../../components/ui/button';
 import { IUserData } from '../IProfile';
 
 export interface IChangePassword {

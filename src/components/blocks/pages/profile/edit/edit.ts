@@ -60,7 +60,7 @@ export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
       })).join(''),
       avatar: userData.avatar 
         ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
-        : 'src/vendor/images/ava.svg',
+        : '',
       submitButton: submitButton.render()
     })
   }

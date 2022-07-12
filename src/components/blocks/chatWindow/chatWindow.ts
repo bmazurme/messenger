@@ -18,10 +18,11 @@ import handleValidation from '../../../handles/handleValidation';
 
 export class ChatWindow extends Block<IChatWindow> {
   constructor(props: IChatWindow) {
+
     super('div', {
       ...props,
       className: 'board',
-      header: new Header({}),
+      header: new Header({chatName: props.chatName}),
       addPopup: new AddUserForm(),
       boardForm: new BoardForm(),
       events: {
@@ -191,6 +192,9 @@ export class ChatWindow extends Block<IChatWindow> {
 
   render() {
     const { header, chatName, addPopup, boardForm } = this.props;
+
+
+
     return tmp({
       chatName,
       header: header.render(),

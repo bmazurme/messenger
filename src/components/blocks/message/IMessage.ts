@@ -3,5 +3,6 @@ export interface IMessage {
   incoming: boolean,
   content: string,
   file: string | null,
-  fromYou: boolean
+  fromYou: boolean,
+  user_id: number
 }

@@ -1,6 +1,6 @@
-import { Button } from 'components/ui/button';
-import { Popup } from 'components/ui/popup';
-import { Card } from 'components/ui/card';
+import { Button } from '../../../../components/ui/button';
+import { Popup } from '../../../../components/ui/popup';
+import { Card } from '../../../../components/ui/card';
 
 export interface IChats {
   cards: Array<Card>,

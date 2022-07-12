@@ -97,7 +97,7 @@ export class Profile extends Block<IProfile> {
       backButton: backButton.render(),
       avatar: userData.avatar 
         ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
-        : 'src/vendor/images/ava.svg'
+        : ''
     })
   }
 }
