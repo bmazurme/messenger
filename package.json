@@ -5,15 +5,14 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./src/server.js",
-
     "dev": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-
     "watch": "webpack --mode development --watch",
     "startDevServer": "webpack-dev-server --mode development --open",
     "devParcel": "parcel src/index.html",
     "lint": "npx eslint . --no-fix",
-    "test": "mocha -r ts-node/register"
+    "test": "mocha -r ts-node/register",
+    "prepare": "husky install .config/husky"
   },
   "keywords": [],
   "author": "mazurb",
