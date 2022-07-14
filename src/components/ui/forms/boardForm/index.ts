@@ -10,11 +10,13 @@ export class BoardForm extends Block<IBoardForm> {
         class: 'button footer__button footer__button_attach',
         type: 'button',
         text: '',
+        events: {}
       }),
       submitButton: new Button({
         class: 'button footer__button footer__button_send',
         type: 'submit',
         text: '',
+        events: {},
       }),
       events: {}
     });

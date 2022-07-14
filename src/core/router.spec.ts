@@ -1,6 +1,6 @@
 import Block from './block';
 import Router from './router';
-import { ISign } from '../components/blocks/pages/signin/ISign';
+import { ISign } from '../components/pages/signin/ISign';
 import { Button } from '../components/ui/button';
 import {compile} from 'handlebars';
 import { expect } from 'chai';
@@ -38,7 +38,8 @@ class Signin extends Block<ISign> {
       submitButton: new Button({
         class: 'button button_signup button_submit',
         type: 'submit',
-        text: 'Зарегистрироваться'
+        text: 'Зарегистрироваться',
+        events: {}
       }),
     });
   }
@@ -55,7 +56,8 @@ class Signup extends Block<ISign> {
       submitButton: new Button({
         class: 'button button_signup button_submit',
         type: 'submit',
-        text: 'Зарегистрироваться'
+        text: 'Зарегистрироваться',
+        events: {}
       }),
     });
   }
@@ -98,12 +100,12 @@ describe('Router', function () {
 
   it('Should go to Signin page', () => {
     router.go('/');
-    expect(router.getCurrentRoute()?._block).instanceOf(Signin);
+    expect(router.getCurrentRoute()?.block).instanceOf(Signin);
   });
 
   it('Should go to Signup page', () => {
     router.go('/signup');
-    expect(router.getCurrentRoute()?._block).instanceOf(Signup);
+    expect(router.getCurrentRoute()?.block).instanceOf(Signup);
   });
 
   it('and affect history length', () => {

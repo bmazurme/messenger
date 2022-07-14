@@ -1,4 +1,4 @@
-import Block from '../../../../core/block';
+import Block from '../../../core/block';
 import { tmp } from './error.tpl';
 
 export class Error500 extends Block {

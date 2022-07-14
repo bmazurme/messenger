@@ -1,13 +1,15 @@
 import './index.css';
+
 import Router from './core/router';
-import { Signin } from './components/blocks/pages/signin';
-import { Signup } from './components/blocks/pages/signup';
-import { ChangePassword } from './components/blocks/pages/profile/edit-pass/edit-pass';
-import { ChangeProfileInfo } from './components/blocks/pages/profile/edit/edit';
-import { Chats } from './components/blocks/pages/chats/chats';
-import { Profile } from './components/blocks/pages/profile';
-import { Error404 } from './components/blocks/pages/error/error404';
-import { Error500 } from './components/blocks/pages/error/error500';
+
+import { Signin } from './components/pages/signin';
+import { Signup } from './components/pages/signup';
+import { ChangePassword } from './components/pages/profile/edit-pass/edit-pass';
+import { ChangeProfileInfo } from './components/pages/profile/edit/edit';
+import { Chats } from './components/pages/chats/chats';
+import { Profile } from './components/pages/profile';
+import { Error404 } from './components/pages/error/error404';
+import { Error500 } from './components/pages/error/error500';
 
 import {
   SIGN_IN,

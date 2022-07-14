@@ -95,6 +95,8 @@ export default abstract class Block<Props extends object = {}> {
     const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
+      // console.log(eventName);
+      // console.log(events[eventName]);
       this._element!.addEventListener(eventName, events[eventName]);
     });
   }
@@ -118,9 +120,6 @@ export default abstract class Block<Props extends object = {}> {
     this.addEvents();
   }
 
-  // getId(): string {
-  //   return this._id;
-  // }
 
   public getContent(): HTMLElement | null {
     return this.element;

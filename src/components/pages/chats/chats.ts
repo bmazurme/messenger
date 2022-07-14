@@ -1,22 +1,26 @@
-import Block from '../../../../core/block';
-import handlerPopupClick from '../../../../handles/handlerPopupClick';
-import handleCreateChatSubmit from '../../../../handles/handleCreateChatSubmit';
-import handleOpenChat from '../../../../handles/handleOpenChat';
-import handleValidation from '../../../../handles/handleValidation';
-import { ChatWindow } from '../../../../components/blocks/chatWindow/chatWindow';
+import { chats } from '../../../api/ChatsAPI';
+import { auth } from '../../../api/AuthAPI';
+
+import Block from '../../../core/block';
 import { tmp } from './chats.tpl';
-import { chats } from '../../../../api/ChatsAPI';
-import { auth } from '../../../../api/AuthAPI';
-import { Popup } from '../../../ui/popup/index';
-import { CreateChatForm } from '../../../ui/forms/createChatForm';
+
+import { ChatWindow } from '../../blocks/chatWindow/chatWindow';
+import { Popup } from '../../ui/popup/index';
+import { BoardForm } from '../../ui/forms/boardForm';
+import { CreateChatForm } from '../../ui/forms/createChatForm';
+import { Button } from '../../ui/button';
+import { Card } from '../../ui/card';
+import { ICard } from '../../ui/card/ICard';
+import { Form } from '../../ui/forms/form';
+import { Header } from '../../blocks/header';
+
 import { IChats } from './IChats';
-import { Button } from '../../../../components/ui/button';
-import { Card } from '../../../ui/card';
-import { ICard } from '../../../../components/ui/card/ICard';
-import protectedRoute from '../../../../utils/protected';
-import { Form } from '../../../../components/ui/forms/form';
-import { BoardForm } from '../../../ui/forms/boardForm';
-import { Header } from '../../header';
+
+import protectedRoute from '../../../utils/protected';
+import handlerPopupClick from '../../../handles/handlerPopupClick';
+import handleCreateChatSubmit from '../../../handles/handleCreateChatSubmit';
+import handleOpenChat from '../../../handles/handleOpenChat';
+import handleValidation from '../../../handles/handleValidation';
 
 export class Chats extends Block<IChats> {
   constructor() {
@@ -28,6 +32,7 @@ export class Chats extends Block<IChats> {
         class: 'button button_create-chat',
         type: 'button',
         text: 'Создать чат',
+        events: {}
       }),
       handlers: [
         handlerPopupClick,
@@ -43,16 +48,14 @@ export class Chats extends Block<IChats> {
 
   handleClick(e: Event) {
     const target: HTMLElement|null = e.target as HTMLElement;
-//button button_create-chat
-    const element: HTMLElement|null =target?.closest('.card');
-    const el: HTMLElement|null = element?.querySelector('.card__title') as HTMLElement;
+    const card: HTMLElement|null =target?.closest('.card');
+    const title: HTMLElement|null = card?.querySelector('.card__title') as HTMLElement;
     
-    
-    if (el) {
-      const textContent: string = el.textContent!;
+    if (title) {
+      const textContent: string = title.textContent!;
       const chatWindow = new ChatWindow({
         chatName: textContent,
-        chatId: Number(el.dataset.chatId),
+        chatId: Number(title.dataset.chatId),
         className: '',
         addPopup: new Popup(new Form(), ''),
         boardForm: new BoardForm(),
@@ -74,8 +77,14 @@ export class Chats extends Block<IChats> {
     const userInfo = JSON.parse(userDTO.response);
     protectedRoute(userInfo.id);
     const chatsDataDTO: any = await chats.getChats();
-    const chatsData: Array<ICard> = JSON.parse(chatsDataDTO.response);
-
+    let chatsData: Array<ICard> = [];
+    
+    try {
+      chatsData = JSON.parse(chatsDataDTO.response);
+    } catch (err) {
+      console.log(err);
+    }
+    
     this.setProps({
       ...this.props,
       cards: chatsData.map((card: ICard) => {

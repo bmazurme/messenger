@@ -1,20 +1,27 @@
-import Block from '../../../core/block';
-import { tmp } from './chatWindow.tpl';
-import { chats } from '../../../api/ChatsAPI';
 import { auth } from '../../../api/AuthAPI';
 import { users } from '../../../api/UsersAPI';
-import { AddUserForm } from '../../ui/forms/addUserForm';
-import { router } from '../../../index';
-import { BoardForm } from '../../ui/forms/boardForm';
-import { CHATS } from '../../../utils/constants';
-import { IChatWindow } from './IChatWindow';
-import { IUser } from './IUser';
+import { chats } from '../../../api/ChatsAPI';
+import WebSocketService from '../../../api/WebSocket';
+
+import Block from '../../../core/block';
+import { tmp } from './chatWindow.tpl';
+
 import { store } from '../../../core/store';
 import { ActionTypes } from '../../../core/types';
+
+import { AddUserForm } from '../../ui/forms/addUserForm';
+import { BoardForm } from '../../ui/forms/boardForm';
+
+import { router } from '../../../index';
+
+import { IChatWindow } from './IChatWindow';
+import { IUser } from './IUser';
+
 import { MessageList } from '../messageList';
 import { Header } from '../header';
-import WebSocketService from '../../../api/WebSocket';
 import handleValidation from '../../../handles/handleValidation';
+
+import { CHATS } from '../../../utils/constants';
 
 export class ChatWindow extends Block<IChatWindow> {
   constructor(props: IChatWindow) {
@@ -39,27 +46,27 @@ export class ChatWindow extends Block<IChatWindow> {
       users: [],
       chatId: Number(this.props.chatId)
     };
-    const el: HTMLFormElement|null = e.target as HTMLFormElement;
-    const button: HTMLFormElement|null = el.querySelector('.button') as HTMLFormElement;
+    const form: HTMLFormElement|null = e.target as HTMLFormElement;
+    const button: HTMLFormElement|null = form.querySelector('.button') as HTMLFormElement;
 
-    if (el) {
-      if (el.name === 'message') {
-        this.send(el);
+    if (form) {
+      if (form.name === 'message') {
+        this.send(form);
       } else if (button?.textContent === 'Добавить') {
         this.searchUser(chatData).then(() => this.addUser(chatData));
       } else if (button?.textContent === 'Удалить') {
         this.searchUser(chatData).then(() => this.removeUser(chatData));
       }
-      el.reset();
+      form.reset();
     }
   }
 
   private _handleClick(e: Event) {
-    const el: HTMLElement|null = e.target as HTMLElement;
+    const element: HTMLElement|null = e.target as HTMLElement;
     const bt1 = document.querySelector('.add_user') as HTMLElement;
     const bt2 = document.querySelector('.remove_user') as HTMLElement;
-    if (el) {
-      if (el === document.querySelector('.toggle_button')) {
+    if (element) {
+      if (element === document.querySelector('.toggle_button')) {
         if (bt1.classList.contains('header_hidden')) {
           bt1?.classList.remove('header_hidden');
           bt2?.classList.remove('header_hidden');
@@ -69,25 +76,25 @@ export class ChatWindow extends Block<IChatWindow> {
         }
       }
 
-      if (el === document.querySelector('.add_user')) {
+      if (element === document.querySelector('.add_user')) {
         this.openPopup('.add-remove-user-popup', 'Добавить');
       }
   
-      if (el.classList.contains('popup_active')) {
+      if (element.classList.contains('popup_active')) {
         this.closePopup();
         bt1?.classList.add('header_hidden');
         bt2.classList.add('header_hidden');
       }
   
-      if (el === document.querySelector('.remove_user')) {
+      if (element === document.querySelector('.remove_user')) {
         this.openPopup('.add-remove-user-popup', 'Удалить');
       } 
     }
   }
 
   openPopup(selector: string, label: string) {
-    const popup = document.querySelector(selector) as HTMLElement;
-    const button: HTMLElement = popup.querySelector('.button') as HTMLElement;
+    const popup: HTMLElement|null = document.querySelector(selector) as HTMLElement;
+    const button: HTMLElement|null = popup?.querySelector('.button') as HTMLElement;
 
     if (button) {
       button.textContent = label;
@@ -96,7 +103,7 @@ export class ChatWindow extends Block<IChatWindow> {
   }
 
   closePopup() {
-    const popup = document.querySelector('.popup_active') as HTMLElement;
+    const popup:HTMLElement|null  = document.querySelector('.popup_active') as HTMLElement;
     popup.classList.remove('popup_active');
   }
 
@@ -105,11 +112,11 @@ export class ChatWindow extends Block<IChatWindow> {
     await this.getUserInfo();
     const {userId, chatId, chatToken } = this.props;
     this._connectToChat({userId, chatId, chatToken});
-    store.subscribe(ActionTypes.GET_CHAT_MESSAGES, this.setmessageList.bind(this));
+    store.subscribe(ActionTypes.GET_CHAT_MESSAGES, this.setMessageList.bind(this));
     store.dispatchAction(ActionTypes.GET_CHAT_TOKEN, chatToken);
   }
 
-  setmessageList() {
+  setMessageList() {
     this.setProps({
       ...this.props,
       messageList: store.get('messageList')
@@ -123,13 +130,12 @@ export class ChatWindow extends Block<IChatWindow> {
   }
 
   async getUserInfo() {
-    const result:any = await auth.getUser();
+    const result: any = await auth.getUser();
     const userInfo = JSON.parse(result.response);
     this.setProps({...this.props, userId: userInfo.id});
   }
 
   renderMessageList() {
-    console.log(this.props)
     return new MessageList({...this.props}).render();
   }
 
@@ -164,7 +170,8 @@ export class ChatWindow extends Block<IChatWindow> {
   }
 
   private send(form: HTMLElement) {
-    const data: {[key: string]: string} = {};
+    const data: Record<string, string> = {};
+
     Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
       const name = input.getAttribute('name');
       if (name) {

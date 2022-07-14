@@ -7,7 +7,7 @@ export interface IChatWindow {
   addPopup: Block,
   boardForm: BoardForm,
   // eslint-disable-next-line no-unused-vars
-  events: {[key: string]: (e: Event) => void },
+  events: Record<string, Function>,
   header: Header,
   handlers: Array<Function>,
   chatId: number,

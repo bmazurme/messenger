@@ -1,19 +1,23 @@
-import Block from '../../../../../core/block';
-import { Button } from '../../../../ui/button';
+import { auth } from '../../../../api/AuthAPI';
+
+import Block from '../../../../core/block';
 import { tmp } from './edit-pass.tpl';
-import { Popup } from '../../../../ui/popup';
-import { Form } from '../../../../ui/forms/form';
-import { IChangePassword } from './IChangePassword';
-import handlerPopupClick from '../../../../../handles/handlerPopupClick';
-import handleValidation from '../../../../../handles/handleValidation';
-import handleEditPasswordSubmit from '../../../../../handles/handleEditPasswordSubmit';
-import handleEditAvatarSubmit from '../../../../../handles/handleEditAvatarSubmit';
-import { PROFILE } from '../../../../../utils/constants';
-import { router } from '../../../../../index';
-import protectedRoute from '../../../../../utils/protected';
-import { auth } from '../../../../../api/AuthAPI';
+
+import { Button } from '../../../ui/button';
+import { Popup } from '../../../ui/popup';
+import { Form } from '../../../ui/forms/form';
+import { PROFILE } from '../../../../utils/constants';
+import { router } from '../../../../index';
+
 import { inputs } from './inputs';
 import { IUserData } from '../IProfile';
+import { IChangePassword } from './IChangePassword';
+
+import handlerPopupClick from '../../../../handles/handlerPopupClick';
+import handleValidation from '../../../../handles/handleValidation';
+import handleEditPasswordSubmit from '../../../../handles/handleEditPasswordSubmit';
+import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
+import protectedRoute from '../../../../utils/protected';
 
 export class ChangePassword extends Block<IChangePassword> {
   constructor() {
@@ -34,10 +38,13 @@ export class ChangePassword extends Block<IChangePassword> {
       submitButton: new Button({
         class: 'button button_submit',
         type: 'submit',
-        text: 'Сохранить'
+        text: 'Сохранить',
+        events: {
+          click: () => this._goToProfile(),
+        },
       }),
       events: {
-        click: (e: Event) => this._handleClick(e),
+        // click: (e: Event) => this._handleClick(e),
       },
       handlers: [
         handleValidation,
@@ -48,10 +55,8 @@ export class ChangePassword extends Block<IChangePassword> {
     });
   }
 
-  private async _handleClick(e: Event) {
-    if (e.target === document?.querySelector('.back__button')) {
-      router.go(PROFILE);
-    }
+  private _goToProfile() {
+    router.go(PROFILE);
   }
 
   async componentDidMount() {

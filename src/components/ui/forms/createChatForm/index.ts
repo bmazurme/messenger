@@ -9,7 +9,8 @@ export class CreateChatForm extends Block<IForm> {
       submitButton: new Button({
         class: 'button popup__button',
         type: 'submit',
-        text: 'Создать'
+        text: 'Создать',
+        events: {}
       }),
       events: {}
     });

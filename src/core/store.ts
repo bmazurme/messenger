@@ -1,4 +1,5 @@
 import { ActionTypes } from './types';
+
 type StateT = Record<string, unknown>;
 type PayloadT = Record<string, unknown> | Record<string, unknown>[];
 
@@ -8,29 +9,29 @@ class GlobalStore {
   }
   subscribers: Record<string, unknown> = {}
 
-  subscribe(action: string, callback: (state?: StateT) => void) {
+  subscribe(action: string, callback: () => void) {
     if (!Object.prototype.hasOwnProperty(action)) {
       this.subscribers[action] = [];
     }
     (<(() => void)[]>this.subscribers[action]).push(callback);
     return () => this.subscribers[action] = (<(() => 
-      void)[]>this.subscribers[action]).filter(
-      sub => sub !== callback
-    );
+      void)[]>this.subscribers[action]).filter(sub => sub !== callback);
   }
 
   unsubscribeAll() {
     this.subscribers = {};
   }
 
-  dispatchAction(action: string, payload?: PayloadT | string | number | unknown) {
-    this.state = (<(state: Record<string, unknown>, payload?: PayloadT| string | number | unknown) 
+  dispatchAction(action: string, payload?: PayloadT) {
+    // eslint-disable-next-line no-unused-vars
+    this.state = (<(state: Record<string, unknown>, payload?: PayloadT) 
       => Record<string, unknown>>ACTIONS[action])(this.state, payload);
     this.publish(action);
   }
 
   publish(action: string) {
     if (Object.prototype.hasOwnProperty.call(this.subscribers, action)) {
+      // eslint-disable-next-line no-unused-vars
       (<((cb: Record<string, unknown>) 
         => void)[]>this.subscribers[action]).forEach(cb => cb(this.state));
     }

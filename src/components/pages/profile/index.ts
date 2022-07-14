@@ -1,16 +1,26 @@
-import Block from '../../../../core/block';
+import { auth } from '../../../api/AuthAPI';
+
+import Block from '../../../core/block';
 import { tmp } from './index.tpl';
-import { auth } from '../../../../api/AuthAPI';
-import { Popup } from '../../../ui/popup';
-import { Form } from '../../../ui/forms/form';
+
+import { Popup } from '../../ui/popup';
+import { Form } from '../../ui/forms/form';
+import { Button } from '../../ui/button';
+import { router } from '../../../index';
+import { TextBlock } from '../../blocks/text-block';
+
 import { IProfile } from './IProfile';
-import handlerPopupClick from '../../../../handles/handlerPopupClick';
-import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
-import protectedRoute from '../../../../utils/protected';
-import { Button } from '../../../../components/ui/button';
-import { router } from '../../../../index';
-import { CHATS, PROFILE_EDIT, PROFILE_PASSWORD, SIGN_IN } from '../../../../utils/constants';
-import { TextBlock } from '../../../../components/blocks/text-block';
+
+import handlerPopupClick from '../../../handles/handlerPopupClick';
+import handleEditAvatarSubmit from '../../../handles/handleEditAvatarSubmit';
+import protectedRoute from '../../../utils/protected';
+
+import {
+  CHATS,
+  PROFILE_EDIT,
+  PROFILE_PASSWORD,
+  SIGN_IN,
+} from '../../../utils/constants';
 
 export class Profile extends Block<IProfile> {
   constructor() {
@@ -30,8 +40,14 @@ export class Profile extends Block<IProfile> {
       backButton: new Button({
         class: 'button back__button',
         type: 'button',
-        text: ''
+        text: '',
+        events: {
+          // click: () => this._goToChat(),
+        },
       }),
+      //
+      //
+      //
       events: {
         click: (e: Event) => this._handleClick(e),
       },
@@ -41,6 +57,20 @@ export class Profile extends Block<IProfile> {
       ]
     })
   }
+
+  // private _goToChat() {
+  //   router.go(CHATS);
+  // }
+  // private _goToEditProfile() {
+  //   router.go(PROFILE_EDIT);
+  // }
+  // private _goToEditPassword() {
+  //   router.go(PROFILE_PASSWORD);
+  // }
+  // private async _goToLogout() {
+  //   e.preventDefault();
+  //   await auth.logOut();
+  // }
 
   private async _handleClick(e: Event) {
     if (e.target === document?.querySelector('.back__button')) {
@@ -57,7 +87,7 @@ export class Profile extends Block<IProfile> {
   }
 
   async componentDidMount() {
-    const userDataDTO:any = await auth.getUser();
+    const userDataDTO: any = await auth.getUser();
     const userData = JSON.parse(userDataDTO.response);
     protectedRoute(userData.id);
     this.setProps({userData});

@@ -9,7 +9,8 @@ export class AddUserForm extends Block<IForm> {
       submitButton: new Button({
         class: 'button popup__button add_button',
         type: 'submit',
-        text: 'Добавить пользователя'
+        text: 'Добавить пользователя',
+        events: {}
       }),
       events: {}
     });

@@ -1,4 +1,4 @@
-import { Inbox } from '../../../ui/inbox';
+import { Inbox } from '../../ui/inbox';
 
 export const inboxes = [
   new Inbox({

@@ -3,7 +3,7 @@ import {compile} from 'handlebars';
 const source = `
   <section class="profile">
     <div class="profile__avatar">
-      <img class="profile__avatar" src={{avatar}} alt=""/>
+      <img class="profile__avatar" src={{avatar}} alt="avatar"/>
     </div>
     <h2 class="profile__title">
       {{ first_name }}

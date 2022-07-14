@@ -1,10 +1,12 @@
-import Block from '../../../../core/block';
-import { Button } from '../../../ui/button';
+import Block from '../../../core/block';
 import { tmp } from './index.tpl';
+
+import { Button } from '../../ui/button';
 import { ISign } from '../signin/ISign';
-import handleValidation from '../../../../handles/handleValidation';
-import handleSignupSubmit from '../../../../handles/handleSignupSubmit';
 import { inboxes } from './inboxes';
+
+import handleValidation from '../../../handles/handleValidation';
+import handleSignupSubmit from '../../../handles/handleSignupSubmit';
 
 export class Signup extends Block<ISign> {
   constructor() {
@@ -13,7 +15,8 @@ export class Signup extends Block<ISign> {
       submitButton: new Button({
         class: 'button button_signup button_submit',
         type: 'submit',
-        text: 'Зарегистрироваться'
+        text: 'Зарегистрироваться',
+        events: {},
       }),
       handlers: [handleValidation, handleSignupSubmit]
     });

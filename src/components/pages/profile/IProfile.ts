@@ -1,13 +1,13 @@
-import { Popup } from '../../../ui/popup';
-import Block from '../../../../core/block';
-import { Button } from '../../../../components/ui/button';
+import { Popup } from '../../ui/popup';
+import Block from '../../../core/block';
+import { Button } from '../../ui/button';
 
 export interface IProfile {
   popup: Popup,
   userData: IUserData,
   backButton: Button,
   handlers: Array<Function>,
-  events: {[key:string]: Function}
+  events: Record<string, Function>
 };
 
 export interface IUserData {

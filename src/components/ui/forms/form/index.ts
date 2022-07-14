@@ -10,6 +10,7 @@ export class Form extends Block<IForm> {
         class: 'button popup__button',
         type: 'submit',
         text: 'Поменять',
+        events: {},
       }),
       events: {
         click: (e: Event) => this._handleClick(e),
