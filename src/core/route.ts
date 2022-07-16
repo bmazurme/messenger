@@ -1,20 +1,16 @@
 import Block from './block';
-import {renderBlock} from './render';
-
-function isEqual(lhs: string, rhs: string): boolean {
-  return lhs === rhs;
-}
+import { renderBlock } from './render';
 
 class Route {
   private _pathname: string;
-  readonly _blockClass: Block;
-  private _block: Block | null;
+  readonly _blockClass: Block|any;
+  public block: Block | null;
   private _props: { [key: string]: string };
 
   constructor(pathname: string, view: Block, props: {}) {
     this._pathname = pathname;
     this._blockClass = view;
-    this._block = null;
+    this.block = null;
     this._props = props;
   }
 
@@ -26,18 +22,18 @@ class Route {
   }
 
   leave(): void {
-    if (this._block) {
-      this._block.hide();
+    if (this.block) {
+      this.block.hide();
     }
   }
 
   match(pathname: string) {
-    return isEqual(pathname, this._pathname);
+    return pathname === this._pathname;
   }
 
   render() {
-    this._block = new this._blockClass();
-    renderBlock(this._props.rootQuery, this._block!);
+    this.block = new this._blockClass();
+    renderBlock(this._props.rootQuery, this.block!);
   }
 }
 

@@ -1,6 +1,5 @@
-import Block from '../../../../core/block';
-import {source} from './error.tpl';
-import {compile} from 'handlebars';
+import Block from '../../../core/block';
+import { tmp } from './error.tpl';
 
 export class Error404 extends Block {
   constructor() {
@@ -8,7 +7,7 @@ export class Error404 extends Block {
   }
 
   render() {
-    return compile(source)({
+    return tmp({
       code: 404,
       text: 'Не туда попали',
       link: 'Назад к чатам'

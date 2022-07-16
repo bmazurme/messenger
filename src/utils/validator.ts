@@ -8,7 +8,7 @@ import {
 } from './constants';
 
 export function validateInput(evt: Event): void {
-  const input = evt.target as HTMLInputElement;
+  const input:HTMLInputElement = evt.target as HTMLInputElement;
   const isValid = checkValid(input);
   toggleStyle(isValid, input);
 }

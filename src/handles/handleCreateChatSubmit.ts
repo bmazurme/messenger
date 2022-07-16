@@ -8,7 +8,7 @@ export default function handleCreateChatSubmit(element: HTMLElement, className =
   const formList: Array<HTMLElement> = Array.from(element.querySelectorAll(className));
 
   formList.forEach((item: HTMLElement) => {
-    item.addEventListener('submit', (evt: Event) => {
+    item.addEventListener('submit', async (evt: Event) => {
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
@@ -28,15 +28,10 @@ export default function handleCreateChatSubmit(element: HTMLElement, className =
         toggleStyle(isValid, input);
       });
       
-      const { title } = data;
-
       if (isValidForm) {
-        chats
-          .createChat({
-            data: {title}
-          })
-          .then(() => router.go(CHATS))
-          .catch((error) => console.log(error));
+        const { title } = data;
+        await chats.createChat({data: {title} });
+        router.go(CHATS)
       }
     });
   });

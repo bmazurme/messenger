@@ -1,11 +1,11 @@
 
 import Route from './route';
-import Block from './block';
+// import Block from './block';
 import { ERROR_NOT_FOUND } from '../utils/constants';
 
 class Router {
   private routes: Route[] | undefined;
-  private history: History | undefined;
+  public history: History | undefined;
   private _currentRoute: Route | null | undefined;
   private _rootQuery: string | undefined;
   private static _instance: Router;
@@ -21,7 +21,7 @@ class Router {
     Router._instance = this;
   }
 
-  use(pathname: string, block: Block) {
+  use(pathname: string, block: any) {
     const route = new Route(pathname, block, {rootQuery: this._rootQuery});
     this.routes!.push(route);
     return this;
@@ -66,6 +66,10 @@ class Router {
 
   getRoute(pathname: string) {
     return this.routes!.find(route => route.match(pathname));
+  }
+
+  getCurrentRoute() {
+    return this._currentRoute;
   }
 }
 

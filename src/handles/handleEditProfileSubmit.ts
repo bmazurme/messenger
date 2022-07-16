@@ -6,7 +6,7 @@ export default function handleEditProfileSubmit(element: HTMLElement, className 
   const formList: Array<HTMLElement> = Array.from(element.querySelectorAll(className));
 
   formList.forEach((item: HTMLElement) => {
-    item.addEventListener('submit', (evt: Event) => {
+    item.addEventListener('submit', async (evt: Event) => {
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
@@ -27,10 +27,8 @@ export default function handleEditProfileSubmit(element: HTMLElement, className 
       });
 
       if (isValidForm) {
-        users
-          .changeInfo({data})
-          .then(() => console.log('Ok'))
-          .catch((error) => console.log(error));
+        await users.changeInfo({data});
+        console.log('Ok')
       }
     });
   });

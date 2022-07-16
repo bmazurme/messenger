@@ -1,6 +1,7 @@
-import { Button } from 'components/ui/button';
+import { Button } from '../../../../components/ui/button';
 import { IForm } from '../form/IForm';
 
 export interface IBoardForm extends IForm {
-  attachButton: Button;
+  attachButton: Button, 
+  submitButton: Button
 };
