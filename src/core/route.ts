@@ -5,7 +5,7 @@ class Route {
   private _pathname: string;
   readonly _blockClass: Block|any;
   public block: Block | null;
-  private _props: { [key: string]: string };
+  private _props: Record<string, string>;
 
   constructor(pathname: string, view: Block, props: {}) {
     this._pathname = pathname;
@@ -27,7 +27,7 @@ class Route {
     }
   }
 
-  match(pathname: string) {
+  match(pathname: string): boolean {
     return pathname === this._pathname;
   }
 

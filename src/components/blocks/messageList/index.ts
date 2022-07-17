@@ -8,7 +8,7 @@ export class MessageList extends Block {
     super('div', props);
   }
   render() {
-    const {messageList, userId} = this.props;
+    const { messageList, userId } = this.props;
     const messages = (Array.isArray(messageList)) 
       ? messageList.map((message: IMessage) =>
         {

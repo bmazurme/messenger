@@ -1,5 +1,5 @@
 import Block from '../../../core/block';
-import {tmp} from './index.tpl';
+import { tmp } from './index.tpl';
 import { IInput } from '../input/IInput';
 
 export class Inbox extends Block {

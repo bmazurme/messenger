@@ -7,6 +7,6 @@ export interface IChangePassword {
   submitButton: Button,
   popup: Popup,
   handlers: Array<Function>,
-  events: {[key:string]: Function},
+  events: Record<string, Function>,
   userData: IUserData,
 };

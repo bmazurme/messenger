@@ -15,6 +15,8 @@ import handlerPopupClick from '../../../handles/handlerPopupClick';
 import handleEditAvatarSubmit from '../../../handles/handleEditAvatarSubmit';
 import protectedRoute from '../../../utils/protected';
 
+import DEFAULT_USER_IMG from '../../../vendor/images/ava.svg';
+
 import {
   CHATS,
   PROFILE_EDIT,
@@ -90,12 +92,14 @@ export class Profile extends Block<IProfile> {
     const userDataDTO: any = await auth.getUser();
     const userData = JSON.parse(userDataDTO.response);
     protectedRoute(userData.id);
-    this.setProps({userData});
+    this.setProps({ userData });
   }
 
   render() {
-    const {userData, backButton, popup} = this.props;
+    const { userData, backButton, popup } = this.props;
+    
     return tmp({
+      first_name: userData.first_name,
       textBlocks: [
         new TextBlock({
           label: 'Почта',
@@ -127,7 +131,7 @@ export class Profile extends Block<IProfile> {
       backButton: backButton.render(),
       avatar: userData.avatar 
         ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
-        : ''
+        : DEFAULT_USER_IMG
     })
   }
 }

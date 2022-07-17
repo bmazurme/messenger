@@ -24,10 +24,9 @@ import handleValidation from '../../../handles/handleValidation';
 
 export class Chats extends Block<IChats> {
   constructor() {
-    super('main', 
-    {
+    super('main', {
       cards: [], 
-      popup: new Popup(new CreateChatForm() as Form, '' ),
+      popup: new Popup(new CreateChatForm() as Form, ''),
       submitButton: new Button({
         class: 'button button_create-chat',
         type: 'button',

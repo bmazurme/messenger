@@ -33,4 +33,3 @@ export const inputs = [
     errSelector: '.confirm-password-err'
   }
 ];
-

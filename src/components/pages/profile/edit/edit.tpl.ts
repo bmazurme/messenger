@@ -1,5 +1,5 @@
-import {compile} from 'handlebars';
-import {source as inputTemplate} from '../../../ui/input/index.tpl';
+import { compile } from 'handlebars';
+import { source as inputTemplate } from '../../../ui/input/index.tpl';
 
 const source = `
 <section class="profile">

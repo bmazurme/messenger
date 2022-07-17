@@ -1,4 +1,4 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 const source = ` 
   <section class="identity">

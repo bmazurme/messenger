@@ -1,4 +1,4 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 const source = `
   <div class="card" data-chat-id={{id}}>
@@ -10,7 +10,7 @@ const source = `
     {{/if}} 
     {{ last_message.content }}
     </p>  
-    <time class="card__time"> {{ last_message.time }} </time>
+    <time class="card__time"> {{ time }} </time>
     {{#if unread_count}}
       <p class="card__counter">{{unread_count}}</p>
     {{/if}}

@@ -10,16 +10,16 @@ export default function handleOpenChat(element: HTMLElement, className = '.card'
     item.addEventListener('click', (evt: Event) => {
       evt.preventDefault();
       evt.stopPropagation();
-      const el: HTMLElement|null = evt.target as HTMLElement
+      const element: HTMLElement|null = evt.target as HTMLElement
       
-      if (el) {
-        const container:HTMLElement|null = el.closest('.card');
-        const x:HTMLElement|null = container?.querySelector('.card__title') as HTMLElement;
-        const textContent: string = x?.textContent!;
+      if (element) {
+        const card: HTMLElement|null = element.closest('.card');
+        const title: HTMLElement|null = card?.querySelector('.card__title') as HTMLElement;
+        const textContent: string = title?.textContent!;
 
         const chatWindow: ChatWindow = new ChatWindow({
           chatName: textContent,
-          chatId: Number(container?.dataset.chatId),
+          chatId: Number(card?.dataset.chatId),
           className: '',
           addPopup: new Popup(new Form(), ''),
           boardForm: new BoardForm(),

@@ -1,4 +1,5 @@
 import { auth } from '../../../../api/AuthAPI';
+import { users } from '../../../../api/UsersAPI';
 
 import Block from '../../../../core/block';
 import { tmp } from './edit-pass.tpl';
@@ -15,9 +16,10 @@ import { IChangePassword } from './IChangePassword';
 
 import handlerPopupClick from '../../../../handles/handlerPopupClick';
 import handleValidation from '../../../../handles/handleValidation';
-import handleEditPasswordSubmit from '../../../../handles/handleEditPasswordSubmit';
 import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
 import protectedRoute from '../../../../utils/protected';
+import DEFAULT_USER_IMG from '../../../../vendor/images/ava.svg';
+import { checkValid, toggleStyle } from '../../../../utils/validator';
 
 export class ChangePassword extends Block<IChangePassword> {
   constructor() {
@@ -44,12 +46,11 @@ export class ChangePassword extends Block<IChangePassword> {
         },
       }),
       events: {
-        // click: (e: Event) => this._handleClick(e),
+        submit: (e: Event) => this._handleEditPasswordSubmit(e)
       },
       handlers: [
         handleValidation,
         handlerPopupClick,
-        handleEditPasswordSubmit,
         handleEditAvatarSubmit
       ]
     });
@@ -57,6 +58,34 @@ export class ChangePassword extends Block<IChangePassword> {
 
   private _goToProfile() {
     router.go(PROFILE);
+  }
+
+  private async _handleEditPasswordSubmit(evt: Event) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    let isValidForm: boolean = true;
+    const form = evt.target as HTMLFormElement;
+    const data: Record<string, string|boolean> = {};
+
+    Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
+      const isValid = checkValid(input)
+      const name = input.getAttribute('name');
+
+      if (name) {
+        data[name] = input.value;
+        data[`${name}-isValid`] = isValid;
+      }
+      if (!isValid) {
+        isValidForm = false;
+      }
+      toggleStyle(isValid, input);
+    });
+
+    if (isValidForm) {
+      const { oldPassword, newPassword } = data;
+      await users.changePassword({data: { oldPassword, newPassword }})
+      console.log('Ok');
+    }
   }
 
   async componentDidMount() {
@@ -73,7 +102,7 @@ export class ChangePassword extends Block<IChangePassword> {
       submitButton: submitButton.render(),
       avatar: userData?.avatar 
       ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
-      : '',
+      : DEFAULT_USER_IMG,
       popup: popup.render(),
     });
   }

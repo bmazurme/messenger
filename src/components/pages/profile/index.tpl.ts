@@ -1,4 +1,4 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 const source = `
   <section class="profile">
@@ -39,4 +39,3 @@ const source = `
 ;
 
 export const tmp = compile(source);
-
