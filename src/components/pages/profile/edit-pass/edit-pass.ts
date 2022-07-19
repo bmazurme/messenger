@@ -5,12 +5,13 @@ import Block from '../../../../core/block';
 import { tmp } from './edit-pass.tpl';
 
 import { Button } from '../../../ui/button';
+import { Inbox } from '../../../ui/inbox';
 import { Popup } from '../../../ui/popup';
 import { Form } from '../../../ui/forms/form';
 import { PROFILE } from '../../../../utils/constants';
 import { router } from '../../../../index';
 
-import { inputs } from './inputs';
+import { inboxes } from './inboxes';
 import { IUserData } from '../IProfile';
 import { IChangePassword } from './IChangePassword';
 
@@ -24,7 +25,7 @@ import { checkValid, toggleStyle } from '../../../../utils/validator';
 export class ChangePassword extends Block<IChangePassword> {
   constructor() {
     super('main', {
-      inputs,
+      inboxes,
       userData: {
         popup: null,
         first_name: '',
@@ -96,9 +97,11 @@ export class ChangePassword extends Block<IChangePassword> {
   }
 
   render() {
-    const {inputs, submitButton, popup, userData} = this.props;
+    const {inboxes, submitButton, popup, userData} = this.props;
     return tmp({
-      inputs,
+      inboxes : (inboxes.map((input: Record<string, string>) => {
+        return new Inbox(input).render()
+      })).join(''),
       submitButton: submitButton.render(),
       avatar: userData?.avatar 
       ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 

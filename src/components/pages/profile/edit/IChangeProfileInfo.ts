@@ -3,7 +3,7 @@ import { Popup } from '../../../ui/popup';
 import { IUserData } from '../IProfile';
 
 export interface IChangeProfileInfo {
-  inputs: Record<string, string>[],
+  inboxes: Record<string, string>[],
   submitButton: Button,
   popup: Popup,
   handlers: Array<Function>,

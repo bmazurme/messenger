@@ -7,13 +7,14 @@ import { tmp } from './edit.tpl';
 import { Button } from '../../../ui/button';
 import { Popup } from '../../../ui/popup';
 import { Form } from '../../../ui/forms/form';
-import { Input } from '../../../ui/input/index';
+import { Inbox } from '../../../ui/inbox';
 import { IChangeProfileInfo } from './IChangeProfileInfo';
 import { router } from '../../../../index';
-import { inputs } from './inputs';
+import { inboxes } from './inboxes';
 
 import handleValidation from '../../../../handles/handleValidation';
 import handleEditAvatarSubmit from '../../../../handles/handleEditAvatarSubmit';
+import handlerPopupClick from '../../../../handles/handlerPopupClick';
 import protectedRoute from '../../../../utils/protected';
 import { checkValid, toggleStyle } from '../../../../utils/validator';
 
@@ -25,7 +26,7 @@ export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
     super('main', {
       userData: {},
       popup: new Popup(new Form(),''),
-      inputs,
+      inboxes: inboxes,
       submitButton: new Button({
         class: 'button button_submit',
         type: 'submit',
@@ -36,17 +37,14 @@ export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
       }),
       events: {
         submit: (e: Event) => this._handleEditProfileSubmit(e),
-        // focusout: () => this._handleValidation(),
-        // _validation
       },
       handlers: [
         handleValidation,
-        handleEditAvatarSubmit
+        handleEditAvatarSubmit,
+        handlerPopupClick,
       ],
     });
   }
-
-
 
   private async _handleEditProfileSubmit(evt: Event) {
     evt.preventDefault();
@@ -87,11 +85,12 @@ export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
   }
 
   render() {
-    const { inputs, submitButton, popup, userData } = this.props;
+    const { inboxes, submitButton, popup, userData } = this.props;
     return tmp({
       popup: popup.render(),
-      inputs: (inputs.map((input: Record<string, string>) => {
-        return new Input({...input, value: userData[input.name]}).render()
+      first_name: userData.first_name,
+      inboxes : (inboxes.map((input: Record<string, string>) => {
+        return new Inbox({...input, value: userData[input.name]}).render()
       })).join(''),
       avatar: userData.avatar 
         ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 

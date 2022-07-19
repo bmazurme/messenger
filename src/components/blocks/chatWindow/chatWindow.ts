@@ -83,7 +83,7 @@ export class ChatWindow extends Block<IChatWindow> {
       if (element.classList.contains('popup_active')) {
         this.closePopup();
         bt1?.classList.add('header_hidden');
-        bt2.classList.add('header_hidden');
+        bt2?.classList.add('header_hidden');
       }
   
       if (element === document.querySelector('.remove_user')) {
@@ -184,7 +184,7 @@ export class ChatWindow extends Block<IChatWindow> {
   }
 
   private _connectToChat(props: { userId: number, chatId: number, chatToken: string }) {
-    const {userId, chatId, chatToken} = props;
+    const { userId, chatId, chatToken } = props;
     (new WebSocketService(userId, chatId, chatToken));
   }
   

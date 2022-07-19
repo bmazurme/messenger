@@ -10,13 +10,10 @@ const source = `
         <input class="sidebar__search" 
           type="search" placeholder="Поиск">
         </input>
-
         {{{submitButton}}}
         {{{cards}}}
-        
       </div>
     </div>
-
     <div class="board">
       <div class="board__choose">
         Выберите чат, чтобы отправить сообщение

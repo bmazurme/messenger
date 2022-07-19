@@ -3,7 +3,7 @@ import { Button } from '../../../ui/button';
 import { IUserData } from '../IProfile';
 
 export interface IChangePassword {
-  inputs: Array<object>,
+  inboxes: Array<object>,
   submitButton: Button,
   popup: Popup,
   handlers: Array<Function>,

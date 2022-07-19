@@ -1,4 +1,4 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 export const source = `
   <div class="popup {{selector}}">

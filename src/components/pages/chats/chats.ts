@@ -10,11 +10,11 @@ import { BoardForm } from '../../ui/forms/boardForm';
 import { CreateChatForm } from '../../ui/forms/createChatForm';
 import { Button } from '../../ui/button';
 import { Card } from '../../ui/card';
-import { ICard } from '../../ui/card/ICard';
 import { Form } from '../../ui/forms/form';
 import { Header } from '../../blocks/header';
 
 import { IChats } from './IChats';
+import { ICard } from '../../ui/card/ICard';
 
 import protectedRoute from '../../../utils/protected';
 import handlerPopupClick from '../../../handles/handlerPopupClick';

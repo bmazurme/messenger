@@ -5,7 +5,6 @@ export class Error500 extends Block {
   constructor() {
     super('main', {})
   }
-
   render() {
     return tmp({
       code: 500,

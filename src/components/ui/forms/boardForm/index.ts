@@ -23,7 +23,7 @@ export class BoardForm extends Block<IBoardForm> {
   }
 
   render() {
-    const {submitButton, attachButton} = this.props;
+    const { submitButton, attachButton } = this.props;
     return tmp({
       attachButton: attachButton.render(),
       submitButton: submitButton.render(),

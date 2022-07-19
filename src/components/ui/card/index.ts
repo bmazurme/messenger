@@ -7,7 +7,7 @@ export class Card extends Block<ICard> {
   constructor(props: ICard) {
     super('main', {
       ...props,
-      time: formatDate(props?.last_message.time)
+      time: formatDate(props?.last_message?.time)
     });
   }
   render() {

@@ -2,6 +2,7 @@ import { Inbox } from '../../ui/inbox';
 
 export const inboxes = [
   new Inbox({
+    boxClass: 'inbox',
     name: 'login',
     inputStyle: 'inbox__input inbox__input_login',
     inputType: 'text',
@@ -14,6 +15,7 @@ export const inboxes = [
     errorStyle: 'inbox__input_error login-input-error',
   }).render(),
   new Inbox({
+    boxClass: 'inbox',
     name: 'password ',
     inputStyle: 'inbox__input inbox__input_password',
     inputType: 'password',

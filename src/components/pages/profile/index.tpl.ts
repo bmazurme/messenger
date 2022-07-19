@@ -8,11 +8,9 @@ const source = `
     <h2 class="profile__title">
       {{ first_name }}
     </h2> 
-
     <ul class="list">
       {{{textBlocks}}}
     </ul>
-
     <ul class="profile__menu">
       <li class="list__item">
         <a class="profile__link profile-edit" href="/profile-edit">
@@ -30,7 +28,6 @@ const source = `
         </a>
       </li>
     </ul>
-
     <div class="back">
       {{{backButton}}}
     </div>

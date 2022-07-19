@@ -1,7 +1,5 @@
 import { compile } from 'handlebars';
 
-const source = `
-  {{{messageList}}}
-`;
+const source = '{{{messageList}}}';
 
 export const tmp = compile(source);

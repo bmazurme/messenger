@@ -97,7 +97,6 @@ export class Profile extends Block<IProfile> {
 
   render() {
     const { userData, backButton, popup } = this.props;
-    
     return tmp({
       first_name: userData.first_name,
       textBlocks: [
@@ -125,7 +124,6 @@ export class Profile extends Block<IProfile> {
           label: 'Телефон',
           value: userData.phone.toString(),
         }).render(),
-
       ].join(''),
       popup: popup.render(),
       backButton: backButton.render(),
