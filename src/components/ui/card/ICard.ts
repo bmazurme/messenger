@@ -14,4 +14,5 @@ export interface ICard {
   unread_count: number,
   created_by: number,
   fromYou: boolean,
+  events: Record<string, Function>
 };
