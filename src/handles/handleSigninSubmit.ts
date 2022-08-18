@@ -1,6 +1,6 @@
 import { checkValid, toggleStyle } from '../utils/validator';
 import { auth } from '../api/AuthAPI';
-import { CHATS, SIGN_IN } from '../utils/constants';
+import { CHATS } from '../utils/constants';
 import { router } from '../index';
 
 export default function handleSigninSubmit(element: HTMLElement, className = '.form') {
@@ -8,7 +8,7 @@ export default function handleSigninSubmit(element: HTMLElement, className = '.f
   const formList: Array<HTMLElement> = Array.from(element.querySelectorAll(className));
 
   formList.forEach((item: HTMLElement) => {
-    item.addEventListener('submit', (evt: Event) => {
+    item.addEventListener('submit', async (evt: Event) => {
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
@@ -28,16 +28,10 @@ export default function handleSigninSubmit(element: HTMLElement, className = '.f
         toggleStyle(isValid, input);
       });
 
-      const {login, password} = data;
-
       if (isValidForm) {
-        auth
-          .signIn({data: {login, password}})
-          .then(() => router.go(CHATS))
-          .catch((error) => {
-            () => router.go(SIGN_IN)
-            console.log(error);
-          });
+        const {login, password} = data;
+        await auth.signIn({data: {login, password}})
+        router.go(CHATS)
       }
     });
   });

@@ -25,12 +25,12 @@ export default class WebSocketService {
     this.userId = Number(userId);
   }
 
-  send(payload: IMessage): void {
+  public send(payload: IMessage): void {
     console.log('Message sent');
     this._socket?.send(JSON.stringify(payload));
   }
 
-  onOpen(): void {
+  private onOpen(): void {
     console.log('Connection established');
     this.send({
       content: '0',
@@ -38,31 +38,26 @@ export default class WebSocketService {
     });
   }
 
-  onMessage(event:  {[key:string]:string}): void {
-    console.log('Data received: ', event);
+  onMessage(event:  Record<string,string>): void {
+    // console.log('Data received: ', event);
+    let messages: Record<string, any> = JSON.parse(event.data);
 
-    let data = JSON.parse(event.data);
-    if (data.type === 'user connected') {
+    if (messages.type === 'user connected') {
       return;
     }
-    const configureData = (data: Record<string, unknown>) => ({
-      ...data, 
-      // incoming: data.user_id !== this.userId
-    });
-    if (Array.isArray(data)) {
-      data = data.map((item: Record<string, unknown>) => configureData(item));
-      data.reverse();
-    } else {
-      data = configureData(data);
-    }
-    store.dispatchAction(ActionTypes.GET_CHAT_MESSAGES, data);
+
+    if (Array.isArray(messages)) {
+      messages = messages.map((item: Record<string, unknown>) => item);
+      messages.reverse();
+    } 
+    store.dispatchAction(ActionTypes.GET_CHAT_MESSAGES, messages);
   }
 
-  onError(event: {[key:string]: object}): void {
+  onError(event: Record<string, object>): void {
     console.log('Error: ', event.message);
   }
 
-  onClose(event: {[key:string]: object}): void {
+  onClose(event:  Record<string, object>): void {
     if (event.wasClean) {
       console.log('Connection closed');
     } else {

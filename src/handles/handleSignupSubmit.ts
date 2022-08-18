@@ -8,7 +8,7 @@ export default function handleSignupSubmit(element: HTMLElement, className = '.f
   const formList: Array<HTMLElement> = Array.from(element.querySelectorAll(className));
 
   formList.forEach((item: HTMLElement) => {
-    item.addEventListener('submit', (evt: Event) => {
+    item.addEventListener('submit', async (evt: Event) => {
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
@@ -27,29 +27,9 @@ export default function handleSignupSubmit(element: HTMLElement, className = '.f
         toggleStyle(isValid, input);
       });
 
-      const {
-        email,
-        first_name,
-        second_name,
-        login,
-        password,
-        phone,
-      } = data;
-
       if (isValidForm) {
-        auth
-          .signUp({
-            data: {
-              email,
-              first_name,
-              second_name,
-              login,
-              password,
-              phone
-            }
-          })
-          .then(() =>router.go(SIGN_IN))
-          .catch(console.log);
+        await auth.signUp({data});
+        router.go(SIGN_IN);
       }
     });
   });

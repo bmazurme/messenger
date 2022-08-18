@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "baseUrl": "./src/",
-    "target": "es2020",
-    "declaration": false,
-    "module": "ES6",
-    "strictNullChecks": true,
-    "sourceMap": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "moduleResolution": "node",
-    "lib": ["es2015", "es2017.object", "dom"]
-  }
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "target": "ES6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "include": ["./src/**/*", "src/server.js"],
+  "exclude": ["./dist"],
+  "overrides": [{
+    "files": ["*.ts", "*.tsx"],
+  }],
 }

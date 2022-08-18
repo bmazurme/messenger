@@ -11,14 +11,16 @@ export default abstract class Block<Props extends object = {}> {
     FLOW_RENDER: 'flow:render',
     FLOW_CDU: 'flow:component-did-update'
   };
+
   eventBus: () => EventBus;
   _element: HTMLElement | null = null;
   readonly meta: {
     tagName: string,
-    props: Props
+    props: any// Props
   }
-  oldProps: Props;
-  protected props: Props;
+  oldProps: any;//Props;
+  protected props: any;//Props;
+  _id: string = '';
    
   constructor(tagName: string = 'div', propsAndChildren: Props = <Props>{}) {
     const eventBus = new EventBus();
@@ -93,6 +95,8 @@ export default abstract class Block<Props extends object = {}> {
     const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
+      // console.log(eventName);
+      // console.log(events[eventName]);
       this._element!.addEventListener(eventName, events[eventName]);
     });
   }
@@ -116,8 +120,6 @@ export default abstract class Block<Props extends object = {}> {
     this.addEvents();
   }
 
-  // public render(): void {
-  // }
 
   public getContent(): HTMLElement | null {
     return this.element;
@@ -125,7 +127,7 @@ export default abstract class Block<Props extends object = {}> {
 
   private makePropsProxy(props: Props): Props {
     return new Proxy(props, {
-      get(target: Props, prop: string) {
+      get(target: any, prop: string) {
         if (prop.indexOf('_') === 0) {
           throw new Error('Отказано в доступе');
         }

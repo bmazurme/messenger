@@ -6,7 +6,6 @@ export class Inbox extends Block {
   constructor(props: IInput) {
     super('div', props);
   }
-
   render() {
     return tmp(this.props);
   }

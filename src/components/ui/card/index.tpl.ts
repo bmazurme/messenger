@@ -10,7 +10,7 @@ const source = `
     {{/if}} 
     {{ last_message.content }}
     </p>  
-    <p class="card__time"> {{ last_message.time }} </p>
+    <time class="card__time"> {{ last_message.time }} </time>
     {{#if unread_count}}
       <p class="card__counter">{{unread_count}}</p>
     {{/if}}

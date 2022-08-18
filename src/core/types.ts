@@ -10,8 +10,8 @@ export type Events = Record<string, ElementEvent[]>;
 export type Children = Record<string, InstanceType<typeof Block>>;
 export type Props = {
 	[key: string]: string;
-	events: Events;
-	children: Children;
+	events: any;
+	children: any;
 };
 
 /* eslint-disable no-unused-vars */
