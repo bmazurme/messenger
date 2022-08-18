@@ -55,8 +55,7 @@ export default class HTTPTransport {
           Object.keys(headers).forEach(key => {
             xhr.setRequestHeader(key, <string>headers[key]);
           });
-
-          console.log(xhr.setRequestHeader);
+          // console.log(xhr.setRequestHeader);
         } else {
           xhr.setRequestHeader('content-type', 'application/json')
         }
@@ -76,7 +75,7 @@ export default class HTTPTransport {
         } else if (!headers) {
           xhr.send(JSON.stringify(data));
         } else {
-            // @ts-ignore
+          // @ts-ignore
           xhr.send(data);
         }
       });

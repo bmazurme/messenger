@@ -7,10 +7,10 @@ const source = `
       {{#if is_read}} message__time_read {{/if}}"
     > 
       <div class="message__content">
-          {{content}}
-        <div class="message__time">
+        {{content}}
+        <time class="message__time">
           {{time}}
-        </div> 
+        </time> 
       </div> 
     </div> 
   </div>

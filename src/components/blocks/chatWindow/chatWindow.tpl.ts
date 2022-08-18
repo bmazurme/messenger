@@ -1,10 +1,9 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 const source = `
   <div class="board__header">
     {{{header}}}
   </div>
-
   <div class="board__main">
     {{{messageList}}}
   </div>

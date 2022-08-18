@@ -1,18 +1,16 @@
 export default class EventBus {
-  listeners: { [index: string]: any };
-
+  listeners: Record<string, any>;
   constructor() {
     this.listeners = {};
   }
 
   on(event: string, callback: () => void) {
     if (event === 'validate') {
-        console.log(this.listeners);
+      console.log(this.listeners);
     }
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
-
     this.listeners[event].push(callback);
   }
 
@@ -20,7 +18,6 @@ export default class EventBus {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
-
     this.listeners[event] = this.listeners[event].filter(
       (listener: () => {}) => listener !== callback,
     );
@@ -30,7 +27,6 @@ export default class EventBus {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
-
     this.listeners[event].forEach((listener: any) => {
       listener(...args);
     });

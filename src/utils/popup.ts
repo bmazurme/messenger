@@ -47,6 +47,7 @@ class Popup {
     this._popup = element.querySelector(this._selector) as HTMLElement;
     this._buttons.forEach((selector: string) => {
       const button = element.querySelector(selector);
+      
       if (button) {
         button.addEventListener('click', () => this.open());
       }

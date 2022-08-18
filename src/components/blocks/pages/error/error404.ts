@@ -5,7 +5,6 @@ export class Error404 extends Block {
   constructor() {
     super('main', {})
   }
-
   render() {
     return tmp({
       code: 404,

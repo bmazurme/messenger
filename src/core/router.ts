@@ -1,6 +1,5 @@
 
 import Route from './route';
-// import Block from './block';
 import { ERROR_NOT_FOUND } from '../utils/constants';
 
 class Router {

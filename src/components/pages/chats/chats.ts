@@ -10,11 +10,11 @@ import { BoardForm } from '../../ui/forms/boardForm';
 import { CreateChatForm } from '../../ui/forms/createChatForm';
 import { Button } from '../../ui/button';
 import { Card } from '../../ui/card';
-import { ICard } from '../../ui/card/ICard';
 import { Form } from '../../ui/forms/form';
 import { Header } from '../../blocks/header';
 
 import { IChats } from './IChats';
+import { ICard } from '../../ui/card/ICard';
 
 import protectedRoute from '../../../utils/protected';
 import handlerPopupClick from '../../../handles/handlerPopupClick';
@@ -24,10 +24,9 @@ import handleValidation from '../../../handles/handleValidation';
 
 export class Chats extends Block<IChats> {
   constructor() {
-    super('main', 
-    {
+    super('main', {
       cards: [], 
-      popup: new Popup(new CreateChatForm() as Form, '' ),
+      popup: new Popup(new CreateChatForm() as Form, ''),
       submitButton: new Button({
         class: 'button button_create-chat',
         type: 'button',
@@ -41,17 +40,19 @@ export class Chats extends Block<IChats> {
         handleValidation
       ],
       events: {
-        click: (e: Event) => this.handleClick(e)
+        click: (e: Event) => this.handleClick(e),
       }
     });
   }
 
   handleClick(e: Event) {
+   
     const target: HTMLElement|null = e.target as HTMLElement;
     const card: HTMLElement|null =target?.closest('.card');
     const title: HTMLElement|null = card?.querySelector('.card__title') as HTMLElement;
-    
+
     if (title) {
+      console.log(e)
       const textContent: string = title.textContent!;
       const chatWindow = new ChatWindow({
         chatName: textContent,
@@ -90,6 +91,9 @@ export class Chats extends Block<IChats> {
       cards: chatsData.map((card: ICard) => {
         return (new Card({
           ...card,
+          events: {
+            click: (e: Event) => console.log(e),
+          },
           fromYou: card?.last_message?.user?.email === userInfo?.email
         })).render();
       })        
@@ -98,6 +102,7 @@ export class Chats extends Block<IChats> {
 
   render() {
     const { cards, popup, submitButton } = this.props;
+    console.log(cards)
     return tmp({
       cards: cards.join(''),
       submitButton: submitButton.render(),

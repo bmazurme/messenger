@@ -1,7 +1,7 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 const source = `
-  <div class="inbox" >
+  <li class="{{boxClass}}" >
     <input
       name={{name}}
       class="input {{inputStyle}}" 
@@ -9,13 +9,15 @@ const source = `
       autocomplete="{{inputAutocomplete}}"
       id="{{inputId}}" required 
       data-validation="{{inputValidation}}"
+      {{#if value}}value="{{value}}"{{/if}}
+      {{#if placeholder}}placeholder="{{placeholder}}"{{/if}}
     />
-    <span class="{{spanStyle}}"></span>
     <label class="{{labelClass}}" >
       {{labelText}}
     </label>
-    <span class="{{errorStyle}}"></span>
-  </div>
+    {{#if spanStyle}}<span class="{{spanStyle}}"></span>{{/if}}
+    {{#if errorStyle}}<span class="{{errorStyle}}"></span>{{/if}}
+  </li>
 `;
 
 export const tmp = compile(source);

@@ -1,3 +1,5 @@
+import { auth } from '../../../api/AuthAPI';
+
 import Block from '../../../core/block';
 import { tmp } from './index.tpl';
 
@@ -5,8 +7,12 @@ import { inboxes } from './inboxes';
 import { Button } from '../../ui/button';
 import { ISign } from './ISign';
 
+import { CHATS } from '../../../utils/constants';
+import { router } from '../../../index';
+
+import { checkValid, toggleStyle } from '../../../utils/validator';
+
 import handleValidation from '../../../handles/handleValidation';
-import handleSigninSubmit from '../../../handles/handleSigninSubmit';
 
 export class Signin extends Block<ISign> {
   constructor() {
@@ -18,11 +24,44 @@ export class Signin extends Block<ISign> {
         text: 'Авторизоваться',
         events: {}
       }),
-      handlers: [handleValidation, handleSigninSubmit]
+      handlers: [
+        handleValidation,
+      ],
+      events: {
+        submit: (e: Event) => this._handleSubmitSignIn(e)
+      }
     });
   }
+
+  private async _handleSubmitSignIn(evt: Event) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    const form = evt.target as HTMLFormElement;
+    const data: Record<string, string|boolean> = {};
+    let isValidForm: boolean = true;
+
+    Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
+      const isValid = checkValid(input)
+      const name = input.getAttribute('name');
+      if (name) {
+        data[name] = input.value;
+        data[`${name}-isValid`] = isValid;
+      }
+      if (!isValid) {
+        isValidForm = false;
+      }
+      toggleStyle(isValid, input);
+    });
+
+    if (isValidForm) {
+      const { login, password } = data;
+      await auth.signIn({data: {login, password}});
+      router.go(CHATS);
+    }
+  }
+
   render() {
-    const {inboxes, submitButton} = this.props;
+    const { inboxes, submitButton } = this.props;
     return tmp({
       inboxes,
       submitButton: submitButton.render(),

@@ -12,7 +12,7 @@ export default function handleCreateChatSubmit(element: HTMLElement, className =
       evt.preventDefault();
       evt.stopPropagation();
       const form = evt.target as HTMLFormElement;
-      const data: {[key:string]: string|boolean} = {};
+      const data: Record<string, string|boolean> = {};
 
       Array.from(form.querySelectorAll('.input')).forEach((input: HTMLInputElement) => {
         const isValid = checkValid(input)
@@ -22,6 +22,7 @@ export default function handleCreateChatSubmit(element: HTMLElement, className =
           data[name] = input.value;
           data[`${name}-isValid`] = isValid;
         }
+        
         if (!isValid) {
           isValidForm = false;
         }

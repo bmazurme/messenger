@@ -41,6 +41,7 @@ class Signin extends Block<ISign> {
         text: 'Зарегистрироваться',
         events: {}
       }),
+      events: {}
     });
   }
   render() {
@@ -59,6 +60,7 @@ class Signup extends Block<ISign> {
         text: 'Зарегистрироваться',
         events: {}
       }),
+      events: {}
     });
   }
   render() {

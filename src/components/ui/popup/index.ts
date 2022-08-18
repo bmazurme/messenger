@@ -10,7 +10,6 @@ export class Popup extends Block<IPopup> {
       selector,
     });
   }
-
   render() {
     const {form, selector} = this.props;
     return tmp({

@@ -2,6 +2,7 @@ import { Inbox } from '../../ui/inbox';
 
 export const inboxes: string =  [
   new Inbox({
+    boxClass: 'inbox',
     name: 'email',
     inputStyle: 'inbox__input inbox__input_email',
     inputType: 'text',
@@ -14,6 +15,7 @@ export const inboxes: string =  [
     errorStyle: 'inbox__input_error email-input-error',
   }).render(),
   new Inbox({
+    boxClass: 'inbox',
     name: 'login',
     inputStyle: 'inbox__input inbox__input_login',
     inputType: 'text',
@@ -26,6 +28,7 @@ export const inboxes: string =  [
     errorStyle: 'inbox__input_error login-input-error',
   }).render(),
   new Inbox({
+    boxClass: 'inbox',
     name: 'first_name',
     inputStyle: 'inbox__input inbox__input_first_name',
     inputType: 'text',
@@ -38,6 +41,7 @@ export const inboxes: string =  [
     errorStyle: 'inbox__input_error first_name-input-error',
   }).render(),
   new Inbox({
+    boxClass: 'inbox',
     name: 'second_name',
     inputStyle: 'inbox__input inbox__input_second_name',
     inputType: 'text',
@@ -50,6 +54,7 @@ export const inboxes: string =  [
     errorStyle: 'inbox__input_error second_name-input-error',
   }).render(),
   new Inbox({
+    boxClass: 'inbox',
     name: 'phone',
     inputStyle: 'inbox__input inbox__input_phone',
     inputType: 'text',
@@ -62,6 +67,7 @@ export const inboxes: string =  [
     errorStyle: 'inbox__input_error phone-input-error',
   }).render(),
   new Inbox({
+    boxClass: 'inbox',
     name: 'password',
     inputStyle: 'inbox__input inbox__input_password',
     inputType: 'password',
@@ -74,6 +80,7 @@ export const inboxes: string =  [
     errorStyle: 'inbox__input_error password-input-error',
   }).render(),
   new Inbox({
+    boxClass: 'inbox',
     name: 'password_confirm',
     inputStyle: 'inbox__input inbox__input_password_confirm',
     inputType: 'password',

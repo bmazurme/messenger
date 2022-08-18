@@ -25,6 +25,7 @@
 @import url(./blocks/list/__label/list__label.css);
 @import url(./blocks/list/__value/list__value.css);
 @import url(./blocks/list/__value/_input/list__value_input.css);
+@import url(./blocks/list/__item/_revers/list__item_revers.css);
 /* nav */
 @import url(./blocks/back/back.css);
 @import url(./blocks/back/__button/back__button.css);

@@ -8,16 +8,14 @@ export class MessageList extends Block {
     super('div', props);
   }
   render() {
-    const {messageList, userId} = this.props;
+    const { messageList, userId } = this.props;
     const messages = (Array.isArray(messageList)) 
-      ? messageList.map((message: IMessage) =>
-        {
+      ? messageList.map((message: IMessage) => {
           return new Message({
             ...message,
             fromYou: userId === message.user_id
           }).render();
-        })
-        .join('')
+        }).join('')
       : [];
     return tmp({
       messageList: messages,

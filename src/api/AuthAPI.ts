@@ -2,6 +2,7 @@ import HTTP, { Options } from '../utils/http';
 import { BASE_URL } from '../utils/constants';
 
 const authAPIInstance = new HTTP(`${BASE_URL}/auth`);
+
 class AuthAPI {
   getUser(): Promise<unknown> {
     return authAPIInstance.get('/user');

@@ -1,4 +1,4 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 export const source = `
   <form class="form form_avatar popup__form">
@@ -16,6 +16,6 @@ export const source = `
     {{{submitButton}}}
     <span class="popup__error"></span>
   </form>                                                                            
-`
+`;
 
 export const tmp = compile(source);

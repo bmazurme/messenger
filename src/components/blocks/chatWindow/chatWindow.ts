@@ -25,7 +25,6 @@ import { CHATS } from '../../../utils/constants';
 
 export class ChatWindow extends Block<IChatWindow> {
   constructor(props: IChatWindow) {
-
     super('div', {
       ...props,
       className: 'board',
@@ -65,6 +64,7 @@ export class ChatWindow extends Block<IChatWindow> {
     const element: HTMLElement|null = e.target as HTMLElement;
     const bt1 = document.querySelector('.add_user') as HTMLElement;
     const bt2 = document.querySelector('.remove_user') as HTMLElement;
+
     if (element) {
       if (element === document.querySelector('.toggle_button')) {
         if (bt1.classList.contains('header_hidden')) {
@@ -83,7 +83,7 @@ export class ChatWindow extends Block<IChatWindow> {
       if (element.classList.contains('popup_active')) {
         this.closePopup();
         bt1?.classList.add('header_hidden');
-        bt2.classList.add('header_hidden');
+        bt2?.classList.add('header_hidden');
       }
   
       if (element === document.querySelector('.remove_user')) {
@@ -103,14 +103,14 @@ export class ChatWindow extends Block<IChatWindow> {
   }
 
   closePopup() {
-    const popup:HTMLElement|null  = document.querySelector('.popup_active') as HTMLElement;
+    const popup: HTMLElement|null = document.querySelector('.popup_active') as HTMLElement;
     popup.classList.remove('popup_active');
   }
 
   async componentDidMount() {
     await this.getChatToken();
     await this.getUserInfo();
-    const {userId, chatId, chatToken } = this.props;
+    const { userId, chatId, chatToken } = this.props;
     this._connectToChat({userId, chatId, chatToken});
     store.subscribe(ActionTypes.GET_CHAT_MESSAGES, this.setMessageList.bind(this));
     store.dispatchAction(ActionTypes.GET_CHAT_TOKEN, chatToken);
@@ -157,13 +157,14 @@ export class ChatWindow extends Block<IChatWindow> {
 
   async searchUser(data: {users: Array<number>, chatId: number}) {
     const userLoginInput: HTMLInputElement = document.querySelector('.add-remove-user')!;
-    const userLogin = userLoginInput.value;
+    const userLogin: string = userLoginInput.value;
     const searchByLoginData = {
       login: userLogin
     };
     const result: any = await users.searchByLogin({data: searchByLoginData});
     const userDate: Array<IUser> = JSON.parse(result.response);
     const user: IUser = userDate[0];
+
     if (user) {
       return data.users.push(user.id);
     }
@@ -182,8 +183,8 @@ export class ChatWindow extends Block<IChatWindow> {
     this._sendChatMessage(message);
   }
 
-  private _connectToChat(props: {userId: number, chatId: number, chatToken: string}) {
-    const {userId, chatId, chatToken} = props;
+  private _connectToChat(props: { userId: number, chatId: number, chatToken: string }) {
+    const { userId, chatId, chatToken } = props;
     (new WebSocketService(userId, chatId, chatToken));
   }
   
@@ -199,9 +200,6 @@ export class ChatWindow extends Block<IChatWindow> {
 
   render() {
     const { header, chatName, addPopup, boardForm } = this.props;
-
-
-
     return tmp({
       chatName,
       header: header.render(),
@@ -211,4 +209,3 @@ export class ChatWindow extends Block<IChatWindow> {
     })
   }
 }
-
