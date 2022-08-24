@@ -15,14 +15,14 @@
 
 - [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1)
 
-## Installation
+### Installation
 
 - `npm install` — install dependencies,
 - `npm run dev` — launch dev,
 - `npm run start` — launch,
 - `npm run build` — build.
 
-## Деплой
+### Developers
 
 - [Netlify](https://deploy--brilliant-dasik-aed875.netlify.app/)
 - [Heroku](https://withusdru.herokuapp.com/)
