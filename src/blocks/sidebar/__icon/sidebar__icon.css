@@ -1,13 +1,10 @@
 .sidebar__icon {
   display: flex;
   padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 0;
-  margin-left: 8px;
+  margin: 0 0 0 8px;
   width: 8px;
   height: 12px;
-  background-image: url(../../../vendor/images/right.svg);
+  background-image: url("../../../vendor/images/right.svg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

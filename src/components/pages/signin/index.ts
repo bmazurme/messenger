@@ -7,7 +7,7 @@ import { inboxes } from './inboxes';
 import { Button } from '../../ui/button';
 import { ISign } from './ISign';
 
-import { CHATS } from '../../../utils/constants';
+import { Urls } from '../../../utils/constants';
 import { router } from '../../../index';
 
 import { checkValid, toggleStyle } from '../../../utils/validator';
@@ -56,7 +56,7 @@ export class Signin extends Block<ISign> {
     if (isValidForm) {
       const { login, password } = data;
       await auth.signIn({data: {login, password}});
-      router.go(CHATS);
+      router.go(Urls.CHATS.INDEX);
     }
   }
 

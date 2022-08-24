@@ -2,10 +2,7 @@
   display: flex;
   width: 290px;
   height: 32px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px;
-  margin-bottom: 14px;
+  margin: 0 auto 14px;
   background-color: var(--sidebar-search-background);
   border-radius: 5px;
   border: 0  var(--sidebar-search-border-color);
@@ -13,7 +10,7 @@
   font-size: 12px;
   line-height: 12px;
   color: var(--sidebar-search-color);
-  background-image: url(../../../vendor/images/search.svg);
+  background-image: url("../../../vendor/images/search.svg");
   background-position: 35%;
   background-repeat: no-repeat;
 }

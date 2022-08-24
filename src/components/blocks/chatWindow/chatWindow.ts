@@ -21,7 +21,7 @@ import { MessageList } from '../messageList';
 import { Header } from '../header';
 import handleValidation from '../../../handles/handleValidation';
 
-import { CHATS } from '../../../utils/constants';
+import { Urls } from '../../../utils/constants';
 
 export class ChatWindow extends Block<IChatWindow> {
   constructor(props: IChatWindow) {
@@ -32,13 +32,13 @@ export class ChatWindow extends Block<IChatWindow> {
       addPopup: new AddUserForm(),
       boardForm: new BoardForm(),
       events: {
-        submit: (e: Event) => this._handleSubmit(e), 
+        submit: (e: Event) => this._handleSubmit(e),
         click: (e: Event) => this._handleClick(e)
       },
       handlers: [handleValidation]
     });
   }
-  
+
   private _handleSubmit(e: Event) {
     e.preventDefault();
     const chatData: {users: Array<number>, chatId: number} = {
@@ -79,16 +79,16 @@ export class ChatWindow extends Block<IChatWindow> {
       if (element === document.querySelector('.add_user')) {
         this.openPopup('.add-remove-user-popup', 'Добавить');
       }
-  
+
       if (element.classList.contains('popup_active')) {
         this.closePopup();
         bt1?.classList.add('header_hidden');
         bt2?.classList.add('header_hidden');
       }
-  
+
       if (element === document.querySelector('.remove_user')) {
         this.openPopup('.add-remove-user-popup', 'Удалить');
-      } 
+      }
     }
   }
 
@@ -144,7 +144,7 @@ export class ChatWindow extends Block<IChatWindow> {
       alert('Пользователь не найден');
     }
     await chats.addUsers({ data });
-    router.go(CHATS);
+    router.go(Urls.CHATS.INDEX);
   }
 
   async removeUser(data: {users: Array<number>, chatId: number}) {
@@ -152,7 +152,7 @@ export class ChatWindow extends Block<IChatWindow> {
       alert('Пользователь не найден');
     }
     await chats.deleteUsers({data});
-    router.go(CHATS);
+    router.go(Urls.CHATS.INDEX);
   }
 
   async searchUser(data: {users: Array<number>, chatId: number}) {
@@ -187,7 +187,7 @@ export class ChatWindow extends Block<IChatWindow> {
     const { userId, chatId, chatToken } = props;
     (new WebSocketService(userId, chatId, chatToken));
   }
-  
+
   private _sendChatMessage(message: string) {
     if (message === '') {
       return;

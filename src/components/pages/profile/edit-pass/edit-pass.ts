@@ -8,7 +8,7 @@ import { Button } from '../../../ui/button';
 import { Inbox } from '../../../ui/inbox';
 import { Popup } from '../../../ui/popup';
 import { Form } from '../../../ui/forms/form';
-import { PROFILE } from '../../../../utils/constants';
+import { Urls } from '../../../../utils/constants';
 import { router } from '../../../../index';
 
 import { inboxes } from './inboxes';
@@ -58,7 +58,7 @@ export class ChangePassword extends Block<IChangePassword> {
   }
 
   private _goToProfile() {
-    router.go(PROFILE);
+    router.go(Urls.PROFILE.INDEX);
   }
 
   private async _handleEditPasswordSubmit(evt: Event) {
@@ -103,8 +103,8 @@ export class ChangePassword extends Block<IChangePassword> {
         return new Inbox(input).render()
       })).join(''),
       submitButton: submitButton.render(),
-      avatar: userData?.avatar 
-      ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
+      avatar: userData?.avatar
+      ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}`
       : DEFAULT_USER_IMG,
       popup: popup.render(),
     });

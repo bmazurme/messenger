@@ -25,7 +25,7 @@ import handleValidation from '../../../handles/handleValidation';
 export class Chats extends Block<IChats> {
   constructor() {
     super('main', {
-      cards: [], 
+      cards: [],
       popup: new Popup(new CreateChatForm() as Form, ''),
       submitButton: new Button({
         class: 'button button_create-chat',
@@ -46,7 +46,6 @@ export class Chats extends Block<IChats> {
   }
 
   handleClick(e: Event) {
-   
     const target: HTMLElement|null = e.target as HTMLElement;
     const card: HTMLElement|null =target?.closest('.card');
     const title: HTMLElement|null = card?.querySelector('.card__title') as HTMLElement;
@@ -79,13 +78,13 @@ export class Chats extends Block<IChats> {
     protectedRoute(userInfo.id);
     const chatsDataDTO: any = await chats.getChats();
     let chatsData: Array<ICard> = [];
-    
+
     try {
       chatsData = JSON.parse(chatsDataDTO.response);
     } catch (err) {
       console.log(err);
     }
-    
+
     this.setProps({
       ...this.props,
       cards: chatsData.map((card: ICard) => {
@@ -96,13 +95,12 @@ export class Chats extends Block<IChats> {
           },
           fromYou: card?.last_message?.user?.email === userInfo?.email
         })).render();
-      })        
+      })
     });
   }
 
   render() {
     const { cards, popup, submitButton } = this.props;
-    console.log(cards)
     return tmp({
       cards: cards.join(''),
       submitButton: submitButton.render(),

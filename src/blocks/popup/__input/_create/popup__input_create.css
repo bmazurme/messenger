@@ -1,6 +1,6 @@
 .popup__input_create {
   opacity: 1;
-  position:relative;
+  position: relative;
   z-index: 1;
   width: 280px;
   margin: 45px auto 0;

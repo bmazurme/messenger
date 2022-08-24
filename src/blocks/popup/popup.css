@@ -2,17 +2,17 @@
   display: flex;
   justify-content: center;
   opacity: 0;
-  transition: .5s ease-out;
+  transition: 0.5s ease-out;
   visibility: hidden;
   z-index: 1000;
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%; 
+  width: 100%;
   position: fixed;
 }
 
-.popup:before {
+.popup::before {
   height: 100%;
   left: 0;
   margin: 0;
@@ -22,6 +22,6 @@
   width: 100%;
   background-color: var(--popup-before-background-color);
   content: "";
-  opacity: .5;
+  opacity: 0.5;
   z-index: 0;
 }

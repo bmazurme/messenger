@@ -1,12 +1,11 @@
 .card {
-  height: 70px; 
+  height: 70px;
   border-top: solid 1px var(--card-border-top-color);
   text-decoration: none;
-
   display: grid;
   grid-template-columns: 47px 1fr 30px;
-  grid-template-rows: 12px 14px 16px 16px 12px; 
-  grid-template-areas: 
+  grid-template-rows: 12px 14px 16px 16px 12px;
+  grid-template-areas:
     "top top top"
     "image title time"
     "image text counter"

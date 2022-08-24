@@ -11,6 +11,7 @@
     "startDevServer": "webpack-dev-server --mode development --open",
     "devParcel": "parcel src/index.html",
     "lint": "npx eslint . --no-fix",
+    "slint": "npx stylelint \"**/*.css\"",
     "test": "mocha -r ts-node/register",
     "prepare": "husky install .config/husky"
   },
@@ -38,8 +39,8 @@
     "mocha": "^9.2.1",
     "parcel": "2.5.0",
     "postcss": "8.4.14",
-    "stylelint": "14.8.5",
-    "stylelint-config-standard": "25.0.0",
+    "stylelint": "^14.8.5",
+    "stylelint-config-standard": "^25.0.0",
     "ts-loader": "^9.3.1",
     "ts-node": "10.8.0",
     "typescript": "4.7.2",

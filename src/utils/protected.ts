@@ -1,9 +1,9 @@
 import { router } from '../index';
-import { SIGN_IN } from './constants';
+import { Urls } from './constants';
 
 function protectedRoute(id: number):void {
   if (!id) {
-    router.go(SIGN_IN);
+    router.go(Urls.SIGN.IN);
   }
 }
 

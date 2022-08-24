@@ -9,7 +9,7 @@ import { inboxes } from './inboxes';
 
 import handleValidation from '../../../handles/handleValidation';
 
-import { SIGN_IN } from '../../../utils/constants';
+import { Urls } from '../../../utils/constants';
 import { router } from '../../../index';
 import { checkValid, toggleStyle } from '../../../utils/validator';
 
@@ -54,9 +54,9 @@ export class Signup extends Block<ISign> {
 
     if (isValidForm) {
       await auth.signUp({data});
-      router.go(SIGN_IN);
+      router.go(Urls.SIGN.IN);
     }
-  } 
+  }
 
   render() {
     const { inboxes, submitButton } = this.props;

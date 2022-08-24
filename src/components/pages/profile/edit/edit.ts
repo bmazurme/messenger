@@ -18,7 +18,7 @@ import handlerPopupClick from '../../../../handles/handlerPopupClick';
 import protectedRoute from '../../../../utils/protected';
 import { checkValid, toggleStyle } from '../../../../utils/validator';
 
-import { PROFILE } from '../../../../utils/constants';
+import { Urls } from '../../../../utils/constants';
 import DEFAULT_USER_IMG from '../../../../vendor/images/ava.svg';
 
 export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
@@ -74,7 +74,7 @@ export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
   }
 
   private _goToProfile() {
-    router.go(PROFILE);
+    router.go(Urls.PROFILE.INDEX);
   }
 
   async componentDidMount() {
@@ -92,8 +92,8 @@ export class ChangeProfileInfo extends Block<IChangeProfileInfo> {
       inboxes : (inboxes.map((input: Record<string, string>) => {
         return new Inbox({...input, value: userData[input.name]}).render()
       })).join(''),
-      avatar: userData.avatar 
-        ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
+      avatar: userData.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}`
         : DEFAULT_USER_IMG,
       submitButton: submitButton.render()
     })

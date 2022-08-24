@@ -17,17 +17,12 @@ import protectedRoute from '../../../utils/protected';
 
 import DEFAULT_USER_IMG from '../../../vendor/images/ava.svg';
 
-import {
-  CHATS,
-  PROFILE_EDIT,
-  PROFILE_PASSWORD,
-  SIGN_IN,
-} from '../../../utils/constants';
+import { Urls } from '../../../utils/constants';
 
 export class Profile extends Block<IProfile> {
   constructor() {
     super('main', {
-      userData: {  
+      userData: {
         popup: null,
         first_name: '',
         second_name: '',
@@ -47,9 +42,6 @@ export class Profile extends Block<IProfile> {
           // click: () => this._goToChat(),
         },
       }),
-      //
-      //
-      //
       events: {
         click: (e: Event) => this._handleClick(e),
       },
@@ -60,31 +52,17 @@ export class Profile extends Block<IProfile> {
     })
   }
 
-  // private _goToChat() {
-  //   router.go(CHATS);
-  // }
-  // private _goToEditProfile() {
-  //   router.go(PROFILE_EDIT);
-  // }
-  // private _goToEditPassword() {
-  //   router.go(PROFILE_PASSWORD);
-  // }
-  // private async _goToLogout() {
-  //   e.preventDefault();
-  //   await auth.logOut();
-  // }
-
   private async _handleClick(e: Event) {
     if (e.target === document?.querySelector('.back__button')) {
-      router.go(CHATS);
+      router.go(Urls.CHATS.INDEX);
     } else if (e.target === document?.querySelector('.profile__link_logout')) {
       e.preventDefault();
       await auth.logOut();
-      router.go(SIGN_IN);
+      router.go(Urls.SIGN.IN);
     } else if (e.target === document?.querySelector('.profile-edit')) {
-      router.go(PROFILE_EDIT);
+      router.go(Urls.PROFILE.EDIT);
     } else if (e.target === document?.querySelector('.profile-edit-pass')) {
-      router.go(PROFILE_PASSWORD);
+      router.go(Urls.PASSWORD.EDIT);
     }
   }
 
@@ -127,8 +105,8 @@ export class Profile extends Block<IProfile> {
       ].join(''),
       popup: popup.render(),
       backButton: backButton.render(),
-      avatar: userData.avatar 
-        ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}` 
+      avatar: userData.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources/${userData.avatar}`
         : DEFAULT_USER_IMG
     })
   }

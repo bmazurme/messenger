@@ -1,6 +1,6 @@
 
 import Route from './route';
-import { ERROR_NOT_FOUND } from '../utils/constants';
+import { Urls } from '../utils/constants';
 
 class Router {
   private routes: Route[] | undefined;
@@ -37,7 +37,7 @@ class Router {
     const route = this.getRoute(pathname);
 
     if (!route) {
-      return this.go(ERROR_NOT_FOUND);
+      return this.go(Urls.ERROR.NOT_FOUND);
     }
 
     if (this._currentRoute) {

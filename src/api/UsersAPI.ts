@@ -1,7 +1,7 @@
 import HTTP, {Options} from '../utils/http';
-import { BASE_URL } from '../utils/constants';
+import { Urls } from '../utils/constants';
 
-const usersAPIInstance = new HTTP(`${BASE_URL}/user`);
+const usersAPIInstance = new HTTP(`${Urls.BASE.INDEX}/user`);
 
 class UsersAPI {
   changeInfo(options: Options) {
