@@ -3,8 +3,5 @@
   line-height: 20px;
   text-align: center;
   color: var(--error-text-color);
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
+  margin: 20px auto 0;
 }

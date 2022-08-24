@@ -1,5 +1,5 @@
-import { Popup } from '../../ui/popup';
 import Block from '../../../core/block';
+import { Popup } from '../../ui/popup';
 import { Button } from '../../ui/button';
 
 export interface IProfile {

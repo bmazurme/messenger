@@ -1,4 +1,4 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 export const source = `
   <form class="form footer" name="message">
@@ -10,6 +10,6 @@ export const source = `
     {{{attachButton}}}
     {{{submitButton}}}
   </form>                                                    
-`
+`;
 
 export const tmp = compile(source);

@@ -25,6 +25,7 @@
 @import url(./blocks/list/__label/list__label.css);
 @import url(./blocks/list/__value/list__value.css);
 @import url(./blocks/list/__value/_input/list__value_input.css);
+@import url(./blocks/list/__item/_revers/list__item_revers.css);
 /* nav */
 @import url(./blocks/back/back.css);
 @import url(./blocks/back/__button/back__button.css);
@@ -54,7 +55,6 @@
 @import url(./blocks/header/__menu/header__menu.css);
 /* footer */
 @import url(./blocks/footer/footer.css);
-@import url(./blocks/footer/__form/footer__form.css);
 @import url(./blocks/footer/__button/footer__button.css);
 @import url(./blocks/footer/__button/_send/footer__button_send.css);
 @import url(./blocks/footer/__input/footer__input.css);

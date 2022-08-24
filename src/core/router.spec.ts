@@ -5,7 +5,7 @@ import { Button } from '../components/ui/button';
 import {compile} from 'handlebars';
 import { expect } from 'chai';
 import Route from './route';
-import { ERROR_NOT_FOUND } from '../utils/constants';
+import { Urls } from '../utils/constants';
 
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
@@ -41,6 +41,7 @@ class Signin extends Block<ISign> {
         text: 'Зарегистрироваться',
         events: {}
       }),
+      events: {}
     });
   }
   render() {
@@ -59,6 +60,7 @@ class Signup extends Block<ISign> {
         text: 'Зарегистрироваться',
         events: {}
       }),
+      events: {}
     });
   }
   render() {
@@ -87,7 +89,7 @@ describe('Router', function () {
   router
     .use('/', Signin)
     .use('/signup', Signup)
-    .use(ERROR_NOT_FOUND, Error404)
+    .use(Urls.ERROR.NOT_FOUND, Error404)
     .start();
 
   it('Should add "/signin" page to routes list', () => {

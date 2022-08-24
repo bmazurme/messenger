@@ -5,16 +5,12 @@ export default function handleEditAvatarSubmit(element: HTMLElement, className =
   formList.forEach((item: HTMLElement) => {
     item.addEventListener('submit', (evt: Event) => {
       evt.preventDefault();
-      evt.stopPropagation();
 
     const form = evt.target as HTMLFormElement;
     const formData: FormData = new FormData(form);
     users
       .changeAvatar({
-        headers: {
-          'accept': 'application/json',
-          'content-type': 'multipart/form-data',
-        },
+        headers: {},
         data: formData
       })
       .then(() => console.log('Ok'))

@@ -5,6 +5,7 @@ export default abstract class Block<Props extends object = {}> {
   render() {
     throw new Error('Method not implemented.');
   }
+  
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -14,14 +15,14 @@ export default abstract class Block<Props extends object = {}> {
 
   eventBus: () => EventBus;
   _element: HTMLElement | null = null;
+
   readonly meta: {
     tagName: string,
-    props: any// Props
+    props: Props
   }
   oldProps: any;//Props;
   protected props: any;//Props;
-  _id: string = '';
-   
+
   constructor(tagName: string = 'div', propsAndChildren: Props = <Props>{}) {
     const eventBus = new EventBus();
     this.meta = {
@@ -72,10 +73,12 @@ export default abstract class Block<Props extends object = {}> {
 
   private _componentDidUpdate(): void {
     const response: boolean = !isEqual(this.oldProps, this.props);
-    if (response) this._componentDidMount();
+    if (response) {
+      this._componentDidMount();
+    }
   }
 
-  public setProps = (nextProps: { [key: string]: string }) => {
+  public setProps = (nextProps: Record<string, string>) => {
     if (!nextProps) {
       return;
     }
@@ -95,8 +98,6 @@ export default abstract class Block<Props extends object = {}> {
     const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
-      // console.log(eventName);
-      // console.log(events[eventName]);
       this._element!.addEventListener(eventName, events[eventName]);
     });
   }
@@ -113,13 +114,13 @@ export default abstract class Block<Props extends object = {}> {
     //@ts-ignore
     const block: string = this.render();
     this.removeEvents();
+    
     if (this.props.className) {
       this._element!.classList.add(this.props.className);
     }
     this._element!.innerHTML = block;
     this.addEvents();
   }
-
 
   public getContent(): HTMLElement | null {
     return this.element;

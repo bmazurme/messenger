@@ -11,8 +11,5 @@
   line-height: 13px;
   text-align: center;
   color: var(--popup-button-color);
-  margin-top: 45px;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 45px auto 0;
 }

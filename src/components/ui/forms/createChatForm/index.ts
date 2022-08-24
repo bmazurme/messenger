@@ -16,7 +16,7 @@ export class CreateChatForm extends Block<IForm> {
     });
   }
   render() {
-    const {submitButton} = this.props;
+    const { submitButton } = this.props;
     return tmp({
       submitButton: submitButton.render(),
     })

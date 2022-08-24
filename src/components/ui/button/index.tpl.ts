@@ -1,9 +1,9 @@
-import {compile} from 'handlebars';
+import { compile } from 'handlebars';
 
 const source = `
   <button class="{{class}}" 
     {{#if type}}type="{{type}}"{{/if}}>
-      {{text}}
+    {{text}}
   </button>`;
 
 export const tmp = compile(source);

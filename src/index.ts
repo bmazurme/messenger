@@ -11,25 +11,16 @@ import { Profile } from './components/pages/profile';
 import { Error404 } from './components/pages/error/error404';
 import { Error500 } from './components/pages/error/error500';
 
-import {
-  SIGN_IN,
-  SIGN_UP,
-  PROFILE_PASSWORD,
-  PROFILE_EDIT,
-  CHATS,
-  PROFILE,
-  ERROR_NOT_FOUND,
-  ERROR_INTERNAL_SERVER,
-} from './utils/constants';
+import { Urls } from './utils/constants';
 
 export const router = new Router('.app');
   router
-    .use(SIGN_IN, Signin)
-    .use(SIGN_UP, Signup)
-    .use(PROFILE, Profile)
-    .use(PROFILE_EDIT, ChangeProfileInfo)
-    .use(PROFILE_PASSWORD, ChangePassword)
-    .use(CHATS, Chats)
-    .use(ERROR_NOT_FOUND, Error404)
-    .use(ERROR_INTERNAL_SERVER, Error500)
+    .use(Urls.SIGN.IN, Signin)
+    .use(Urls.SIGN.UP, Signup)
+    .use(Urls.PROFILE.INDEX, Profile)
+    .use(Urls.PROFILE.EDIT, ChangeProfileInfo)
+    .use(Urls.PASSWORD.EDIT, ChangePassword)
+    .use(Urls.CHATS.INDEX, Chats)
+    .use(Urls.ERROR.NOT_FOUND, Error404)
+    .use(Urls.ERROR.INTERNAL_SERVER, Error500)
     .start();

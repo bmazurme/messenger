@@ -2,8 +2,5 @@
   display: flex;
   flex-direction: column;
   width: 290px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 0;
+  margin: 10px auto 0;
 }

@@ -10,8 +10,9 @@ export interface ICard {
   avatar: string|null,
   title: string,
   last_message: ICardMessage,
+  time: string,
   unread_count: number,
   created_by: number,
   fromYou: boolean,
-  // user: IUser
+  events: Record<string, Function>
 };

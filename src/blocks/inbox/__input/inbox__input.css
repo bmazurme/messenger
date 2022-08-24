@@ -14,7 +14,7 @@
   outline: none;
 }
 
-.inbox__input:focus:valid ~ .inbox__label, 
+.inbox__input:focus:valid ~ .inbox__label,
 .inbox__input:valid ~ .inbox__label {
   top: -12px;
   font-size: 9px;

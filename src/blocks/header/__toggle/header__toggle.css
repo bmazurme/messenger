@@ -5,8 +5,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-image: url(../../../vendor/images/dots.svg);
-  background-size: cover;
+  background-image: url("../../../vendor/images/dots.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 3px 15px;

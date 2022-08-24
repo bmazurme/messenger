@@ -6,17 +6,17 @@
   height: 130px;
   border-radius: 50%;
   background-color: #efefef;
-  background-image: url(../../../vendor/images/default.svg);
-  background-position:center;
+  background-image: url("../../../vendor/images/default.svg");
+  background-position: center;
   background-repeat: no-repeat;
   background-size: 40px;
 }
 
 .profile__avatar:hover::before {
-  content: '';
+  content: "";
   display: flex;
   flex-direction: column;
-  justify-self:center;
+  justify-self: center;
   justify-content: center;
   cursor: pointer;
   height: 130px;
@@ -28,11 +28,11 @@
 }
 
 .profile__avatar:hover::after {
-  content: 'Поменять аватар';
+  content: "Поменять аватар";
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-self:center;
+  justify-self: center;
   justify-content: center;
   text-align: center;
   font-style: normal;

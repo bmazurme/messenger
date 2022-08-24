@@ -1,7 +1,8 @@
 import HTTP, { Options } from '../utils/http';
-import { BASE_URL } from '../utils/constants';
+import { Urls } from '../utils/constants';
 
-const authAPIInstance = new HTTP(`${BASE_URL}/auth`);
+const authAPIInstance = new HTTP(`${Urls.BASE.INDEX}/auth`);
+
 class AuthAPI {
   getUser(): Promise<unknown> {
     return authAPIInstance.get('/user');
@@ -14,7 +15,7 @@ class AuthAPI {
   signIn(options: Options): Promise<unknown> {
     return authAPIInstance.post('/signin', options);
   }
-  
+
   logOut(): Promise<unknown> {
     return authAPIInstance.post('/logout');
   }
