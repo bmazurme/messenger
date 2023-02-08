@@ -1,8 +1,14 @@
 .sidebar__search {
   display: flex;
-  width: 290px;
+  width: calc(100% - 20px);
   height: 32px;
-  margin: 0 auto 14px;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  box-sizing: border-box;
   background-color: var(--sidebar-search-background);
   border-radius: 5px;
   border: 0  var(--sidebar-search-border-color);
