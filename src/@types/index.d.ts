@@ -7,8 +7,11 @@ type Reducer<T> = (state: T, action: Action<T>) => T;
 
 type User = {
   _id: string;
-  name: string;
-  about: string;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  phone: string;
   avatar: string;
   email: string;
   password: string;

@@ -1,8 +1,8 @@
 .chat__sidebar {
   grid-area: sidebar;
   display: flex;
-  width: 290px;
-  height: 100%;
+  width: 310px;
+  height: 100vh;
   background: var(--chat-sidebar-background);
   border-right: var(--chat-sidebar-border-right);
   box-sizing: border-box;

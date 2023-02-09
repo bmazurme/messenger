@@ -5,7 +5,7 @@ import { type InputHTMLAttributes } from 'react';
 type OwnProps = {
   id?: string;
   label?: string;
-  black?: boolean; 
+  black?: boolean;
   errorText?: string;
 };
 
@@ -24,11 +24,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     black,
   } = props;
   return (
-    <div className="text-field">
-      {label && 
+    <div className={`text-field ${black ? 'text-field_row' : ''}`}>
+      {label &&
         <label
           htmlFor={id}
-          className={`text-field__label${errorText ? ' text-field__input-error' : ''}${black ? ' text-field__label_black' : ''}`}
+          className={`${className} text-field__label`}
         >
           {label}
         </label>}
@@ -38,11 +38,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         type={type}
         value={value}
         placeholder={placeholder}
-        className={className}
+        className={`${className}${errorText ? ' text-field_error' : ''}`}
       />
       {
         errorText
-        && <span className={`${label}-input-error text-field__input-error text-field__input-error_help`}>{ errorText }</span>
+        && <span className={`${id}-input-error text-field__input-error text-field__input-error_help`}>{ errorText }</span>
       }
     </div>
   );

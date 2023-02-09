@@ -4,14 +4,14 @@ import NavItem from '../NavItem';
 
 export default function SignIn({ help, url, label }: Record<string, string>) {
   return (
-    <div className="form__help">
+    <ul className="footer__links">
       {help}
       <NavItem
         to={url}
-        className="form__link"
+        className="link link-signup"
         active="true"
         value={label}
       />
-    </div>
+    </ul>
   );
 }

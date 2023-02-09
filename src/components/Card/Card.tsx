@@ -25,7 +25,6 @@ export default function Card({
             {count}
           </div>
         ) : null}
-
       </div>
     </li>
   );

@@ -16,13 +16,17 @@ import { Urls } from '../../utils/constants';
 
 type FormPayload = {
   email: string;
+  login: string;
+  first_name: string;
+  second_name: string;
+  phone: string;
   password: string;
 };
 
 const inputs = [
   {
     name: 'email',
-    label: 'E-mail',
+    placeholder: 'E-mail',
     pattern: {
       value: /[a-z0-9._%+-]+@[a-z0-9.-]+[.{0}][a-z]{2,3}$/,
       message: 'Email is invalid',
@@ -31,14 +35,53 @@ const inputs = [
     autoComplete: 'current-email',
   },
   {
+    name: 'login',
+    placeholder: 'Login',
+    pattern: {
+      value: /^[a-zA-Z0-9_-]{3,15}$/,
+      message: 'Login is invalid',
+    },
+    required: true,
+    autoComplete: 'current-login',
+  },
+  {
+    name: 'first_name',
+    placeholder: 'First name',
+    pattern: {
+      value: /^[a-zA-Z0-9_-]{3,15}$/,
+      message: 'First name is invalid',
+    },
+    required: true,
+    autoComplete: 'current-first_name',
+  },
+  {
+    name: 'second_name',
+    placeholder: 'Second name',
+    pattern: {
+      value: /^[a-zA-Z0-9_-]{3,15}$/,
+      message: 'Second name is invalid',
+    },
+    required: true,
+    autoComplete: 'current-second_name',
+  },
+  {
+    name: 'phone',
+    placeholder: 'Phone',
+    pattern: {
+      value: /^[a-zA-Z0-9_-]{3,15}$/,
+      message: 'Phone name is invalid',
+    },
+    required: true,
+    autoComplete: 'current-phone_name',
+  },
+  {
     name: 'password',
-    label: 'Password',
+    placeholder: 'Password',
     pattern: {
       value: /^[a-zA-Z0-9_-]{3,15}$/,
       message: 'Password is invalid',
     },
     required: true,
-    type: 'password',
     autoComplete: 'current-password',
   },
 ];
@@ -60,6 +103,10 @@ export default function SignUp() {
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
       email: '',
+      login: '',
+      first_name: '',
+      second_name: '',
+      phone: '',
       password: '',
     },
   });
@@ -95,7 +142,7 @@ export default function SignUp() {
               <Input
                 {...field}
                 {...input}
-                className="text-field__input text-field__input_identity"
+                className="input inbox__input"
                 errorText={fieldState.error?.message}
               />
             )}

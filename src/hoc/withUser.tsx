@@ -36,7 +36,7 @@ export default function withUser<P extends Record<string, unknown>>(
     if (userData || !shouldBeAuthorized) {
       const pagePropsWithUser = { ...pageProps, user: userData };
       pagePropsWithUser.user = userData;
-      console.log(userData);
+
       return <Page {...pagePropsWithUser} />;
     }
 

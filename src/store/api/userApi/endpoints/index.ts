@@ -23,16 +23,32 @@ const usersApiEndpoints = usersApi
           async onSuccess(dispatch, data) {
             await dispatch(setCredentials(data as User));
           },
+          providesTags: ['Users'],
         }),
       }),
       updateAvatar: builder.mutation({
         query: (formData) => ({
           url: '/user/profile/avatar',
           method: 'PUT',
-          data: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          data: formData.avatar,
+          providesTags: ['Users', 'User'],
           async onSuccess(dispatch, data) {
             await dispatch(setCredentials(data as User));
           },
+        }),
+      }),
+      updateUserPassword: builder.mutation({
+        query: (user) => ({
+          url: '/user/password',
+          method: 'PUT',
+          data: user,
+          // async onSuccess(dispatch, data) {
+          //   await dispatch(setCredentials(data as User));
+          // },
+          // providesTags: ['Users'],
         }),
       }),
     }),
@@ -42,4 +58,5 @@ export const {
   useGetUsersInfoQuery,
   useUpdateUserMutation,
   useUpdateAvatarMutation,
+  useUpdateUserPasswordMutation,
 } = usersApiEndpoints;

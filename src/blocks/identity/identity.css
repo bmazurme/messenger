@@ -6,9 +6,10 @@
   height: auto;
   border-radius: 12px;
   margin: auto;
-  padding: 0;
+  padding: 30px;
   background: var(--identity-background);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 767px) {

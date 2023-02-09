@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 import Button from '../form-components/Button';
 import Header from '../Header';
-import Footer from '../Footer';
 
 type ErrorBoundaryWrapperProps = PropsWithChildren<unknown>;
 
@@ -30,7 +29,6 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

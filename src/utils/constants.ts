@@ -2,8 +2,10 @@ export const Urls = {
   BASE: '/',
   SIGNIN: '/signin',
   SIGNUP: '/signup',
+  LOGOUT: '/logout',
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
+  PASSWORD_EDIT: '/password/edit',
   404: '*',
 };
 

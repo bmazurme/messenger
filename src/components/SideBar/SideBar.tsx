@@ -1,33 +1,37 @@
 /* eslint-disable react/self-closing-comp */
-import React from 'react';
+import React, {
+  KeyboardEvent, FormEvent, useState, useEffect, useMemo,
+} from 'react';
 import { Link } from 'react-router-dom';
 
 import { Button } from '../form-components';
 import Cards from '../Cards';
 
 import { Urls } from '../../utils/constants';
+import mcards from '../../mock/cards';
 
 export default function SideBar() {
-  const cards: Card[] = [
-    {
-      id: 1,
-      title: 'title',
-      text: 'text',
-      image: '/',
-      time: new Date(),
-      count: 4,
-      you: true,
-    },
-    {
-      id: 2,
-      title: 'title',
-      text: 'text',
-      image: '/',
-      time: new Date(),
-      count: 4,
-      you: false,
-    },
-  ];
+  const [word, setWord] = useState('');
+  // const [cards, setCards] = useState([]);
+  const cards = useMemo(() => mcards, []);
+  // const handleKeyDown = (evt: KeyboardEvent<HTMLInputElement>) => {
+  //   if (evt.key === 'Enter' && word && word !== '') {
+  //     console.log(word);
+  //   }
+  // };
+
+  const onChange = (evt: FormEvent<HTMLInputElement>) => {
+    setWord(evt.target.value);
+  };
+
+  const onSubmit = (evt: any) => {
+    evt.preventDefault();
+
+    if (word && word !== '') {
+      console.log(word);
+      // setMessage('');
+    }
+  };
 
   return (
     <div className="chat__sidebar">
@@ -36,7 +40,15 @@ export default function SideBar() {
           Профиль
           <span className="sidebar__icon" />
         </Link>
-        <input className="sidebar__search" placeholder="Поиск" />
+        <form onSubmit={onSubmit}>
+          <input
+            value={word}
+            className="sidebar__search"
+            placeholder="Поиск"
+            onChange={onChange}
+          />
+        </form>
+
         {cards.length === 0
           ? (
             <Button className="button button_create-chat" variant="filled">

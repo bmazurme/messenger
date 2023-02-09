@@ -3,14 +3,12 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import {
-  authApi,
-  usersApi,
-} from './api';
+import { authApi, usersApi } from './api';
 import userReducer from './slices/userSlice';
 import { isServer } from '../utils';
 
 export * from './api/authApi/endpoints';
+export * from './api/userApi/endpoints';
 export * from './slices';
 
 // global redeclared types

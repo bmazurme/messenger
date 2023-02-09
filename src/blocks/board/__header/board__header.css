@@ -1,8 +1,7 @@
 .board__header {
-  margin: 0 20px;
+  margin: 0;
   padding: 0;
   height: 54px;
-  border-bottom: solid 1px var(--board-header-border-bottom);
   display: flex;
   align-items: center;
 }

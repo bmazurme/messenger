@@ -1,9 +1,16 @@
 .footer {
   display: grid;
-  width: 100%;
-  grid-template-columns: 34px 1fr 25px;
-  grid-template-rows: 54px;
+  width: calc(100% - 40px);
   grid-template-areas: "attach input send";
+  grid-template-columns: 28px 1fr 28px;
   column-gap: 10px;
-  padding: 11px 0 0;
+  padding: 10px 0;
+  margin: 0 20px;
+  border-top: solid 1px var(--board-footerborder-top);
+}
+
+.footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

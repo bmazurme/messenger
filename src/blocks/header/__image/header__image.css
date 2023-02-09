@@ -5,4 +5,5 @@
   background: var(--header-image-background);
   padding: 0;
   margin: auto;
+  position: relative;
 }
