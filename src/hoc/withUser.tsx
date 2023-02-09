@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { useEffect, type ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useErrorHandler } from 'react-error-boundary';
@@ -26,9 +25,7 @@ export default function withUser<P extends Record<string, unknown>>(
 
     useEffect(() => {
       if (isUninitialized && !userData) {
-        getUser().then(() => {
-          if (data && !isError) userData = data;
-        });
+        getUser().then(() => { if (data && !isError) userData = data; });
       }
     }, [getUser, isError, isLoading, isUninitialized, userData]);
 
@@ -39,6 +36,7 @@ export default function withUser<P extends Record<string, unknown>>(
     if (userData || !shouldBeAuthorized) {
       const pagePropsWithUser = { ...pageProps, user: userData };
       pagePropsWithUser.user = userData;
+      console.log(userData);
       return <Page {...pagePropsWithUser} />;
     }
 

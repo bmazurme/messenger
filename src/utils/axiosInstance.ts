@@ -1,10 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 
-// @ts-ignore
 const axiosInstance: AxiosInstance = axios.create({
-  // withCredentials: true,
-  // @ts-ignore
-  'Access-Control-Allow-Credentials': true,
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.response.use(

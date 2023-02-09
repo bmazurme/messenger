@@ -5,12 +5,12 @@ import Profile from './ProfileEdit';
 import Preloader from '../../components/Preloader';
 
 import withUser from '../../hoc/withUser';
-import { useGetUserMeQuery } from '../../store';
+import { useGetUserMutation } from '../../store';
 
 function ProfileEditPage() {
   const handleError = useErrorHandler();
   // @ts-ignore
-  const { data: user, error: userError, isLoading: isLoadingUser } = useGetUserMeQuery();
+  const { data: user, error: userError, isLoading: isLoadingUser } = useGetUserMutation();
 
   if (userError) {
     handleError(userError);

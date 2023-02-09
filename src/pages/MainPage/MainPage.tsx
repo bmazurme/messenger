@@ -6,18 +6,18 @@ import Content from '../../components/Content';
 import Preloader from '../../components/Preloader';
 
 import withUser from '../../hoc/withUser';
-import { useGetCardsQuery, useGetUserMeQuery } from '../../store';
+import { useGetUserMutation } from '../../store';
 
 function MainPage() {
   const handleError = useErrorHandler();
   // @ts-ignore
-  const { data: cards = [], error: cardsError, isLoading: isLoadingCards } = useGetCardsQuery();
+  // const { data: cards = [], error: cardsError, isLoading: isLoadingCards } = useGetCardsQuery();
   // @ts-ignore
-  const { data: user, error: userError, isLoading: isLoadingUser } = useGetUserMeQuery();
+  const { data: user, error: userError, isLoading: isLoadingUser } = useGetUserMutation();
 
-  if (cardsError) {
-    handleError(cardsError);
-  }
+  // if (cardsError) {
+  //   handleError(cardsError);
+  // }
 
   if (userError) {
     handleError(userError);
@@ -25,7 +25,7 @@ function MainPage() {
 
   return (
     <Content>
-      {isLoadingCards || isLoadingUser ? <Preloader /> : <Main cards={cards} user={user} />}
+      { isLoadingUser ? <Preloader /> : <Main user={user} />}
     </Content>
   );
 }

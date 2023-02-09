@@ -1,16 +1,16 @@
-/* eslint-disable no-use-before-define */
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi, usersApi, cardsApi } from './api';
+import {
+  authApi,
+  usersApi,
+} from './api';
 import userReducer from './slices/userSlice';
 import { isServer } from '../utils';
 
 export * from './api/authApi/endpoints';
-export * from './api/userApi/endpoints';
-export * from './api/cardApi/endpoints';
 export * from './slices';
 
 // global redeclared types
@@ -31,7 +31,6 @@ export const store = configureStore({
     user: userReducer,
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
-    [cardsApi.reducerPath]: cardsApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -39,7 +38,6 @@ export const store = configureStore({
     .concat(
       authApi.middleware,
       usersApi.middleware,
-      cardsApi.middleware,
       routerMiddleware,
     ),
 });

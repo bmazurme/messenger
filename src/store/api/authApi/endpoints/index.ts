@@ -1,5 +1,5 @@
 import authApi from '..';
-import { setCredentials } from '../../../slices';
+import { setCredentials } from '../../../slices/userSlice';
 
 const authApiEndpoints = authApi
   .enhanceEndpoints({
@@ -14,37 +14,39 @@ const authApiEndpoints = authApi
           data,
         }),
       }),
-      signIn: builder.mutation<void, { email: string, password: string }>({
+      signIn: builder.mutation<void, { login: string, password: string }>({
         query: (data) => ({
           url: '/signin',
           method: 'POST',
           data,
-          async onSuccess(dispatch, res) {
-            const { token } = res as Record<string, string>;
-            localStorage.setItem('jwt', token);
-          },
         }),
       }),
       getUser: builder.mutation<User | null, void>({
-        query: () => {
-          const token = localStorage.getItem('jwt');
-          return {
-            url: '/users/me',
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            async onSuccess(dispatch, data) {
-              const user = (data as { data: User })?.data;
-              if (user?.email) {
-                dispatch(setCredentials(user as User));
-              }
-            },
-          };
-        },
+        query: () => ({
+          url: '/user',
+          method: 'GET',
+          async onSuccess(dispatch, data) {
+            await dispatch(setCredentials(data as User));
+          },
+        }),
+        invalidatesTags: ['User'],
+      }),
+      signOut: builder.mutation<void, void>({
+        query: () => ({
+          url: '/logout',
+          method: 'POST',
+          async onSuccess(dispatch) {
+            await dispatch(setCredentials(null));
+          },
+        }),
         invalidatesTags: ['User'],
       }),
     }),
   });
 
-export const { useSignUpMutation, useSignInMutation, useGetUserMutation } = authApiEndpoints;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useGetUserMutation,
+  useSignOutMutation,
+} = authApiEndpoints;
