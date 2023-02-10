@@ -1,7 +1,7 @@
 .back {
   display: flex;
   position: absolute;
-  height: 100vh;
+  height: 100%;
   width: 64px;
   top: 0;
   left: 0;

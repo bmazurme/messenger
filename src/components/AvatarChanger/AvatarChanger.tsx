@@ -1,7 +1,6 @@
 import React, {
   useCallback,
   useRef,
-  useState,
   useEffect,
   type ChangeEvent,
 } from 'react';
@@ -9,15 +8,17 @@ import classnames from 'classnames';
 import Avatar from '../Avatar';
 
 type AvatarChangerProps = {
-  user: User;
+  avatar: string | null;
   onChange: (formData: FormData) => void;
   newSrc: string;
   setNewSrc: any;
+  chatId?: number | undefined;
 };
 
-export default function AvatarChanger({ onChange, user, newSrc, setNewSrc }: AvatarChangerProps) {
+export default function AvatarChanger({
+  onChange, avatar, newSrc, setNewSrc, chatId,
+}: AvatarChangerProps) {
   const elementInputFile = useRef<HTMLInputElement>(null);
-  // const [newSrc, setNewSrc] = useState('');
   const validateImgFile = (file: File | undefined) => !!file?.type.match('image.*');
 
   const onInputChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +40,9 @@ export default function AvatarChanger({ onChange, user, newSrc, setNewSrc }: Ava
 
     const form = new FormData();
     form.append('avatar', files[0]);
+    if (chatId) {
+      form.append('chatId', chatId.toString());
+    }
 
     onChange(form);
   }, []);
@@ -49,7 +53,7 @@ export default function AvatarChanger({ onChange, user, newSrc, setNewSrc }: Ava
 
   return (
     <label className={classnames('avatar__label')} htmlFor="avatar">
-      <Avatar user={user} />
+      <Avatar avatar={avatar} />
       <input
         ref={elementInputFile}
         type="file"

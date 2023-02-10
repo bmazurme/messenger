@@ -1,6 +1,6 @@
 .message__content {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0;
   margin: 0;
   flex-wrap: wrap;

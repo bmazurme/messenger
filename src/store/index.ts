@@ -1,14 +1,17 @@
+/* eslint-disable no-use-before-define */
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi, usersApi } from './api';
+import { authApi, usersApi, chatApi } from './api';
 import userReducer from './slices/userSlice';
+// import chatReducer from './slices/chatSlice';
 import { isServer } from '../utils';
 
 export * from './api/authApi/endpoints';
 export * from './api/userApi/endpoints';
+export * from './api/chatApi/endpoints';
 export * from './slices';
 
 // global redeclared types
@@ -27,8 +30,10 @@ export const store = configureStore({
     router: routerReducer,
     // Add the generated reducer as a specific top-level slice
     user: userReducer,
+    // chat: chatReducer,
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    [chatApi.reducerPath]: chatApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -36,6 +41,7 @@ export const store = configureStore({
     .concat(
       authApi.middleware,
       usersApi.middleware,
+      chatApi.middleware,
       routerMiddleware,
     ),
 });

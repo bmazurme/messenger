@@ -1,108 +1,144 @@
-/* eslint-disable max-len */
-// import React, { useState } from 'react';
-// import { useErrorHandler } from 'react-error-boundary';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useErrorHandler } from 'react-error-boundary';
+import { Controller, useForm } from 'react-hook-form';
 
-// import { EditProfilePopup, EditAvatarPopup, AddPlacePopup } from '../popups';
-// import { useUpdateUserMutation, useUpdateUserAvatarMutation, useAddCardMutation } from '../../store';
+import useUser from '../../hook/useUser';
+import AvatarChanger from '../AvatarChanger';
 
-// export default function Main({ info }:{ info: User | null }) {
-//   const errorHandler = useErrorHandler();
-//   const [updateUser, { isLoading: isLoadingUser }] = useUpdateUserMutation();
-//   const [updateUserAvatar, { isLoading: isLoadingAvatar }] = useUpdateUserAvatarMutation();
-//   const [addCard, { isLoading: isLoadingCard }] = useAddCardMutation();
-//   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-//   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-//   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+import { useSignOutMutation, useUpdateAvatarMutation } from '../../store';
 
-//   const handleOpenEditProfilePopup = () => setIsEditProfilePopupOpen(true);
-//   const handleOpenEditAvatarPopup = () => setIsEditAvatarPopupOpen(true);
-//   const handleOpenAddPlacePopup = () => setAddPlacePopupOpen(true);
-//   const handleCloseAllPopups = () => {
-//     setIsEditProfilePopupOpen(false);
-//     setIsEditAvatarPopupOpen(false);
-//     setAddPlacePopupOpen(false);
-//   };
+import { Urls } from '../../utils/constants';
 
-//   const handleUpdateUserSubmit = async (data: Record<string, string>) => {
-//     try {
-//       await updateUser(data);
-//       handleCloseAllPopups();
-//     } catch ({ status, data: { reason } }) {
-//       errorHandler(new Error(`${status}: ${reason}`));
-//     }
-//   };
+export type FormPayload = Omit<User, 'id'>;
 
-//   const handleUpdateAvatarSubmit = async (data: Record<string, string>) => {
-//     try {
-//       await updateUserAvatar(data);
-//       handleCloseAllPopups();
-//     } catch ({ status, data: { reason } }) {
-//       errorHandler(new Error(`${status}: ${reason}`));
-//     }
-//   };
+export default function Profile() {
+  const userData = useUser();
+  const errorHandler = useErrorHandler();
+  const [signOut] = useSignOutMutation();
+  const [updateAvatar] = useUpdateAvatarMutation();
+  const [newSrc, setNewSrc] = useState('');
+  const [notification, setNotification] = useState<{ type: any; message: string; } | null>(null);
+  console.log(notification);
 
-//   const handleAddPlaceSubmit = async (data: Record<string, string>) => {
-//     try {
-//       await addCard(data);
-//       handleCloseAllPopups();
-//     } catch ({ status, data: { reason } }) {
-//       errorHandler(new Error(`${status}: ${reason}`));
-//     }
-//   };
+  const signOutHandler = async () => {
+    await signOut();
+  };
 
-//   return (
-//     <section className="profile">
-//       <div
-//         className="profile__image"
-//         style={{ backgroundImage: `url(${info?.avatar})` }}
-//         onClick={handleOpenEditAvatarPopup}
-//         aria-hidden="true"
-//       />
-//       <div className="profile__info">
-//         <h1 className="profile__name">{info?.name}</h1>
-//         <p className="profile__profession">{info?.about}</p>
-//         <button
-//           aria-label="Edit"
-//           type="button"
-//           className="profile__edit"
-//           onClick={handleOpenEditProfilePopup}
-//         />
-//       </div>
-//       <button
-//         aria-label="Add"
-//         className="profile__add"
-//         type="button"
-//         onClick={handleOpenAddPlacePopup}
-//       />
-//       {isEditAvatarPopupOpen ? (
-//         <EditAvatarPopup
-//           isOpen={isEditAvatarPopupOpen}
-//           info={info}
-//           isLoading={isLoadingAvatar}
-//           onClose={handleCloseAllPopups}
-//           onUpdateUser={handleUpdateAvatarSubmit}
-//         />
-//       )
-//         : null}
-//       {isEditProfilePopupOpen ? (
-//         <EditProfilePopup
-//           isOpen={isEditProfilePopupOpen}
-//           info={info}
-//           isLoading={isLoadingUser}
-//           onClose={handleCloseAllPopups}
-//           onUpdateUser={handleUpdateUserSubmit}
-//         />
-//       )
-//         : null}
-//       {isAddPlacePopupOpen ? (
-//         <AddPlacePopup
-//           isOpen={isAddPlacePopupOpen}
-//           isLoading={isLoadingCard}
-//           onClose={handleCloseAllPopups}
-//           onAddPlace={handleAddPlaceSubmit}
-//         />
-//       )
-//         : null}
-//     </section>
-//   );
-// }
+  const { control, handleSubmit } = useForm<FormPayload>({
+    defaultValues: {
+      avatar: userData?.avatar || 'null',
+    },
+  });
+
+  const onSubmit = (data: FormPayload) => {
+    const actions = [];
+    actions.push(updateAvatar(data));
+
+    Promise.all(actions)
+      .then(() => {
+        setNotification({
+          type: 'success',
+          message: 'Profile updated',
+        });
+        setNewSrc('');
+      })
+      .then(() => setTimeout(() => setNotification(null), 3000))
+      .catch(({ status, data: { reason } }) => errorHandler(new Error(`${status}: ${reason}`)));
+  };
+
+  return (
+    <section className="profile">
+      <form className="profile__avatar" onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          control={control}
+          name="avatar"
+          render={({ field }) => (
+            <>
+              <AvatarChanger
+                avatar={userData!.avatar}
+                onChange={field.onChange}
+                newSrc={newSrc}
+                setNewSrc={setNewSrc}
+              />
+              <button className="avatar__button" type="submit" disabled={newSrc === ''}>.</button>
+            </>
+
+          )}
+        />
+      </form>
+
+      <h2 className="profile__title">Profile</h2>
+      <ul className="list">
+        <li className="list__item">
+          <p className="list__label">
+            Email
+          </p>
+          <p className="list__value">
+            {userData?.email || '-'}
+          </p>
+        </li>
+        <li className="list__item">
+          <p className="list__label">
+            Login
+          </p>
+          <p className="list__value">
+            {userData?.login || '-'}
+          </p>
+        </li>
+        <li className="list__item">
+          <p className="list__label">
+            Name
+          </p>
+          <p className="list__value">
+            {userData?.first_name || '-'}
+          </p>
+        </li>
+        <li className="list__item">
+          <p className="list__label">
+            Second name
+          </p>
+          <p className="list__value">
+            {userData?.second_name || '-'}
+          </p>
+        </li>
+        <li className="list__item">
+          <p className="list__label">
+            Disdplay name
+          </p>
+          <p className="list__value">
+            {userData?.display_name || '-'}
+          </p>
+        </li>
+        <li className="list__item">
+          <p className="list__label">
+            Phone
+          </p>
+          <p className="list__value">
+            {userData?.phone || '-'}
+          </p>
+        </li>
+      </ul>
+      <ul className="profile__menu">
+        <li className="list__item">
+          <Link className="profile__link" to={Urls.PROFILE_EDIT}>
+            Edit profile data
+          </Link>
+        </li>
+        <li className="list__item">
+          <Link className="profile__link" to={Urls.PASSWORD_EDIT}>
+            Edit password
+          </Link>
+        </li>
+        <li className="list__item">
+          <Link className="profile__link profile__link_logout" onClick={signOutHandler} to={Urls.SIGNIN}>
+            Logout
+          </Link>
+        </li>
+      </ul>
+      <div className="back">
+        <Link className="back__button" to={Urls.BASE} />
+      </div>
+    </section>
+  );
+}

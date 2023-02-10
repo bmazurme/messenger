@@ -14,6 +14,7 @@ export default function ProfileEdit() {
   const errorHandler = useErrorHandler();
   const [updateUser] = useUpdateUserMutation();
   const [notification, setNotification] = useState<{ type: any; message: string; } | null>(null);
+  console.log(notification);
 
   type FormPayload = {
     first_name: string;

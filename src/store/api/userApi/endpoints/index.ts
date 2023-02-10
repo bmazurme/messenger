@@ -30,15 +30,15 @@ const usersApiEndpoints = usersApi
         query: (formData) => ({
           url: '/user/profile/avatar',
           method: 'PUT',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+          // headers: {
+          //   'Content-Type': 'multipart/form-data',
+          // },
           data: formData.avatar,
-          providesTags: ['Users', 'User'],
           async onSuccess(dispatch, data) {
             await dispatch(setCredentials(data as User));
           },
         }),
+        invalidatesTags: ['Users'],
       }),
       updateUserPassword: builder.mutation({
         query: (user) => ({

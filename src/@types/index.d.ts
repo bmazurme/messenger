@@ -22,12 +22,18 @@ type User = {
 //   user: User | null,
 // }
 
-type Card = {
+type Chat = {
+  avatar: string | null;
+  created_by: number;
   id: number;
+  last_message: string | null;
   title: string;
-  text: string;
-  image: string;
-  time: Date;
-  count: number;
-  you: boolean;
+  unread_count: number;
+  // id: number;
+  // title: string;
+  // text: string;
+  // image: string;
+  // time: Date;
+  // count: number;
+  // you: boolean;
 }

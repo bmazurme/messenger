@@ -5,14 +5,13 @@ import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Link } from 'react-router-dom';
 
 import Button from '../form-components/Button';
-import Header from '../Header';
 
 type ErrorBoundaryWrapperProps = PropsWithChildren<unknown>;
 
 function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
     <>
-      <Header />
+      {/*<Header />*/}
       <div className="error-boundary">
         <div className="error-boundary__title">
           <h2 className="error-boundary__title">APP-ERROR</h2>

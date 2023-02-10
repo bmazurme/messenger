@@ -1,26 +1,34 @@
 /* eslint-disable react/self-closing-comp */
 import React, {
-  KeyboardEvent, FormEvent, useState, useEffect, useMemo,
+  FormEvent, useState,
 } from 'react';
 import { Link } from 'react-router-dom';
+// import { useErrorHandler } from 'react-error-boundary';
 
 import { Button } from '../form-components';
-import Cards from '../Cards';
+import Chats from '../Chats';
 
 import { Urls } from '../../utils/constants';
-import mcards from '../../mock/cards';
+import { useGetChatsQuery } from '../../store';
 
-export default function SideBar() {
+export default function Sidebar({ setChat }: { setChat: any }) {
+  // const handleError = useErrorHandler();
   const [word, setWord] = useState('');
-  // const [cards, setCards] = useState([]);
-  const cards = useMemo(() => mcards, []);
-  // const handleKeyDown = (evt: KeyboardEvent<HTMLInputElement>) => {
-  //   if (evt.key === 'Enter' && word && word !== '') {
-  //     console.log(word);
-  //   }
-  // };
+  const { data = [] } = useGetChatsQuery(1, {
+    pollingInterval: 5000,
+    // keepUnusedDataFor: 120,
+    refetchOnReconnect: true,
+  });
+  // const navMode = data ? 'all-options' : 'none';
+
+  console.log(data);
+
+  // if (error) {
+  //   handleError(error);
+  // }
 
   const onChange = (evt: FormEvent<HTMLInputElement>) => {
+    // @ts-ignore
     setWord(evt.target.value);
   };
 
@@ -34,7 +42,7 @@ export default function SideBar() {
   };
 
   return (
-    <div className="chat__sidebar">
+    <div className="content__sidebar">
       <div className="sidebar">
         <Link className="sidebar__profile" to={Urls.PROFILE}>
           Профиль
@@ -49,13 +57,13 @@ export default function SideBar() {
           />
         </form>
 
-        {cards.length === 0
-          ? (
+        {data!.length > 0
+          ? <Chats chats={data!} setChat={setChat} />
+          : (
             <Button className="button button_create-chat" variant="filled">
               Создать чат
             </Button>
-          )
-          : <Cards cards={cards} />}
+          )}
       </div>
     </div>
   );

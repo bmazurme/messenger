@@ -1,33 +1,18 @@
 import React from 'react';
-import { useErrorHandler } from 'react-error-boundary';
 
-import Main from './Main';
+import Main from '../../components/Main';
 import Content from '../../components/Content';
-import Preloader from '../../components/Preloader';
 
-import withUser from '../../hoc/withUser';
-import { useGetUserMutation } from '../../store';
+// import withUser from '../../hoc/withUser';
+// import { useGetChatsQuery } from '../../store';
 
-function MainPage() {
-  const handleError = useErrorHandler();
-  // @ts-ignore
-  // const { data: cards = [], error: cardsError, isLoading: isLoadingCards } = useGetCardsQuery();
-  // @ts-ignore
-  const { data: user, error: userError, isLoading: isLoadingUser } = useGetUserMutation();
-
-  // if (cardsError) {
-  //   handleError(cardsError);
-  // }
-
-  if (userError) {
-    handleError(userError);
-  }
-
+export default function MainPage() {
+  // const { data = [], error, isLoading } = useGetChatsQuery('');
   return (
     <Content>
-      { isLoadingUser ? <Preloader /> : <Main user={user} />}
+      <Main />
     </Content>
   );
 }
 
-export default withUser(MainPage, true);
+// export default withUser(MainPage, true);

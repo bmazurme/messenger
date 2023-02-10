@@ -1,17 +1,13 @@
 import React from 'react';
-
-import NavItem from '../NavItem';
+import { Link } from 'react-router-dom';
 
 export default function SignIn({ help, url, label }: Record<string, string>) {
   return (
-    <ul className="footer__links">
+    <div className="footer__links">
       {help}
-      <NavItem
-        to={url}
-        className="link link-signup"
-        active="true"
-        value={label}
-      />
-    </ul>
+      <Link to={url} className="link link-signup">
+        {label}
+      </Link>
+    </div>
   );
 }
