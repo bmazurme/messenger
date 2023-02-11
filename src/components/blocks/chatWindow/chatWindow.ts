@@ -1,7 +1,4 @@
-import { auth } from '../../../api/AuthAPI';
-import { users } from '../../../api/UsersAPI';
-import { chats } from '../../../api/ChatsAPI';
-import WebSocketService from '../../../api/WebSocket';
+import { auth, users, chats } from '../../../api';
 
 import Block from '../../../core/block';
 import { tmp } from './chatWindow.tpl';
@@ -20,6 +17,7 @@ import { IUser } from './IUser';
 import { MessageList } from '../messageList';
 import { Header } from '../header';
 import handleValidation from '../../../handles/handleValidation';
+import WebSocketService from '../../../api/WebSocket';
 
 import { Urls } from '../../../utils/constants';
 

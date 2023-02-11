@@ -32,6 +32,7 @@ function getParams(data: PlainObject | [], parentKey?: string) {
       result.push([getKey(key, parentKey), encodeURIComponent(String(value))]);
     }
   }
+  
   return result;
 }
 
@@ -39,5 +40,6 @@ export default function queryString(data: PlainObject | unknown) {
   if (!isPlainObject(data)) {
     throw new Error('input must be an object');
   }
+
   return getParams(data).map(arr => arr.join('=')).join('&');
 }
