@@ -1,9 +1,7 @@
 /* eslint-disable react/self-closing-comp */
-import React, {
-  FormEvent, useState,
-} from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useErrorHandler } from 'react-error-boundary';
+import { useErrorHandler } from 'react-error-boundary';
 
 import { Button } from '../form-components';
 import Chats from '../Chats';
@@ -11,21 +9,18 @@ import Chats from '../Chats';
 import { Urls } from '../../utils/constants';
 import { useGetChatsQuery } from '../../store';
 
-export default function Sidebar({ setChat }: { setChat: any }) {
-  // const handleError = useErrorHandler();
+export default function Sidebar({ setChat, setToken }: { setChat: any, setToken: any }) {
+  const handleError = useErrorHandler();
   const [word, setWord] = useState('');
-  const { data = [] } = useGetChatsQuery(1, {
-    pollingInterval: 5000,
+  const { data = [], error } = useGetChatsQuery(1, {
+    // pollingInterval: 5000,
     // keepUnusedDataFor: 120,
-    refetchOnReconnect: true,
+    // refetchOnReconnect: true,
   });
-  // const navMode = data ? 'all-options' : 'none';
 
-  console.log(data);
-
-  // if (error) {
-  //   handleError(error);
-  // }
+  if (error) {
+    handleError(error);
+  }
 
   const onChange = (evt: FormEvent<HTMLInputElement>) => {
     // @ts-ignore
@@ -57,8 +52,8 @@ export default function Sidebar({ setChat }: { setChat: any }) {
           />
         </form>
 
-        {data!.length > 0
-          ? <Chats chats={data!} setChat={setChat} />
+        {data.length > 0
+          ? <Chats chats={data} setChat={setChat} setToken={setToken} />
           : (
             <Button className="button button_create-chat" variant="filled">
               Создать чат

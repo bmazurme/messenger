@@ -12,3 +12,5 @@ export const Urls = {
 export const Regexp = {
   EMAIL: '[a-z0-9._%+-]+@[a-z0-9.-]+[\\.{0}][a-z]{2,3}$',
 };
+
+export const RESOURCES = 'https://ya-praktikum.tech/api/v2/resources';

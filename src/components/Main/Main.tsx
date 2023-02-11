@@ -5,10 +5,12 @@ import Board from '../Board';
 
 export default function Main() {
   const [chat, setChat] = useState<Chat | null>(null);
+  const [token, setToken] = useState(null);
+
   return (
     <>
-      <SideBar setChat={setChat} />
-      <Board setChat={setChat} chat={chat} />
+      <SideBar setChat={setChat} setToken={setToken} />
+      <Board setChat={setChat} chat={chat} token={token} />
     </>
   );
 }

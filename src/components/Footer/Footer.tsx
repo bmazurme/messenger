@@ -1,19 +1,6 @@
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
 
-export default function Footer() {
-  const [message, setMessage] = useState('');
-  const onChange = (evt: FormEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    setMessage(evt.target.value);
-  };
-  const onSubmit = (evt: any) => {
-    evt.preventDefault();
-
-    if (message && message !== '') {
-      console.log(message);
-      setMessage('');
-    }
-  };
+export default function Footer({ message, onChange, onSubmit }: any) {
   const onUpload = () => {
     console.log('click');
   };

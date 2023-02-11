@@ -30,9 +30,6 @@ const usersApiEndpoints = usersApi
         query: (formData) => ({
           url: '/user/profile/avatar',
           method: 'PUT',
-          // headers: {
-          //   'Content-Type': 'multipart/form-data',
-          // },
           data: formData.avatar,
           async onSuccess(dispatch, data) {
             await dispatch(setCredentials(data as User));
@@ -49,6 +46,13 @@ const usersApiEndpoints = usersApi
           //   await dispatch(setCredentials(data as User));
           // },
           // providesTags: ['Users'],
+        }),
+      }),
+      searchUser: builder.mutation({
+        query: (user) => ({
+          url: '/user/search',
+          method: 'POST',
+          data: user,
         }),
       }),
     }),

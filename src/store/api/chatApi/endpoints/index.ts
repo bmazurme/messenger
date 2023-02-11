@@ -13,24 +13,33 @@ const chatApiEndpoints = chatApi
         }),
         providesTags: ['Chat'],
       }),
-      getChat: builder.mutation({
-        query: (data) => ({
-          url: '/',
-          method: 'GET',
-          data,
-        }),
-        invalidatesTags: ['Chat'],
-      }),
       createChat: builder.mutation({
         query: (data) => ({
           url: '/',
           method: 'POST',
           data,
         }),
+        invalidatesTags: ['Chat'],
       }),
       deleteChat: builder.mutation({
         query: (data) => ({
           url: '/',
+          method: 'DELETE',
+          data,
+        }),
+        invalidatesTags: ['Chat'],
+      }),
+      addUserToChatChat: builder.mutation({
+        query: (data) => ({
+          url: '/users',
+          method: 'PUT',
+          data,
+        }),
+        invalidatesTags: ['Chat'],
+      }),
+      deleteUserFromChat: builder.mutation({
+        query: (data) => ({
+          url: '/users',
           method: 'DELETE',
           data,
         }),
@@ -44,13 +53,23 @@ const chatApiEndpoints = chatApi
         }),
         invalidatesTags: ['Chat'],
       }),
+      getToken: builder.mutation({
+        query: (data) => ({
+          url: `/token/${data.id}`,
+          method: 'POST',
+          data,
+        }),
+        invalidatesTags: ['Chat'],
+      }),
     }),
   });
 
 export const {
   useGetChatsQuery,
-  useGetChatMutation,
   useCreateChatMutation,
   useDeleteChatMutation,
   useUpdateChatAvatarMutation,
+  useAddUserToChatChatMutation,
+  useDeleteUserFromChatMutation,
+  useGetTokenMutation,
 } = chatApiEndpoints;

@@ -26,7 +26,12 @@ type Chat = {
   avatar: string | null;
   created_by: number;
   id: number;
-  last_message: string | null;
+  last_message: {
+    content: string;
+    id: number;
+    time: string;
+    user: User;
+  } | null;
   title: string;
   unread_count: number;
   // id: number;

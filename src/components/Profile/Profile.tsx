@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import useUser from '../../hook/useUser';
 import AvatarChanger from '../AvatarChanger';
+import ProfileMenu from '../ProfileMenu';
 
 import { useSignOutMutation, useUpdateAvatarMutation } from '../../store';
 
@@ -58,84 +59,53 @@ export default function Profile() {
               <AvatarChanger
                 avatar={userData!.avatar}
                 onChange={field.onChange}
-                newSrc={newSrc}
                 setNewSrc={setNewSrc}
               />
               <button className="avatar__button" type="submit" disabled={newSrc === ''}>.</button>
             </>
-
           )}
         />
       </form>
-
       <h2 className="profile__title">Profile</h2>
       <ul className="list">
         <li className="list__item">
-          <p className="list__label">
-            Email
-          </p>
+          <p className="list__label">Email</p>
           <p className="list__value">
             {userData?.email || '-'}
           </p>
         </li>
         <li className="list__item">
-          <p className="list__label">
-            Login
-          </p>
+          <p className="list__label">Login</p>
           <p className="list__value">
             {userData?.login || '-'}
           </p>
         </li>
         <li className="list__item">
-          <p className="list__label">
-            Name
-          </p>
+          <p className="list__label">Name</p>
           <p className="list__value">
             {userData?.first_name || '-'}
           </p>
         </li>
         <li className="list__item">
-          <p className="list__label">
-            Second name
-          </p>
+          <p className="list__label">Second name</p>
           <p className="list__value">
             {userData?.second_name || '-'}
           </p>
         </li>
         <li className="list__item">
-          <p className="list__label">
-            Disdplay name
-          </p>
+          <p className="list__label">Disdplay name</p>
           <p className="list__value">
             {userData?.display_name || '-'}
           </p>
         </li>
         <li className="list__item">
-          <p className="list__label">
-            Phone
-          </p>
+          <p className="list__label">Phone</p>
           <p className="list__value">
             {userData?.phone || '-'}
           </p>
         </li>
       </ul>
-      <ul className="profile__menu">
-        <li className="list__item">
-          <Link className="profile__link" to={Urls.PROFILE_EDIT}>
-            Edit profile data
-          </Link>
-        </li>
-        <li className="list__item">
-          <Link className="profile__link" to={Urls.PASSWORD_EDIT}>
-            Edit password
-          </Link>
-        </li>
-        <li className="list__item">
-          <Link className="profile__link profile__link_logout" onClick={signOutHandler} to={Urls.SIGNIN}>
-            Logout
-          </Link>
-        </li>
-      </ul>
+      <ProfileMenu signOutHandler={signOutHandler} />
       <div className="back">
         <Link className="back__button" to={Urls.BASE} />
       </div>

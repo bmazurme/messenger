@@ -52,12 +52,16 @@ export default function Header({ chat, onTogglePopupMenu, setChat }
               <AvatarChanger
                 avatar={chat.avatar}
                 onChange={field.onChange}
-                newSrc={newSrc}
                 setNewSrc={setNewSrc}
                 chatId={chat.id}
               />
-              {/* <input type="input" className="visually-hidden" value={chat.id} /> */}
-              <button className="avatar__button" type="submit" disabled={newSrc === ''}>.</button>
+              <button
+                className="avatar__button"
+                type="submit"
+                disabled={newSrc === ''}
+              >
+                .
+              </button>
             </>
 
           )}

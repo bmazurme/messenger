@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 import { RootState } from '.';
 
-type EntityTypes = Pick<RootState, 'user'>;
+type EntityTypes = Pick<RootState, 'user' | 'messages'>;
 
 export default function makeDataSelector<T extends keyof EntityTypes>(entityType: T) {
   return createSelector(

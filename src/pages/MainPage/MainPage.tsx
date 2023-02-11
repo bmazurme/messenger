@@ -3,11 +3,9 @@ import React from 'react';
 import Main from '../../components/Main';
 import Content from '../../components/Content';
 
-// import withUser from '../../hoc/withUser';
-// import { useGetChatsQuery } from '../../store';
+import withUser from '../../hoc/withUser';
 
-export default function MainPage() {
-  // const { data = [], error, isLoading } = useGetChatsQuery('');
+function MainPage() {
   return (
     <Content>
       <Main />
@@ -15,4 +13,4 @@ export default function MainPage() {
   );
 }
 
-// export default withUser(MainPage, true);
+export default withUser(MainPage, true);

@@ -1,7 +1,6 @@
 import React, {
   useCallback,
   useRef,
-  useEffect,
   type ChangeEvent,
 } from 'react';
 import classnames from 'classnames';
@@ -10,13 +9,12 @@ import Avatar from '../Avatar';
 type AvatarChangerProps = {
   avatar: string | null;
   onChange: (formData: FormData) => void;
-  newSrc: string;
   setNewSrc: any;
   chatId?: number | undefined;
 };
 
 export default function AvatarChanger({
-  onChange, avatar, newSrc, setNewSrc, chatId,
+  onChange, avatar, setNewSrc, chatId,
 }: AvatarChangerProps) {
   const elementInputFile = useRef<HTMLInputElement>(null);
   const validateImgFile = (file: File | undefined) => !!file?.type.match('image.*');
@@ -47,10 +45,6 @@ export default function AvatarChanger({
     onChange(form);
   }, []);
 
-  useEffect(() => {
-    console.log(newSrc);
-  }, [newSrc]);
-
   return (
     <label className={classnames('avatar__label')} htmlFor="avatar">
       <Avatar avatar={avatar} />
@@ -59,9 +53,7 @@ export default function AvatarChanger({
         type="file"
         onChange={onInputChange}
         id="avatar"
-        className={classnames(
-          'visually-hidden',
-        )}
+        className={classnames('visually-hidden')}
       />
     </label>
   );
