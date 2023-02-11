@@ -44,5 +44,4 @@ Implemented features:
 - `npm run build` — build.
 
 ### Deploy
-- [Netlify](https://deploy--brilliant-dasik-aed875.netlify.app/)
-- [Heroku](https://withusdru.herokuapp.com/)
+- [Netlify](https://velvety-babka-2aac37.netlify.app/)
