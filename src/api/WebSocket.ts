@@ -1,5 +1,5 @@
 import { Urls } from '../utils/constants';
-import { IMessage } from './Imessage';
+import { IMessage } from './IMessage';
 import { store } from '../core/store';
 import { ActionTypes } from '../core/types';
 

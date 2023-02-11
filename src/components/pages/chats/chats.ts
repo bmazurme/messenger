@@ -1,5 +1,4 @@
-import { chats } from '../../../api/ChatsAPI';
-import { auth } from '../../../api/AuthAPI';
+import { chats, auth } from '../../../api';
 
 import Block from '../../../core/block';
 import { tmp } from './chats.tpl';

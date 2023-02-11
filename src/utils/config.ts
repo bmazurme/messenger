@@ -10,5 +10,3 @@ export const SELECTORS = [
 
 export const POPUP = '.popup';
 export const POPUP_ACTIVE = 'popup_active';
-// export const POPUP_ADD_USER = '.popup_add_user';
-// export const POPUP_REMOVE_USER = '.popup_remove_user';

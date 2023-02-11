@@ -1,4 +1,4 @@
-import { auth } from '../../../api/AuthAPI';
+import { auth } from '../../../api';
 
 import Block from '../../../core/block';
 import { tmp } from './index.tpl';

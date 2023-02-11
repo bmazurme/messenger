@@ -1,4 +1,4 @@
-import HTTP, {Options} from '../utils/http';
+import HTTP, { Options } from '../utils/http';
 import { Urls } from '../utils/constants';
 
 const usersAPIInstance = new HTTP(`${Urls.BASE.INDEX}/user`);

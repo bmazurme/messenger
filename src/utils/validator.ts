@@ -23,6 +23,7 @@ export function toggleStyle(isValid: boolean, input: HTMLElement) {
 
 export function removeInvalid(evt: Event): void {
   const currentElement = evt.target as HTMLElement;
+  
   if (currentElement.classList.contains('text-field__input-error')) {
     currentElement.classList.remove('text-field__input-error');
   }
