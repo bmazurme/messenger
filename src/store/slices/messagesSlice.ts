@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '..';
 
 export type MessagesState = {
-  data: Record<string, any>[]
+  data: MessageType[];
 };
 
 const slice = createSlice({
@@ -12,11 +12,11 @@ const slice = createSlice({
   reducers: {
     setMessages: (
       state,
-      { payload: data }: PayloadAction<Record<string, any>[]>,
+      { payload: data }: PayloadAction<MessageType>,
     ) => ({ ...state, data }),
     setMessage: (
       state,
-      { payload: data }: PayloadAction<Record<string, any>[]>,
+      { payload: data }: PayloadAction<MessageType>,
     ) => ({ ...state, data: [data, ...state.data] }),
   },
 });
@@ -25,4 +25,4 @@ export const { setMessages, setMessage } = slice.actions;
 
 export default slice.reducer;
 
-export const selectCurrentMessages = (state: RootState) => state.user.data;
+export const selectCurrentMessages = (state: RootState) => state.messages.data;

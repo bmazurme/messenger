@@ -1,10 +1,10 @@
-import AddPlacePopup from './AddPlacePopup';
+import AddChatPopup from './AddChatPopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import InfoTooltip from './InfoTooltip';
 import PopupWithConfirm from './PopupWithConfirm';
 
 export {
-  AddPlacePopup,
+  AddChatPopup,
   EditAvatarPopup,
   InfoTooltip,
   PopupWithConfirm,

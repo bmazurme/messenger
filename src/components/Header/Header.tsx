@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { useErrorHandler } from 'react-error-boundary';
+
 import AvatarChanger from '../AvatarChanger';
 
-import { useUpdateChatAvatarMutation } from '../../store';
+import { useUpdateChatAvatarMutation, store } from '../../store';
+import makeDataSelector from '../../store/makeDataSelector';
+
+const chatSelector = makeDataSelector('chat');
 
 export type FormPayload = {
   avatar: string | null;
-  chatId: number;
+  chatId: string;
 };
 
-export default function Header({ chat, onTogglePopupMenu, setChat }
-: { chat: Chat, onTogglePopupMenu: () => void, setChat: any }) {
+export default function Header({ onTogglePopupMenu }
+: { onTogglePopupMenu: () => void }) {
   const handleError = useErrorHandler();
   const [newSrc, setNewSrc] = useState('');
+  const { data: chat } = useSelector(chatSelector);
   const [updateChatAvatar, { data: chatData, isError }] = useUpdateChatAvatarMutation();
 
   if (isError) {
@@ -22,24 +28,20 @@ export default function Header({ chat, onTogglePopupMenu, setChat }
 
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
-      avatar: chat.avatar,
-      chatId: chat.id,
+      avatar: '',
+      chatId: '',
     },
   });
 
   const onSubmit = (data: FormPayload) => {
-    updateChatAvatar(data);
-    if (chatData?.avatar) {
-      setChat({ ...chat, avatar: chatData?.avatar });
-    }
-    console.log(chat);
+    updateChatAvatar({ ...data, chatId: chat?.id })
+      .then((res: unknown) => {
+        store.dispatch({
+          type: 'chat/setChat',
+          payload: (res as { data: Chat }).data,
+        });
+      }).catch((e) => console.log(e));
   };
-
-  useEffect(() => {
-    if (chatData?.avatar) {
-      setChat({ ...chat, avatar: chatData?.avatar });
-    }
-  }, [chatData]);
 
   return (
     <form className="header" onSubmit={handleSubmit(onSubmit)}>
@@ -50,10 +52,9 @@ export default function Header({ chat, onTogglePopupMenu, setChat }
           render={({ field }) => (
             <>
               <AvatarChanger
-                avatar={chat.avatar}
+                chat={chat!}
                 onChange={field.onChange}
                 setNewSrc={setNewSrc}
-                chatId={chat.id}
               />
               <button
                 className="avatar__button"
@@ -63,13 +64,10 @@ export default function Header({ chat, onTogglePopupMenu, setChat }
                 .
               </button>
             </>
-
           )}
         />
       </div>
-      <div className="header__text">
-        {chat?.title}
-      </div>
+      <div className="header__text">{chat?.title}</div>
       <button
         type="button"
         aria-label="Menu"

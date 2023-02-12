@@ -61,7 +61,13 @@ export default function Profile() {
                 onChange={field.onChange}
                 setNewSrc={setNewSrc}
               />
-              <button className="avatar__button" type="submit" disabled={newSrc === ''}>.</button>
+              <button
+                className="avatar__button"
+                type="submit"
+                disabled={newSrc === ''}
+              >
+                .
+              </button>
             </>
           )}
         />

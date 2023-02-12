@@ -2,7 +2,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-constructor-return */
 /* eslint-disable class-methods-use-this */
-import { store } from '../store';
+import { store } from '../..';
 
 const SOCKET_URL = 'wss://ya-praktikum.tech/ws/chats/';
 
@@ -12,12 +12,16 @@ interface IMessage {
 }
 
 export default class WebSocketService {
-  static _instance: WebSocketService;
+  static _instance: WebSocketService | null;
 
   private _socket;
 
   constructor(userId?: number, chatId?: number, chatToken?: string) {
     if (userId && chatId && chatToken) {
+      if (WebSocketService._instance) {
+        WebSocketService._instance = null;
+      }
+
       this._socket = new WebSocket(`${SOCKET_URL}${userId}/${chatId}/${chatToken}`);
 
       this._socket.addEventListener('open', this.onOpen.bind(this));
@@ -40,11 +44,16 @@ export default class WebSocketService {
   private onOpen(): void {
     console.log('Connection established');
     this.send({ type: 'get old', content: '0' });
+    this.ping();
   }
 
   onMessage(event: any): void {
     console.log('Data received: ', event);
-    const messages: Record<string, any> = JSON.parse(event.data);
+    const messages = JSON.parse(event.data);
+
+    if (messages.type === 'user connected' && messages.type === 'ping') {
+      return;
+    }
 
     store.dispatch({
       type: Array.isArray(messages)
@@ -52,6 +61,12 @@ export default class WebSocketService {
         : 'messages/setMessage',
       payload: messages,
     });
+  }
+
+  ping() {
+    this.send({ type: 'ping', content: 'ping' });
+
+    setTimeout(this.ping.bind(this), 10000);
   }
 
   onClose(event: any): void {

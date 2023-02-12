@@ -3,58 +3,46 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useErrorHandler } from 'react-error-boundary';
 
-import { IAddPlaceProps } from '../../interfaces';
+import { IAddChatProps } from '../../interfaces';
 import { Button, Input } from '../form-components';
 
 type FormPayload = {
-  name: string;
-  link: string;
+  title: string;
 };
 
 const inputs = [
   {
-    name: 'name',
-    label: 'Название',
+    name: 'title',
+    placeholder: 'Title',
     pattern: {
       value: /^[a-zA-Z0-9_-]{3,15}$/,
-      message: 'Name is invalid',
+      message: 'Title is invalid',
     },
     required: true,
-    autoComplete: 'current-name',
-  },
-  {
-    name: 'link',
-    label: 'Url картинки',
-    pattern: {
-      value: /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\\/]))?/,
-      message: 'Url is invalid',
-    },
-    required: true,
-    autoComplete: 'current-link',
+    autoComplete: 'current-title',
   },
 ];
 
-export default function AddPlacePopup(props: IAddPlaceProps) {
+export default function AddChatPopup(props: IAddChatProps) {
   const {
     isOpen,
     onClose,
     isLoading,
-    onAddPlace,
+    onAddChat,
   } = props;
 
   const errorHandler = useErrorHandler();
   const buttonText = isLoading ? 'Загрузка...' : 'Сохранить';
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
-      name: '',
-      link: '',
+      title: '',
     },
   });
 
   const handleCloseClick = (evt: React.MouseEvent<HTMLElement>) => evt.currentTarget === evt.target && onClose();
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await onAddPlace(data);
+      await onAddChat(data);
     } catch ({ status, data: { reason } }) {
       errorHandler(new Error(`${status}: ${reason}`));
     }
@@ -74,7 +62,7 @@ export default function AddPlacePopup(props: IAddPlaceProps) {
           onClick={onClose}
         />
         <form className="form form_type_edit" onSubmit={onSubmit}>
-          <h2 className="form__title">Новое место</h2>
+          <h2 className="form__title">New chat</h2>
           {inputs.map((input) => (
             <Controller
               key={input.name}
@@ -88,7 +76,7 @@ export default function AddPlacePopup(props: IAddPlaceProps) {
                 <Input
                   {...field}
                   {...input}
-                  className="text-field__input"
+                  className="input inbox__input"
                   black
                   errorText={fieldState.error?.message}
                 />

@@ -17,10 +17,16 @@ type User = {
   password: string;
 };
 
-// type Like = {
-//   _id: string,
-//   user: User | null,
-// }
+type MessageType = {
+  chat_id: number;
+  content: string;
+  file: string | null;
+  id: number;
+  is_read: boolean;
+  time: string;
+  type: string;
+  user_id: number;
+}
 
 type Chat = {
   avatar: string | null;

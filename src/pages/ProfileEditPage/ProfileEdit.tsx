@@ -116,7 +116,7 @@ export default function ProfileEdit() {
     <section className="profile">
       <h2 className="profile__title">Profile edit</h2>
       <form className="profile__form form_save" onSubmit={onSubmit}>
-        <ul className="list form">
+        <ul className="list">
           {inputs.map((input) => (
             <Controller
               key={input.name}

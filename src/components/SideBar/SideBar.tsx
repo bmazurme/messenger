@@ -4,23 +4,20 @@ import { Link } from 'react-router-dom';
 import { useErrorHandler } from 'react-error-boundary';
 
 import { Button } from '../form-components';
+import { AddChatPopup } from '../popups';
 import Chats from '../Chats';
-
 import { Urls } from '../../utils/constants';
-import { useGetChatsQuery } from '../../store';
+import { useCreateChatMutation } from '../../store';
 
-export default function Sidebar({ setChat, setToken }: { setChat: any, setToken: any }) {
-  const handleError = useErrorHandler();
+export default function Sidebar() {
+  const errorHandler = useErrorHandler();
+  const [addChat] = useCreateChatMutation();
   const [word, setWord] = useState('');
-  const { data = [], error } = useGetChatsQuery(1, {
-    // pollingInterval: 5000,
-    // keepUnusedDataFor: 120,
-    // refetchOnReconnect: true,
-  });
+  const [popup, setPopup] = useState(false);
 
-  if (error) {
-    handleError(error);
-  }
+  const closePopup = () => {
+    setPopup(false);
+  };
 
   const onChange = (evt: FormEvent<HTMLInputElement>) => {
     // @ts-ignore
@@ -32,7 +29,14 @@ export default function Sidebar({ setChat, setToken }: { setChat: any, setToken:
 
     if (word && word !== '') {
       console.log(word);
-      // setMessage('');
+    }
+  };
+  const handleAddChatSubmit = async (title: Record<string, string>) => {
+    try {
+      await addChat(title);
+      closePopup();
+    } catch ({ status, data: { reason } }) {
+      errorHandler(new Error(`${status}: ${reason}`));
     }
   };
 
@@ -51,14 +55,19 @@ export default function Sidebar({ setChat, setToken }: { setChat: any, setToken:
             onChange={onChange}
           />
         </form>
-
-        {data.length > 0
-          ? <Chats chats={data} setChat={setChat} setToken={setToken} />
-          : (
-            <Button className="button button_create-chat" variant="filled">
-              Создать чат
-            </Button>
-          )}
+        <Button
+          className="button button_create-chat"
+          variant="filled"
+          onClick={() => setPopup(true)}
+        >
+          Создать чат
+        </Button>
+        <Chats />
+        <AddChatPopup
+          onAddChat={handleAddChatSubmit}
+          onClose={closePopup}
+          isOpen={popup}
+        />
       </div>
     </div>
   );

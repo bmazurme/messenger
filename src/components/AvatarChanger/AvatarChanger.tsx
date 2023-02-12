@@ -7,20 +7,20 @@ import classnames from 'classnames';
 import Avatar from '../Avatar';
 
 type AvatarChangerProps = {
-  avatar: string | null;
+  avatar?: string;
+  chat?: Chat;
   onChange: (formData: FormData) => void;
   setNewSrc: any;
-  chatId?: number | undefined;
 };
 
 export default function AvatarChanger({
-  onChange, avatar, setNewSrc, chatId,
+  onChange, setNewSrc, chat, avatar,
 }: AvatarChangerProps) {
   const elementInputFile = useRef<HTMLInputElement>(null);
   const validateImgFile = (file: File | undefined) => !!file?.type.match('image.*');
 
   const onInputChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
-    const { files } = evt.target;
+    const { files, name } = evt.target;
 
     if (!files?.[0]) {
       return;
@@ -38,17 +38,17 @@ export default function AvatarChanger({
 
     const form = new FormData();
     form.append('avatar', files[0]);
-    if (chatId) {
-      form.append('chatId', chatId.toString());
+    if (name !== '') {
+      form.append('chatId', name);
     }
-
     onChange(form);
   }, []);
 
   return (
     <label className={classnames('avatar__label')} htmlFor="avatar">
-      <Avatar avatar={avatar} />
+      <Avatar avatar={chat?.avatar ?? avatar!} />
       <input
+        name={chat?.id ? chat.id.toString() : ''}
         ref={elementInputFile}
         type="file"
         onChange={onInputChange}

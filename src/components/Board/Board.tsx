@@ -1,19 +1,18 @@
 /* eslint-disable no-new */
-import React, { useEffect, useState, FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { useSelector } from 'react-redux';
 
 import Header from '../Header';
 import Messages from '../Messages';
 import Footer from '../Footer';
 
-import WebSocketService from '../../utils/WebSocket';
+import WebSocketService from '../../store/api/wssApi/WebSocketService';
 import makeDataSelector from '../../store/makeDataSelector';
 
-const statsSelector = makeDataSelector('messages');
+const chatSelector = makeDataSelector('chat');
 
-export default function Board({ chat, setChat, token }
-  : { chat: Chat | null, setChat: any, token: any }) {
-  const { data = [] } = useSelector(statsSelector);
+export default function Board() {
+  const { data: chat } = useSelector(chatSelector);
   const [message, setMessage] = useState('');
   // @ts-ignore
   const onChange = (evt: FormEvent<HTMLInputElement>) => setMessage(evt.target.value);
@@ -24,12 +23,6 @@ export default function Board({ chat, setChat, token }
     new WebSocketService().send({ type: 'message', content: message });
     setMessage('');
   };
-
-  useEffect(() => {
-    if (token?.token) {
-      new WebSocketService(token.userId, token.chatId, token.token);
-    }
-  }, [token]);
 
   const onTogglePopupMenu = () => {
     console.log('click-menu');
@@ -42,10 +35,10 @@ export default function Board({ chat, setChat, token }
           ? (
             <>
               <div className="board__header">
-                <Header chat={chat} onTogglePopupMenu={onTogglePopupMenu} setChat={setChat} />
+                <Header onTogglePopupMenu={onTogglePopupMenu} />
               </div>
               <div className="board__main">
-                <Messages messages={data} userId={token?.userId} />
+                <Messages />
               </div>
               <div className="board__footer">
                 <Footer message={message} onChange={onChange} onSubmit={onSubmit} />

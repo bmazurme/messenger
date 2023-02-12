@@ -1,4 +1,4 @@
-export * from './IAddPlaceProps';
+export * from './IAddChatProps';
 export * from './IEditProfileProps';
 export * from './IInfoTooltipProps';
 export * from './IPopupWithConfirmProps';
