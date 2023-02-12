@@ -20,7 +20,7 @@ export default function Chat({ chat }: { chat: Chat }) {
     store.dispatch({ type: 'chat/setChat', payload: chat });
 
     getToken({ id: chat.id })
-      .then((data) => {
+      .then(({ data }: any) => {
         new WebSocketService((userData as User & { id: number }).id, chat.id, data.token);
         store.dispatch({
           type: 'token/setToken',

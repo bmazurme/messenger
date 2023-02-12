@@ -20,7 +20,7 @@ export default function Header({ onTogglePopupMenu }
   const handleError = useErrorHandler();
   const [newSrc, setNewSrc] = useState('');
   const { data: chat } = useSelector(chatSelector);
-  const [updateChatAvatar, { data: chatData, isError }] = useUpdateChatAvatarMutation();
+  const [updateChatAvatar, { isError }] = useUpdateChatAvatarMutation();
 
   if (isError) {
     handleError(isError);

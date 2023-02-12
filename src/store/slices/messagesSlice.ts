@@ -10,6 +10,7 @@ const slice = createSlice({
   name: 'messages',
   initialState: { data: [] } as MessagesState,
   reducers: {
+    // @ts-ignore
     setMessages: (
       state,
       { payload: data }: PayloadAction<MessageType>,
