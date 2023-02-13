@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useErrorHandler } from 'react-error-boundary';
 
 import { useSignInMutation } from '../../store';
-import FormFooter from '../../components/FormFooter';
-import { Button, Input } from '../../components/form-components';
+import FormFooter from '../FormFooter';
+import { Button, Input } from '../form-components';
 import { Urls } from '../../utils/constants';
 import useUser from '../../hook/useUser';
 

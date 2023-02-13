@@ -63,4 +63,5 @@ export const {
   useUpdateUserMutation,
   useUpdateAvatarMutation,
   useUpdateUserPasswordMutation,
+  useSearchUserMutation,
 } = usersApiEndpoints;

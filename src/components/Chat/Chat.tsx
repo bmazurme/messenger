@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Avatar from '../Avatar';
 import { useGetTokenMutation, store } from '../../store';
@@ -11,8 +12,12 @@ import useUser from '../../hook/useUser';
 import { formatDate } from '../../utils/formatDate';
 
 import WebSocketService from '../../store/api/wssApi/WebSocketService';
+import makeDataSelector from '../../store/makeDataSelector';
+
+const chatSelector = makeDataSelector('chat');
 
 export default function Chat({ chat }: { chat: Chat }) {
+  const { data: currentChat } = useSelector(chatSelector);
   const [getToken] = useGetTokenMutation();
   const userData = useUser();
 
@@ -36,7 +41,7 @@ export default function Chat({ chat }: { chat: Chat }) {
 
   return (
     <li className="chat" onClick={handleClick}>
-      <div className="chat__container">
+      <div className={`chat__container${currentChat?.id === chat?.id ? ' chat__container_active' : ''} `}>
         <div className="chat__image">
           <Avatar avatar={chat?.avatar} />
         </div>

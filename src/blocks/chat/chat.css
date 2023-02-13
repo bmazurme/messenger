@@ -1,17 +1,21 @@
 .chat {
-  border-top: solid 1px var(--card-border-top-color);
   text-decoration: none;
   margin: 0;
   padding: 0;
   width: 100%;
   box-sizing: border-box;
-}
-
-.chat:hover {
   cursor: pointer;
-  background: #E4EDFD;
 }
 
-.chat:last-child {
+/* .chat:hover {
+  background: #E4EDFD;
+} */
+
+
+.chat {
   border-bottom: solid 1px var(--card-last-child-border-bottom-color);
 }
+
+.chat:first-child {
+  border-top: solid 1px var(--card-last-child-border-bottom-color);
+} 

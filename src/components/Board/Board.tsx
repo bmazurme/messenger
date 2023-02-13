@@ -24,10 +24,6 @@ export default function Board() {
     setMessage('');
   };
 
-  const onTogglePopupMenu = () => {
-    console.log('click-menu');
-  };
-
   return (
     <div className="content__board">
       <div className="board">
@@ -35,7 +31,7 @@ export default function Board() {
           ? (
             <>
               <div className="board__header">
-                <Header onTogglePopupMenu={onTogglePopupMenu} />
+                <Header />
               </div>
               <div className="board__main">
                 <Messages />
@@ -48,6 +44,5 @@ export default function Board() {
           : <div className="board__choose">Выберите чат, чтобы отправить сообщение</div>}
       </div>
     </div>
-
   );
 }

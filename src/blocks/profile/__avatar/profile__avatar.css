@@ -1,18 +1,11 @@
 .profile__avatar {
   display: flex;
-  /* justify-content: center;
-  font-size: 100%; */
-  /* align-items: center; */
   align-self: center;
   width: 130px;
   height: 130px;
   border-radius: 50%;
   background-color: #efefef;
   position: relative;
-  /* background-image: url("../../../vendor/images/default.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 40px; */
 }
 
 .profile__avatar:hover::after {
@@ -45,6 +38,7 @@
   border-radius: 50%;
   position: relative;
   object-fit: cover;
+  background-color: #efefef;
 }
 
 .avatar__label{
@@ -67,15 +61,12 @@
   opacity: 0.3;
   z-index: 100;
 }
+
 .avatar__button {
   position: absolute;
   bottom: 0;
   right: 0;
 }
-
-/* .profile__label {
-  display: none;
-} */
 
 .visually-hidden {
   display: none;

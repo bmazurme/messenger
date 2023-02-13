@@ -32,7 +32,7 @@ export default function AddChatPopup(props: IAddChatProps) {
   } = props;
 
   const errorHandler = useErrorHandler();
-  const buttonText = isLoading ? 'Загрузка...' : 'Сохранить';
+  const buttonText = isLoading ? 'Loading...' : 'Create';
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
       title: '',

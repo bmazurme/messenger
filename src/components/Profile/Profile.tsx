@@ -87,7 +87,7 @@ export default function Profile() {
           </p>
         </li>
         <li className="list__item">
-          <p className="list__label">Name</p>
+          <p className="list__label">First name</p>
           <p className="list__value">
             {userData?.first_name || '-'}
           </p>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { useErrorHandler } from 'react-error-boundary';
 
-import { Button, Input } from '../../components/form-components';
+import { Button, Input } from '../form-components';
 
 import { useUpdateUserPasswordMutation } from '../../store';
 
@@ -58,7 +58,6 @@ export default function PasswordEdit() {
   return (
     <section className="profile">
       <h2 className="profile__title">Profile edit</h2>
-
       <form className="profile__form form_save" onSubmit={onSubmit}>
         <ul className="list">
           {inputs.map((input) => (
@@ -85,7 +84,7 @@ export default function PasswordEdit() {
           ))}
         </ul>
         <Button className="button button_submit" variant="filled">
-          Обновить
+          Update
         </Button>
       </form>
 

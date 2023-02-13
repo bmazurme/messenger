@@ -13,6 +13,13 @@ const chatApiEndpoints = chatApi
         }),
         providesTags: ['Chat'],
       }),
+      getChatUsers: builder.query<Chat[], { id: number }>({
+        query: ({ id }) => ({
+          url: `/${id}/users`,
+          method: 'GET',
+        }),
+        providesTags: ['Chat'],
+      }),
       createChat: builder.mutation({
         query: (data) => ({
           url: '/',
@@ -66,6 +73,7 @@ const chatApiEndpoints = chatApi
 
 export const {
   useGetChatsQuery,
+  useGetChatUsersQuery,
   useCreateChatMutation,
   useDeleteChatMutation,
   useUpdateChatAvatarMutation,

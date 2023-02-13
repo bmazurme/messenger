@@ -8,9 +8,9 @@ import { Controller, useForm } from 'react-hook-form';
 import useUser from '../../hook/useUser';
 import { useSignUpMutation } from '../../store';
 
-import { Button, Input } from '../../components/form-components';
-import FormFooter from '../../components/FormFooter';
-import { InfoTooltip } from '../../components/popups';
+import { Button, Input } from '../form-components';
+import FormFooter from '../FormFooter';
+import { InfoTooltip } from '../popups';
 
 import { Urls } from '../../utils/constants';
 

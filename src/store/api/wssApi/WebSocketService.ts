@@ -51,7 +51,7 @@ export default class WebSocketService {
     console.log('Data received: ', event);
     const messages = JSON.parse(event.data);
 
-    if (messages.type === 'user connected' && messages.type === 'ping') {
+    if (messages.type === 'user connected' || messages.type === 'pong') {
       return;
     }
 

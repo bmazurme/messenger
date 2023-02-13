@@ -7,8 +7,8 @@
   color: var(--sidebar-profile-color);
   width: 100%;
   height: 46px;
-  margin: 10px 0 0;
-  padding: 20px 10px;
+  margin: 0;
+  padding: 20px 0;
   box-sizing: border-box;
   justify-content: flex-end;
   text-decoration: none;

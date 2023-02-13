@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PasswordEdit from './PasswordEdit';
+import PasswordEdit from '../../components/PasswordEdit';
 import withUser from '../../hoc/withUser';
 
 function PasswordEditPage() {
