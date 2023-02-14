@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
@@ -87,10 +86,10 @@ const inputs = [
 ];
 
 export default function SignUp() {
+  const errorHandler = useErrorHandler();
   const userData = useUser();
   const navigate = useNavigate();
   const [signUp] = useSignUpMutation();
-  const errorHandler = useErrorHandler();
   const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -148,10 +147,10 @@ export default function SignUp() {
             )}
           />
         ))}
-        <Button className="button button_identity button_submit" variant="filled">
-          <span>Зарегистрироваться</span>
+        <Button className="button button_signup" variant="filled">
+          <span>SignUp</span>
         </Button>
-        <FormFooter url={Urls.SIGNIN} label="Войти" />
+        <FormFooter url={Urls.SIGNIN} label="SignIn" />
       </form>
       {isInfoToolTipPopupOpen ? (
         <InfoTooltip
@@ -159,7 +158,9 @@ export default function SignUp() {
           onClose={handleCloseAllPopups}
           isSuccess={isSuccess}
           text={
-            isSuccess ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'
+            isSuccess
+              ? 'You have successfully registered!'
+              : 'Oops..! Something went wrong'
           }
         />
       ) : null}

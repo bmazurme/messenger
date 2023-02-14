@@ -1,0 +1,9 @@
+.users {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: left;
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}

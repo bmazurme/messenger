@@ -1,18 +1,18 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
-
 @import url(./blocks/root/root.css);
 
 @import url(./blocks/content/content.css);
 @import url(./blocks/content/__sidebar/content__sidebar.css);
-@import url(./blocks/sidebar/__icon/sidebar__icon.css);
-@import url(./blocks/sidebar/__search/sidebar__search.css);
+@import url(./blocks/content/__board/content__board.css);
 
 @import url(./blocks/chats/chats.css);
 
 @import url(./blocks/button/button.css);
+@import url(./blocks/button/__label/button__label.css);
 @import url(./blocks/button/_create-chat/button_create-chat.css);
 @import url(./blocks/button/_signup/button_signup.css);
+@import url(./blocks/button/_profile/button_profile.css);
 
 @import url(./blocks/inbox/inbox.css);
 @import url(./blocks/inbox/__bar/inbox__bar.css);
@@ -23,25 +23,29 @@
 @import url(./blocks/identity/identity.css);
 @import url(./blocks/identity/__form/identity__form.css);
 @import url(./blocks/identity/__title/identity__title.css);
+
 @import url(./blocks/link/link.css);
+
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__title/profile__title.css);
 @import url(./blocks/profile/__avatar/profile__avatar.css);
 @import url(./blocks/profile/__link/profile__link.css);
 @import url(./blocks/profile/__menu/profile__menu.css);
 @import url(./blocks/profile/__link/_logout/profile__link_logout.css);
+
 @import url(./blocks/list/list.css);
 @import url(./blocks/list/__item/list__item.css);
 @import url(./blocks/list/__label/list__label.css);
 @import url(./blocks/list/__value/list__value.css);
 @import url(./blocks/list/__value/_input/list__value_input.css);
 @import url(./blocks/list/__item/_revers/list__item_revers.css);
+
 @import url(./blocks/back/back.css);
 @import url(./blocks/back/__button/back__button.css);
 
-
-@import url(./blocks/content/__board/content__board.css);
 @import url(./blocks/sidebar/sidebar.css);
+@import url(./blocks/sidebar/__icon/sidebar__icon.css);
+@import url(./blocks/sidebar/__search/sidebar__search.css);
 @import url(./blocks/sidebar/__profile/sidebar__profile.css);
 
 @import url(./blocks/board/board.css);
@@ -49,6 +53,7 @@
 @import url(./blocks/board/__header/board__header.css);
 @import url(./blocks/board/__footer/board__footer.css);
 @import url(./blocks/board/__main/board__main.css);
+
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__image/header__image.css);
 @import url(./blocks/header/__link/header__link.css);
@@ -57,10 +62,12 @@
 @import url(./blocks/header/__toggle/header__toggle.css);
 @import url(./blocks/header/_hidden/header_hidden.css);
 @import url(./blocks/header/__menu/header__menu.css);
+
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__button/footer__button.css);
 @import url(./blocks/footer/__button/_send/footer__button_send.css);
 @import url(./blocks/footer/__input/footer__input.css);
+
 @import url(./blocks/message/message.css);
 @import url(./blocks/message/_to/message_to.css);
 @import url(./blocks/message/__container/message__container.css);
@@ -69,16 +76,15 @@
 @import url(./blocks/message/__time/message__time.css);
 @import url(./blocks/message/__date/message__date.css);
 @import url(./blocks/message/__time/_read/message__time_read.css);
+
 @import url(./blocks/chat/chat.css);
 @import url(./blocks/chat/__container/chat__container.css);
-
 @import url(./blocks/chat/__image/chat__image.css);
 @import url(./blocks/chat/__title/chat__title.css);
 @import url(./blocks/chat/__text/chat__text.css);
 @import url(./blocks/chat/__time/chat__time.css);
 @import url(./blocks/chat/__counter/chat__counter.css);
 @import url(./blocks/chat/__from-you/chat__from-you.css);
-
 @import url(./blocks/chat/_active/chat_active.css);
 
 @import url(./blocks/popup/popup.css);
@@ -97,10 +103,30 @@
 @import url(./blocks/error/__code/error__code.css);
 @import url(./blocks/error/__link/error__link.css);
 @import url(./blocks/error/__text/error__text.css);
+
 @import url(./blocks/no-chats/no-chats.css);
 
 @import url(./blocks/popup/__close/popup__close.css);
+
 @import url(./blocks/form/form.css);
 @import url(./blocks/form/__title/form__title.css);
 
 @import url(./blocks/badge/badge.css);
+
+@import url(./blocks/avatar/avatar.css);
+@import url(./blocks/avatar/__label/avatar__label.css);
+@import url(./blocks/avatar/__button/avatar__button.css);
+
+@import url(./blocks/users/users.css);
+
+@import url(./blocks/user/user.css);
+
+@import url(./blocks/user/__button/user__button.css);
+@import url(./blocks/user/__avatar/user__avatar.css);
+@import url(./blocks/user/__name/user__name.css);
+
+/* tooltip */
+@import url(./blocks/tooltip/tooltip.css);
+@import url(./blocks/tooltip/__image/tooltip__image.css);
+@import url(./blocks/tooltip/__image/_success/tooltip__image_success.css);
+@import url(./blocks/tooltip/__text/tooltip__text.css);

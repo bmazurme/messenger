@@ -7,6 +7,8 @@ import useUser from '../../hook/useUser';
 import { Button, Input } from '../form-components';
 import { useUpdateUserMutation } from '../../store';
 
+import { InfoTooltip } from '../popups';
+
 import { Urls } from '../../utils/constants';
 
 type FormPayload = {
@@ -85,8 +87,7 @@ export default function ProfileEdit() {
   const userData = useUser();
   const errorHandler = useErrorHandler();
   const [updateUser] = useUpdateUserMutation();
-  const [notification, setNotification] = useState<{ type: any; message: string; } | null>(null);
-  console.log(notification);
+  const [notification, setNotification] = useState<{ type: string; message: string; } | null>(null);
 
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
@@ -106,7 +107,7 @@ export default function ProfileEdit() {
     Promise.all(actions)
       .then(() => setNotification({
         type: 'success',
-        message: 'Profile updated',
+        message: 'Profile has been updated!',
       }))
       .then(() => setTimeout(() => setNotification(null), 3000))
       .catch(({ status, data: { reason } }) => errorHandler(new Error(`${status}: ${reason}`)));
@@ -140,11 +141,22 @@ export default function ProfileEdit() {
             />
           ))}
         </ul>
-        <Button className="button button_submit" variant="filled">
+        <Button className="button button_profile" variant="filled">
           Save
         </Button>
       </form>
-
+      {!notification !== null ? (
+        <InfoTooltip
+          isOpen={notification !== null}
+          onClose={() => setNotification(null)}
+          isSuccess={notification?.type === 'success'}
+          text={
+            notification?.type === 'success'
+              ? notification.message
+              : 'Oops..! Something went wrong'
+          }
+        />
+      ) : null}
       <div className="back">
         <Link className="back__button" to={Urls.PROFILE} />
       </div>

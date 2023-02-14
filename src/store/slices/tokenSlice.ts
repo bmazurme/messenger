@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '..';
 
 export type TokenState = {
-  data: Record<string, any> | null
+  data: Record<string, string | number> | null
 };
 
 const slice = createSlice({
@@ -12,7 +12,7 @@ const slice = createSlice({
   reducers: {
     setToken: (
       state,
-      { payload: data }: PayloadAction<Record<string, any>>,
+      { payload: data }: PayloadAction<Record<string, string | number>>,
     ) => ({ ...state, data }),
   },
 });

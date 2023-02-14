@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { useErrorHandler } from 'react-error-boundary';
 
 import { Button, Input } from '../form-components';
+import { InfoTooltip } from '../popups';
 
 import { useUpdateUserPasswordMutation } from '../../store';
 
@@ -40,6 +41,7 @@ const inputs = [
 export default function PasswordEdit() {
   const errorHandler = useErrorHandler();
   const [updatePassword] = useUpdateUserPasswordMutation();
+  const [notification, setNotification] = useState<{ type: string; message: string; } | null>(null);
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
       oldPassword: '',
@@ -49,7 +51,12 @@ export default function PasswordEdit() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await updatePassword(data);
+      const { data: res } = await updatePassword(data) as { data: string };
+      setNotification({
+        type: res === 'OK' ? 'success' : 'failed',
+        message: 'Password has been updated!',
+      });
+      setTimeout(() => setNotification(null), 3000);
     } catch ({ status, data: { reason } }) {
       errorHandler(new Error(`${status}: ${reason}`));
     }
@@ -83,11 +90,22 @@ export default function PasswordEdit() {
             />
           ))}
         </ul>
-        <Button className="button button_submit" variant="filled">
+        <Button className="button button_profile" variant="filled">
           Update
         </Button>
       </form>
-
+      {!notification !== null ? (
+        <InfoTooltip
+          isOpen={notification !== null}
+          onClose={() => setNotification(null)}
+          isSuccess={notification?.type === 'success'}
+          text={
+            notification?.type === 'success'
+              ? notification.message
+              : 'Oops..! Something went wrong'
+          }
+        />
+      ) : null}
       <div className="back">
         <Link className="back__button" to={Urls.PROFILE} />
       </div>

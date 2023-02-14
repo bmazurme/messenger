@@ -90,10 +90,10 @@ export default function SignIn() {
             )}
           />
         ))}
-        <Button className="button button_identity button_submit" variant="filled">
-          <span>Войти</span>
+        <Button className="button button_signup" variant="filled">
+          <span>SignIn</span>
         </Button>
-        <FormFooter url={Urls.SIGNUP} label="Зарегистрироваться" />
+        <FormFooter url={Urls.SIGNUP} label="SignUp" />
       </form>
     </div>
   );

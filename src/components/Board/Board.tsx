@@ -1,5 +1,5 @@
 /* eslint-disable no-new */
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Header from '../Header';
@@ -10,17 +10,33 @@ import WebSocketService from '../../store/api/wssApi/WebSocketService';
 import makeDataSelector from '../../store/makeDataSelector';
 
 const chatSelector = makeDataSelector('chat');
+const tokenSelector = makeDataSelector('token');
+
+let wss: WebSocketService;
 
 export default function Board() {
-  const { data: chat } = useSelector(chatSelector);
+  const { data: chat } = useSelector(chatSelector) as { data: Chat };
+  const { data: token } = useSelector(tokenSelector) as {
+    data: { userId: number, chatId: number, token: string }
+  };
   const [message, setMessage] = useState('');
+
+  const [curr, setCurr] = useState('');
+
+  useEffect(() => {
+    if (token?.token && curr !== token.token) {
+      setCurr(token.token);
+      wss = new WebSocketService(token?.userId, chat?.id, token?.token);
+      console.log(token.chatId, token.token, wss);
+    }
+  }, [token]);
+
   // @ts-ignore
   const onChange = (evt: FormEvent<HTMLInputElement>) => setMessage(evt.target.value);
-
-  const onSubmit = (evt: any) => {
+  const onSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    new WebSocketService().send({ type: 'message', content: message });
+    wss.send({ type: 'message', content: message });
     setMessage('');
   };
 
@@ -41,7 +57,7 @@ export default function Board() {
               </div>
             </>
           )
-          : <div className="board__choose">Выберите чат, чтобы отправить сообщение</div>}
+          : <div className="board__choose">Select a chat to send a message</div>}
       </div>
     </div>
   );

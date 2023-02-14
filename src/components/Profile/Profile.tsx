@@ -8,7 +8,6 @@ import AvatarChanger from '../AvatarChanger';
 import ProfileMenu from '../ProfileMenu';
 
 import { useSignOutMutation, useUpdateAvatarMutation } from '../../store';
-
 import { Urls } from '../../utils/constants';
 
 export type FormPayload = Omit<User, 'id'>;
@@ -19,8 +18,6 @@ export default function Profile() {
   const [signOut] = useSignOutMutation();
   const [updateAvatar] = useUpdateAvatarMutation();
   const [newSrc, setNewSrc] = useState('');
-  const [notification, setNotification] = useState<{ type: any; message: string; } | null>(null);
-  console.log(notification);
 
   const signOutHandler = async () => {
     await signOut();
@@ -38,13 +35,8 @@ export default function Profile() {
 
     Promise.all(actions)
       .then(() => {
-        setNotification({
-          type: 'success',
-          message: 'Profile updated',
-        });
         setNewSrc('');
       })
-      .then(() => setTimeout(() => setNotification(null), 3000))
       .catch(({ status, data: { reason } }) => errorHandler(new Error(`${status}: ${reason}`)));
   };
 
@@ -62,12 +54,11 @@ export default function Profile() {
                 setNewSrc={setNewSrc}
               />
               <button
-                className="avatar__button"
+                className={`avatar__button${newSrc === '' ? ' avatar__button_disabled' : ''}`}
                 type="submit"
                 disabled={newSrc === ''}
-              >
-                .
-              </button>
+                aria-label="Submit"
+              />
             </>
           )}
         />

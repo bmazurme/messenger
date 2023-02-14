@@ -1,18 +1,12 @@
-/* eslint-disable max-len */
-/* eslint-disable no-new */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Avatar from '../Avatar';
 import { useGetTokenMutation, store } from '../../store';
+import makeDataSelector from '../../store/makeDataSelector';
 import useUser from '../../hook/useUser';
 
 import { formatDate } from '../../utils/formatDate';
-
-import WebSocketService from '../../store/api/wssApi/WebSocketService';
-import makeDataSelector from '../../store/makeDataSelector';
 
 const chatSelector = makeDataSelector('chat');
 
@@ -25,12 +19,11 @@ export default function Chat({ chat }: { chat: Chat }) {
     store.dispatch({ type: 'chat/setChat', payload: chat });
 
     getToken({ id: chat.id })
-      .then(({ data }: any) => {
-        new WebSocketService((userData as User & { id: number }).id, chat.id, data.token);
+      .then((res) => {
         store.dispatch({
           type: 'token/setToken',
           payload: {
-            token: data.token,
+            token: (res as { data: { token: string }}).data.token,
             chatId: chat.id,
             userId: (userData as User & { id: number }).id,
           },
@@ -40,8 +33,11 @@ export default function Chat({ chat }: { chat: Chat }) {
   };
 
   return (
-    <li className="chat" onClick={handleClick}>
-      <div className={`chat__container${currentChat?.id === chat?.id ? ' chat__container_active' : ''} `}>
+    <button type="button" aria-label="Chat" className="chat" onClick={handleClick}>
+      <div className={`chat__container${currentChat?.id === chat?.id
+        ? ' chat__container_active'
+        : ''} `}
+      >
         <div className="chat__image">
           <Avatar avatar={chat?.avatar} />
         </div>
@@ -57,6 +53,6 @@ export default function Chat({ chat }: { chat: Chat }) {
           ? (<div className="chat__counter">{chat?.unread_count}</div>)
           : null}
       </div>
-    </li>
+    </button>
   );
 }

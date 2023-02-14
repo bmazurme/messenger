@@ -5,12 +5,9 @@
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.0);
+  border: none;
 }
-
-/* .chat:hover {
-  background: #E4EDFD;
-} */
-
 
 .chat {
   border-bottom: solid 1px var(--card-last-child-border-bottom-color);

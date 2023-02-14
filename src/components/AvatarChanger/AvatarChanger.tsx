@@ -4,13 +4,14 @@ import React, {
   type ChangeEvent,
 } from 'react';
 import classnames from 'classnames';
+
 import Avatar from '../Avatar';
 
 type AvatarChangerProps = {
   avatar?: string;
   chat?: Chat;
   onChange: (formData: FormData) => void;
-  setNewSrc: any;
+  setNewSrc: (src: string) => void;
 };
 
 export default function AvatarChanger({
@@ -38,6 +39,7 @@ export default function AvatarChanger({
 
     const form = new FormData();
     form.append('avatar', files[0]);
+
     if (name !== '') {
       form.append('chatId', name);
     }

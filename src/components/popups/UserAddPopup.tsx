@@ -10,7 +10,7 @@ import {
 } from '../../store';
 
 import { Input } from '../form-components';
-import Avatar from '../Avatar';
+import Users from '../Users';
 
 type FormPayload = {
   login: string;
@@ -36,20 +36,13 @@ export default function UserAddPopup(props: {
   isLoading: boolean,
   onAction: () => void,
 }) {
-  const {
-    chat,
-    isOpen,
-    onClose,
-    isLoading,
-    // onAction,
-  } = props;
-  const [result, setResult] = useState<User[]>([]);
+  const { chat, isOpen, onClose } = props;
+  const [result, setResult] = useState<(User & { id: number })[]>([]);
   const [addUser] = useAddUserToChatChatMutation();
   const [removeUser] = useDeleteUserFromChatMutation();
   const [searchUser] = useSearchUserMutation();
-  const { data: chatUsers = [] } = useGetChatUsersQuery({ id: chat.id });
+  const { data: chatUsers = [] } = useGetChatUsersQuery({ id: chat.id }) as { data: unknown };
   const errorHandler = useErrorHandler();
-  // const buttonText = isLoading ? 'Добавление...' : 'Добавить';
   const { control, handleSubmit, reset } = useForm<FormPayload>({
     defaultValues: {
       login: '',
@@ -65,7 +58,7 @@ export default function UserAddPopup(props: {
   };
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const { data: users } = await searchUser(data) as { data: User[]};
+      const { data: users } = await searchUser(data) as { data: (User & { id: number })[]};
       setResult(users);
     } catch ({ status, data: { reason } }) {
       errorHandler(new Error(`${status}: ${reason}`));
@@ -94,9 +87,7 @@ export default function UserAddPopup(props: {
           onClick={handleCloseClick}
         />
         <form className="form form_type_edit" onSubmit={onSubmit}>
-          <h2 className="form__title">
-            {`Chat - ${chat.title}[${chat.id}]`}
-          </h2>
+          <h2 className="form__title">{`Chat - ${chat.title}[${chat.id}]`}</h2>
           {inputs.map((input) => (
             <Controller
               key={input.name}
@@ -111,43 +102,19 @@ export default function UserAddPopup(props: {
                   {...field}
                   {...input}
                   className="input inbox__input"
+                  type="search"
                   black
                   errorText={fieldState.error?.message}
                 />
               )}
             />
           ))}
-
-          <h2 className="form__title form__title_users">
-            Users of the chat
-          </h2>
-          <ul className="users">
-            {chatUsers.concat(result).reduce((o, i) => {
-              if (!o.find((v: User & { id: number}) => v.id === i.id)) {
-                o.push(i);
-              }
-              return o;
-            }, []).map((user: User & { id: number}) => (
-              <div className="item" key={user.login}>
-                <div className="item__avatar">
-                  <Avatar avatar={user.avatar} />
-                </div>
-                <span className="item__name">
-                  {user.login}
-                </span>
-                <button
-                  type="button"
-                  aria-label="Menu"
-                  className={`button header__link${chatUsers.some((u) => u.id === user.id)
-                    ? ' header__delete remove_user'
-                    : ' add_user'}`}
-                  onClick={chatUsers.some((u) => u.id === user.id)
-                    ? () => onRemoveUser(user.id)
-                    : () => onAddUserToChat(user.id)}
-                />
-              </div>
-            ))}
-          </ul>
+          <Users
+            result={result}
+            chatUsers={chatUsers as (User & { id: number })[]}
+            onAddUserToChat={onAddUserToChat}
+            onRemoveUser={onRemoveUser}
+          />
         </form>
       </div>
     </div>

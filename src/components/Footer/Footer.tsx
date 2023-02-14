@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 
-export default function Footer({ message, onChange, onSubmit }: any) {
-  const onUpload = () => {
-    console.log('click');
-  };
+export default function Footer({ message, onChange, onSubmit }
+  : {
+    message: string,
+    onChange: (evt: FormEvent<HTMLInputElement>) => void,
+    onSubmit: (evt: FormEvent<HTMLFormElement>) => void,
+  }) {
+  const onUpload = () => console.log('click');
 
   return (
     <form className="footer" onSubmit={onSubmit}>
       <button
         type="button"
-        aria-label="Upload"
         className="footer__button"
+        aria-label="Upload"
         onClick={onUpload}
       />
       <input

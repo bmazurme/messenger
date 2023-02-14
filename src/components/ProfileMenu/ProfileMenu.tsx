@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { Urls } from '../../utils/constants';
 
-export type FormPayload = Omit<User, 'id'>;
-
-export default function ProfileMenu({ signOutHandler }: { signOutHandler: () => void }) {
+export default function ProfileMenu({ signOutHandler }
+  : { signOutHandler: () => void }) {
   return (
     <ul className="profile__menu">
       <li className="list__item">

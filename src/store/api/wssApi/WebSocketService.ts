@@ -1,6 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-constructor-return */
 /* eslint-disable class-methods-use-this */
 import { store } from '../..';
 
@@ -12,16 +9,10 @@ interface IMessage {
 }
 
 export default class WebSocketService {
-  static _instance: WebSocketService | null;
-
   private _socket;
 
   constructor(userId?: number, chatId?: number, chatToken?: string) {
     if (userId && chatId && chatToken) {
-      if (WebSocketService._instance) {
-        WebSocketService._instance = null;
-      }
-
       this._socket = new WebSocket(`${SOCKET_URL}${userId}/${chatId}/${chatToken}`);
 
       this._socket.addEventListener('open', this.onOpen.bind(this));
@@ -29,11 +20,6 @@ export default class WebSocketService {
       this._socket.addEventListener('close', this.onClose.bind(this));
       this._socket.addEventListener('error', this.onError.bind(this));
     }
-
-    if (WebSocketService._instance) {
-      return WebSocketService._instance;
-    }
-    WebSocketService._instance = this;
   }
 
   public send(payload: IMessage): void {
@@ -47,7 +33,7 @@ export default class WebSocketService {
     this.ping();
   }
 
-  onMessage(event: any): void {
+  onMessage(event: MessageEvent): void {
     console.log('Data received: ', event);
     const messages = JSON.parse(event.data);
 
@@ -69,7 +55,7 @@ export default class WebSocketService {
     setTimeout(this.ping.bind(this), 10000);
   }
 
-  onClose(event: any): void {
+  onClose(event: CloseEvent): void {
     if (event.wasClean) {
       console.log('Connection closed');
     } else {
@@ -77,7 +63,7 @@ export default class WebSocketService {
     }
   }
 
-  onError(event: any): void {
+  onError(event: ErrorEventInit): void {
     console.log('Error: ', event.message);
   }
 }

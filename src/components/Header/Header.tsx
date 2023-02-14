@@ -37,6 +37,7 @@ export default function Header() {
   const onSubmit = (data: FormPayload) => {
     updateChatAvatar({ ...data, chatId: chat?.id })
       .then((res: unknown) => {
+        setNewSrc('');
         store.dispatch({
           type: 'chat/setChat',
           payload: (res as { data: Chat }).data,
@@ -59,12 +60,11 @@ export default function Header() {
                   setNewSrc={setNewSrc}
                 />
                 <button
-                  className="avatar__button"
+                  className={`avatar__button${newSrc === '' ? ' avatar__button_disabled' : ''}`}
                   type="submit"
+                  aria-label="Submit"
                   disabled={newSrc === ''}
-                >
-                  .
-                </button>
+                />
               </>
             )}
           />
