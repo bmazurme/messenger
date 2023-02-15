@@ -21,6 +21,8 @@
 
 ### Demo
 [![Netlify](https://img.shields.io/badge/-Netlify-black?style=flat-square&logo=netlify)](https://velvety-babka-2aac37.netlify.app/)
+![Alt-text](https://github.com/bmazurme/messenger/blob/main/src/images/cover.png "demo")
+
 
 Implemented features:
 - [X] User registration, authorization
