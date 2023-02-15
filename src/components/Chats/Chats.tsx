@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { FormEvent, useState, useEffect } from 'react';
 import { useErrorHandler } from 'react-error-boundary';
 
@@ -47,7 +48,9 @@ export default function Chats() {
         />
       </div>
       <ul className="chats">
-        {isLoading ? <Preloader /> : chatList.map((chat) => (<Chat key={chat?.id} chat={chat} />))}
+        {isLoading
+          ? <Preloader />
+          : chatList.map((chat) => (<Chat key={chat?.id} chat={chat} />))}
       </ul>
     </>
   );

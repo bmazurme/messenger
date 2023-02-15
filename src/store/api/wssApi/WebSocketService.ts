@@ -12,14 +12,12 @@ export default class WebSocketService {
   private _socket;
 
   constructor(userId?: number, chatId?: number, chatToken?: string) {
-    if (userId && chatId && chatToken) {
-      this._socket = new WebSocket(`${SOCKET_URL}${userId}/${chatId}/${chatToken}`);
+    this._socket = new WebSocket(`${SOCKET_URL}${userId}/${chatId}/${chatToken}`);
 
-      this._socket.addEventListener('open', this.onOpen.bind(this));
-      this._socket.addEventListener('message', this.onMessage.bind(this));
-      this._socket.addEventListener('close', this.onClose.bind(this));
-      this._socket.addEventListener('error', this.onError.bind(this));
-    }
+    this._socket.addEventListener('open', this.onOpen.bind(this));
+    this._socket.addEventListener('message', this.onMessage.bind(this));
+    this._socket.addEventListener('close', this.onClose.bind(this));
+    this._socket.addEventListener('error', this.onError.bind(this));
   }
 
   public send(payload: IMessage): void {
@@ -27,7 +25,7 @@ export default class WebSocketService {
     this._socket?.send(JSON.stringify(payload));
   }
 
-  private onOpen(): void {
+  public onOpen(): void {
     console.log('Connection established');
     this.send({ type: 'get old', content: '0' });
     this.ping();
@@ -36,16 +34,18 @@ export default class WebSocketService {
   onMessage(event: MessageEvent): void {
     console.log('Data received: ', event);
     const messages = JSON.parse(event.data);
+    // @ts-ignore
+    const key = Number(event.currentTarget?.url?.split(':')[1].split('/')[6]);
 
     if (messages.type === 'user connected' || messages.type === 'pong') {
       return;
     }
 
     store.dispatch({
-      type: Array.isArray(messages)
-        ? 'messages/setMessages'
-        : 'messages/setMessage',
-      payload: messages,
+      type: 'messages/setMessages',
+      payload: Array.isArray(messages)
+        ? { key, messages }
+        : { key, messages: [messages] },
     });
   }
 

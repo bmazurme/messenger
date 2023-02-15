@@ -1,0 +1,9 @@
+.error-boundary__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  text-align: center;
+}

@@ -1,4 +1,3 @@
-/* eslint-disable no-new */
 import React, { useState, FormEvent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -11,32 +10,35 @@ import makeDataSelector from '../../store/makeDataSelector';
 
 const chatSelector = makeDataSelector('chat');
 const tokenSelector = makeDataSelector('token');
-
-let wss: WebSocketService;
+const messagesSelector = makeDataSelector('messages');
 
 export default function Board() {
+  const [message, setMessage] = useState('');
+  const [curr, setCurr] = useState('');
+
+  const { data: messages = [] } = useSelector(messagesSelector);
   const { data: chat } = useSelector(chatSelector) as { data: Chat };
   const { data: token } = useSelector(tokenSelector) as {
     data: { userId: number, chatId: number, token: string }
   };
-  const [message, setMessage] = useState('');
-
-  const [curr, setCurr] = useState('');
+  const [item, setItem] = useState<Record<number, WebSocketService>>({});
 
   useEffect(() => {
     if (token?.token && curr !== token.token) {
       setCurr(token.token);
-      wss = new WebSocketService(token?.userId, chat?.id, token?.token);
-      console.log(token.chatId, token.token, wss);
+      const wss = new WebSocketService(token?.userId, chat?.id, token?.token);
+      setItem({ ...item, [chat.id]: wss });
     }
-  }, [token]);
+  }, [token, messages]);
 
   // @ts-ignore
   const onChange = (evt: FormEvent<HTMLInputElement>) => setMessage(evt.target.value);
   const onSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    wss.send({ type: 'message', content: message });
+    if (message !== '') {
+      item[chat.id]?.send({ type: 'message', content: message });
+    }
     setMessage('');
   };
 
@@ -53,11 +55,19 @@ export default function Board() {
                 <Messages />
               </div>
               <div className="board__footer">
-                <Footer message={message} onChange={onChange} onSubmit={onSubmit} />
+                <Footer
+                  message={message}
+                  onChange={onChange}
+                  onSubmit={onSubmit}
+                />
               </div>
             </>
           )
-          : <div className="board__choose">Select a chat to send a message</div>}
+          : (
+            <div className="board__choose">
+              Select a chat to send a message
+            </div>
+          )}
       </div>
     </div>
   );

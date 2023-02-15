@@ -29,7 +29,7 @@ export default function Chat({ chat }: { chat: Chat }) {
           },
         });
       })
-      .catch();
+      .catch((e) => console.log(e));
   };
 
   return (

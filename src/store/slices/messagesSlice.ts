@@ -1,28 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import type { RootState } from '..';
 
 export type MessagesState = {
-  data: MessageType[];
+  data: Record<number, MessageType[]>;
 };
+
+const arr = (dat: Record<number, MessageType[]>, key: number) => (dat[key] ? dat[key] : []);
 
 const slice = createSlice({
   name: 'messages',
-  initialState: { data: [] } as MessagesState,
+  initialState: { data: { 0: [] } },
   reducers: {
-    // @ts-ignore
     setMessages: (
       state,
-      { payload: data }: PayloadAction<MessageType>,
-    ) => ({ ...state, data }),
-    setMessage: (
-      state,
-      { payload: data }: PayloadAction<MessageType>,
-    ) => ({ ...state, data: [data, ...state.data] }),
+      { payload: data }: PayloadAction<{ key: number, messages: MessageType[] }>,
+    ) => ({
+      ...state,
+      data: {
+        ...state.data,
+        [data.key]: data.messages.length === 1
+          ? [...data.messages, ...arr(state.data, data.key)]
+          : data.messages,
+      },
+    }),
   },
 });
 
-export const { setMessages, setMessage } = slice.actions;
+export const { setMessages } = slice.actions;
 
 export default slice.reducer;
 
