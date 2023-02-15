@@ -1,0 +1,18 @@
+.chat__container {
+  display: grid;
+  grid-template-columns: 47px 1fr 30px;
+  grid-template-rows: 14px 16px 16px;
+  grid-template-areas:
+    "image title time"
+    "image text counter"
+    "image text counter";
+  column-gap: 10px;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  margin: 2px 0;
+  text-align: left;
+}
+
+.chat__container:hover {
+  background: #e4edfd;
+}

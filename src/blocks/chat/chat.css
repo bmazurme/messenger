@@ -1,9 +1,18 @@
 .chat {
-  display: grid;
-  grid-template-columns: 310px 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "sidebar main" "sidebar main";
-  gap: 0;
-  width: 100vw;
-  height: 100vh;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.0);
+  border: none;
 }
+
+.chat {
+  border-bottom: solid 1px var(--card-last-child-border-bottom-color);
+}
+
+.chat:first-child {
+  border-top: solid 1px var(--card-last-child-border-bottom-color);
+} 

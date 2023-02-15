@@ -1,5 +1,5 @@
 .message__container_to {
   display: flex;
   background: var(--message-container-to-background);
-  border-radius: 12px 12px 12px 0;
+  border-radius: 12px 12px 0 12px;
 }

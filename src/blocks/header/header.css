@@ -1,9 +1,11 @@
 .header {
   display: grid;
-  width: 100%;
-  grid-template-columns: 34px 1fr 25px 25px 25px;
-  grid-template-rows: 1fr;
+  width: calc(100% - 40px);
+  margin: 0 20px;
   grid-template-areas: "image text link delete toggle";
+  grid-template-columns: 34px 1fr 25px 25px 25px;
   column-gap: 10px;
-  padding: 0;
+  padding: 10px 0;
+  border-bottom: solid 1px var(--board-header-border-bottom);
+  position: relative;
 }

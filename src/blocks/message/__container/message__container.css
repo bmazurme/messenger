@@ -1,7 +1,9 @@
 .message__container {
   display: flex;
   flex-direction: column;
-  max-width: 402px;
+  max-width: 60%;
+  min-width: 100px;
+  width: auto;
   background: var(--message-container-background);
   border-bottom-right-radius: 12px;
   border-top-right-radius: 12px;

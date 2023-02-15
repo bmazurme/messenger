@@ -1,9 +1,7 @@
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-
+/* eslint-disable global-require */
 module.exports = {
   plugins: [
-    autoprefixer,
-    cssnano({ preset: 'default' })
-  ]
-}
+    require('autoprefixer'),
+    require('postcss-nested'),
+  ],
+};
