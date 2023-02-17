@@ -33,6 +33,7 @@ Implemented features:
 - [X] Axios, WebSocket
 - [X] React error boundaries
 - [X] Form validation, react-hook-form
+- [X] Resizable-Sidebar
 
 #### Links
 - [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1)

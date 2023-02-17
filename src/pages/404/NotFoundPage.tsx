@@ -1,8 +1,7 @@
 import React from 'react';
 
-import NotFound from '../../components/NotFound/NotFound';
-import Content from '../../components/Content';
+import NotFound from '../../components/NotFound';
 
 export default function NotFoundPage() {
-  return (<Content children={(<NotFound />)} />);
+  return (<NotFound />);
 }

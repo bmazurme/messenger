@@ -10,7 +10,7 @@ import Chats from '../Chats';
 import { useCreateChatMutation } from '../../store';
 import { Urls } from '../../utils/constants';
 
-export default function Sidebar() {
+export default function Sidebar({ sidebarRef, sidebarWidth, startResizing }: any) {
   const errorHandler = useErrorHandler();
   const [addChat] = useCreateChatMutation();
   const [popup, setPopup] = useState(false);
@@ -26,29 +26,38 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="content__sidebar">
-      <div className="sidebar">
-        <Link className="sidebar__profile" to={Urls.PROFILE}>
-          Profile
-          <span className="sidebar__icon" />
-        </Link>
+    <>
+      <div
+        className="content__sidebar"
+        ref={sidebarRef}
+        style={{ width: sidebarWidth }}
+        onMouseDown={(e) => e.preventDefault()}
+      >
+        <div className="sidebar">
+          <Link className="sidebar__profile" to={Urls.PROFILE}>
+            Profile
+            <span className="sidebar__icon" />
+          </Link>
 
-        <Button
-          className="button button_create-chat"
-          variant="filled"
-          onClick={() => setPopup(true)}
-        >
-          Create chat
-        </Button>
+          <Button
+            className="button button_create-chat"
+            variant="filled"
+            onClick={() => setPopup(true)}
+          >
+            Create chat
+          </Button>
 
-        <Chats />
+          <Chats />
 
-        <AddChatPopup
-          onAddChat={handleAddChatSubmit}
-          onClose={closePopup}
-          isOpen={popup}
-        />
+          <AddChatPopup
+            onAddChat={handleAddChatSubmit}
+            onClose={closePopup}
+            isOpen={popup}
+          />
+        </div>
+
       </div>
-    </div>
+      <div className="sidebar__resizer" onMouseDown={startResizing} />
+    </>
   );
 }
