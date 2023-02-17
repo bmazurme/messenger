@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import React, {
   useEffect,
   useState,
@@ -25,12 +26,12 @@ export default function Main() {
     (mouseMoveEvent: MouseEvent) => {
       if (isResizing) {
         setSidebarWidth(
-          mouseMoveEvent.clientX -
-          sidebarRef.current!.getBoundingClientRect()?.left
+          mouseMoveEvent.clientX
+          - sidebarRef.current!.getBoundingClientRect()?.left,
         );
       }
     },
-    [isResizing]
+    [isResizing],
   );
 
   useEffect(() => {
