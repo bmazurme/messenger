@@ -21,7 +21,6 @@ jobs:
 
       # initialize repo
       - uses: actions/checkout@v2
-
       - name: Login to Yandex Cloud Container Registry
         id: login-cr
         uses: yc-actions/yc-cr-login@v1
@@ -30,31 +29,10 @@ jobs:
 
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
-          CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
-          CR_REPOSITORY: ${{ secrets.CR_REPO }}
+          CR_REGISTRY: crpfap56bqr8nkph7d9g
+          CR_REPOSITORY: ntlstl
           IMAGE_TAG: ${{ github.sha }}
-          NODE_ENV: ${{ env.NODE_ENV }}
-          PORT: ${{ env.PORT }}
         run: |
           docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
-#      - name: Deploy COI VM
-#        id: deploy-coi
-#        uses: yc-actions/yc-coi-deploy@v1
-#        env:
-#          YC_VM_USERNAME: ${{ secrets.YC_VM_USERNAME }}
-#          YC_VM_SSH: ${{ secrets.YC_VM_SSH }}
-#          CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
-#          CR_REPOSITORY: ${{ secrets.CR_REPO }}
-#          IMAGE_TAG: ${{ github.sha }}
-#          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-#          NODE_ENV: ${{ env.NODE_ENV }}
-#          PORT: ${{ env.PORT }}
-#        with:
-#          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-#          folder-id: ${{ secrets.YC_FOLDER_ID }}
-#          vm-name: ${{ secrets.YC_VM_NAME }}
-#          vm-service-account-name: ${{ secrets.YC_VM_USERNAME }}
-#          vm-subnet-id: ${{ secrets.YC_VM_SUBNET_ID }}
-#          user-data-path: '.yc/user-data.yml'
-#          docker-compose-path: './.yc/docker-compose.yml'
+
