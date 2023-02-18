@@ -53,3 +53,35 @@ Clear project: `npm run clear`
 Run eslint: `npm run eslint`
 
 Launch: `npm start`
+
+### DOCKER
+
+`docker-compose build`
+
+`docker-compose up`
+
+`docker-compose stop`
+
+`docker system prune -a`
+
+`docker push cr.yandex/${REGISTRY_ID}/messenger:latest`
+
+`docker pull cr.yandex/${REGISTRY_ID}/messenger:latest`
+
+`docker run cr.yandex/${REGISTRY_ID}/messenger:latest`
+
+[https://cloud.yandex.ru/docs/container-registry/tutorials/run-docker-on-vm#before-begin](https://cloud.yandex.ru/docs/container-registry/tutorials/run-docker-on-vm#before-begin)
+
+`docker exec -it container_ID_or_name /bin/bash`
+
+```
+# on an M1 mac…
+
+# --platform linux/amd64
+```
+
+Identify what is running in port 5432: `sudo lsof -i :5432`
+
+Kill all the processes that are running under this port: `sudo kill -9 <pid>`
+
+Run the command again to verify no process is running now: `sudo lsof -i :5432`

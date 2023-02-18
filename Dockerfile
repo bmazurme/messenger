@@ -5,7 +5,7 @@ RUN npm config set cache /usr/src/app/.npm-cache --global
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 LABEL version="1.0"
-LABEL description="mesto"
+LABEL description="messenger"
 
 FROM base AS dev-deps
 ENV NODE_ENV development
