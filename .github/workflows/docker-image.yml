@@ -25,7 +25,7 @@ jobs:
 
       - name: Login to Yandex Cloud Container Registry
         id: login-cr
-        uses: yc-actions/yc-coi-deploy@v1.0.1
+        uses: yc-actions/yc-coi-deploy@v1
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           folder-id: ${{ secrets.YC_FOLDER_ID }}
