@@ -18,10 +18,10 @@ jobs:
 
       # initialize repo
       - uses: actions/checkout@v2
-
+      
       - name: Login to Yandex Cloud Container Registry
         id: login-cr
-        uses: yc-actions/yc-cr-login@v1
+        uses: yc-actions/yc-cr-login@v1.1.0
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
