@@ -35,7 +35,7 @@ jobs:
         run: |
           docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest .
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest
-          
+        
 #      - name: Deploy COI VM
 #        id: deploy-coi
 #        uses: yc-actions/yc-coi-deploy@v1
