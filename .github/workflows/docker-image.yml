@@ -28,6 +28,7 @@ jobs:
         uses: yc-actions/yc-coi-deploy@v1.0.1
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          folder-id: ${{ secrets.YC_FOLDER_ID }}
 
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
