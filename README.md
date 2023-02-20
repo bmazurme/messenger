@@ -54,7 +54,7 @@ Run eslint: `npm run eslint`
 
 Launch: `npm start`
 
-### DOCKER
+### Docker
 
 `docker-compose build`
 
@@ -79,9 +79,3 @@ Launch: `npm start`
 
 # --platform linux/amd64
 ```
-
-Identify what is running in port 5432: `sudo lsof -i :5432`
-
-Kill all the processes that are running under this port: `sudo kill -9 <pid>`
-
-Run the command again to verify no process is running now: `sudo lsof -i :5432`
