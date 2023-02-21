@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/self-closing-comp */
-import React, { useState } from 'react';
+import React, { RefObject, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useErrorHandler } from 'react-error-boundary';
 
@@ -11,7 +11,12 @@ import Chats from '../Chats';
 import { useCreateChatMutation } from '../../store';
 import { Urls } from '../../utils/constants';
 
-export default function Sidebar({ sidebarRef, sidebarWidth, startResizing }: any) {
+export default function Sidebar({ sidebarRef, sidebarWidth, startResizing }
+  : {
+    sidebarRef: RefObject<HTMLInputElement>,
+    sidebarWidth: number,
+    startResizing: (mouseDownEvent: MouseEvent) => void,
+  }) {
   const errorHandler = useErrorHandler();
   const [addChat] = useCreateChatMutation();
   const [popup, setPopup] = useState(false);
@@ -58,7 +63,11 @@ export default function Sidebar({ sidebarRef, sidebarWidth, startResizing }: any
         </div>
 
       </div>
-      <div className="sidebar__resizer" onMouseDown={startResizing} />
+      <div
+        className="sidebar__resizer"
+        // @ts-ignore
+        onMouseDown={startResizing}
+      />
     </>
   );
 }

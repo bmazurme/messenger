@@ -1,8 +1,8 @@
 .footer {
   display: grid;
   width: calc(100% - 40px);
-  grid-template-areas: "attach input send";
-  grid-template-columns: 28px 1fr 28px;
+  grid-template-areas: "attach form";
+  grid-template-columns: 28px 1fr;
   column-gap: 10px;
   padding: 10px 0;
   margin: 0 20px;

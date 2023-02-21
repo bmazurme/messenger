@@ -5,7 +5,9 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi, usersApi, chatApi } from './api';
+import {
+  authApi, usersApi, chatApi, resourcesApi,
+} from './api';
 import chatReducer from './slices/chatSlice';
 import userReducer from './slices/userSlice';
 import messagesReducer from './slices/messagesSlice';
@@ -15,6 +17,7 @@ import { isServer } from '../utils';
 export * from './api/authApi/endpoints';
 export * from './api/userApi/endpoints';
 export * from './api/chatApi/endpoints';
+export * from './api/resourcesApi/endpoints';
 export * from './slices';
 
 // global redeclared types
@@ -39,6 +42,7 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [chatApi.reducerPath]: chatApi.reducer,
+    [resourcesApi.reducerPath]: resourcesApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -47,6 +51,7 @@ export const store = configureStore({
       authApi.middleware,
       usersApi.middleware,
       chatApi.middleware,
+      resourcesApi.middleware,
       // api.middleware,
       routerMiddleware,
     ),

@@ -54,7 +54,9 @@ export default function Profile() {
                 setNewSrc={setNewSrc}
               />
               <button
-                className={`avatar__button${newSrc === '' ? ' avatar__button_disabled' : ''}`}
+                className={`avatar__button${newSrc === ''
+                  ? ' avatar__button_disabled'
+                  : ''}`}
                 type="submit"
                 disabled={newSrc === ''}
                 aria-label="Submit"

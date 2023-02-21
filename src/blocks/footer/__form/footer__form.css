@@ -1,0 +1,10 @@
+.footer__form {
+  grid-area: form;
+  display: grid;
+  width: 100%;
+  grid-template-areas: "input send";
+  grid-template-columns: 1fr 28px;
+  column-gap: 10px;
+  padding: 0;
+  margin: 0;
+}

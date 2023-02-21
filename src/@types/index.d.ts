@@ -20,7 +20,7 @@ type User = {
 type MessageType = {
   chat_id: number;
   content: string;
-  file: string | null;
+  file: Record<string, string | number> | null;
   id: number;
   is_read: boolean;
   time: string;

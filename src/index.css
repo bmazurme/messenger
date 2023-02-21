@@ -68,6 +68,7 @@
 @import url(./blocks/footer/__button/footer__button.css);
 @import url(./blocks/footer/__button/_send/footer__button_send.css);
 @import url(./blocks/footer/__input/footer__input.css);
+@import url(./blocks/footer/__form/footer__form.css);
 
 @import url(./blocks/message/message.css);
 @import url(./blocks/message/_to/message_to.css);
@@ -141,3 +142,11 @@
 @import url(./blocks/p404/__description/p404__description.css);
 @import url(./blocks/p404/__link/p404__link.css);
 @import url(./blocks/p404/__title/p404__title.css);
+
+@import url(./blocks/attachment/attachment.css);
+@import url(./blocks/attachment/__link/attachment__link.css);
+
+@import url(./blocks/upload/upload.css);
+@import url(./blocks/upload/__button/upload__button.css);
+@import url(./blocks/upload/__button/_disabled/upload__button_disabled.css);
+@import url(./blocks/upload/__label/upload__label.css);

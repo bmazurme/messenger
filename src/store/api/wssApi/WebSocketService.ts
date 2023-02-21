@@ -4,8 +4,9 @@ import { store } from '../..';
 const SOCKET_URL = 'wss://ya-praktikum.tech/ws/chats/';
 
 interface IMessage {
-  content: string | number,
   type: string,
+  content: string | number,
+  file?: any,
 }
 
 export default class WebSocketService {
