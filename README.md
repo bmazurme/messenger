@@ -34,6 +34,7 @@ Implemented features:
 - [X] React error boundaries
 - [X] Form validation, react-hook-form
 - [X] Resizable-Sidebar
+- [X] Docker
 
 #### Links
 - [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1)
