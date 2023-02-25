@@ -71,7 +71,7 @@ Launch: `npm start`
 
 `docker run cr.yandex/${REGISTRY_ID}/messenger:latest`
 
-`docker run -d -p 80:3000  cr.yandex/${REGISTRY_ID}/messenger:latest`
+`docker run -d -p 80:3000 cr.yandex/${REGISTRY_ID}/messenger:latest`
 
 [https://cloud.yandex.ru/docs/container-registry/tutorials/run-docker-on-vm#before-begin](https://cloud.yandex.ru/docs/container-registry/tutorials/run-docker-on-vm#before-begin)
 
