@@ -23,11 +23,11 @@ dotEnvConfig();
 const helmetConfig = {
   useDefaults: true,
   directives: {
-    defaultSrc: ["'self'", 'https://auth.nomoreparties.co/', 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001'],
-    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://auth.nomoreparties.co/', 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001'],
-    connectSrc: ["'self'", 'https://auth.nomoreparties.co/', 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001'],
-    styleSrc: ["'self'", "'unsafe-inline'", 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001'],
-    imgSrc: ["'self'", 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001'],
+    defaultSrc: ["'self'", 'https://auth.nomoreparties.co/', 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001/'],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://auth.nomoreparties.co/', 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001/'],
+    connectSrc: ["'self'", 'https://auth.nomoreparties.co/', 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001/'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001/'],
+    imgSrc: ["'self'", 'https://messenger.ntlstl.dev/', 'https://ya-praktikum.tech/api/v2/', 'https://localhost:3001/'],
   },
 };
 
