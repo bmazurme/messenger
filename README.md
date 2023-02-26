@@ -35,6 +35,7 @@ Implemented features:
 - [X] Form validation, react-hook-form
 - [X] Resizable-Sidebar
 - [X] Docker
+- [X] CI/CD
 
 #### Links
 - [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1)
