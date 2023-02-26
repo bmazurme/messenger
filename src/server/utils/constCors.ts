@@ -8,6 +8,7 @@ const WHITE_LIST = [
   'https://localhost:3002',
   'https://auth.nomoreparties.co',
   'https://messenger.ntlstl.dev/',
+  'https://ya-praktikum.tech/api/v2/',
 ];
 
 const METHODS = [
