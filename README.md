@@ -35,7 +35,9 @@ Implemented features:
 - [X] Form validation, react-hook-form
 - [X] Resizable-Sidebar
 - [X] Docker
-- [X] CI/CD
+- [X] CI/CD GitHub Actions
+- [ ] Tests
+- [ ] Dark&light theme
 
 #### Links
 - [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1)
@@ -83,3 +85,32 @@ Launch: `npm start`
 
 # --platform linux/amd64
 ```
+### NGINX
+
+`sudo apt update`
+
+`sudo apt install -y nginx`
+
+`sudo ufw allow 'Nginx Full'`
+
+`sudo ufw allow OpenSSH`
+
+`sudo ufw enable`
+
+`sudo systemctl enable --now nginx`
+
+`sudo nano /etc/nginx/sites-available/default`
+
+`sudo nginx -t`
+
+`sudo systemctl reload nginx`
+
+### SSL
+
+`sudo apt update`
+
+`sudo apt install -y certbot python3-certbot-nginx`
+
+`sudo certbot --nginx`
+
+`sudo systemctl reload nginx`
