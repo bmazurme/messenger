@@ -150,3 +150,9 @@
 @import url(./blocks/upload/__button/upload__button.css);
 @import url(./blocks/upload/__button/_disabled/upload__button_disabled.css);
 @import url(./blocks/upload/__label/upload__label.css);
+
+@import url(./blocks/switcher/switcher.css);
+@import url(./blocks/switcher/__label/switcher__label.css);
+@import url(./blocks/switcher/__button/switcher__button.css);
+@import url(./blocks/switcher/__button/_on/switcher__button_on.css);
+@import url(./blocks/center/center.css);

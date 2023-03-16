@@ -15,7 +15,7 @@ export default function Sidebar({ sidebarRef, sidebarWidth, startResizing }
   : {
     sidebarRef: RefObject<HTMLInputElement>,
     sidebarWidth: number,
-    startResizing: (mouseDownEvent: MouseEvent) => void,
+    startResizing: (mouseDownEvent: React.MouseEvent) => void,
   }) {
   const errorHandler = useErrorHandler();
   const [addChat] = useCreateChatMutation();
@@ -37,7 +37,7 @@ export default function Sidebar({ sidebarRef, sidebarWidth, startResizing }
         className="content__sidebar"
         ref={sidebarRef}
         style={{ width: sidebarWidth }}
-        onMouseDown={(e) => e.preventDefault()}
+        // onMouseDown={(e) => e.preventDefault()}
       >
         <div className="sidebar">
           <Link className="sidebar__profile" to={Urls.PROFILE}>
@@ -61,11 +61,9 @@ export default function Sidebar({ sidebarRef, sidebarWidth, startResizing }
             isOpen={popup}
           />
         </div>
-
       </div>
       <div
         className="sidebar__resizer"
-        // @ts-ignore
         onMouseDown={startResizing}
       />
     </>

@@ -1,4 +1,4 @@
 .chat__from-you {
-  color: #1E1E1E;
+  color: var(--chat-from-you);
   padding-right: 5px;
 }

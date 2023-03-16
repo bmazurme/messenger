@@ -14,5 +14,5 @@
 }
 
 .chat__container:hover {
-  background: #e4edfd;
+  background-color: var(--chat-container);
 }

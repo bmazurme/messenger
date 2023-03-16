@@ -38,15 +38,13 @@ export default function Chats() {
 
   return (
     <>
-      <div>
-        <input
-          type="search"
-          value={word}
-          className="sidebar__search"
-          placeholder="Search"
-          onChange={onChange}
-        />
-      </div>
+      <input
+        type="search"
+        value={word}
+        className="sidebar__search"
+        placeholder="Search"
+        onChange={onChange}
+      />
       <ul className="chats">
         {isLoading
           ? <Preloader />

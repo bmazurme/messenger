@@ -36,8 +36,8 @@ Implemented features:
 - [X] Resizable-Sidebar
 - [X] Docker
 - [X] CI/CD GitHub Actions
+- [X] Dark&light theme
 - [ ] Tests
-- [ ] Dark&light theme
 
 #### Links
 - [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1)

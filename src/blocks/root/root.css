@@ -1,3 +1,37 @@
+html {
+  --background: #fafafa;
+  --chat-sidebar-background: #fff;
+  --chat-container: #e4edfd;
+  --background-cards: #f4f4f4;
+  --list-value-color: #999;
+  --list-label-color: #1e1e1e;
+  --profile-title-color: #1e1e1e;
+  --color: #1e1e1e;
+  --border: #fafafa;
+  --chat-container-active: #E4EDFD;
+  --card-title-color: #1e1e1e;
+  --chat-from-you: #999;
+  --error-text-color: #1e1e1e;
+  --footer-text-color: #1e1e1e;
+}
+
+html[data-theme="dark"] {
+  --background: #161616;
+  --chat-sidebar-background: #323232;
+  --chat-container: #222;
+  --background-cards: #222;
+  --list-value-color: #999;
+  --list-label-color: #d6d6d6;
+  --profile-title-color: #d6d6d6;
+  --color: #d6d6d6;
+  --border: #fafafa;
+  --chat-container-active: #161616;
+  --card-title-color: #d6d6d6;
+  --chat-from-you: #999;
+  --error-text-color: #999;
+  --footer-text-color: #999;
+}
+
 .root {
   min-height: 100vh;
   height: 100%;
@@ -8,6 +42,7 @@
   font-family: Inter, serif;
   font-style: normal;
   font-weight: 500;
+  background-color: var(--background);
 
   --button-background: #3369f3;
   --button-boreder: #3369f3;
@@ -19,21 +54,20 @@
   --card-image-background: #efefef;
   --card-text-color: #999;
   --card-time-color: #999;
-  --card-title-color: #1e1e1e;
+
   --card-last-child-border-bottom-color: #eaeaea;
   --card-border-top-color: #eaeaea;
-  --chat-sidebar-background: #fbfbfb;
   --chat-sidebar-border-right: solid 1px #eaeaea;
   --board-header-border-bottom: #eaeaea;
   --board-footerborder-top: #eaeaea;
   --error-code-color: #1e1e1e;
   --error-link-color: #3369f3;
-  --error-text-color: #1e1e1e;
+
   --footer-button-background-color: #fff;
   --footer-button-send-background: #3369f3;
   --footer-input-background: #efefef;
   --footer-input-color: #999;
-  --footer-text-color: #1e1e1e;
+
   --header-link-background-color: #f5f5f5;
   --header-image-background: #efefef;
   --identity-background: #fff;
@@ -42,8 +76,6 @@
   --inbox-input-border-color-error: red;
   --inbox-input-color: #999;
   --link-color: #3369f3;
-  --list-value-color: #999;
-  --list-label-color: #1e1e1e;
   --list-item-border-bottom-color: #eaeaea;
   --message-color: #1e1e1e;
   --message-container-to-background: #e4edfd;
@@ -61,7 +93,6 @@
   --profile-avatar-hover-after-color: #fff;
   --profile-link-logout-color: #f00;
   --profile-link-color: #3369f3;
-  --profile-title-color: #1e1e1e;
   --sidebar-profile-color: #999;
   --sidebar-search-background: #efefef;
   --sidebar-search-border-color: #efefef;

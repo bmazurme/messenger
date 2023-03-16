@@ -1,6 +1,7 @@
 .list__value_input {
   padding: 5px 0 0;
   border: 0;
+  background-color: var(--background);
 }
 
 .list__value_input:focus {

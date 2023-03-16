@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useErrorHandler } from 'react-error-boundary';
 import { Controller, useForm } from 'react-hook-form';
@@ -6,11 +6,14 @@ import { Controller, useForm } from 'react-hook-form';
 import useUser from '../../hook/useUser';
 import AvatarChanger from '../AvatarChanger';
 import ProfileMenu from '../ProfileMenu';
+import Switcher from '../Switcher';
 
 import { useSignOutMutation, useUpdateAvatarMutation } from '../../store';
 import { Urls } from '../../utils/constants';
 
 export type FormPayload = Omit<User, 'id'>;
+
+import ThemeContext from '../../context/ThemeContext';
 
 export default function Profile() {
   const userData = useUser();
@@ -18,6 +21,7 @@ export default function Profile() {
   const [signOut] = useSignOutMutation();
   const [updateAvatar] = useUpdateAvatarMutation();
   const [newSrc, setNewSrc] = useState('');
+  const { style, setStyle } = useContext(ThemeContext);
 
   const signOutHandler = async () => {
     await signOut();
@@ -39,6 +43,16 @@ export default function Profile() {
       })
       .catch(({ status, data: { reason } }) => errorHandler(new Error(`${status}: ${reason}`)));
   };
+
+  const toggleTheme = () => {
+    setStyle(style === 'light' ? 'dark' : 'light');
+    localStorage.setItem('wp-theme', style === 'light' ? 'dark' : 'light');
+  };
+
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('wp-theme');
+    setStyle(currentTheme === 'light' ? 'light' : 'dark');
+  }, []);
 
   return (
     <section className="profile">
@@ -104,6 +118,13 @@ export default function Profile() {
           </p>
         </li>
       </ul>
+      <div className="center">
+        <Switcher
+          label="Dark theme"
+          handlerSwitchClick={toggleTheme}
+          value={(localStorage.getItem('wp-theme') === 'dark')}
+        />
+      </div>
       <ProfileMenu signOutHandler={signOutHandler} />
       <div className="back">
         <Link className="back__button" to={Urls.BASE} />
