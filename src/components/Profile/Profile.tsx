@@ -11,9 +11,9 @@ import Switcher from '../Switcher';
 import { useSignOutMutation, useUpdateAvatarMutation } from '../../store';
 import { Urls } from '../../utils/constants';
 
-export type FormPayload = Omit<User, 'id'>;
-
 import ThemeContext from '../../context/ThemeContext';
+
+export type FormPayload = Omit<User, 'id'>;
 
 export default function Profile() {
   const userData = useUser();
