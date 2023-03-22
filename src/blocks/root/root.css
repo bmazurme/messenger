@@ -15,7 +15,7 @@ html {
   --footer-text-color: #1e1e1e;
 }
 
-html[data-theme="dark"] {
+html[ms-theme="dark"] {
   --background: #161616;
   --chat-sidebar-background: #323232;
   --chat-container: #222;

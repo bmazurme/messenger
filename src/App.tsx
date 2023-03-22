@@ -18,8 +18,8 @@ export default function App() {
   const providerValue = useMemo(() => ({ style, setStyle }), [style, setStyle]);
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem('wp-theme');
-    document.documentElement.setAttribute('data-theme', (currentTheme === 'dark') ? 'dark' : 'light');
+    const currentTheme = localStorage.getItem('ms-theme');
+    document.documentElement.setAttribute('ms-theme', (currentTheme === 'dark') ? 'dark' : 'light');
   }, [style]);
 
   return (

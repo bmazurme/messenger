@@ -46,11 +46,11 @@ export default function Profile() {
 
   const toggleTheme = () => {
     setStyle(style === 'light' ? 'dark' : 'light');
-    localStorage.setItem('wp-theme', style === 'light' ? 'dark' : 'light');
+    localStorage.setItem('ms-theme', style === 'light' ? 'dark' : 'light');
   };
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem('wp-theme');
+    const currentTheme = localStorage.getItem('ms-theme');
     setStyle(currentTheme === 'light' ? 'light' : 'dark');
   }, []);
 
@@ -122,7 +122,7 @@ export default function Profile() {
         <Switcher
           label="Dark theme"
           handlerSwitchClick={toggleTheme}
-          value={(localStorage.getItem('wp-theme') === 'dark')}
+          value={(localStorage.getItem('ms-theme') === 'dark')}
         />
       </div>
       <ProfileMenu signOutHandler={signOutHandler} />
